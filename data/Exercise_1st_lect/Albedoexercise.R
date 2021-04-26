@@ -27,3 +27,6 @@ lines(albedo_canopy, col="red")
 legend("bottomright", inset=0.01, legend=c("albedo", "albedo with canopy"), 
        lwd=2, cex=1.2, col=c("blue", "red"), bg="lightyellow")
 
+totalalbedo <- albedo-albedo_canopy
+plot(totalalbedo, ylim = c(-250,1100 ),main='Albedo',
+     xlab='', ylab='', col="blue", type = "l" )
