@@ -20,9 +20,9 @@ Electromagnetic radiation is measured in joules (J). The radiant energy measured
 ## 1.3
 
 | *Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
-| Albedo will differ upon the characteristics off the places of interested and how radiation is approaching the land surface. For example, as we saw in class, during winter months under the presence of snow, albedo effects increases due to less absorbance capacity from the surface (snow) and it is reflected to the space again, where part of it will be rebounded back again to earth and follow same processes as before, being scattered by particles presence in the air. Same happens on canopy surface, where the leafs are able to absorb the radiance incoming from the sun without increasing the temperature of earth. Instead, if surface it's a sea, it will be partly reflected back and partly absorbed by the water particles and probably vegetation under water. 
+| Albedo will differ upon the characteristics off the places of interested and how radiation is approaching the land surface. For example, as we saw in class, during winter months under the presence of snow, albedo effects increases due to less absorbance capacity from the surface (snow) and it is reflected to the space again, where part of it will be rebounded back again to earth and follow same processes as before, being scattered by particles presence in the air. Same happens on canopy surface, where the leafs are able to absorb the radiance incoming from the sun without increasing the temperature of earth. Instead, if surface it's a sea, it will be partly reflected back and partly absorbed by the water particles and probably vegetation under water.
 | 
-| *How large is the absorption coefficient in the shortwave radiation range? How does the absorption  coefficient varies with time and what could a high and low absorption coefficient indicate for a plant*
+| *How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant*
 | *canopy?*
 | The absorption coefficient will differ with the value of reflectivity and transmissivity, the sum of these 3 should be equal 1.
 | 
