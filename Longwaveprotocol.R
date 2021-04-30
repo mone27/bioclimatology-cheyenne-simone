@@ -9,4 +9,4 @@ E = V/C + 5.67*10^-8*T^4
 alpha <- 1.0295*10^-3
 beta <- 2.391*10^-4
 gamma <- 1.568*10^-7
-T <- (alpha+[beta*(log(R))+gmma*(log(R))^3])^(-1)-273.15
+T <- (alpha+[beta*(log(R))+gamma*(log(R))^3])^(-1)-273.15

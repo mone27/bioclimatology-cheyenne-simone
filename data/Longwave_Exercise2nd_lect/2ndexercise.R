@@ -8,9 +8,18 @@ netbalance_lw <- A-E
 Rsw <- data$SW_OUT_W_m.2 #Reflected solar radiation
 G <-data$SW_IN_W_m.2 #Global radiation, is the sum of direct and diffuse solar radiation
 netbalance_sw <- Rsw/G
-
 netradiationbalance_earthsurface <- netbalance_lw+netbalance_sw
 
+sigma <- 5.67*10^-8 #W/m2K4
+
+T <- data$Pyrgeometer_Temp_degC*273
+
+e <- E/sigma*T^4
+
+T <- (E/e*sigma)^(1/2)
+
+plot(T)
+plot(e)
 sky_temp <- 
 surface_temp <- 
 
