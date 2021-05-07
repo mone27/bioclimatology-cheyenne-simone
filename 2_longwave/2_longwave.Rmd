@@ -1,0 +1,17 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+data <- read_csv("net_radiation_field.csv")
+```
+
+```{r}
+(net_radiation = data$incoming_lw - data$outgoing_lw + data$incoming_sw - data$outgoing_sw)
+```
+
