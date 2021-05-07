@@ -10,3 +10,10 @@ alpha <- 1.0295*10^-3
 beta <- 2.391*10^-4
 gamma <- 1.568*10^-7
 T <- (alpha+[beta*(log(R))+gamma*(log(R))^3])^(-1)-273.15
+
+Derive the sky and surface temperature from the longwave radiation components. 
+How do they differ and why? Discuss! 
+During whichperiods of the year sky and surface temperature differ the most andthe less?
+Compare the soil surface temperature derived from the longwaveradiation with the soil temperature at 0.02 m depth. 
+To which degreecan the outgoing longwave radiation be used as an estimate ofsurface temperature and what are potential errors?
+Calculate the net radiation over the meadow in the forest botanicalgarden and plot the four components. How do the four componentschange over the season and why? Which unexpected results youfound? Discuss!2323
