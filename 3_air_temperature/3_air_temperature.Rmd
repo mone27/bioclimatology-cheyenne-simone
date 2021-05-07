@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+
+Plot air temperature inside the canopy and above the canopy.
+Indicate time periods when the two temperatures differ and explain
+why.
+
+```{r}
+df <- read_csv("~/Documents/uni/bioclimatology/Data/3_Air_temperature/Hainich_T_air_soil_degC.csv")
+```
+
+
+
+```{r}
+ggplot(df, aes(x=Date)) +
+  geom_line(aes(y=TA_44m, colour="44m")) +
+  geom_line(aes(y=TA_2m, colour="2m"))
+```
+```{r}
+df$diff_t <- df$TA_44m - df$TA_2m
+```
+
+```{r}
+ggplot(df, aes(x=Date)) +
+  geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
+```
+```{r}
+df %>%
+  filter(Date > as_date("2019-06-1") & Date < as_date("2019-07-1"))  %>%
+  ggplot(aes(x=Date)) +
+  geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
+```
+
+```{r}
+df %>%
+  filter(Date > as_date("2019-06-1") & Date < as_date("2019-06-8"))  %>%
+  ggplot(aes(x=Date)) +
+  geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
+```
+Plot air temperature in 2 m height and soil temperature in 0.02 m
+depth. Explain the characteristics of the time series?
+
+Estimate the response time of a mercury thermometer (soil
+temperature) and an Assmann thermometer (air temperature).
+Visualize and discuss differences.

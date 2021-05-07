@@ -1,13 +1,16 @@
 ---
-title: "1st Report: Albedo"
-output: html_notebook
+title: '1st Report: Shortwave'
+output:
+  html_notebook
 ---
+
 
 ## 1.1 Motivation
 
 1.  Bibliography ---\> Perkins, S. (2019). Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy. *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371.
 
-The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Short-wave radiation is stronger than long-wave. A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water (Perkins, 2019). Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation. With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
+The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Short-wave radiation is stronger than long-wave.
+A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water (Perkins, 2019). Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation. With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
 
 ## 1.2 Background
 
@@ -15,7 +18,7 @@ The sun is the energy source of the radiation incoming to Earth. This radiation 
 
 1.  Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press. Chapter 3, p(41-43).
 
-Electromagnetic radiation is measured in joules (J). The radiant energy measured per time is a flux and its units are J/s = W (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. The sun liberates short-wave radiation (0,2 - 4) µm. Sunlight radiation is composed by ultraviolet radiation with a lower value than 0,4µm, visible radiation (0,4-0,7) µm and near-infrared \>0,5µm. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of 3-100µm, and this ratio is known as long wave radiation or infrared (Bonan, 2019). When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in (W\*m\^-2) produced equal the product of the Stefan-Boltzmann constant (𝞼= 5,67\*10 \^-8 W\*m-2\*K-4) and the broadband emissivity (𝜀); **L= 𝜀\*𝞼\*(T\^4)** (Bonan, 2019)**.** This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case (Bonan, 2019).
+Electromagnetic radiation is measured in joules (J). The radiant energy measured per time is a flux and its units are J/s = W (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. The sun liberates short-wave radiation (0,2 - 4) µm. Sunlight radiation is composed by ultraviolet radiation with a lower value than 0,4µm, visible radiation (0,4-0,7) µm and near-infrared \>0,5µm. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of 3-100µm, and this ratio is known as long wave radiation or infrared (Bonan, 2019). When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in (W\*m\^-2) produced equal the product of the Stefan-Boltzmann constant (𝞼= 5,67\*10 \^-8 W\*m-2\*K-4) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$ (Bonan, 2019). This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case (Bonan, 2019).
 
 ## 1.3
 
@@ -42,7 +45,7 @@ library(tidyverse)
 
 manually adding reflectance data.
 
-```{r}
+```{r this-isa-chunk-name}
 s_sens <- 4.49 # sensor sensitivity 10e-6 V / W m-2
 sw_in <- 3.12 * 1000 / s_sens
 refl <- tribble(
@@ -60,7 +63,7 @@ refl <- tribble(
 ```
 
 ```{r}
-trans <- read_csv("data/sw_transmitted_canopy.csv", comment = "#") %>%
+trans <- read_csv("data/First protocol/sw_transmitted_canopy.csv", comment = "#") %>%
   mutate(radiation = voltage * 1000 / s_sens, # need to convert micro volts in mV
          frac_trans = radiation / sw_in, 
          x=seq_along(radiation))
