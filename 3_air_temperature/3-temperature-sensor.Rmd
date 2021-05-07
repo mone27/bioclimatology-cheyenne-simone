@@ -24,7 +24,7 @@ we heat up the sensor and then measure every 10 seconds the temperature while it
 
 
 ```{r}
-df <- read.csv("data/3 protocol/resistance_sensor_cooling response", header = T)
+df <- read.csv("resistance_sensor_cooling response", header = T)
 ```
 
 ```{r}

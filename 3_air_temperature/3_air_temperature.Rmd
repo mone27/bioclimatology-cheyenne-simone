@@ -14,7 +14,7 @@ Indicate time periods when the two temperatures differ and explain
 why.
 
 ```{r}
-df <- read_csv("~/Documents/uni/bioclimatology/Data/3_Air_temperature/Hainich_T_air_soil_degC.csv")
+df <- read_csv("../Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.csv")
 ```
 
 

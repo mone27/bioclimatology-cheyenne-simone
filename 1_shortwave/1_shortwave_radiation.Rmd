@@ -63,7 +63,7 @@ refl <- tribble(
 ```
 
 ```{r}
-trans <- read_csv("data/First protocol/sw_transmitted_canopy.csv", comment = "#") %>%
+trans <- read_csv("sw_transmitted_canopy.csv", comment = "#") %>%
   mutate(radiation = voltage * 1000 / s_sens, # need to convert micro volts in mV
          frac_trans = radiation / sw_in, 
          x=seq_along(radiation))
