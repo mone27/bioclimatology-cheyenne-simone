@@ -1,0 +1,92 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+## Resistance sensor 
+
+```{r}
+
+res_wire <- 3.7 # Omega. This has been measured in the field
+r_0 <- 100 # Omega at 100 degrees
+a <- 4e-3
+
+
+#' converts resistance to temperature
+get_temp <- function(resistance) {
+  (((resistance - res_wire) / 100) - 1) / 4e-3 
+}
+```
+
+we heat up the sensor and then measure every 10 seconds the temperature while it cooled down
+
+
+load data
+```{r}
+temp_res <- read.csv("resistance_sensor_cooling response.csv", header = T)
+```
+
+add the time (in seconds) and the temperature after conversion from resistance
+```{r}
+temp_res <- temp_res %>%
+  mutate(time = 0:(nrow(temp_res)-1) * 10,
+         temp = get_temp(resistance) )
+```
+
+
+To estimate the response time we can start from the following equation that describes the temperature decrease over time
+
+$$T_t = T_a + (T_0 - T_a) e^{\frac{T} {-\tau}}$$
+by inverting this formula and fitting a linear model we estimate $\tau$
+
+```{r}
+T_a <- 13.0 # calculations done in the field
+T_0 <- temp_res$temp[1] # first measure 
+
+temp_res <- mutate(temp_res, log_t = log((T_0 - T_a) / (temp - T_a)) )
+```
+
+```{r}
+ggplot(temp_res, aes(x=time, y=log_t)) +
+  geom_line()
+```
+
+```{r}
+(model_res <- lm(time ~ log_t, data=temp_res))
+```
+
+The time response rate for the resistance sensor is `r round(coef(model_res)[1])` seconds.
+
+## Mercury termometer
+
+```{r}
+temp_merc <- read.csv("mercury_termometer_cooling_response.csv", header = T)
+```
+
+
+```{r}
+T_a <- 7.0 # ambient temperature
+T_0 <- temp_merc$temp[1] # first measure 
+
+temp_merc <- mutate(temp_merc, log_t = log((T_0 - T_a) / (temp - T_a)) )
+```
+
+
+```{r}
+ggplot(temp_merc, aes(x=time, y=log_t)) +
+  geom_line()
+```
+
+```{r}
+(model_merc <- lm(time ~ log_t, data=temp_merc))
+```
+
+The time response rate for the resistance sensor is `r round(coef(model_res)[1])` seconds.
+
+
+
