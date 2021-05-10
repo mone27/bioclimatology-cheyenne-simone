@@ -5,13 +5,200 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(lubridate)
+library(tsibble)
+library(janitor)
+```
+
+
+
+## Longwave radiation  
+
+
+###  Motivation
+
+Emitted longwave radiation is the only way for the planet to cool itself. Climate change is directly connected to the greenhouse effect, which is produced by longwave radiation captured by the earth atmosphere.
+
+All bodies emit electromagnetic radiation, and in the temperature range of the earth surface this leads to emission in the longwave range.
+Therefore longwave radiation is always present in the ecosystems and represents one of the avenues to exchange energy.
+
+### Background
+- describe the most important background needed to fulfill the excercises, i.e. for short wave radiation, what is radiation?, which variables exist and what are they?, which units do the variables have?,  which radiation laws exist and what is their meening?, and what are transport mechanisms (transmission, absorption,…)
+- list necessary equations
+- maybe include calibration coefficients for reproducibility and when necessary
+
+
+### Sensors and measuring principle
+
+Pyrgeometer
+
+temperature of the sensor
+
+
+
+### Analysis
+
+
+
+
+Derive the sky and surface temperature from the longwave radiation
+components. How do they differ and why? Discuss! During which
+periods of the year sky and surface temperature differ the most and
+the less?
+
+
+
+
+```{r}
+rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
+names(rad) <- c("datetime", "t_sens", "sw_in", "sw_out", "lw_in_sens", "lw_out_sens", "t_soil")
 ```
 
 ```{r}
-data <- read_csv("net_radiation_field.csv")
+sigma <- 5.67e-8 
+
+lw2temp <- function(lw) (lw/ sigma)^(1/4)
+temp2lw <- function(temp)  return (sigma * temp^4)
+
+c2k <- function(c) c + 273.15
+k2c <- function(k) k - 273.15
+```
+
+
+```{r}
+#calculate from input data the real lw and the soil/surface temperature
+rad <- rad %>%
+  mutate(
+    lw_sens = temp2lw(c2k(t_sens)),
+    lw_in = lw_in_sens + lw_sens,
+    lw_out = lw_out_sens + lw_sens,
+    t_sky = lw2temp(lw_in) %>% k2c,
+    t_surface = lw2temp(lw_out) %>% k2c,
+    net_rad = lw_in - lw_out + sw_in - sw_out
+  )
 ```
 
 ```{r}
-(net_radiation = data$incoming_lw - data$outgoing_lw + data$incoming_sw - data$outgoing_sw)
+# for making life easier let's have data in only one year
+
+rad <- rad %>%
+  filter(datetime < as_datetime("2020-12-31"))
+```
+
+
+```{r}
+# weekly data
+rad_w <- rad %>% 
+  as_tsibble(index = datetime) %>%
+  index_by(week = ~ yearweek(.)) %>%
+  summarise_all(mean, na.rm = TRUE)
+```
+
+
+```{r}
+rad_d <- rad %>%
+  mutate(yday = yday(datetime)) %>%
+  group_by(yday) %>%
+  summarize_all(mean, na.rm = TRUE)
+```
+
+
+
+
+#### surface and sky temperature
+
+
+The sky temperatures is always lower than the surface one. The surface temp ranges from `r round(min(rad$t_surface, na.rm=T))` C to `r round(max(rad$t_surface, na.rm=T))` C, while the sky temperature has a bigger range from `r round(min(rad$t_sky, na.rm=T))` C to `r round(max(rad$t_sky, na.rm=T))` C.
+The temperature of the sky mainly depends on the cloud cover and the temperature of the air
+
+
+```{r}
+rad_w %>%
+  gather(key="type", value="temp", t_sky, t_surface) %>%
+ggplot(aes(x=datetime, y=temp, colour=type)) +
+  geom_line() +
+  labs(title="Weekly average", y="Temperature (°C)", x="Time")
+```
+
+
+```{r}
+rad_d %>%
+  gather(key="type", value="temp", t_sky, t_surface) %>%
+ggplot(aes(x=datetime, y=temp, colour=type)) +
+  geom_line()  +
+  labs(title="Daily average", y="Temperature (°C)", x="Time")
+```
+
+
+```{r}
+rad %>%
+  filter( month(datetime) == 7 ) %>%
+  gather(key="type", value="temp", t_sky, t_surface) %>%
+ggplot(aes(x=datetime, y=temp, colour=type)) +
+  geom_line()  +
+  labs(title="Month of July (10 mins data)", y="Temperature (°C)", x="Time")
+```
+
+
+
+
+```{r}
+filter(rad, between(datetime, as_datetime("2020-07-03"), as_datetime("2020-07-12"))) %>%
+  gather(key="type", value="temp", t_sky, t_surface) %>%
+ggplot(aes(x=datetime, y=temp, colour=type)) +
+  geom_line()  +
+  labs(title="3-12 July (10 mins data)", y="Temperature (°C)", x="Time")
+```
+
+
+
+
+
+
+
+
+
+
+
+#### Net radiation
+
+
+Calculate the net radiation over the meadow in the forest botanical
+garden and plot the four components. How do the four components
+change over the season and why? Which unexpected results you
+found? Discuss!
+
+
+
+
+```{r}
+rad_w %>%
+  gather(key="type", value="radiation", net_rad, lw_in, lw_out, sw_in, sw_out, factor_key = T) %>%
+ggplot(aes(x=datetime, y=radiation, colour=type)) +
+  geom_line() +
+  labs(title="Weekly average Net radiation", y="Radiation (W m-2)", x="Time")
+```
+
+
+#### change emissity in the sensor
+
+we tried to change the emissivity in the settings of the infrared thermometer, but due to some errors in the field data measurements we generated this data using the formula.
+
+
+```{r}
+t_0 <- 19 # temperature with emissivity 1
+rad_0 <- c2k(t_0) %>% temp2lw # connected radiation 
+
+temps <- tibble(
+  em = seq(1, .7, -.05),
+  t = (rad_0 / (em * sigma))^(1/4) 
+) 
+```
+
+```{r}
+ggplot(temps, aes(em, t)) +
+  geom_line() +
+  scale_x_reverse() +
+  labs(x="Emissivity", y="Temperature", title="Different temperatures with different emissivity")
 ```
 
