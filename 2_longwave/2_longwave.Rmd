@@ -1,9 +1,11 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r}
+```{r, include=F}
 library(tidyverse)
 library(lubridate)
 library(tsibble)
