@@ -5,6 +5,8 @@ output: html_notebook
 
 ```{r}
 library(tidyverse)
+library(lubridate)
+library(patchwork)
 ```
 
 Formulas
@@ -59,23 +61,63 @@ hum <- mutate(hum,
     p_def = get_p_def(ea, es),
     t_eq = get_t_eq(ta, mix_ratio)
   )
+
+hum_d <- hum %>%
+  group_by(week=yday(datetime)) %>%
+  summarize_all(mean)
+
+hum_w <- hum %>%
+  group_by(week=week(datetime)) %>%
+  summarize_all(mean)
 ```
 
 
 ```{r}
 hum %>%
   filter(week(datetime) ==1) %>%
-  gather("type", "val", es, ea, p_def) %>%
+  gather("type", "val", es, ea) %>%
   ggplot(aes(datetime, val, colour=type))+
-    geom_line()
+    geom_line()+
+  labs(title="Saturation vs Actual vapour pressure. 1 week", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure") +
+  scale_color_discrete(labels=c("actual", "saturation"))
 ```
+```{r}
+hum_d %>%
+  gather("type", "val", es, ea) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line()+
+  labs(title="Saturation vs Actual vapour pressure", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure", subtitle = "1 year, daily average") +
+  scale_color_discrete(labels=c("actual", "saturation"))
+```
+```{r}
+p_td <- hum_d %>%
+  gather("type", "val", ta, td) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line()+
+  labs(title="Temperature air vs temperature dew point", x="Datetime", y="Temperature (°C)", colour="Temperature", subtitle = "1 year, daily average") +
+  scale_color_discrete(labels=c("air", "dew point"))
+
+p_rh <- ggplot(hum_d, aes(datetime, rh))+
+    geom_area() +
+  geom_hline(yintercept = 100, linetype="dashed", size=.5) +
+  labs(y="Relative Humidity (%)")
+
+p_td / p_rh +
+  plot_layout(heights = c(4, 2))
+```
+
+
+```{r}
+```
+
 
 ```{r}
 hum %>%
   filter(week(datetime) ==1) %>%
   gather("type", "val", ta, td) %>%
   ggplot(aes(datetime, val, colour=type))+
-    geom_line()
+    geom_line() +
+  labs(title="")
 ```
 ```{r}
 hum %>%
@@ -108,5 +150,16 @@ hum %>%
   gather("type", "val", ta, td, t_eq) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()
+```
+
+```{r}
+hum_w <- hum %>%
+  group_by(week=week(datetime)) %>%
+  summarize_all(mean)
+```
+
+```{r}
+ggplot(hum_w, aes(datetime, ta)) +
+  geom_line()
 ```
 
