@@ -1,17 +1,24 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r}
 library(tidyverse)
+#install.packages("lubridate")
 library(lubridate)
+#install.packages("patchwork")
 library(patchwork)
 ```
 
 Formulas
 
+-Saturation vapour pressure [hPa]
+
 $$e_s = 6.1078 e^{\frac{17.08085 T_a} {234.175°C + T_a}}$$
+-Dewpoint temperature [ºC]
 
 $$T_d = \frac{(len(e_a) - ln(6.1708))\cdot234.17} {17.08085 - ln(e_a) + ln(6.1078)}$$
 
@@ -48,7 +55,15 @@ get_t_eq <- function(ta, mix_ratio) k2c(c2k(ta) + 2.5 * mix_ratio)
 ```{r}
 head(hum)
 ```
-
+Calculate and visualize
+1. actual vapor pressure,
+2. saturation vapor pressure,
+3. dewpoint temperature,
+4. absolute humidity,
+5. specific humidity,
+6. mixing ratio,
+7. vapor pressure deficit, and
+8. equivalent temperature.
 
 ```{r}
 hum <- mutate(hum,
@@ -71,7 +86,7 @@ hum_w <- hum %>%
   summarize_all(mean)
 ```
 
-
+How and when do actual and saturation vapour pressure differ?
 ```{r}
 hum %>%
   filter(week(datetime) ==1) %>%
@@ -81,6 +96,8 @@ hum %>%
   labs(title="Saturation vs Actual vapour pressure. 1 week", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure") +
   scale_color_discrete(labels=c("actual", "saturation"))
 ```
+
+
 ```{r}
 hum_d %>%
   gather("type", "val", es, ea) %>%
@@ -89,6 +106,11 @@ hum_d %>%
   labs(title="Saturation vs Actual vapour pressure", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure", subtitle = "1 year, daily average") +
   scale_color_discrete(labels=c("actual", "saturation"))
 ```
+
+During the year, the biggest differences between actual and saturation vapour pressure can be found after summer period, normally due to the first incoming rains with the beginning of autumn. 
+
+Compare air and dew point temperature, how do they differ and how are they related to relative humidity?
+
 ```{r}
 p_td <- hum_d %>%
   gather("type", "val", ta, td) %>%
@@ -111,11 +133,15 @@ p_td / p_rh +
   plot_layout(heights = c(4, 2))
 ```
 
+
 ```{r}
 hum_d %>%
   ggplot(aes(datetime, abs_hum)) +
   geom_line()
 ```
+
+With the analysis of the graphs, a direct relationship between a lower amount of relative humidity during summer and wider difference between the graphs of Tair and Tdewpoint can be concluded. This means, that the temperature of air reaches its peak in summer due to less relative humidity in air, while at the beggining and end of the year more similarities can be seen.
+
 
 ```{r}
 hum %>%
@@ -141,12 +167,16 @@ hum %>%
     geom_line()
 ```
 
+When is absolute humidity largest and why?
 ```{r}
 hum %>%
   gather("type", "val", abs_hum) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()
 ```
+
+Compare mixing ratio and specific humidity, how and why do they differ?
+
 ```{r}
 ( hum %>%
   filter(week(datetime) ==30) %>%
@@ -181,6 +211,14 @@ cor(hum$mix_ratio-hum$spec_hum, hum$rh, "pairwise.complete.obs")
 
 
 ```{r}
+hum %>%
+  gather("type", "val", spec_hum, mix_ratio) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line()
+```
+In this case they do not differ to much?¿?
+
+```{r}
 head(hum)
 ```
 
@@ -191,6 +229,15 @@ hum %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()
 ```
+When is the vapour pressure deficit and equivalent temperature
+largest?
+```{r}
+hum %>%
+  gather("type", "val", t_eq, p_def) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line()
+```
+During summer is the largest vapour pressure deficit and equivalent temperature values.
 
 ```{r}
 hum_w <- hum %>%
