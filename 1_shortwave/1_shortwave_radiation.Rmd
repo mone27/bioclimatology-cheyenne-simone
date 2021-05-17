@@ -78,8 +78,7 @@ ggplot(refl) +
   geom_label(aes(x=surface, y=albedo, label=paste(round(albedo, 2), "%"))) +
   scale_fill_manual(values=c("grass" = "#009A17",
                              "road" = "#D3BC8D",
-                             "asphalt" = "#807E78"),
-                    ) +
+                             "asphalt" = "#807E78")) +
   ylim(0,1) +
   labs(title="Albedo on different surfaces", x= "Surface", y="Albedo (%)")
  
