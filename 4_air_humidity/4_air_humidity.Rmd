@@ -95,19 +95,33 @@ p_td <- hum_d %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()+
   labs(title="Temperature air vs temperature dew point", x="Datetime", y="Temperature (°C)", colour="Temperature", subtitle = "1 year, daily average") +
-  scale_color_discrete(labels=c("air", "dew point"))
+  scale_color_discrete(labels=c("air", "dew point")) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.title.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )
 
 p_rh <- ggplot(hum_d, aes(datetime, rh))+
     geom_area() +
-  geom_hline(yintercept = 100, linetype="dashed", size=.5) +
-  labs(y="Relative Humidity (%)")
+  geom_hline(yintercept = 100, linetype="dashed", size=.2) +
+  labs(y="Relative Humidity (%)", x="Datetime")
 
 p_td / p_rh +
   plot_layout(heights = c(4, 2))
 ```
 
+```{r}
+hum_d %>%
+  ggplot(aes(datetime, abs_hum)) +
+  geom_line()
+```
 
 ```{r}
+hum %>%
+  gather("type", "val", spec_hum, mix_ratio) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line()
 ```
 
 
@@ -134,12 +148,38 @@ hum %>%
     geom_line()
 ```
 ```{r}
-hum %>%
-  filter(week(datetime) ==6) %>%
+( hum %>%
+  filter(week(datetime) ==30) %>%
   gather("type", "val", spec_hum, mix_ratio) %>%
   ggplot(aes(datetime, val, colour=type))+
-    geom_line()
+    geom_line() +
+  labs(y="Water content (Kg/Kg)") +
+    scale_color_discrete(labels=c("Mixing ratio", "Specific humidity")) +
+    theme(
+    axis.text.x = element_blank(),
+    axis.title.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )) +
+
+  (hum %>%
+  filter(week(datetime) ==30) %>%
+  ggplot(aes(datetime, rh))+
+    geom_area() +
+  geom_hline(yintercept = 100, linetype="dashed", size=.2) +
+  labs(y="Relative Humidity (%)", x="Datetime") ) +
+
+  plot_layout(heights = c(4, 1))
 ```
+```{r}
+cor(hum$mix_ratio-hum$spec_hum, hum$rh, "pairwise.complete.obs")
+```
+
+
+```{r}
+
+```
+
+
 ```{r}
 head(hum)
 ```
