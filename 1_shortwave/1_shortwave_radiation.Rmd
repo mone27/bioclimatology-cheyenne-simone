@@ -10,31 +10,17 @@ output:
 1.  Bibliography ---\> Perkins, S. (2019). Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy. *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371.
 
 The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Short-wave radiation is stronger than long-wave.
-A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water (Perkins, 2019). Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation. With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
+A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water (Perkins, 2019). Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation (Perkins, 2019). With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
 
 ## 1.2 Background
-
-(describe the most important background needed to fulfill the exercises, i.e. for short wave radiation, what is radiation?, which variables exist and what are they?, which units do the variables have?,  which radiation laws exist and what is their meaning?, and what are transport mechanisms (transmission, absorption,...) - list necessary equations - maybe include calibration coefficients for reproducibility and when necessary
 
 1.  Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press. Chapter 3, p(41-43).
 
 Electromagnetic radiation is measured in joules (J). The radiant energy measured per time is a flux and its units are J/s = W (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. The sun liberates short-wave radiation (0,2 - 4) µm. Sunlight radiation is composed by ultraviolet radiation with a lower value than 0,4µm, visible radiation (0,4-0,7) µm and near-infrared \>0,5µm. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of 3-100µm, and this ratio is known as long wave radiation or infrared (Bonan, 2019). When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in (W\*m\^-2) produced equal the product of the Stefan-Boltzmann constant (𝞼= 5,67\*10 \^-8 W\*m-2\*K-4) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$ (Bonan, 2019). This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case (Bonan, 2019).
 
-## 1.3
+1.4 Sensors and measuring principle
+- here list available sensors (maybe include picture) to measure the respective variables and briefly explain its measuring concepts, I.e. Pyranometer is used to measure global, diffuse and reflected radiation, based on thermopiles...
 
-| *Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
-| Albedo will differ upon the characteristics off the places of interested and how radiation is approaching the land surface. For example, as we saw in class, during winter months under the presence of snow, albedo effects increases due to less absorbance capacity from the surface (snow) and it is reflected to the space again, where part of it will be rebounded back again to earth and follow same processes as before, being scattered by particles presence in the air. Same happens on canopy surface, where the leafs are able to absorb the radiance incoming from the sun without increasing the temperature of earth. Instead, if surface it's a sea, it will be partly reflected back and partly absorbed by the water particles and probably vegetation under water.
-| 
-| *How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant*
-| *canopy?*
-| The absorption coefficient will differ with the value of reflectivity and transmissivity, the sum of these 3 should be equal 1.
-| 
-| 
-|  *Derive the transmission coefficient of the forest. How does the transmission coefficient vary throughout the day and the year? Discuss potential reasons.*
-| 
-| *Calculate the direct solar radiation and plot global, diffuse and direct solar radiation. Compare a clear sky and a cloudy day. What's the difference and why?*
-
-## 1.4 Sensors and measuring principle
 
 ## 1.5 Analysis
 
@@ -73,6 +59,7 @@ frac_trans_sd <- sd(trans$frac_trans)
 ```
 
 ```{r}
+library(ggplot2)
 ggplot(refl) +
   geom_bar(aes(x=surface, y=albedo, fill=surface), stat="identity") +
   geom_label(aes(x=surface, y=albedo, label=paste(round(albedo, 2), "%"))) +
