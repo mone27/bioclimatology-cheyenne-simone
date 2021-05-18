@@ -18,7 +18,7 @@ A term that earns a big role within this field is albedo. Albedo is defined as t
 
 Electromagnetic radiation is measured in joules (J). The radiant energy measured per time is a flux and its units are J/s = W (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. The sun liberates short-wave radiation (0,2 - 4) µm. Sunlight radiation is composed by ultraviolet radiation with a lower value than 0,4µm, visible radiation (0,4-0,7) µm and near-infrared \>0,5µm. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of 3-100µm, and this ratio is known as long wave radiation or infrared (Bonan, 2019). When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in (W\*m\^-2) produced equal the product of the Stefan-Boltzmann constant (𝞼= 5,67\*10 \^-8 W\*m-2\*K-4) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$ (Bonan, 2019). This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case (Bonan, 2019).
 
-1.4 Sensors and measuring principle
+##1.3 Sensors and measuring principle
 - here list available sensors (maybe include picture) to measure the respective variables and briefly explain its measuring concepts, I.e. Pyranometer is used to measure global, diffuse and reflected radiation, based on thermopiles...
 
 Shortwave can be measured with the use of different instruments developed specifically for this. Following, some of them will be introduced and some of them will be used in the practicals of the course. These instruments are known as:
@@ -30,76 +30,70 @@ PAR Quantum sensor:  this sensor is used for the measurement of Photosynthetical
 
 Campbell-Stokes sunshine autograph: as its name shows, this instrument is used to measure the sunshine duration of days. A circumference made of glass burns a paper where the sunshine time period is register. 
 
-## 1.5 Analysis
+## 1.4 Analysis
 
 ```{r}
-
 library(tidyverse)
-
-```
-
-manually adding reflectance data.
-
-```{r this-isa-chunk-name}
-s_sens <- 4.49 # sensor sensitivity 10e-6 V / W m-2
-sw_in <- 3.12 * 1000 / s_sens
-refl <- tribble(
-  ~ surface,  ~ voltage,
-  "grass" ,  0.71,
-  "grass" ,  0.76,
-  "road",  0.78,
-  "road",  0.81,
-  "asphalt",  0.3
-) %>%
-  mutate(radiation = voltage * 1000 / s_sens, # need to convert micro volts in mV
-         albedo = radiation / sw_in) %>%
-  group_by(surface, )%>%
-  summarize_all(mean)
-```
-
-```{r}
-trans <- read_csv("sw_transmitted_canopy.csv", comment = "#") %>%
-  mutate(radiation = voltage * 1000 / s_sens, # need to convert micro volts in mV
-         frac_trans = radiation / sw_in, 
-         x=seq_along(radiation))
-
-frac_trans_mean <- mean(trans$frac_trans)
-frac_trans_sd <- sd(trans$frac_trans)
-```
-
-Derive the albedo from the shortwave radiation components. How
-and why do the albedo varies over the year?
-
-```{r}
 library(ggplot2)
-ggplot(refl) +
-  geom_bar(aes(x=surface, y=albedo, fill=surface), stat="identity") +
-  geom_label(aes(x=surface, y=albedo, label=paste(round(albedo, 2), "%"))) +
-  scale_fill_manual(values=c("grass" = "#009A17",
-                             "road" = "#D3BC8D",
-                             "asphalt" = "#807E78"),
-                    ) +
-  ylim(0,1) +
-  labs(title="Albedo on different surfaces", x= "Surface", y="Albedo (%)")
- 
+
+shortwavedata <- read.csv("Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv", header = TRUE, sep = ",")
+shortwavedata$Date<- as.POSIXct(shortwavedata$Date, format= "%Y-%m-%d %H:%M")
+
+calib_factorsdata <- read.csv("Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv")
+calib_factorsdata $Date<- as.POSIXct(calib_factorsdata$Date, format= "%Y-%m-%d %H:%M")
+
+conver_incoming <- calib_factorsdata$Shortwave_incoming_mV * 86.5801 #mV *( W m-2 )/mV  = W m-2
+conver_outgoing <-  calib_factorsdata$Shortwave_outgoing_mV * 86.5801 #mV *( W m-2 )/mV  = W m-2
+conver_belowcanopy <- calib_factorsdata$Shortwave_incoming_bewlow_canopy_mV*194.9318 #mV *( W m-2 )/mV = W m-2
+
 ```
 
-How large is the absorption coefficient in the shortwave radiation
-range? How does the absorption coefficient varies with time and
-what could a high and low absorption coefficient indicate for a plant
-canopy?
+Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?
+
+```{r}
+cal_albedo <- (conver_outgoing/conver_incoming)%>%
+cal_albedo_canopy <- (conver_belowcanopy/conver_incoming)%>%
+
+albedo <- mutate(calib_factorsdata, cal_albedo, conver_belowcanopy, conver_incoming, conver_outgoing)
+
+ggplot(albedo, aes(x=Date))+
+  geom_line(aes(y=cal_albedo, colour = 'Albedo'))+
+  geom_line(aes(y=cal_albedo_canopy, colour = 'Albedo below canopy'))+
+  labs(y = "Albedo", x = "Time period", color = "")
+
+```
+```{r}
+totalalbedo <- cal_albedo-cal_albedo_canopy
+ggplot(albedo, aes(x=Date))+
+  geom_line(aes(y=totalalbedo, colour = 'Albedo', label="%"))+
+  labs(y = "Albedo", x = "Time period", color = "")
+
+```
+How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
 
 Derive the transmission coefficient of the forest. How does the
 transmission coefficient vary throughout the day and the year?
 Discuss potential reasons.
 
 ```{r}
-ggplot(trans) + 
-  geom_path(aes(x=x, y=frac_trans), colour="red")+
-  geom_hline(yintercept = frac_trans_mean, linetype="dotted") +
-  ylim(0,1)+
-  labs(title="Transmitted sw over transect in forest", x="lenght (m)", y="Fraction transmitted (%)",
-       subtitle = paste("Mean transmitted radiation: ", round(frac_trans_mean, 2), ", Sd: ", round(frac_trans_sd,2)))
+
 ```
 Calculate the direct solar radiation and plot global, diffuse and direct
 solar radiation. Compare a clear sky and a cloudy day. What’s the
