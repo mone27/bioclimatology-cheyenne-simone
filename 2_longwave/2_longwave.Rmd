@@ -9,7 +9,7 @@ output:
 library(tidyverse)
 library(lubridate)
 library(tsibble)
-library(janitor)
+#library(janitor)
 ```
 
 
@@ -51,7 +51,7 @@ the less?
 
 
 
-```{r}
+```{r, message=FALSE}
 rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
 names(rad) <- c("datetime", "t_sens", "sw_in", "sw_out", "lw_in_sens", "lw_out_sens", "t_soil")
 ```
@@ -70,18 +70,21 @@ k2c <- function(k) k - 273.15
 ```{r}
 #calculate from input data the real lw and the soil/surface temperature
 rad <- rad %>%
+  drop_na() %>%
   mutate(
     lw_sens = temp2lw(c2k(t_sens)),
     lw_in = lw_in_sens + lw_sens,
     lw_out = lw_out_sens + lw_sens,
     t_sky = lw2temp(lw_in) %>% k2c,
     t_surface = lw2temp(lw_out) %>% k2c,
-    net_rad = lw_in - lw_out + sw_in - sw_out
+    net_rad = lw_in - lw_out + sw_in - sw_out,
+    net_sw = sw_in - sw_out,
+    net_lw = lw_in - lw_out
   )
 ```
 
 ```{r}
-# for making life easier let's have data in only one year
+# for making aggregation easier we are going to consider data only for one calendar year
 
 rad <- rad %>%
   filter(datetime < as_datetime("2020-12-31"))
