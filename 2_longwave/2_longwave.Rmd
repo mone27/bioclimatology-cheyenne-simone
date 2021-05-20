@@ -17,28 +17,33 @@ library(tsibble)
 ## Longwave radiation  
 
 
-###  Motivation
+##1.1 Motivation
 
 Emitted longwave radiation is the only way for the planet to cool itself. Climate change is directly connected to the greenhouse effect, which is produced by longwave radiation captured by the earth atmosphere.
 
 All bodies emit electromagnetic radiation, and in the temperature range of the earth surface this leads to emission in the longwave range.
 Therefore longwave radiation is always present in the ecosystems and represents one of the avenues to exchange energy.
 
-### Background
+##1.2 Background
 - describe the most important background needed to fulfill the excercises, i.e. for short wave radiation, what is radiation?, which variables exist and what are they?, which units do the variables have?,  which radiation laws exist and what is their meening?, and what are transport mechanisms (transmission, absorption,…)
 - list necessary equations
 - maybe include calibration coefficients for reproducibility and when necessary
 
 
-### Sensors and measuring principle
+##1.3 Sensors and measuring principle
 
-Pyrgeometer
+Longwave radiation is an important flux to understand how climatology works in earth and understand processes such as global  Thus, some instruments have been developed as well to measure longwave radiation. The pyrgeometer measures this type of radiation from the atmosphere and the Earth's surface. This device is based on a sensitive range with infrared radiation between of 4.5 and 40 micrometer. It includes a thermal detector (64 thermocouple thermopile) based on giving a voltage output that then is needed to convert into radiative flux of energy units (W m-2). The way it works is basic, calculating the difference between the longwave radiation coming from the atmosphere and the longwave produced by the sensor. This is represented by the next equation:
 
-temperature of the sensor
+$$ A= Unet/S + sigma * Tb^4 $$ 
+$$ Unet/S = Ua/S + Ubody/S $$
+Another devide that allows to measure longwave radiation is the pyrometer. The pyrometer measures longwave radiation and converts it into a temperature based on the Stefan Boltzmann principle). 
+Besides, it exists other types of sensor based on the measurement of net radiation. One of them is known as CNR4, based on 4 components (G, Rsw, A, E) which gives an output value for each of these. 
+The other instrument that can be used for the same application is NR-Lite2. It is based on a thermopile that mesures net radiation (G+A) in  the upper side, whether in the other side it is measuring the net outgoing radiation (Rsw+E). These last two are similar instruments, but the last one (NR-Lite2) only gives one value as output in shape of voltage which is proportional to the Rn or net radiation. 
 
 
 
-### Analysis
+
+## 1.4 Analysis
 
 
 
