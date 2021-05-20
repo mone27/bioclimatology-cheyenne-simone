@@ -7,85 +7,113 @@ output:
 
 ## 1.1 Motivation
 
-1.  Bibliography ---\> Perkins, S. (2019). Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy. *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371.
 
 The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Short-wave radiation is stronger than long-wave.
-A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water (Perkins, 2019). Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation (Perkins, 2019). With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
+A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water. Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation ^[Perkins, S. (2019). Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy. *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371]. With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
 
 ## 1.2 Background
 
-1.  Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press. Chapter 3, p(41-43).
 
-Electromagnetic radiation is measured in joules (J). The radiant energy measured per time is a flux and its units are J/s = W (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. The sun liberates short-wave radiation (0,2 - 4) µm. Sunlight radiation is composed by ultraviolet radiation with a lower value than 0,4µm, visible radiation (0,4-0,7) µm and near-infrared \>0,5µm. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of 3-100µm, and this ratio is known as long wave radiation or infrared (Bonan, 2019). When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in (W\*m\^-2) produced equal the product of the Stefan-Boltzmann constant (𝞼= 5,67\*10 \^-8 W\*m-2\*K-4) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$ (Bonan, 2019). This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case (Bonan, 2019).
 
-##1.3 Sensors and measuring principle
-- here list available sensors (maybe include picture) to measure the respective variables and briefly explain its measuring concepts, I.e. Pyranometer is used to measure global, diffuse and reflected radiation, based on thermopiles...
+Electromagnetic radiation is measured in joules ($J$). The radiant energy measured per time is a flux and its units are $J/s = W$ (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. 
+
+The sun liberates short-wave radiation $(0,2 - 4) µm$. Sunlight radiation is composed by ultraviolet radiation with a lower value than $0,4µm$, visible radiation $(0,4-0,7) µm$ and near-infrared $ >0,5µm$. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of $3-100µm$, and this ratio is known as long wave radiation or infrared.  
+When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$
+
+This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case ^[Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press. Chapter 3, p(41-43)].
+
+## 1.3 Sensors and measuring principle
+
 
 Shortwave can be measured with the use of different instruments developed specifically for this. Following, some of them will be introduced and some of them will be used in the practicals of the course. These instruments are known as:
 
-Pyrheliometer: allows the direct measurement of shorwave radiation coming directly from the sun. It is disposed by a sensor that reacts at wavelengths around 0.2-4 micrometers. It needs to be set close to a sun tracker, this way it is possible to follow the movement of sun along day. 
-Pyranometer: this instrument measured the global shortwave radiation including the reflected shortwave radiation. It is based on the use of a sensor sensible at same wavelengths as the pyrheliometer, although in this case it must be parallel to the soil surface (horizontal). It the shortwave reflected needs to be measure, the sensor would need to be turn downwards facing the surface. In the case of Pyranometer, it is also used to measure diffused shortwave radiation. For this function, a shadow ring is set, normally shifting towards the suns azimuth angle during time. The main principle is the calculation of voltage differences with wires made of different methals. Normally these voltages are small, this is why the application of a thermopile. In order to decrease the error that winds and air temperature may induce, a glass is situated around the detector. 
+ - Pyrheliometer: allows the direct measurement of shorwave radiation coming directly from the sun. It is disposed by a sensor that reacts at wavelengths around 0.2-4 micrometers. It needs to be set close to a sun tracker, this way it is possible to follow the movement of sun along day. 
 
-PAR Quantum sensor:  this sensor is used for the measurement of Photosynthetically Active Radiation, it is more sensitive than the other with a range between 400-700 nm. It is formed by a filter on top of the sensor and a photodiode semiconductor made out of silicon. This way, incident light makes react the semiconductor, current measured in voltages with the used of resistance. 
+ - Pyranometer: this instrument measured the global shortwave radiation including the reflected shortwave radiation. It is based on the use of a sensor sensible at same wavelengths as the pyrheliometer, although in this case it must be parallel to the soil surface (horizontal). It the shortwave reflected needs to be measure, the sensor would need to be turn downwards facing the surface. In the case of Pyranometer, it is also used to measure diffused shortwave radiation. For this function, a shadow ring is set, normally shifting towards the suns azimuth angle during time. The main principle is the calculation of voltage differences with wires made of different methals. Normally these voltages are small, this is why the application of a thermopile. In order to decrease the error that winds and air temperature may induce, a glass is situated around the detector. 
 
-Campbell-Stokes sunshine autograph: as its name shows, this instrument is used to measure the sunshine duration of days. A circumference made of glass burns a paper where the sunshine time period is register. 
+ - PAR Quantum sensor:  this sensor is used for the measurement of Photosynthetically Active Radiation, it is more sensitive than the other with a range between 400-700 nm. It is formed by a filter on top of the sensor and a photodiode semiconductor made out of silicon. This way, incident light makes react the semiconductor, current measured in voltages with the used of resistance. 
+
+ - Campbell-Stokes sunshine autograph: as its name shows, this instrument is used to measure the sunshine duration of days. A circumference made of glass burns a paper where the sunshine time period is register. 
 
 ## 1.4 Analysis
 
 ```{r}
 library(tidyverse)
 library(ggplot2)
+library(lubridate)
 
 shortwavedata <- read.csv("Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv", header = TRUE, sep = ",")
 shortwavedata$Date<- as.POSIXct(shortwavedata$Date, format= "%Y-%m-%d %H:%M")
 
 calib_factorsdata <- read.csv("Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv")
-calib_factorsdata $Date<- as.POSIXct(calib_factorsdata$Date, format= "%Y-%m-%d %H:%M")
+calib_factorsdata$Date<- as.POSIXct(calib_factorsdata$Date, format= "%Y-%m-%d %H:%M")
 
-conver_incoming <- calib_factorsdata$Shortwave_incoming_mV * 86.5801 #mV *( W m-2 )/mV  = W m-2
-conver_outgoing <-  calib_factorsdata$Shortwave_outgoing_mV * 86.5801 #mV *( W m-2 )/mV  = W m-2
-conver_belowcanopy <- calib_factorsdata$Shortwave_incoming_bewlow_canopy_mV*194.9318 #mV *( W m-2 )/mV = W m-2
+sw_b <- data.frame(
+  Date = calib_factorsdata$Date,
+  incoming = calib_factorsdata$Shortwave_incoming_mV * 86.5801, #mV *( W m-2 )/mV  = W m-2
+  outgoing =  calib_factorsdata$Shortwave_outgoing_mV * 86.5801, #mV *( W m-2 )/mV  = W m-2
+  belowcanopy = calib_factorsdata$Shortwave_incoming_bewlow_canopy_mV*194.9318 #mV *( W m-2 )/mV = W m-2
+)
 
+sw_b[sw_b$incoming<=10 | sw_b$outgoing <=10 | sw_b$belowcanopy <= 10,] <- NA
+
+
+sw_b <- drop_na(sw_b)
 ```
+
+
+
+
 
 Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?
 
 ```{r}
-cal_albedo <- (conver_outgoing/conver_incoming)%>%
-cal_albedo_canopy <- (conver_belowcanopy/conver_incoming)%>%
+sw_b <- mutate(sw_b,
+               albedo = outgoing/incoming,
+               transmitted = belowcanopy/incoming,
+               absorbed = 1 - albedo)
 
-albedo <- mutate(calib_factorsdata, cal_albedo, conver_belowcanopy, conver_incoming, conver_outgoing)
-
-ggplot(albedo, aes(x=Date))+
-  geom_line(aes(y=cal_albedo, colour = 'Albedo'))+
-  geom_line(aes(y=cal_albedo_canopy, colour = 'Albedo below canopy'))+
-  labs(y = "Albedo", x = "Time period", color = "")
-
+sw_b_d <- sw_b %>%
+  group_by(yday(Date)) %>%
+  summarise_all(mean)
 ```
+
+
+
+
 ```{r}
-totalalbedo <- cal_albedo-cal_albedo_canopy
-ggplot(albedo, aes(x=Date))+
-  geom_line(aes(y=totalalbedo, colour = 'Albedo', label="%"))+
+ggplot(sw_b, aes(x=Date))+
+  geom_line(aes(y=albedo, colour = 'Albedo'))
+```
+
+
+
+
+```{r}
+ggplot(sw_b_d, aes(x=Date))+
+  geom_line(aes(y=albedo, colour = 'Albedo'))
+```
+
+```{r}
+ggplot(sw_b_d, aes(x=Date))+
+  geom_line(aes(y=albedo, colour = 'Albedo'))+
+  geom_line(aes(y=transmitted, colour = 'Transmitted below canopy'))+
   labs(y = "Albedo", x = "Time period", color = "")
 
 ```
+
 How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?
 
 ```{r}
-
+ggplot(sw_b_d, aes(x=Date))+
+  geom_line(aes(y=absorbed, colour = 'Absorbed'))+
+  labs(y = "Absorbed", x = "Time period", color = "") +
+  ylim(0.5,1)
 ```
 
+The absorbtion is quite constant, but during winter is higher (up to 90%) to then decrease when there are leaves (83%).
+The peaks during the winter can be connected to measurement errors due to the low amount of radiation.
 
-
-```{r}
-
-```
-
-
-
-```{r}
-
-```
 
 
 Derive the transmission coefficient of the forest. How does the
@@ -93,8 +121,74 @@ transmission coefficient vary throughout the day and the year?
 Discuss potential reasons.
 
 ```{r}
-
+ggplot(sw_b_d, aes(x=Date))+
+  geom_line(aes(y=transmitted, colour = 'Trasmission coef'))+
+  labs(y = "Trasmission coef", x = "Time period", color = "") +
+  ylim(0,.5)
 ```
+
+During the year there is a clear difference between summer and winter. During winter the transmission is around 30% while during summer it is around 5%.
+This shows how effective are the trees in capturing available light
+
+
+```{r}
+ggplot(sw_b_d, aes(x=Date))+
+  geom_line(aes(y=belowcanopy))+
+  labs(y = "Transmitted radiation (W/m2)", x = "Time period", title="Radiation transmitted below the canopy")
+```
+
+The absolute value of the radiation below the canopy is relatively constant between summer and winter with the notable exception of spring.
+There are no leaves in the canopy yet, but the solar radiation is getting stronger. This can explain the why in beech forest there is a some undergrowth only during spring.
+
+
+
+```{r}
+sw_b %>%
+  #filter(yday(Date)=150) %>%
+  filter(between(Date, as_datetime("2020-07-1"), as_datetime("2020-07-2"))) %>%
+ggplot(aes(x=Date))+
+  geom_line(aes(y=transmitted, colour = 'Trasmission coef'))+
+  labs(y = "Trasmission coef", x = "Time period", color = "") 
+```
+
+During summer days there is a daily cycle of the transmission coefficient. It is lower during the morning and evening and higher in the middle of the day.
+This can be explained because when the sun is low on the horizon there is more reflection and the light penetrates less in the canopy, thus resulting in a reduced transmission coefficient.
+
+
 Calculate the direct solar radiation and plot global, diffuse and direct
 solar radiation. Compare a clear sky and a cloudy day. What’s the
 difference and why?
+
+```{r}
+shortwavedata <- mutate(shortwavedata,
+                        direct = Shortwave_incoming_W_m.2 - Shortwave_incoming_diffuse_W_m.2)
+```
+
+```{r}
+shortwavedata%>%
+  group_by(week(Date)) %>%
+  summarise_all(mean) %>%
+  gather("type", "rad", Shortwave_incoming_W_m.2 , direct , Shortwave_incoming_diffuse_W_m.2)  %>%
+  ggplot(aes(x=Date, y=rad, color=type)) +
+    geom_line() +
+  scale_color_discrete(labels=c("direct", "diffuse", "total")) +
+  labs(y="Radiation (W/m2)", x="Time period (weekly)")
+```
+The total radiation is sum of the diffuse and direct. The amount of direct radiation changes a lot during the year. You can see that April and September were relatively sunny months (direct and total radiation are similar), while July and August were cloudy (big difference between direct and total)
+The diffuse radiation has a its own pattern across the year
+
+
+```{r}
+shortwavedata%>%
+  filter(week(Date)==28) %>%
+  gather("type", "rad", Shortwave_incoming_W_m.2 , direct)  %>%
+  ggplot(aes(x=Date, y=rad, color=type)) +
+    geom_line() +
+  scale_color_discrete(labels=c("direct", "total")) +
+  labs(y="Radiation (W/m2)", x="Time period (weekly)")
+```
+
+This is a summer week from July, where it is possible to clearly see the difference between cloudy and sunny day. The 8th of July (first day) was cloudy with virtually no direct radiation, while the 13th of July was very sunny with almost all radiation direct.
+
+
+
