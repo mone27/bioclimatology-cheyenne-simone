@@ -1,0 +1,21 @@
+---
+title: '5th Protocol: Precipitation'
+author: "Cheyenne Rueda and Simone Massaro"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    includes:
+      in_header: "../preamble.tex"
+  html_document:
+    df_print: paged
+header-includes:
+  - \fancyhead[L]{Shortwave radiation}
+---
+```{r}
+library(tidyverse)
+```
+```{r}
+prec <- read_csv("../Data_lectures/5_Precipitation/P_4sites.csv")
+et <- read_csv("../Data_lectures/5_Precipitation/ET_4sites.csv")
+```
