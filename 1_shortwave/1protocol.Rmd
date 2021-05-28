@@ -5,7 +5,6 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
     toc: true
-    keep_tex: true
     includes:
       in_header: "../preamble.tex"
   html_document:
