@@ -1,8 +1,8 @@
 ---
 title: "Air humidity"
 output:
-  pdf_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 ```{r, include=FALSE}
@@ -53,12 +53,17 @@ rh2ea <- function(rh, e_s) rh/100 * e_s
 get_abs_hum <- function(e_a, ta) (e_a * 100 / (Rv * c2k(ta)) ) * 1000
 
 #here there is no need to convert to Pa because the pressures is present both at numerator and denominator
-get_spec_hum <- function(e_a, p) 0.622 * e_a / (p - 0.378 * e_a) 
-get_mix_ratio <- function(e_a, p) 0.622 * e_a / (p - e_a)
+get_spec_hum <- function(e_a, p) 0.622 * e_a / (p - 0.378 * e_a) * 1000 # g/Kg
+get_mix_ratio <- function(e_a, p) 0.622 * e_a / (p - e_a) * 1000 # g/Kg
 
 
 get_p_def <- function(ea, es) es - ea
 get_t_eq <- function(ta, mix_ratio) k2c(c2k(ta) + 2.5 * mix_ratio)
+
+get_ea_dry <- function(es_wet, t_dry, t_wet, p){
+  a <- (p * 1004.6) / (0.622 * 2.5061e6)
+  return(es_wet - a * (t_dry - t_wet))
+}
 
 # utility func for plotting
 remove_x_axis <- function() theme(
@@ -198,6 +203,7 @@ In this case they do not differ to much?
 ### When is the vapour pressure deficit and equivalent temperature largest?
 ```{r}
 (hum_d %>%
+   gather("type", "val", t_eq, t) %>%
   ggplot(aes(datetime, t_eq, colour="Equivalent\ntemperature"))+
     geom_line() +
     labs(y="Equivalent temperature (°C)", colour="")  +
@@ -212,6 +218,78 @@ In this case they do not differ to much?
 ```
 
 During summer is the largest vapour pressure deficit and equivalent temperature values.
+
+# Field data
+
+```{r}
+spin <- tibble(
+  t_dry = 16,
+  t_wet = 10.8,
+  p = 977.2
+)
+
+spin <- spin %>%
+  mutate(
+    es_wet = get_es(t_wet),
+    es = get_es(t_dry), 
+    ea = get_ea_dry(es_wet, t_dry, t_wet, p),
+    td = get_td(ea),
+    rh = get_rh(ea, es),
+    abs_hum = get_abs_hum(ea, t_dry),
+    spec_hum = get_spec_hum(ea, p),
+    mix_ratio = get_mix_ratio(ea, p),
+    p_def = get_p_def(ea, es),
+    t_eq = get_t_eq(t_dry, mix_ratio)
+    
+  )
+
+spin
+```
+
+```{r}
+assman1 <- tibble(
+  t_dry = 15.4,
+  t_wet = 11.8,
+  p = 977.2
+) %>%
+  mutate(
+    es_wet = get_es(t_wet),
+    es = get_es(t_dry), 
+    ea = get_ea_dry(es_wet, t_dry, t_wet, p),
+    td = get_td(ea),
+    rh = get_rh(ea, es),
+    abs_hum = get_abs_hum(ea, t_dry),
+    spec_hum = get_spec_hum(ea, p),
+    mix_ratio = get_mix_ratio(ea, p),
+    p_def = get_p_def(ea, es),
+    t_eq = get_t_eq(t_dry, mix_ratio)
+    
+  )
+assman1
+```
+
+
+```{r}
+assman1 <- tibble(
+  t_dry = 16.6,
+  t_wet = 11.0,
+  p = 977.2
+) %>%
+  mutate(
+    es_wet = get_es(t_wet),
+    es = get_es(t_dry), 
+    ea = get_ea_dry(es_wet, t_dry, t_wet, p),
+    td = get_td(ea),
+    rh = get_rh(ea, es),
+    abs_hum = get_abs_hum(ea, t_dry),
+    spec_hum = get_spec_hum(ea, p),
+    mix_ratio = get_mix_ratio(ea, p),
+    p_def = get_p_def(ea, es),
+    t_eq = get_t_eq(t_dry, mix_ratio)
+    
+  )
+assman1
+```
 
 
 
