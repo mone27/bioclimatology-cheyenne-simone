@@ -1,6 +1,8 @@
 ---
 title: '1st Protocol: Shortwave'
+author: "Cheyenne Rueda and Simone Massaro"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -18,8 +20,11 @@ A term that earns a big role within this field is albedo. Albedo is defined as t
 
 Electromagnetic radiation is measured in joules ($J$). The radiant energy measured per time is a flux and its units are $J/s = W$ (watts). The energy flux liberated by an object differs with the temperature and is defined by Planck's law. Therefore, there is a direct relationship between a high temperature and a greater radiation rate. 
 
-The sun liberates short-wave radiation $(0,2 - 4) µm$. Sunlight radiation is composed by ultraviolet radiation with a lower value than $0,4µm$, visible radiation $(0,4-0,7) µm$ and near-infrared $ >0,5µm$. In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of $3-100µm$, and this ratio is known as long wave radiation or infrared.  
-When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the broadband emissivity (𝜀); $$L= \varepsilon \sigma T^4$$
+The sun liberates short-wave radiation $(0.2 - 4) \mu m$. Sunlight radiation is composed by ultraviolet radiation with a lower value than $0.4 \mu m$, visible radiation $(0.4-0.7) \mu m$ and near-infrared $>0.5 \mu m$. 
+In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of $3-100 \mu m$, and this ratio is known as long wave radiation or infrared.  
+When talking about sun radiation and energy fluxes, Stefan-Boltzmann law is very important to understand how radiation is emitted from different bodies. This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the broadband emissivity ($\varepsilon$);
+
+$$L= \varepsilon \sigma T^4$$
 
 This law was developed for a blackbody. A blackbody is known as the greatest absorbed of radiation at any wavelength frequency and is able to emit energy at any wavelength for a given temperature value. The concept of emissivity is the ratio of emittance of the blackbody in this case ^[Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press. Chapter 3, p(41-43)].
 
@@ -38,35 +43,41 @@ Shortwave can be measured with the use of different instruments developed specif
 
 ## 1.4 Analysis
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
 
-shortwavedata <- read.csv("Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv", header = TRUE, sep = ",")
+shortwavedata <- read.csv(
+  "Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv",
+  header = TRUE, sep = ",")
 shortwavedata$Date<- as.POSIXct(shortwavedata$Date, format= "%Y-%m-%d %H:%M")
 
-calib_factorsdata <- read.csv("Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv")
-calib_factorsdata$Date<- as.POSIXct(calib_factorsdata$Date, format= "%Y-%m-%d %H:%M")
+calib_factorsdata <- read.csv(
+  "Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv")
+calib_factorsdata$Date<- as.POSIXct(calib_factorsdata$Date
+                                    , format= "%Y-%m-%d %H:%M")
 
 sw_b <- data.frame(
   Date = calib_factorsdata$Date,
-  incoming = calib_factorsdata$Shortwave_incoming_mV * 86.5801, #mV *( W m-2 )/mV  = W m-2
-  outgoing =  calib_factorsdata$Shortwave_outgoing_mV * 86.5801, #mV *( W m-2 )/mV  = W m-2
-  belowcanopy = calib_factorsdata$Shortwave_incoming_bewlow_canopy_mV*194.9318 #mV *( W m-2 )/mV = W m-2
+  incoming = calib_factorsdata$Shortwave_incoming_mV * 86.5801,
+  #mV *( W m-2 )/mV  = W m-2
+  outgoing =  calib_factorsdata$Shortwave_outgoing_mV * 86.5801,
+  #mV *( W m-2 )/mV  = W m-2
+  belowcanopy = calib_factorsdata$Shortwave_incoming_bewlow_canopy_mV*194.9318
+  #mV *( W m-2 )/mV = W m-2
 )
 
+# This is a quick hack to remove incorrect data when the radiation is low
 sw_b[sw_b$incoming<=10 | sw_b$outgoing <=10 | sw_b$belowcanopy <= 10,] <- NA
-
-
 sw_b <- drop_na(sw_b)
 ```
 
+\newpage
 
+### 1.4.1
 
-
-
-Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?
+*Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
 
 ```{r}
 sw_b <- mutate(sw_b,
@@ -102,6 +113,9 @@ ggplot(sw_b_d, aes(x=Date))+
   labs(y = "Albedo", x = "Time period", color = "")
 
 ```
+\newpage
+
+### 1.4.2 
 
 How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?
 
@@ -115,7 +129,9 @@ ggplot(sw_b_d, aes(x=Date))+
 The absorbtion is quite constant, but during winter is higher (up to 90%) to then decrease when there are leaves (83%).
 The peaks during the winter can be connected to measurement errors due to the low amount of radiation.
 
+\newpage
 
+### 1.4.3
 
 Derive the transmission coefficient of the forest. How does the
 transmission coefficient vary throughout the day and the year?
@@ -155,6 +171,9 @@ ggplot(aes(x=Date))+
 During summer days there is a daily cycle of the transmission coefficient. It is lower during the morning and evening and higher in the middle of the day.
 This can be explained because when the sun is low on the horizon there is more reflection and the light penetrates less in the canopy, thus resulting in a reduced transmission coefficient.
 
+\newpage
+
+### 1.4.4
 
 Calculate the direct solar radiation and plot global, diffuse and direct
 solar radiation. Compare a clear sky and a cloudy day. What’s the
@@ -175,6 +194,8 @@ shortwavedata%>%
   scale_color_discrete(labels=c("direct", "diffuse", "total")) +
   labs(y="Radiation (W/m2)", x="Time period (weekly)")
 ```
+
+
 The total radiation is sum of the diffuse and direct. The amount of direct radiation changes a lot during the year. You can see that April and September were relatively sunny months (direct and total radiation are similar), while July and August were cloudy (big difference between direct and total)
 The diffuse radiation has a its own pattern across the year
 
