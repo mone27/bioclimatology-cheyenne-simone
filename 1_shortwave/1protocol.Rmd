@@ -11,7 +11,7 @@ output:
 ## 1.1 Motivation
 
 
-The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Short-wave radiation is stronger than long-wave.
+The sun is the energy source of the radiation incoming to Earth. This radiation is classified as short-wave or long-wave radiation. Besides,short-wave radiation is considered to be more intensive than longwave due to its higher wave frequency.
 A term that earns a big role within this field is albedo. Albedo is defined as the fraction of light being returned from the material of the surface, for example, it can be land, canopy or water. Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere. This article describes the albedo of earth in relation with the variations in temperature of planet. Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide at some point, this will be reflected on partial cooling of earth due to more particles scattering the sun radiation ^[Perkins, S. (2019). Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy. *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371]. With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
 
 ## 1.2 Background
