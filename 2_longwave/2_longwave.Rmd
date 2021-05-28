@@ -3,6 +3,9 @@ title: "R Notebook"
 output:
   html_document:
     df_print: paged
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include=F}
@@ -12,49 +15,68 @@ library(tsibble)
 #library(janitor)
 ```
 
+## Longwave radiation
 
+\#\#1.1 Motivation
 
-## Longwave radiation  
+Unlike shorwave radiation, longwave radiation is emitted by every body
+that has a temperature. Longwave radiation is a less intense due to its
+lower wavelength frequency than shortwave radiation. Emitted longwave
+radiation by earth surface is the way for the planet to cool down itself
+from shortwave radiation coming directly from the sun.
 
+Following, a more simple way to explain longwave radiation. All bodies
+emit electromagnetic radiation and this causes a rise of the temperature
+range of the earth surface. This leads to emission in the longwavelength
+range. This is how longwave radiation is constantly present in the
+ecosystems and represents one of the avenues to exchange energy.
 
-##1.1 Motivation
+The process known as global warming is directly concerned with longwave
+radiation. Global warming is caused by a increase of concentration of
+green house gasses captured by the earth atmosphere.
 
-Emitted longwave radiation is the only way for the planet to cool itself. Climate change is directly connected to the greenhouse effect, which is produced by longwave radiation captured by the earth atmosphere.
+\#\#1.2 Background - describe the most important background needed to
+fulfill the excercises, i.e. for short wave radiation, what is
+radiation?, which variables exist and what are they?, which units do the
+variables have?, which radiation laws exist and what is their meening?,
+and what are transport mechanisms (transmission, absorption,...) - list
+necessary equations - maybe include calibration coefficients for
+reproducibility and when necessary
 
-All bodies emit electromagnetic radiation, and in the temperature range of the earth surface this leads to emission in the longwave range.
-Therefore longwave radiation is always present in the ecosystems and represents one of the avenues to exchange energy.
+\#\#1.3 Sensors and measuring principle
 
-##1.2 Background
-- describe the most important background needed to fulfill the excercises, i.e. for short wave radiation, what is radiation?, which variables exist and what are they?, which units do the variables have?,  which radiation laws exist and what is their meening?, and what are transport mechanisms (transmission, absorption,…)
-- list necessary equations
-- maybe include calibration coefficients for reproducibility and when necessary
+Longwave radiation is an important flux to understand how climatology
+works in earth and understand processes such as global Thus, some
+instruments have been developed as well to measure longwave radiation.
+The pyrgeometer measures this type of radiation from the atmosphere and
+the Earth's surface. This device is based on a sensitive range with
+infrared radiation between of 4.5 and 40 micrometer. It includes a
+thermal detector (64 thermocouple thermopile) based on giving a voltage
+output that then is needed to convert into radiative flux of energy
+units (W m-2). The way it works is basic, calculating the difference
+between the longwave radiation coming from the atmosphere and the
+longwave produced by the sensor. This is represented by the next
+equation:
 
-
-##1.3 Sensors and measuring principle
-
-Longwave radiation is an important flux to understand how climatology works in earth and understand processes such as global  Thus, some instruments have been developed as well to measure longwave radiation. The pyrgeometer measures this type of radiation from the atmosphere and the Earth's surface. This device is based on a sensitive range with infrared radiation between of 4.5 and 40 micrometer. It includes a thermal detector (64 thermocouple thermopile) based on giving a voltage output that then is needed to convert into radiative flux of energy units (W m-2). The way it works is basic, calculating the difference between the longwave radiation coming from the atmosphere and the longwave produced by the sensor. This is represented by the next equation:
-
-$$ A= Unet/S + sigma * Tb^4 $$ 
-$$ Unet/S = Ua/S + Ubody/S $$
-Another devide that allows to measure longwave radiation is the pyrometer. The pyrometer measures longwave radiation and converts it into a temperature based on the Stefan Boltzmann principle). 
-Besides, it exists other types of sensor based on the measurement of net radiation. One of them is known as CNR4, based on 4 components (G, Rsw, A, E) which gives an output value for each of these. 
-The other instrument that can be used for the same application is NR-Lite2. It is based on a thermopile that mesures net radiation (G+A) in  the upper side, whether in the other side it is measuring the net outgoing radiation (Rsw+E). These last two are similar instruments, but the last one (NR-Lite2) only gives one value as output in shape of voltage which is proportional to the Rn or net radiation. 
-
-
-
+$$ A= Unet/S + sigma * Tb^4 $$ $$ Unet/S = Ua/S + Ubody/S $$ Another
+devide that allows to measure longwave radiation is the pyrometer. The
+pyrometer measures longwave radiation and converts it into a temperature
+based on the Stefan Boltzmann principle). Besides, it exists other types
+of sensor based on the measurement of net radiation. One of them is
+known as CNR4, based on 4 components (G, Rsw, A, E) which gives an
+output value for each of these. The other instrument that can be used
+for the same application is NR-Lite2. It is based on a thermopile that
+mesures net radiation (G+A) in the upper side, whether in the other side
+it is measuring the net outgoing radiation (Rsw+E). These last two are
+similar instruments, but the last one (NR-Lite2) only gives one value as
+output in shape of voltage which is proportional to the Rn or net
+radiation.
 
 ## 1.4 Analysis
 
-
-
-
 Derive the sky and surface temperature from the longwave radiation
-components. How do they differ and why? Discuss! During which
-periods of the year sky and surface temperature differ the most and
-the less?
-
-
-
+components. How do they differ and why? Discuss! During which periods of
+the year sky and surface temperature differ the most and the less?
 
 ```{r, message=FALSE}
 rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
@@ -70,7 +92,6 @@ temp2lw <- function(temp)  return (sigma * temp^4)
 c2k <- function(c) c + 273.15
 k2c <- function(k) k - 273.15
 ```
-
 
 ```{r}
 #calculate from input data the real lw and the soil/surface temperature
@@ -95,7 +116,6 @@ rad <- rad %>%
   filter(datetime < as_datetime("2020-12-31"))
 ```
 
-
 ```{r}
 # weekly data
 rad_w <- rad %>% 
@@ -104,7 +124,6 @@ rad_w <- rad %>%
   summarise_all(mean, na.rm = TRUE)
 ```
 
-
 ```{r}
 rad_d <- rad %>%
   mutate(yday = yday(datetime)) %>%
@@ -112,15 +131,14 @@ rad_d <- rad %>%
   summarize_all(mean, na.rm = TRUE)
 ```
 
-
-
-
 #### surface and sky temperature
 
-
-The sky temperatures is always lower than the surface one. The surface temp ranges from `r round(min(rad$t_surface, na.rm=T))` C to `r round(max(rad$t_surface, na.rm=T))` C, while the sky temperature has a bigger range from `r round(min(rad$t_sky, na.rm=T))` C to `r round(max(rad$t_sky, na.rm=T))` C.
-The temperature of the sky mainly depends on the cloud cover and the temperature of the air
-
+The sky temperatures is always lower than the surface one. The surface
+temp ranges from `r round(min(rad$t_surface, na.rm=T))` C to
+`r round(max(rad$t_surface, na.rm=T))` C, while the sky temperature has
+a bigger range from `r round(min(rad$t_sky, na.rm=T))` C to
+`r round(max(rad$t_sky, na.rm=T))` C. The temperature of the sky mainly
+depends on the cloud cover and the temperature of the air
 
 ```{r}
 rad_w %>%
@@ -130,7 +148,6 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(title="Weekly average", y="Temperature (°C)", x="Time")
 ```
 
-
 ```{r}
 rad_d %>%
   gather(key="type", value="temp", t_sky, t_surface) %>%
@@ -138,7 +155,6 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   geom_line()  +
   labs(title="Daily average", y="Temperature (°C)", x="Time")
 ```
-
 
 ```{r}
 rad %>%
@@ -149,9 +165,6 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(title="Month of July (10 mins data)", y="Temperature (°C)", x="Time")
 ```
 
-
-
-
 ```{r}
 filter(rad, between(datetime, as_datetime("2020-07-03"), as_datetime("2020-07-12"))) %>%
   gather(key="type", value="temp", t_sky, t_surface) %>%
@@ -160,26 +173,11 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(title="3-12 July (10 mins data)", y="Temperature (°C)", x="Time")
 ```
 
-
-
-
-
-
-
-
-
-
-
 #### Net radiation
 
-
 Calculate the net radiation over the meadow in the forest botanical
-garden and plot the four components. How do the four components
-change over the season and why? Which unexpected results you
-found? Discuss!
-
-
-
+garden and plot the four components. How do the four components change
+over the season and why? Which unexpected results you found? Discuss!
 
 ```{r}
 rad_w %>%
@@ -189,11 +187,11 @@ ggplot(aes(x=datetime, y=radiation, colour=type)) +
   labs(title="Weekly average Net radiation", y="Radiation (W m-2)", x="Time")
 ```
 
-
 #### change emissity in the sensor
 
-we tried to change the emissivity in the settings of the infrared thermometer, but due to some errors in the field data measurements we generated this data using the formula.
-
+we tried to change the emissivity in the settings of the infrared
+thermometer, but due to some errors in the field data measurements we
+generated this data using the formula.
 
 ```{r}
 t_0 <- 19 # temperature with emissivity 1
@@ -211,4 +209,3 @@ ggplot(temps, aes(em, t)) +
   scale_x_reverse() +
   labs(x="Emissivity", y="Temperature", title="Different temperatures with different emissivity")
 ```
-
