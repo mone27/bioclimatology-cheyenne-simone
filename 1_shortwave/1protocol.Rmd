@@ -79,6 +79,8 @@ sw_b <- drop_na(sw_b)
 
 *Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
 
+
+
 ```{r}
 sw_b <- mutate(sw_b,
                albedo = outgoing/incoming,
@@ -91,81 +93,79 @@ sw_b_d <- sw_b %>%
 ```
 
 
-
-
-```{r}
-ggplot(sw_b, aes(x=Date))+
-  geom_line(aes(y=albedo, colour = 'Albedo'))
-```
-
-
-
-
 ```{r}
 ggplot(sw_b_d, aes(x=Date))+
-  geom_line(aes(y=albedo, colour = 'Albedo'))
+  geom_line(aes(y=albedo, colour = 'Albedo')) +
+  labs(y = "Albedo", x = "Time period", color = "",
+       caption="daily average", title="Albedo over year")
 ```
 
-```{r}
-ggplot(sw_b_d, aes(x=Date))+
-  geom_line(aes(y=albedo, colour = 'Albedo'))+
-  geom_line(aes(y=transmitted, colour = 'Transmitted below canopy'))+
-  labs(y = "Albedo", x = "Time period", color = "")
+The albedo is relatively constant across the year, in the range 10-17%.
+During the summer the albedo is higher, due to the higher reflecantance of the green canopy compared to the dark ground.
 
-```
+During the winter there are some peaks in the albedo and can be explained by measurement errors due to the low amount of radiation
+
+
 \newpage
 
 ### 1.4.2 
 
-How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?
+*How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?*
+
+
 
 ```{r}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=absorbed, colour = 'Absorbed'))+
-  labs(y = "Absorbed", x = "Time period", color = "") +
+  labs(y = "Fraction absorbed", x = "Time period", color = "",
+       caption="daily average", title="Absorption coefficient") +
   ylim(0.5,1)
 ```
 
-The absorbtion is quite constant, but during winter is higher (up to 90%) to then decrease when there are leaves (83%).
+The absorption is quite constant, but during winter is higher (up to 90%) to then decrease when there are leaves (83%).
 The peaks during the winter can be connected to measurement errors due to the low amount of radiation.
 
 \newpage
 
 ### 1.4.3
 
-Derive the transmission coefficient of the forest. How does the
+*Derive the transmission coefficient of the forest. How does the
 transmission coefficient vary throughout the day and the year?
-Discuss potential reasons.
+Discuss potential reasons.*
+
+
 
 ```{r}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=transmitted, colour = 'Trasmission coef'))+
-  labs(y = "Trasmission coef", x = "Time period", color = "") +
+  labs(y = "Trasmission coef", x = "Time period", color = "",
+       caption="daily average", title="Tramission coefficient over year") +
   ylim(0,.5)
 ```
 
 During the year there is a clear difference between summer and winter. During winter the transmission is around 30% while during summer it is around 5%.
 This shows how effective are the trees in capturing available light
 
-
+\newpage
 ```{r}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=belowcanopy))+
-  labs(y = "Transmitted radiation (W/m2)", x = "Time period", title="Radiation transmitted below the canopy")
+  labs(y = "Transmitted radiation (W/m2)", x = "Time period",
+       title="Radiation transmitted below the canopy")
 ```
 
 The absolute value of the radiation below the canopy is relatively constant between summer and winter with the notable exception of spring.
 There are no leaves in the canopy yet, but the solar radiation is getting stronger. This can explain the why in beech forest there is a some undergrowth only during spring.
 
 
-
+\newpage
 ```{r}
 sw_b %>%
-  #filter(yday(Date)=150) %>%
   filter(between(Date, as_datetime("2020-07-1"), as_datetime("2020-07-2"))) %>%
 ggplot(aes(x=Date))+
   geom_line(aes(y=transmitted, colour = 'Trasmission coef'))+
-  labs(y = "Trasmission coef", x = "Time period", color = "") 
+  labs(y = "Trasmission coef", x = "Time period", color = "",
+       title="Tramission coefficient over a summer day") 
 ```
 
 During summer days there is a daily cycle of the transmission coefficient. It is lower during the morning and evening and higher in the middle of the day.
@@ -175,9 +175,11 @@ This can be explained because when the sun is low on the horizon there is more r
 
 ### 1.4.4
 
-Calculate the direct solar radiation and plot global, diffuse and direct
+*Calculate the direct solar radiation and plot global, diffuse and direct
 solar radiation. Compare a clear sky and a cloudy day. What’s the
-difference and why?
+difference and why?*
+
+
 
 ```{r}
 shortwavedata <- mutate(shortwavedata,
@@ -192,14 +194,15 @@ shortwavedata%>%
   ggplot(aes(x=Date, y=rad, color=type)) +
     geom_line() +
   scale_color_discrete(labels=c("direct", "diffuse", "total")) +
-  labs(y="Radiation (W/m2)", x="Time period (weekly)")
+  labs(y="Radiation (W/m2)", x="Time period (weekly)",
+       caption="daily average", title="Shortwave radiation components")
 ```
 
 
 The total radiation is sum of the diffuse and direct. The amount of direct radiation changes a lot during the year. You can see that April and September were relatively sunny months (direct and total radiation are similar), while July and August were cloudy (big difference between direct and total)
 The diffuse radiation has a its own pattern across the year
 
-
+\newpage
 ```{r}
 shortwavedata%>%
   filter(week(Date)==28) %>%
@@ -207,7 +210,8 @@ shortwavedata%>%
   ggplot(aes(x=Date, y=rad, color=type)) +
     geom_line() +
   scale_color_discrete(labels=c("direct", "total")) +
-  labs(y="Radiation (W/m2)", x="Time period (weekly)")
+  labs(y="Radiation (W/m2)", x="Time period (weekly)", 
+       title="Diffuse and direction radiation in a week")
 ```
 
 This is a summer week from July, where it is possible to clearly see the difference between cloudy and sunny day. The 8th of July (first day) was cloudy with virtually no direct radiation, while the 13th of July was very sunny with almost all radiation direct.
