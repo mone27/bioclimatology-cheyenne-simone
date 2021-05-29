@@ -20,53 +20,117 @@ editor_options:
 ```{r, include=F}
 library(tidyverse)
 library(lubridate)
+#install.packages("tsibble")
 library(tsibble)
 library(scales)
 ```
 
 # Motivation
 
+\<\<\<\<\<\<\< Updated upstream All bodies emit electromagnetic
+radiation,
 
-All bodies emit electromagnetic radiation, 
+and in the temperature range of the earth surface this leads to emission
+in the longwave range. This leads to emission in the long wavelength
+range Longwave radiation is a less ~~intense~~ due to its lower
+wavelength frequency than shortwave radiation. Emitted longwave
+radiation by earth surface is the way for the planet to cool down itself
+from shortwave radiation coming directly from the sun.
 
-and in the temperature range of the earth surface this leads to emission in the longwave range. This leads to emission in the long wavelength
-range Longwave radiation is a less ~~intense~~ due to its
+This is how longwave radiation is constantly present in the ecosystems
+and represents one of the avenues to exchange energy. ======= ~~Unlike
+shorwave radiation, longwave radiation is emitted by every body that has
+a temperature~~. Longwave radiation is a less ~~intense~~ due to its
 lower wavelength frequency than shortwave radiation. Emitted longwave
 radiation by earth surface is the way for the planet to cool down itself
 from shortwave radiation coming directly from the sun.
 
- 
-This is how longwave radiation is constantly present in the
-ecosystems and represents one of the avenues to exchange energy.
+Following, a more simple way to explain longwave radiation. All bodies
+emit electromagnetic radiation and this causes a rise of the temperature
+range of the earth surface ??. This leads to emission in the long
+wavelength range. This is how longwave radiation is constantly present
+in the ecosystems and represents one of the avenues to exchange energy.
+\>\>\>\>\>\>\> Stashed changes
 
-~~The process known as~~ global warming is directly concerned with longwave
-radiation. Global warming is caused by a increase of concentration of
-green house, which capture part of the longwave radiation emitted from the earth
-and remitted to towards the earth,
-thus increasing the amount of radiation reaching the surface of the earth, which increase the earth temperature.
+~~The process known as~~ global warming is directly concerned with
+longwave radiation. Global warming is caused by a increase of
+concentration of green house, which capture part of the longwave
+radiation emitted from the earth and remitted to towards the earth, thus
+increasing the amount of radiation reaching the surface of the earth,
+which increase the earth temperature.
 
-# Background
-~~describe the most important background needed to
-fulfill the excercises, i.e. for short wave radiation, what is
-radiation?, which variables exist and what are they?, which units do the
-variables have?, which radiation laws exist and what is their meening?,
-and what are transport mechanisms (transmission, absorption,...) - list
-necessary equations - maybe include calibration coefficients for
-reproducibility and when necessary~~
+1.2 Background
 
-Longwave radiation is emitted by all bodies on the Earth, with the total intensity depending on the temperature as described by the *Steffan-Boltzman law*
+~~describe the most important background needed to fulfill the
+excercises, i.e. for short wave radiation, what is radiation?, which
+variables exist and what are they?, which units do the variables have?,
+which radiation laws exist and what is their meening?, and what are
+transport mechanisms (transmission, absorption,...) - list necessary
+equations - maybe include calibration coefficients for reproducibility
+and when necessary~~
 
-$$E = \varepsilon \sigma T^4$$
-Where:
+Longwave radiation has an important impact on the research and
+measurement of the global energy balance. Longwave radiation implements
+big changes energy budget when modeling land surface. The measurement of
+longwave radiation is more complicated in comparison with shortwave
+radiation. This fact is due to the variables that are measured to
+estimate shortwave radiation such as vapor pressure and air temperature.
+Thus, longwave radiation estimation will differ according to the
+atmospheric emissivity and temperature (Sridhar & Elliott. (2002)).
 
-- $E$ is the radiation intensity in $W/m^2$
-- $\varepsilon$ an adimensional coefficient that represents the emissivity of the body.
-This depends on the material, a perfect black body has a $\varepsilon$ of $1$, while other materials have a lower emissivity
-- $\sigma$ is the Steffan-Boltzman constant $5.67 \times 10^{-8} W m^{-2} K^{-4}$
-- $T$ is the body temperature in $K$
+[Sridhar, V., & Elliott, R. L. (2002). On the development of a simple
+downwelling longwave radiation scheme. Agricultural and Forest
+Meteorology, 112(3-4), 237-243.]{.ul}
 
-The longwave radiation behaves like the shortwave radiation, being scattered by the canopy and the atmosphere.
+The changes produced in the radiation balance of the atmosphere are
+induced by global warming as an adaptation to this process. These
+changes are mainly caused by the variation in the level of water vapor
+present in atmosphere. This is regularized with the absorbed solar
+radiation and the emitted longwave radiation coming from atmosphere to
+the surface of earth (Stephens et al., 2012).
 
+[Stephens, G. L., Wild, M., Stackhouse Jr, P. W., L'Ecuyer, T., Kato,
+S., & Henderson, D. S. (2012). The global character of the flux of
+downward longwave radiation. *Journal of Climate*, *25*(7),
+2329-2340.]{.ul}
+
+In the paper written by Sridhar & Elliott. (2002), some equations are
+explained for the calculation of incoming longwave radiation.
+
+Through the use of infrared sensors the calculation of outgoing
+calculation can also be measured. Areas situated close to the ecuador
+line will present higher amount of outgoing longwave radiation but also
+higher temperature rates.
+
+Longwave radiation is emitted by all bodies on the Earth, with the total
+intensity depending on the temperature as described by the
+*Steffan-Boltzman law*
+
+$$E = \varepsilon \sigma T^4$$ Where:
+
+-   $E$ is the radiation intensity in $W/m^2$
+-   $\varepsilon$ an adimensional coefficient that represents the
+    emissivity of the body. This depends on the material, a perfect
+    black body has a $\varepsilon$ of $1$, while other materials have a
+    lower emissivity
+-   $\sigma$ is the Steffan-Boltzman constant
+    $5.67 \times 10^{-8} W m^{-2} K^{-4}$
+-   $T$ is the body temperature in $K$
+
+As mentioned during the background, green house gases emission is
+increasing along time. This is causing a higher levels of net
+temperature, process induce by human known as global warming.
+
+Other part that constitutes longwave radiation are the following terms:
+
+*Atmospheric longwave radiation:* the emitted flux coming from clouds
+and water vapor particles present at atmosphere.
+
+*Surface longwave radiation: kjcnv
+
+*Reflected longwave radiation:*
+
+*Longwace radiation balance:*
 
 # Sensors and measuring principle
 
@@ -86,22 +150,23 @@ equation:
 
 $$ A= Unet/S + sigma * Tb^4 $$ $$ Unet/S = Ua/S + Ubody/S $$.
 
-Another device that allows to measure longwave radiation is the pyrometer. The
-pyrometer measures longwave radiation and converts it into a temperature
-based on the Stefan Boltzmann principle). Besides, it exists other types
-of sensor based on the measurement of net radiation. One of them is
-known as CNR4, based on 4 components (G, Rsw, A, E) which gives an
-output value for each of these. The other instrument that can be used
-for the same application is NR-Lite2. It is based on a thermopile that
-mesures net radiation (G+A) in the upper side, whether in the other side
-it is measuring the net outgoing radiation (Rsw+E). These last two are
-similar instruments, but the last one (NR-Lite2) only gives one value as
-output in shape of voltage which is proportional to the Rn or net
-radiation.
+Another device that allows to measure longwave radiation is the
+pyrometer. The pyrometer measures longwave radiation and converts it
+into a temperature based on the Stefan Boltzmann principle). Besides, it
+exists other types of sensor based on the measurement of net radiation.
+One of them is known as CNR4, based on 4 components (G, Rsw, A, E) which
+gives an output value for each of these. The other instrument that can
+be used for the same application is NR-Lite2. It is based on a
+thermopile that mesures net radiation (G+A) in the upper side, whether
+in the other side it is measuring the net outgoing radiation (Rsw+E).
+These last two are similar instruments, but the last one (NR-Lite2) only
+gives one value as output in shape of voltage which is proportional to
+the Rn or net radiation.
 
 # Analysis
 
 ```{r, message=FALSE}
+library(tidyverse)
 rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
 names(rad) <- c("datetime", "t_sens", "sw_in", "sw_out", "lw_in_sens", "lw_out_sens", "t_soil")
 ```
@@ -135,6 +200,7 @@ rad <- rad %>%
 
 ```{r}
 # for making aggregation easier we are going to consider data only for one calendar year
+library()
 rad <- rad %>%
   filter(datetime < as_datetime("2020-12-31"))
 ```
@@ -180,12 +246,13 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(caption="Daily average", y="Temperature (°C)", x="Time",
        title="Sky and Surface temperatures over the year")
 ```
+
 The sky temperatures is always lower than the surface one. The surface
-temp ranges from `r round(min(rad_d$t_surface, na.rm=T))` C to
-`r round(max(rad_d$t_surface, na.rm=T))` C, while the sky temperature has
-a bigger range from `r round(min(rad_d$t_sky, na.rm=T))` C to
-`r round(max(rad_d$t_sky, na.rm=T))` C. The temperature of the sky mainly
-depends on the cloud cover and the temperature of the air.
+temperature ranges from `r round(min(rad_d$t_surface, na.rm=T))` C to
+`r round(max(rad_d$t_surface, na.rm=T))` C, while the sky temperature
+has a bigger range from `r round(min(rad_d$t_sky, na.rm=T))` C to
+`r round(max(rad_d$t_sky, na.rm=T))` C. The temperature of the sky
+mainly depends on the cloud cover and the temperature of the air.
 
 ```{r}
 rad %>%
@@ -206,10 +273,11 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
        title="Sky and Surface temperatures over one week")
 ```
 
-The surface temperature has a clear day cycle, while the sky temperature has little or no day pattern.
-Moreover, it can be clearly seen how cloudy days (eg. 9th of July) there is an high sky temperature, but a low surface temperature.
-Conversely on sunny days (eg. 7th of July) the surface temperature is higher, but the sky temperature is low.
-
+The surface temperature has a clear day cycle, while the sky temperature
+has little or no day pattern. Moreover, it can be clearly seen how
+cloudy days (eg. 9th of July) there is an high sky temperature, but a
+low surface temperature. Conversely on sunny days (eg. 7th of July) the
+surface temperature is higher, but the sky temperature is low.
 
 ## Net radiation
 
@@ -229,23 +297,45 @@ ggplot() +
        x="Time", caption = "Weekly average", colour="Radiation")
 ```
 
-The net radiation has a yearly cycle. During the summer it has a relatively constant value at around $100 W/m^2$, then it decrease and reach slightly negative values in January.
-The biggest driver of this yearly cycle is the incoming shortwave radiation, which during summer is much higher than in winter. The radiation from the sun has smooth variations, while the variation on the incoming shortwave during the summer can be explained by the different amount of cloud cover.
-You would expect a clearer peak of the shortwave radiation during the summer, Moreover the net radiation has an high peak in mid late September. This behavior can probably be explained by different amount of cloud cover.
+\<\<\<\<\<\<\< Updated upstream The net radiation has a yearly cycle.
+During the summer it has a relatively constant value at around
+$100 W/m^2$, then it decrease and reach slightly negative values in
+January. The biggest driver of this yearly cycle is the incoming
+shortwave radiation, which during summer is much higher than in winter.
+The radiation from the sun has smooth variations, while the variation on
+the incoming shortwave during the summer can be explained by the
+different amount of cloud cover. You would expect a clearer peak of the
+shortwave radiation during the summer, Moreover the net radiation has an
+high peak in mid late September. This behavior can probably be explained
+by different amount of cloud cover.
 
-The outgoing shortwave is the component with the smallest absolute value, it also has a yearly cycle being virtually zero in January but quickly reaching the max value during the spring and then remaining quite flat.
-Regarding the longwave the outgoing radiation is always bigger than the incoming, due to the higher temperature of the surface compared to the sky.
-The longwave components have a much smaller change during the year.
+The outgoing shortwave is the component with the smallest absolute
+value, it also has a yearly cycle being virtually zero in January but
+quickly reaching the max value during the spring and then remaining
+quite flat. Regarding the longwave the outgoing radiation is always
+bigger than the incoming, due to the higher temperature of the surface
+compared to the sky. The longwave components have a much smaller change
+during the year.
 
-The is a notable low peak of incoming longwave in the last week of march, that is probably explained by clear skies but still low air temperature.
+The is a notable low peak of incoming longwave in the last week of
+march, that is probably explained by clear skies but still low air
+temperature.
 
+# \#\# Change emissity in the sensor
 
-## Change emissity in the sensor
+The net radiation has a yearly cycle. During the summer it has a
+relatively constant value at around $100 W/m^2$ to then decrease and
+reach slightly negative values in January. The compoment with the
+\>\>\>\>\>\>\> Stashed changes
 
-In the field activity we tried to measure the temperature of the surface by using different emissivity settings in the sensor and see how that could influence the readings.
-However, there have been some issues with the sensor so the data has been generated using the formula from the theory
+In the field activity we tried to measure the temperature of the surface
+by using different emissivity settings in the sensor and see how that
+could influence the readings. However, there have been some issues with
+the sensor so the data has been generated using the formula from the
+theory
 
-In this virtual experiment the real temperature is set to $19 °C$ and the emissivity is changed, resulting in different temperature estimates.
+In this virtual experiment the real temperature is set to $19 °C$ and
+the emissivity is changed, resulting in different temperature estimates.
 
 ```{r}
 t_0 <- 19 # temperature with emissivity 1
@@ -263,6 +353,9 @@ ggplot(temps, aes(em, t)) +
   scale_x_reverse() +
   labs(x="Emissivity", y="Temperature", title="Different temperatures with different emissivity")
 ```
-It can be seen that the emissivity has a big influence on the temperature estimate.
-The emissivity of material can change drastically from $0.03$ for alumium foil to $0.97$ for ice.
-This clearly shoes the importance of a correct estimation of the emissivity for temperature measurements.
+
+It can be seen that the emissivity has a big influence on the
+temperature estimate. The emissivity of material can change drastically
+from $0.03$ for alumium foil to $0.97$ for ice. This clearly shoes the
+importance of a correct estimation of the emissivity for temperature
+measurements.
