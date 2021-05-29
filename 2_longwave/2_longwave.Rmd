@@ -108,8 +108,8 @@ $$Q_{lw} =  A-E-R_{lw}$$
 
 The principle followed to calculate the net radiation balance of the planet is based on the sum of $Q_{sw}$ and $Q_{lw}$. Thus;
 
-$$Qn = Qsw + Qlw$$
-$$Qn=(1-rSW) G + \varepsilon \sigma *T_{atm}^4 - \varepsilon \sigma *T_s^4$$
+$$Q_{n} = Q_{sw} + Q_{lw}$$
+$$Q_{n}=(1-r_{sw}) G + \varepsilon \sigma T_{atm}^4 - \varepsilon \sigma T_s^4$$
 
 Net radiation $(Rn)$ is defined by Bonan (2019), as the solar and longwave radiation absorbed by the land surface. Another equation used to calculate the land surface energy balance is known as:
 
@@ -277,7 +277,7 @@ ggplot() +
   geom_line(aes(x=datetime, y=radiation, colour=type)) +
   geom_line(aes(x=datetime, y=net_rad), data=rad_w, size=1.2,
             colour=hue_pal()(1)) +
-  labs(title="Net radiation with components over ", y="Radiation (W m-2)",
+  labs(title="Net radiation with components over year ", y="Radiation (W m-2)",
        x="Time", caption = "Weekly average", colour="Radiation")
 ```
 
