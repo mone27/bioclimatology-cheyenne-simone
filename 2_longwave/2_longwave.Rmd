@@ -124,7 +124,7 @@ $$Qn=(1-rSW) G + 𝜀 *𝜎 *Tatm⁴ - 𝜀 *𝜎 *TS⁴$$
 Net radiation $(Rn)$ is defined by Bonan (2019), as the solar and longwave radiation absorbed by the land surface. Another equation used to calculate the land surface energy balance is known as:
 }
 $$Rn = (S_{incoming} - S_{outgoing}+(L_{incoming}) - L_{outgoing})$$
-Also emissivity can be defined as (1-$\epsilon$), thus the fraction of howlongwave radiation reaching the earth surface is bounced back is explained (Bonan,2019). 
+Also, emissivity can be defined as (1-$\epsilon$) and thus, the fraction of longwave radiation that is reaching the earth surface and being bounced back, can be explained (Bonan,2019). 
 
 
 # Sensors and measuring principle
