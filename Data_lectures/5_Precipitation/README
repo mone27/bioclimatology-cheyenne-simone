@@ -1,0 +1,11 @@
+The data sets contain annual sums of actual evapotranspiration and precipitation for four sites at different locations. 
+Here you fnd the site abbreviation, the geographical location, the vegetation type, the mean annual air temperature and precipitation.
+The site abbreviation correspond to the column names in the two files provided. You find detailed site information at the following homepage:
+https://fluxnet.org/sites/site-list-and-pages/
+
+
+Site-abb Site				Lat		Long		Height  Veg_type       Mean_airT	Mean_precipitation
+DE-Hai	Hainich			51.0792	10.4522	430	DBF		8.3		720
+FI-Hyy	Hyytiala			61.8474	24.2948	181	ENF		3.8		709
+GF-Guy	Guyaflux (French Guiana)	5.2788		-52.9249	48	EBF		25.7		3041
+IT-Col	Collelongo			41.8494	13.5881	1560	DBF		6.3		1180

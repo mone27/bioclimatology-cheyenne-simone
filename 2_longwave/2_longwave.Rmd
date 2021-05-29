@@ -20,44 +20,24 @@ editor_options:
 ```{r, include=F}
 library(tidyverse)
 library(lubridate)
-#install.packages("tsibble")
 library(tsibble)
 library(scales)
 ```
-
+\newpage
 # Motivation
 
-\<\<\<\<\<\<\< Updated upstream All bodies emit electromagnetic
-radiation,
 
-and in the temperature range of the earth surface this leads to emission
-in the longwave range. This leads to emission in the long wavelength
-range Longwave radiation is a less ~~intense~~ due to its lower
-wavelength frequency than shortwave radiation. Emitted longwave
+All bodies with a temperature above the absolute zero emit electromagnetic radiation.
+The wavelength and intensity of this radiation depends on the temperature of the body.
+In the temperature range of the earth surface the emitted radiation has a wavelength between 3 and 100 mm and it is defined as longwave.
+
+Emitting longwave radiation is the only way for the plant to cool itself down and
 radiation by earth surface is the way for the planet to cool down itself
 from shortwave radiation coming directly from the sun.
 
-This is how longwave radiation is constantly present in the ecosystems
-and represents one of the avenues to exchange energy. ======= ~~Unlike
-shorwave radiation, longwave radiation is emitted by every body that has
-a temperature~~. Longwave radiation is a less ~~intense~~ due to its
-lower wavelength frequency than shortwave radiation. Emitted longwave
-radiation by earth surface is the way for the planet to cool down itself
-from shortwave radiation coming directly from the sun.
-
-Following, a more simple way to explain longwave radiation. All bodies
-emit electromagnetic radiation and this causes a rise of the temperature
-range of the earth surface ??. This leads to emission in the long
-wavelength range. This is how longwave radiation is constantly present
-in the ecosystems and represents one of the avenues to exchange energy.
-\>\>\>\>\>\>\> Stashed changes
-
-~~The process known as~~ global warming is directly concerned with
-longwave radiation. Global warming is caused by a increase of
-concentration of green house, which capture part of the longwave
-radiation emitted from the earth and remitted to towards the earth, thus
-increasing the amount of radiation reaching the surface of the earth,
-which increase the earth temperature.
+ 
+This is how longwave radiation is constantly present in the
+ecosystems and represents one of the avenues to exchange energy.
 
 1.2 Background
 
@@ -166,7 +146,6 @@ the Rn or net radiation.
 # Analysis
 
 ```{r, message=FALSE}
-library(tidyverse)
 rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
 names(rad) <- c("datetime", "t_sens", "sw_in", "sw_out", "lw_in_sens", "lw_out_sens", "t_soil")
 ```
@@ -200,7 +179,6 @@ rad <- rad %>%
 
 ```{r}
 # for making aggregation easier we are going to consider data only for one calendar year
-library()
 rad <- rad %>%
   filter(datetime < as_datetime("2020-12-31"))
 ```
@@ -220,7 +198,7 @@ rad_d <- rad %>%
   group_by(yday) %>%
   summarize_all(mean, na.rm = TRUE)
 ```
-
+\newpage
 ## surface and sky temperature
 
 *Derive the sky and surface temperature from the longwave radiation
@@ -237,7 +215,7 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(caption="Weekly average", y="Temperature (°C)", x="Time",
        title="Sky and Surface temperatures over the year")
 ```
-
+\newpage
 ```{r}
 rad_d %>%
   gather(key="type", value="temp", t_sky, t_surface) %>%
@@ -253,7 +231,7 @@ temperature ranges from `r round(min(rad_d$t_surface, na.rm=T))` C to
 has a bigger range from `r round(min(rad_d$t_sky, na.rm=T))` C to
 `r round(max(rad_d$t_sky, na.rm=T))` C. The temperature of the sky
 mainly depends on the cloud cover and the temperature of the air.
-
+\newpage
 ```{r}
 rad %>%
   filter( month(datetime) == 7 ) %>%
@@ -263,7 +241,7 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(caption="Month of July (10 mins data)", y="Temperature (°C)", x="Time",
        title="Sky and Surface temperatures over one month")
 ```
-
+\newpage
 ```{r}
 filter(rad, between(datetime, as_datetime("2020-07-03"), as_datetime("2020-07-12"))) %>%
   gather(key="type", value="temp", t_sky, t_surface) %>%
@@ -279,6 +257,7 @@ cloudy days (eg. 9th of July) there is an high sky temperature, but a
 low surface temperature. Conversely on sunny days (eg. 7th of July) the
 surface temperature is higher, but the sky temperature is low.
 
+\newpage
 ## Net radiation
 
 *Calculate the net radiation over the meadow in the forest botanical
@@ -321,12 +300,8 @@ The is a notable low peak of incoming longwave in the last week of
 march, that is probably explained by clear skies but still low air
 temperature.
 
-# \#\# Change emissity in the sensor
-
-The net radiation has a yearly cycle. During the summer it has a
-relatively constant value at around $100 W/m^2$ to then decrease and
-reach slightly negative values in January. The compoment with the
-\>\>\>\>\>\>\> Stashed changes
+\newpage
+## Change emissity in the sensor
 
 In the field activity we tried to measure the temperature of the surface
 by using different emissivity settings in the sensor and see how that
