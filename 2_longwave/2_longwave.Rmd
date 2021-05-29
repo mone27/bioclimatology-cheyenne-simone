@@ -103,14 +103,29 @@ temperature, process induce by human known as global warming.
 
 Other part that constitutes longwave radiation are the following terms:
 
-*Atmospheric longwave radiation:* the emitted flux coming from clouds
-and water vapor particles present at atmosphere.
+*Atmospheric longwave radiation:* (A), the emitted flux coming from clouds and water vapor particles present at atmosphere.
 
-*Surface longwave radiation: kjcnv
+*Surface longwave radiation:* (E), the reflected radiant flux from the planet's surface. 
 
-*Reflected longwave radiation:*
+$$E = \varepsilon \sigma T^4$$
+*Reflected longwave radiation:* ($$Rlw$$) is the reflected radiation ocurring when the heat flux heats the surface.
 
-*Longwace radiation balance:*
+$$Rlw = (1-\varepsilon)*A$$
+
+*Longwace radiation balance:* 
+
+$$Q_lw =  A-E-Rlw$$
+
+The principle followed to calculate the net radiation balance of the planet is based on the sum of $$Qsw$$ & $$Qlw$$. Thus;
+
+$$Qn = Qsw + Qlw$$
+$$Qn=(1-rSW) G + 𝜀 *𝜎 *Tatm⁴ - 𝜀 *𝜎 *TS⁴$$
+
+Net radiation $(Rn)$ is defined by Bonan (2019), as the solar and longwave radiation absorbed by the land surface. Another equation used to calculate the land surface energy balance is known as:
+}
+$$Rn = (S_{incoming} - S_{outgoing}+(L_{incoming}) - L_{outgoing})$$
+Also emissivity can be defined as (1-$\epsilon$), thus the fraction of howlongwave radiation reaching the earth surface is bounced back is explained (Bonan,2019). 
+
 
 # Sensors and measuring principle
 
