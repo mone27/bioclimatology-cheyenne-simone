@@ -1,0 +1,530 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={2nd Protocol: Longwave},
+  pdfauthor={Cheyenne Rueda and Simone Massaro},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead[R]{Experimental bioclimatology}
+\fancyfoot[L]{Cheyenne Rueda \& Simone Massaro}
+\fancyfoot[R]{\thepage}
+\fancyfoot[C]{}
+\fancyhead[L]{Longwave radiation}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{2nd Protocol: Longwave}
+\author{Cheyenne Rueda and Simone Massaro}
+\date{29 mayo 2021}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\newpage
+
+\hypertarget{motivation}{%
+\section{Motivation}\label{motivation}}
+
+All bodies with a temperature above the absolute zero emit
+electromagnetic radiation. The wavelength and intensity of this
+radiation depends on the temperature of the body. In the temperature
+range of the earth surface the emitted radiation has a wavelength
+between 3 and 100 mm, and it is defined as longwave.
+
+Emitting longwave radiation is the only way for the plant to cool itself
+down, making it a crucial aspect in maintaining a steady climate. In
+fact climate change is caused by green house emissions, which capture
+part of the longwave radiation emitted by the planet surface and then
+re-emit in back towards the Earth. This results in a bigger amount of
+radiation reaching the earth surface, hence increasing its temperature
+\footnote{J. E. Harries, The greenhouse Earth: A view from space, 1996
+  \url{https://doi.org/10.1002/qj.49712253202}}.
+
+Contrary to shortwave radiation, that is zero at night, longwave is a
+constantly present in terrestrial ecosystem. Especially during night the
+longwave radiation can have a substantial impact on the surface
+temperature.
+
+\hypertarget{background}{%
+\section{Background}\label{background}}
+
+Longwave radiation has an important impact on the research and
+measurement of the global energy balance. Longwave radiation implements
+big changes energy budget when modeling land surface. The measurement of
+longwave radiation is more complicated in comparison with shortwave
+radiation. This fact is due to the variables that are measured to
+estimate shortwave radiation such as vapor pressure and air temperature.
+Thus, longwave radiation estimation will differ according to the
+atmospheric emissivity and temperature \footnote{Sridhar, V., \&
+  Elliott, R. L. (2002). On the development of a simple downwelling
+  longwave radiation scheme. Agricultural and Forest Meteorology,
+  112(3-4), 237-243.}.
+
+The changes produced in the radiation balance of the atmosphere are
+induced by global warming as an adaptation to this process. These
+changes are mainly caused by the variation in the level of water vapor
+present in atmosphere. This is regularized with the absorbed solar
+radiation and the emitted longwave radiation coming from atmosphere to
+the surface of earth \footnote{Stephens, G. L., Wild, M., Stackhouse Jr,
+  P. W., L'Ecuyer, T., Kato, S., \& Henderson, D. S. (2012). The global
+  character of the flux of downward longwave radiation. \emph{Journal of
+  Climate}, \emph{25}(7), 2329-2340.}.
+
+In the paper written by Sridhar \& Elliott. (2002), some equations are
+explained for the calculation of incoming longwave radiation.
+
+Through the use of infrared sensors the calculation of outgoing
+calculation can also be measured. Areas situated close to the ecuador
+line will present higher amount of outgoing longwave radiation but also
+higher temperature rates.
+
+Longwave radiation is emitted by all bodies on the Earth, with the total
+intensity depending on the temperature as described by the
+\emph{Steffan-Boltzman law}.
+
+\[E = \varepsilon \sigma T^4\] Where:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E\) is the radiation intensity in \(W/m^2\)
+\item
+  \(\varepsilon\) an adimensional coefficient that represents the
+  emissivity of the body. This depends on the material, a perfect black
+  body has a \(\varepsilon\) of \(1\), while other materials have a
+  lower emissivity
+\item
+  \(\sigma\) is the Steffan-Boltzman constant
+  \(5.67 \times 10^{-8} W m^{-2} K^{-4}\)
+\item
+  \(T\) is the body temperature in \(K\)
+\end{itemize}
+
+As mentioned previously , green house gases emission are constantly
+increasing. This is causing a higher levels of net temperature, process
+induce by human known as global warming.
+
+Other part that constitutes longwave radiation are the following terms:
+
+\begin{itemize}
+\item
+  \emph{Atmospheric longwave radiation:} the emitted flux coming from
+  clouds and water vapor particles present at atmosphere.
+\item
+  \emph{Surface longwave radiation:} (E), the reflected radiant flux
+  from the planet's surface.
+\end{itemize}
+
+\[E = \varepsilon \sigma T^4\]
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Reflected longwave radiation:} (\(R_{lw}\)) is the reflected
+  radiation occurring when the heat flux heats the surface.
+\end{itemize}
+
+\[R_{lw} = (1-\varepsilon)*A\]
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Longwace radiation balance:}
+\end{itemize}
+
+\[Q_{lw} =  A-E-R_{lw}\]
+
+The principle followed to calculate the net radiation balance of the
+planet is based on the sum of \(Q_{sw}\) and \(Q_{lw}\). Thus;
+
+\[Qn = Qsw + Qlw\]
+\[Qn=(1-rSW) G + \varepsilon \sigma *T_{atm}^4 - \varepsilon \sigma *T_s^4\]
+
+Net radiation \((Rn)\) is defined by Bonan (2019), as the solar and
+longwave radiation absorbed by the land surface. Another equation used
+to calculate the land surface energy balance is known as:
+
+\[Rn = (S_{incoming} - S_{outgoing}+(L_{incoming}) - L_{outgoing})\]
+Also, emissivity can be defined as (1-\(\epsilon\)) and thus, the
+fraction of longwave radiation that is reaching the earth surface and
+being bounced back, can be explained (Bonan,2019). \footnote{Bonan, G.
+  (2019). \emph{Climate change and terrestrial ecosystem modeling}.
+  Cambridge University Press.}.
+
+\hypertarget{sensors-and-measuring-principle}{%
+\section{Sensors and measuring
+principle}\label{sensors-and-measuring-principle}}
+
+Longwave radiation is an important flux to understand how climatology
+works in earth and understand processes such as global. Thus, some
+instruments have been developed as well to measure longwave radiation.
+
+The pyrgeometer measures this type of radiation from the atmosphere and
+the Earth's surface. This device is based on a sensitive range with
+infrared radiation between of 4.5 and 40 micrometer. It includes a
+thermal detector (64 thermocouple thermophile) based on giving a voltage
+output that then is needed to convert into radiative flux of energy
+units (W m-2). The way it works is basic, calculating the difference
+between the longwave radiation coming from the atmosphere and the
+longwave produced by the sensor. This is represented by the next
+equation:
+
+\[ L_A= L_{net} + \sigma T_{sensor}^4 \]
+
+Another device that allows to measure longwave radiation is the
+pyrometer. The pyrometer measures longwave radiation and converts it
+into a temperature based on the Stefan Boltzmann principle. Besides, it
+exists other types of sensor based on the measurement of net radiation.
+One of them is known as CNR4, based on 4 components (G, Rsw, A, E) which
+gives an output value for each of these. The other instrument that can
+be used for the same application is NR-Lite2. It is based on a
+thermophile that measures net radiation (G+A) in the upper side, whether
+in the other side it is measuring the net outgoing radiation (Rsw+E).
+These last two are similar instruments, but the last one (NR-Lite2) only
+gives one value as output in shape of voltage which is proportional to
+the Rn or net radiation.
+
+\hypertarget{analysis}{%
+\section{Analysis}\label{analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rad }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"../Data\_lectures/2\_Longwave\_radiation/LW\_SW\_TSoil\_BotGarten.csv"}\NormalTok{)}
+\FunctionTok{names}\NormalTok{(rad) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"datetime"}\NormalTok{, }\StringTok{"t\_sens"}\NormalTok{, }\StringTok{"sw\_in"}\NormalTok{, }\StringTok{"sw\_out"}\NormalTok{, }\StringTok{"lw\_in\_sens"}\NormalTok{, }\StringTok{"lw\_out\_sens"}\NormalTok{, }\StringTok{"t\_soil"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Utlitity funcs}
+\NormalTok{sigma }\OtherTok{\textless{}{-}} \FloatTok{5.67e{-}8} 
+
+\NormalTok{lw2temp }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(lw) (lw}\SpecialCharTok{/}\NormalTok{ sigma)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{)}
+\NormalTok{temp2lw }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(temp)  }\FunctionTok{return}\NormalTok{ (sigma }\SpecialCharTok{*}\NormalTok{ temp}\SpecialCharTok{\^{}}\DecValTok{4}\NormalTok{)}
+
+\NormalTok{c2k }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(c) c }\SpecialCharTok{+} \FloatTok{273.15}
+\NormalTok{k2c }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(k) k }\SpecialCharTok{{-}} \FloatTok{273.15}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#calculate from input data the real lw and the soil/surface temperature}
+\NormalTok{rad }\OtherTok{\textless{}{-}}\NormalTok{ rad }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{lw\_sens =} \FunctionTok{temp2lw}\NormalTok{(}\FunctionTok{c2k}\NormalTok{(t\_sens)),}
+    \AttributeTok{lw\_in =}\NormalTok{ lw\_in\_sens }\SpecialCharTok{+}\NormalTok{ lw\_sens,}
+    \AttributeTok{lw\_out =}\NormalTok{ lw\_out\_sens }\SpecialCharTok{+}\NormalTok{ lw\_sens,}
+    \AttributeTok{t\_sky =} \FunctionTok{lw2temp}\NormalTok{(lw\_in) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ k2c,}
+    \AttributeTok{t\_surface =} \FunctionTok{lw2temp}\NormalTok{(lw\_out) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ k2c,}
+    \AttributeTok{net\_rad =}\NormalTok{ lw\_in }\SpecialCharTok{{-}}\NormalTok{ lw\_out }\SpecialCharTok{+}\NormalTok{ sw\_in }\SpecialCharTok{{-}}\NormalTok{ sw\_out,}
+    \AttributeTok{net\_sw =}\NormalTok{ sw\_in }\SpecialCharTok{{-}}\NormalTok{ sw\_out,}
+    \AttributeTok{net\_lw =}\NormalTok{ lw\_in }\SpecialCharTok{{-}}\NormalTok{ lw\_out}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# for making aggregation easier we are going to consider data only for one calendar year}
+\NormalTok{rad }\OtherTok{\textless{}{-}}\NormalTok{ rad }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(datetime }\SpecialCharTok{\textless{}} \FunctionTok{as\_datetime}\NormalTok{(}\StringTok{"2020{-}12{-}31"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# weekly average data}
+\NormalTok{rad\_w }\OtherTok{\textless{}{-}}\NormalTok{ rad }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{as\_tsibble}\NormalTok{(}\AttributeTok{index =}\NormalTok{ datetime) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{index\_by}\NormalTok{(}\AttributeTok{week =} \SpecialCharTok{\textasciitilde{}} \FunctionTok{yearweek}\NormalTok{(.)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise\_all}\NormalTok{(mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# daily average data}
+\NormalTok{rad\_d }\OtherTok{\textless{}{-}}\NormalTok{ rad }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{yday =} \FunctionTok{yday}\NormalTok{(datetime)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(yday) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize\_all}\NormalTok{(mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\hypertarget{surface-and-sky-temperature}{%
+\subsection{Surface and Sky
+temperature}\label{surface-and-sky-temperature}}
+
+\emph{Derive the sky and surface temperature from the longwave radiation
+components. How do they differ and why? Discuss! During which periods of
+the year sky and surface temperature differ the most and the less?}
+
+The two temperature are analyzed at different timescales
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rad\_w }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key=}\StringTok{"type"}\NormalTok{, }\AttributeTok{value=}\StringTok{"temp"}\NormalTok{, t\_sky, t\_surface) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{temp, }\AttributeTok{colour=}\NormalTok{type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{caption=}\StringTok{"Weekly average"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Temperature (°C)"}\NormalTok{, }\AttributeTok{x=}\StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{title=}\StringTok{"Sky and Surface temperatures over the year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-8-1.pdf}
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rad\_d }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key=}\StringTok{"type"}\NormalTok{, }\AttributeTok{value=}\StringTok{"temp"}\NormalTok{, t\_sky, t\_surface) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{temp, }\AttributeTok{colour=}\NormalTok{type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()  }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{caption=}\StringTok{"Daily average"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Temperature (°C)"}\NormalTok{, }\AttributeTok{x=}\StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{title=}\StringTok{"Sky and Surface temperatures over the year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+The sky temperatures is always lower than the surface one. The surface
+temperature ranges from -2 C to 25 C, while the sky temperature has a
+bigger range from -23 C to 17 C. The temperature of the sky mainly
+depends on the cloud cover and the temperature of the air. \newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rad }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{( }\FunctionTok{month}\NormalTok{(datetime) }\SpecialCharTok{==} \DecValTok{7}\NormalTok{ ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key=}\StringTok{"type"}\NormalTok{, }\AttributeTok{value=}\StringTok{"temp"}\NormalTok{, t\_sky, t\_surface) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{temp, }\AttributeTok{colour=}\NormalTok{type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()  }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{caption=}\StringTok{"Month of July (10 mins data)"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Temperature (°C)"}\NormalTok{, }\AttributeTok{x=}\StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{title=}\StringTok{"Sky and Surface temperatures over one month"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-10-1.pdf}
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{filter}\NormalTok{(rad, }\FunctionTok{between}\NormalTok{(datetime, }\FunctionTok{as\_datetime}\NormalTok{(}\StringTok{"2020{-}07{-}03"}\NormalTok{), }\FunctionTok{as\_datetime}\NormalTok{(}\StringTok{"2020{-}07{-}12"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key=}\StringTok{"type"}\NormalTok{, }\AttributeTok{value=}\StringTok{"temp"}\NormalTok{, t\_sky, t\_surface) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{temp, }\AttributeTok{colour=}\NormalTok{type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()  }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{caption=}\StringTok{"3{-}12 July (10 mins data)"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Temperature (°C)"}\NormalTok{, }\AttributeTok{x=}\StringTok{"Time"}\NormalTok{,}
+       \AttributeTok{title=}\StringTok{"Sky and Surface temperatures over one week"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+The surface temperature has a clear day cycle, while the sky temperature
+has little or no day pattern. Moreover, it can be clearly seen how
+cloudy days (eg. 9th of July) there is a high sky temperature, but a low
+surface temperature. Conversely, on sunny days (eg. 7th of July) the
+surface temperature is higher, but the sky temperature is low.
+
+\newpage
+
+\hypertarget{net-radiation}{%
+\subsection{Net radiation}\label{net-radiation}}
+
+\emph{Calculate the net radiation over the meadow in the forest
+botanical garden and plot the four components. How do the four
+components change over the season and why? Which unexpected results you
+found? Discuss!}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rad\_w }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{gather}\NormalTok{(}\AttributeTok{key=}\StringTok{"type"}\NormalTok{, }\AttributeTok{value=}\StringTok{"radiation"}\NormalTok{, net\_rad, lw\_in, lw\_out, sw\_in, sw\_out,}
+         \AttributeTok{factor\_key =}\NormalTok{ T) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{radiation, }\AttributeTok{colour=}\NormalTok{type)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{datetime, }\AttributeTok{y=}\NormalTok{net\_rad), }\AttributeTok{data=}\NormalTok{rad\_w, }\AttributeTok{size=}\FloatTok{1.2}\NormalTok{,}
+            \AttributeTok{colour=}\FunctionTok{hue\_pal}\NormalTok{()(}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Net radiation with components over "}\NormalTok{, }\AttributeTok{y=}\StringTok{"Radiation (W m{-}2)"}\NormalTok{,}
+       \AttributeTok{x=}\StringTok{"Time"}\NormalTok{, }\AttributeTok{caption =} \StringTok{"Weekly average"}\NormalTok{, }\AttributeTok{colour=}\StringTok{"Radiation"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+The net radiation has a yearly cycle. During the summer it has a
+relatively constant value at around \(100 W/m^2\), then it decrease and
+reach slightly negative values in January. The biggest driver of this
+yearly cycle is the incoming shortwave radiation, which during summer is
+much higher than in winter. The radiation from the sun has smooth
+variations, while the variation on the incoming shortwave during the
+summer can be explained by the different amount of cloud cover. You
+would expect a clearer peak of the shortwave radiation during the
+summer, Moreover the net radiation has an high peak in mid late
+September. This behavior can probably be explained by different amount
+of cloud cover.
+
+The outgoing shortwave is the component with the smallest absolute
+value, it also has a yearly cycle being virtually zero in January but
+quickly reaching the max value during the spring and then remaining
+quite flat. Regarding the longwave the outgoing radiation is always
+bigger than the incoming, due to the higher temperature of the surface
+compared to the sky. The longwave components have a much smaller change
+during the year.
+
+There is a notable low peak of incoming longwave in the last week of
+march, that is probably explained by clear skies but still low air
+temperature.
+
+\newpage
+
+\hypertarget{change-emissity-in-the-sensor}{%
+\subsection{Change emissity in the
+sensor}\label{change-emissity-in-the-sensor}}
+
+In the field activity we tried to measure the temperature of the surface
+by using different emissivity settings in the sensor and see how that
+could influence the readings. However, there have been some issues with
+the sensor, so the data has been generated using the formula from the
+theory
+
+In this virtual experiment the real temperature is set to \(19 °C\) and
+the emissivity is changed, resulting in different temperature estimates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t\_0 }\OtherTok{\textless{}{-}} \DecValTok{19} \CommentTok{\# temperature with emissivity 1}
+\NormalTok{rad\_0 }\OtherTok{\textless{}{-}} \FunctionTok{c2k}\NormalTok{(t\_0) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ temp2lw }\CommentTok{\# connected radiation }
+
+\NormalTok{temps }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{em =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{05}\NormalTok{),}
+  \AttributeTok{t =}\NormalTok{ (rad\_0 }\SpecialCharTok{/}\NormalTok{ (em }\SpecialCharTok{*}\NormalTok{ sigma))}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{)  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ k2c}
+\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(temps, }\FunctionTok{aes}\NormalTok{(em, t)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_reverse}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Emissivity"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Temperature"}\NormalTok{, }\AttributeTok{title=}\StringTok{"Different temperatures with different emissivity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{2_longwave_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+It can be seen that the emissivity has a big influence on the
+temperature estimate. The emissivity of material can change drastically
+from \(0.03\) for aluminum foil to \(0.97\) for ice. This clearly shoes
+the importance of a correct estimation of the emissivity for temperature
+measurements.
+
+\end{document}

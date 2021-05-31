@@ -3,12 +3,12 @@ title: '5th Protocol: Precipitation'
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     toc: true
     includes:
       in_header: "../preamble.tex"
-  html_document:
-    df_print: paged
 header-includes:
   - \fancyhead[L]{Shortwave radiation}
 ---
@@ -87,6 +87,23 @@ sites
 evapotranspiration and precipitation (evapotranspiration index = ET_idx) is a very useful indicator
 how precipitation is used by plants during photosynthesis. Calculate the ET_idx for all sites and
 visualise it. What surprised you and how do the ET_idx differs across ecosystems? Discuss.*
+
+
+```{r}
+sites$et_idx <- sites$et/sites$prec
+
+ggplot(sites,
+       aes(site, et_idx, colour = site))+
+         geom_boxplot()+
+         labs(title="Evapotranspiration index", x="Different site", y="Evapotranspiration index")
+        
+```
+
+As we can see,evapotranspiration index is the fraction between what is intercepted by cannopy and what is being lose by soil hydrology processes. Other variables such as wind speed, surface humidity and solar radiation are not being taken into account in the calculation of this index, which probably are the ones causing differences on what it could have been expected at the beginning for some of the places. 
+
+we can see a higher evapotranspiration index in places where there is plenty precipitation and evapotranspiration rate by canopy. Hainich and Hyytiala are represented as the higher, this can be due to their higher latitudes providing this ecosystems with more precipitation rate. Guyaflux is at lower latitude and thus more close to the equator. This means a more tropical weather where high amount of rain and sun is normally occurring. Collelongo is place in a drier climate with high radiation but less annual precipitation rates. 
+
+
 
 
 
