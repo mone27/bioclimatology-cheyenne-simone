@@ -29,7 +29,7 @@ library(scales)
 
 All bodies with a temperature above the absolute zero emit electromagnetic radiation.
 The wavelength and intensity of this radiation depends on the temperature of the body.
-In the temperature range of the earth surface the emitted radiation has a wavelength between 3 and 100 mm, and it is defined as longwave.
+Within the temperature range of the earth surface, the emitted radiation has a wavelength between 3 and 100 mm and it is defined as longwave.
 
 Emitting longwave radiation is the only way for the plant to cool itself down, making it a crucial aspect in maintaining a steady climate.
 In fact climate change is caused by green house emissions, which capture part of the longwave radiation emitted by the planet surface and then re-emit in back towards the Earth.
