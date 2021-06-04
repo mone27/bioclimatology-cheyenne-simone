@@ -99,7 +99,9 @@ ggplot(sites,
         
 ```
 
-As we can see,evapotranspiration index is the fraction between what is intercepted by cannopy and what is being lose by soil hydrology processes. Other variables such as wind speed, surface humidity and solar radiation are not being taken into account in the calculation of this index, which probably are the ones causing differences on what it could have been expected at the beginning for some of the places. 
+As we can see,evapotranspiration index is the fraction between precipitation and what is coming back to atmosphere through evapotranspiration. 
+
+what is intercepted by cannopy and what is being lose by soil hydrology processes. Other variables such as wind speed, surface humidity and solar radiation are not being taken into account in the calculation of this index, which probably are the ones causing differences on what it could have been expected at the beginning for some of the places. 
 
 we can see a higher evapotranspiration index in places where there is plenty precipitation and evapotranspiration rate by canopy. Hainich and Hyytiala are represented as the higher, this can be due to their higher latitudes providing this ecosystems with more precipitation rate. Guyaflux is at lower latitude and thus more close to the equator. This means a more tropical weather where high amount of rain and sun is normally occurring. Collelongo is place in a drier climate with high radiation but less annual precipitation rates. 
 
