@@ -1,5 +1,5 @@
 ---
-title: "Nth Protocol: "
+title: "6th Protocol: Air Pressure"
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -32,6 +32,7 @@ where $q$ is the specific humidity
 # Sensors and measuring principle
 
 # Analysis
+
 ```{r, include=F}
 library(tidyverse)
 ```
@@ -67,6 +68,9 @@ get_press_sea_level <- function(pz, tv, Dz, g = 9.81) {
 
 ```
 
+## Air pressure sea level
+*Calculate the air pressure at sea level for the Leinefelde site.*
+
 ```{r}
 heigth_diff <- 451 + 44 # elevation + tower height
 
@@ -84,4 +88,14 @@ pres <- pres %>%
 ggplot(pres, aes(Date, p0)) +
   geom_line()
 ```
+
+##  Air pressure Brocken and water boling temperature
+
+*Calculate the air pressure at top of the Brocken mountain (1141 m) for a pressure of 991.3 hPa and an air temperature of 15°C at the North
+campus (185 m). Assume a mean air temperature decrease of 0.5 K/100 m. At which temperature would water boil at the North Campus and on the Brocken?*
+
+
+
+
+
 
