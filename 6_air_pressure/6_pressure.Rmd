@@ -24,3 +24,7 @@ editor_options:
 # Sensors and measuring principle
 
 # Analysis
+
+1. Calculate the air pressure at sea level for the Leinefelde site.
+2. Calculate the air pressure at top of the Brocken mountain (1141 m) for a pressure of 991.3 hPa and an air temperature of 15°C at the North
+campus (185 m). Assume a mean air temperature decrease of 0.5 K/100 m. At which temperature would water boil at the North Campus and on the Brocken?
