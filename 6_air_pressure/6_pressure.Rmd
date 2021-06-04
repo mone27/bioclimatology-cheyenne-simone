@@ -1,5 +1,26 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Nth Protocol: "
+author: "Cheyenne Rueda and Simone Massaro"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    includes:
+      in_header: "../preamble.tex"
+  html_notebook:
+    number_sections: true
+header-includes:
+  - \fancyhead[L]{Longwave radiation}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
+# Motivation
+
+# Background
+
+# Sensors and measuring principle
+
+# Analysis
