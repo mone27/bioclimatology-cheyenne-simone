@@ -21,6 +21,67 @@ editor_options:
 
 # Background
 
+Reduce to pressure level eq
+
+$$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
+correction for humidity virtual temperature
+
+$$T_v = T (1 + 0.608q)$$
+
+where $q$ is the specific humidity
 # Sensors and measuring principle
 
 # Analysis
+```{r, include=F}
+library(tidyverse)
+```
+
+
+```{r}
+pres <- read_csv("../Data_lectures/6_Air_pressure/TA_RH_PA_Leinefelde.csv")
+```
+
+```{r}
+head(pres)
+```
+
+```{r}
+#utility funcs from air humidity notebook
+
+# temp is in degrees celcius
+get_es <-  function(ta)  6.1078 * exp((17.08085 * ta) / (234.175 + ta))
+
+rh2ea <- function(rh, e_s) rh/100 * e_s
+get_spec_hum <- function(e_a, p) 0.622 * e_a / (p - 0.378 * e_a) # note Kg Kg-1
+
+c2k <- function(c) c + 273.15
+k2c <- function(k) k - 273.15
+
+# get virtual temperature. Ta is the air temp and q the specific humidity
+get_tv <- function(ta, q) ta * (1 + 0.608 * q)
+
+Rd <- 287.05 # J Kg-1 K-1 gas constant of dry air
+get_press_sea_level <- function(pz, tv, Dz, g = 9.81) {
+  pz * exp((g * Dz)/(Rd * c2k(tv)))
+}
+
+```
+
+```{r}
+heigth_diff <- 451 + 44 # elevation + tower height
+
+pres <- pres %>%
+  mutate(
+    es = get_es(TA_degC),
+    ea = rh2ea(RH_Perc, TA_degC),
+    q = get_spec_hum(ea, PA_hPa),
+    tv = get_tv(TA_degC, q),
+    p0 = get_press_sea_level(PA_hPa, tv, heigth_diff)
+  )
+```
+
+```{r}
+ggplot(pres, aes(Date, p0)) +
+  geom_line()
+```
+
