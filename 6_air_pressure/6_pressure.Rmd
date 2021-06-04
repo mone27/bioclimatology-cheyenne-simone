@@ -96,6 +96,17 @@ campus (185 m). Assume a mean air temperature decrease of 0.5 K/100 m. At which 
 
 
 
+```{r}
+
+Rd <- 287.05 # J Kg-1 K-1 gas constant of dry airç
+g <- 9.81# m/s^2
+z1 <- 1141 #m Brocken mountain Heigth
+z0 <- 185 #m North campus Heigth
+Z <- z0-z1
+get_press_Brockenmountain <-   991.3 * exp((g * Z)/(Rd * c2k(15)))#hPa would be the pressure at the Brocken mountain
+
+
+```
 
 
 
