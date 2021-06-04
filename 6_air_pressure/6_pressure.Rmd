@@ -3,7 +3,7 @@ title: "6th Protocol: Air Pressure"
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document:
+  bookdown::pdf_document2:
     toc: true
     number_sections: true
     includes:
@@ -16,7 +16,7 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-
+\newpage
 # Motivation
 
 # Background
@@ -29,22 +29,46 @@ correction for humidity virtual temperature
 $$T_v = T (1 + 0.608q)$$
 
 where $q$ is the specific humidity
+
+correction for temperature?
+
+Temperature of boiling water depending on pressure:
+
+$$T_{boil} = 100 + 2.804 10^{-2} (p-1013.25hPa) - 1.384 10^{-5} (p-1013.25hPa)^2$$
+
+One peculiarity of air pressure that there are a lot unit commonly used.
+The SI defines the Pa ($N/m^2$) as the unit for pressure. However, this is a small value so hPa (100 Pa) is more commonly used.
+Another unit used, especially in barometers, is the torr or mmHg, which corresponds to
+
 # Sensors and measuring principle
+
+The there are several sensors to measure the air pressure each one using a different measurement principles.
+
+ - Mercury barometer. This is the oldest barometer and works by having a column of mercury in a tube with vacuum on one side and air other the other.
+On the mercury there is the gravitational force that make it going down, while the air pressure pushes the column up. This two forces reaches and equilibrium and therefore it is possible to read the pressure using the height of the mercury column.
+This sensor is not commonly used nowadays, first of all because mercury is dangerous. Then it requires error corrections for both the temperature (mercury expands with higher temperatures) and gravity acceleration constant, which changes depending on altitude and latitude.
+ - Aneroid barometer. They have an aneroid capsule with vacuum (or low pressure) inside, air pressure tends to reduce the collapse the capsule while a spring keeps in open. By measuring the width of the capsule is possible to estimate the air pressure. The width of the capsule can be measured both in analog instruments or digital one, using a capacitor.
+Those are the most widely used pressure sensors as they are compact, reliable and require no error correction.
+ - Boiling barometer. They work by measuring the boiling temperature of water and then use this information to estimate the air pressure. There is a heater to make water boil and then an accurate thermometer measure the temperature of the water vapour. This is not the most convenient instrument, but it is the barometer with the highest accuracy.
+
+
+
+
+\newpage
 
 # Analysis
 
 ```{r, include=F}
 library(tidyverse)
+theme_set(theme_bw())
 ```
 
 
-```{r}
+```{r, message = F}
 pres <- read_csv("../Data_lectures/6_Air_pressure/TA_RH_PA_Leinefelde.csv")
 ```
 
-```{r}
-head(pres)
-```
+
 
 ```{r}
 #utility funcs from air humidity notebook
@@ -84,29 +108,36 @@ pres <- pres %>%
   )
 ```
 
-```{r}
-ggplot(pres, aes(Date, p0)) +
-  geom_line()
+```{r, "air-pressure-plot", fig.cap="Air pressure at Leinefelde and estimated air pressure at sea level. Pressure has been corrected for air humidity. Data from Leinefelde flux tower (451 m + 41m tower) July 2020 - May 2021"}
+pres %>%
+        gather("location", "pressure", PA_hPa, p0, factor_key = T) %>%
+ggplot(aes(Date, pressure, color=location)) +
+  geom_line() +
+labs(y="Pressure (hPa)") +
+scale_colour_discrete(name="Location", labels = c("Leinefelde", "Sea level"))
 ```
+
+You can see in Figure \@ref(fig:air-pressure-plot)
+\newpage
 
 ##  Air pressure Brocken and water boling temperature
 
-*Calculate the air pressure at top of the Brocken mountain (1141 m) for a pressure of 991.3 hPa and an air temperature of 15°C at the North
-campus (185 m). Assume a mean air temperature decrease of 0.5 K/100 m. At which temperature would water boil at the North Campus and on the Brocken?*
+*Calculate the air pressure at top of the Brocken mountain (1141 m) for a pressure of 991.3 hPa and an air temperature of 15°C at the North campus (185 m). Assume a mean air temperature decrease of 0.5 K/100 m. At which temperature would water boil at the North Campus and on the Brocken?*
 
 
 
 ```{r}
-
+pa_nc <- 991.3  # Air pressure north campus
 Rd <- 287.05 # J Kg-1 K-1 gas constant of dry airç
 g <- 9.81# m/s^2
 z1 <- 1141 #m Brocken mountain Heigth
 z0 <- 185 #m North campus Heigth
 Z <- z0-z1
-get_press_Brockenmountain <-   991.3 * exp((g * Z)/(Rd * c2k(15)))#hPa would be the pressure at the Brocken mountain
-
-
+pa_brocken<-   991.3 * exp((g * Z)/(Rd * c2k(15)))#hPa would be the pressure at the Brocken mountain
 ```
-
-
+```{r}
+t_boil_nc <- (100 + 2.804e-2 * (pa_nc-1013.25) - 1.384e-5 *(pa_nc-1013.25)^2 )%>% round(2)
+t_boil_brocken <- (100 + 2.804e-2 * (pa_brocken-1013.25) - 1.384e-5 * (pa_brocken-1013.25)^2 )%>% round(2)
+```
+The water would boil at `r t_boil_nc` °C at the North Campus and `r t_boil_brocken` °C on the Brocken.
 
