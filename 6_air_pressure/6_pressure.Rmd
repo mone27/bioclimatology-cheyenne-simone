@@ -3,13 +3,13 @@ title: "6th Protocol: Air Pressure"
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
+  html_notebook:
+    number_sections: true
   bookdown::pdf_document2:
     toc: true
     number_sections: true
     includes:
       in_header: "../preamble.tex"
-  html_notebook:
-    number_sections: true
 header-includes:
   - \fancyhead[L]{Longwave radiation}
 editor_options: 
@@ -25,15 +25,14 @@ Theory explains the different layers the atmosphere is composed by. Each of thes
 
 # Background
 
-
 Reduce to pressure level equation:
 
 $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
-and the following is used for the correction of humidity virtual temperature
+and the following is used for the correction of humidity virtual temperature (K)
 
 $$T_v = T (1 + 0.608q)$$
 
-where $q$ is the specific humidity.
+where $q$ is the specific humidity in kg/kg units..
 
 correction for temperature?
 
@@ -48,6 +47,7 @@ Another unit that commonly used in barometers is the torr or mmHg. Thus, this ar
 
 Pressure is also possible to be calculated using the different of height between 2 points with the used of the fixed barometric height formula. PReviously, this formula needed to be changed due to the decrease of pressure to any point not situated at sea level. 
 $$\Delta z = -(R_d/g*t)*log(p_z/p_0)$$
+
 
 # Sensors and measuring principle
 
@@ -149,4 +149,5 @@ t_boil_nc <- (100 + 2.804e-2 * (pa_nc-1013.25) - 1.384e-5 *(pa_nc-1013.25)^2 )%>
 t_boil_brocken <- (100 + 2.804e-2 * (pa_brocken-1013.25) - 1.384e-5 * (pa_brocken-1013.25)^2 )%>% round(2)
 ```
 The water would boil at `r t_boil_nc` °C at the North Campus and `r t_boil_brocken` °C on the Brocken.
-
+As expected, the temperature results in a higher value for the less higher place. The pressure value of the Borcken mountain was calculated using the formula mentioned in the theory background:
+$$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
