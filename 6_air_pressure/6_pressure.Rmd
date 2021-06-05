@@ -19,26 +19,35 @@ editor_options:
 \newpage
 # Motivation
 
+Air pressure is commonly known by experts as afactor that is constantly regulating the characteristics of natural systems. Changes in cloud densities, clouds movement and humid conditions of air. All these are examples of how air dynamics alter natural components of earth. But, what is the reason that explains the movement of air pressure? The molecules floating in the air have different directional movements or for instance, changes in its momentum. Following the same process as water particles when heated, air molecules move faster when air is hot.Air pressure is as well strongly related with the weather humidity conditions. Air is fluid. The molecules can easily move in all directions (Bonan, 2019).
+
+Theory explains the different layers the atmosphere is composed by. Each of these layers presents air in different amounts. The air of the atmosphere exerts pressure through  and this is known as air pressure or atmospheric pressure, which makes force towards the center of the planet from all directions, to all the earth component. More concretely, the troposphere (closest layer to earth surface) has the higher amount of air. 
+
 # Background
 
-Reduce to pressure level eq
+
+Reduce to pressure level equation:
 
 $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
-correction for humidity virtual temperature
+and the following is used for the correction of humidity virtual temperature
 
 $$T_v = T (1 + 0.608q)$$
 
-where $q$ is the specific humidity
+where $q$ is the specific humidity.
 
 correction for temperature?
 
 Temperature of boiling water depending on pressure:
 
 $$T_{boil} = 100 + 2.804 10^{-2} (p-1013.25hPa) - 1.384 10^{-5} (p-1013.25hPa)^2$$
+There is a mean decrease of temperature with height -0.65/100m:
+$$T=T_{st}+0.00325*z$$
+One peculiarity of air pressure is the wide range of units used around the globe to measure it. .
+The SI defines the Pa ($N/m^2$) as the unit for pressure. However, this is a small value so hPa (100 Pa) is commonly used as a reference amount of this unit.
+Another unit that commonly used in barometers is the torr or mmHg. Thus, this are the values to change between units: 760 mmHg = 760 torr = 1013.25 hPa.
 
-One peculiarity of air pressure that there are a lot unit commonly used.
-The SI defines the Pa ($N/m^2$) as the unit for pressure. However, this is a small value so hPa (100 Pa) is more commonly used.
-Another unit used, especially in barometers, is the torr or mmHg, which corresponds to
+Pressure is also possible to be calculated using the different of height between 2 points with the used of the fixed barometric height formula. PReviously, this formula needed to be changed due to the decrease of pressure to any point not situated at sea level. 
+$$\Delta z = -(R_d/g*t)*log(p_z/p_0)$$
 
 # Sensors and measuring principle
 
