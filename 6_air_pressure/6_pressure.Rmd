@@ -3,15 +3,16 @@ title: "6th Protocol: Air Pressure"
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  html_notebook:
-    number_sections: true
   bookdown::pdf_document2:
     toc: true
     number_sections: true
     includes:
       in_header: "../preamble.tex"
+  html_notebook:
+    number_sections: true
+bibliography: "../bioclimatology-references.bib"
 header-includes:
-  - \fancyhead[L]{Longwave radiation}
+  - \fancyhead[L]{Air Pressure}
 editor_options: 
   markdown: 
     wrap: 72
@@ -19,47 +20,60 @@ editor_options:
 \newpage
 # Motivation
 
-Air pressure is commonly known by experts as afactor that is constantly regulating the characteristics of natural systems. Changes in cloud densities, clouds movement and humid conditions of air. All these are examples of how air dynamics alter natural components of earth. But, what is the reason that explains the movement of air pressure? The molecules floating in the air have different directional movements or for instance, changes in its momentum. Following the same process as water particles when heated, air molecules move faster when air is hot.Air pressure is as well strongly related with the weather humidity conditions. Air is fluid. The molecules can easily move in all directions (Bonan, 2019).
+Air pressure is commonly known by experts as a  factor that is constantly regulating the characteristics of natural systems. Changes in cloud densities, clouds movement and humid conditions of air. All these are examples of how air dynamics alter natural components of earth. But, what is the reason that explains the movement of air pressure? The molecules floating in the air have different directional movements or for instance, changes in its momentum. Following the same process as water particles when heated, air molecules move faster when air is hot.Air pressure is as well strongly related with the weather humidity conditions. Air is fluid. The molecules can easily move in all directions [@bonan_climate_2019].
 
-Theory explains the different layers the atmosphere is composed by. Each of these layers presents air in different amounts. The air of the atmosphere exerts pressure through  and this is known as air pressure or atmospheric pressure, which makes force towards the center of the planet from all directions, to all the earth component. More concretely, the troposphere (closest layer to earth surface) has the higher amount of air. 
+Theory explains the different layers the atmosphere is composed by. Each of these layers presents air in different amounts. The air of the atmosphere exerts pressure through  and this is known as air pressure or atmospheric pressure, which makes force towards the center of the planet from all directions, to all the earth component. More concretely, the troposphere (the coolest layer to earth surface) has the higher amount of air.
 
 # Background
 
-Reduce to pressure level equation:
+There are different processes that affects air pressure. The main one is the reduction of air pressure with the increase of elevation.
+The pressure depends on the weight of the air column above, at high elevation there is less air above so the pressure is lower.
+
+This dependency of pressure with elevation is commonly used in altimeters to estimate the elevation. However, for weather meaurements the height effects needs to be removed.
+
+The air pressure has an exponential decay with height. The following formula can be used to estimate the pressure using the measured pressure at a know elevation.
 
 $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
-and the following is used for the correction of humidity virtual temperature (K)
+
+The air temperature is a important component of the formula, as warm air is less dense and therefore the air column withs less.
+However, air temperature also depends on altitude, hence the mean temperature over the column is used considering an estimate decrease in temperature of $-0.65 K /100m$. The following equation can be used
+
+$$T=T_{station}+0.00325*z$$
+
+Another correction can be made for air humidity, as wet air is less dense than dry air. This is done by estimating the virtual temperature,
+which corresponds to the temperature where dry air would have the same density of the wet air. The virtual temperature is always higher than the real one. The following equation can be used for the correction
 
 $$T_v = T (1 + 0.608q)$$
 
-where $q$ is the specific humidity in kg/kg units..
+where $q$ is the specific humidity in $Kg/Kg$
 
-correction for temperature?
+The inverse of the previous formula can be used to calculate the difference of height between 2 points with known pressures.
 
-Temperature of boiling water depending on pressure:
+$$\Delta z = -\frac{R_d}{g T} log(\frac{p_z} {p_0})$$
 
-$$T_{boil} = 100 + 2.804 10^{-2} (p-1013.25hPa) - 1.384 10^{-5} (p-1013.25hPa)^2$$
-There is a mean decrease of temperature with height -0.65/100m:
-$$T=T_{st}+0.00325*z$$
-One peculiarity of air pressure is the wide range of units used around the globe to measure it. .
+
+One peculiarity of air pressure is the wide range of units used around the globe to measure it.
 The SI defines the Pa ($N/m^2$) as the unit for pressure. However, this is a small value so hPa (100 Pa) is commonly used as a reference amount of this unit.
-Another unit that commonly used in barometers is the torr or mmHg. Thus, this are the values to change between units: 760 mmHg = 760 torr = 1013.25 hPa.
+Another unit that commonly used in barometers is the torr or mmHg, that originates from the millimeters of mercury used in the first barometers. Those are the values to change between units: 760 mmHg = 760 torr = 1013.25 hPa.
 
-Pressure is also possible to be calculated using the different of height between 2 points with the used of the fixed barometric height formula. PReviously, this formula needed to be changed due to the decrease of pressure to any point not situated at sea level. 
-$$\Delta z = -(R_d/g*t)*log(p_z/p_0)$$
+
+Pressure influences the boiling point temperature of water. The following equation can be used to estimate the relationship:
+
+$$T_{boil} = 100 + 2.804 \times 10^{-2} (p-1013.25hPa) - 1.384 \times 10^{-5} (p-1013.25hPa)^2$$
 
 
 # Sensors and measuring principle
 
 The there are several sensors to measure the air pressure each one using a different measurement principles.
 
- - Mercury barometer. This is the oldest barometer and works by having a column of mercury in a tube with vacuum on one side and air other the other.
+ - **Mercury barometer**. This is the oldest barometer and works by having a column of mercury in a tube with vacuum on one side and air other the other.
 On the mercury there is the gravitational force that make it going down, while the air pressure pushes the column up. This two forces reaches and equilibrium and therefore it is possible to read the pressure using the height of the mercury column.
 This sensor is not commonly used nowadays, first of all because mercury is dangerous. Then it requires error corrections for both the temperature (mercury expands with higher temperatures) and gravity acceleration constant, which changes depending on altitude and latitude.
- - Aneroid barometer. They have an aneroid capsule with vacuum (or low pressure) inside, air pressure tends to reduce the collapse the capsule while a spring keeps in open. By measuring the width of the capsule is possible to estimate the air pressure. The width of the capsule can be measured both in analog instruments or digital one, using a capacitor.
-Those are the most widely used pressure sensors as they are compact, reliable and require no error correction.
- - Boiling barometer. They work by measuring the boiling temperature of water and then use this information to estimate the air pressure. There is a heater to make water boil and then an accurate thermometer measure the temperature of the water vapour. This is not the most convenient instrument, but it is the barometer with the highest accuracy.
 
+ - **Aneroid barometer**. They have an aneroid capsule with vacuum (or low pressure) inside, air pressure tends to reduce the collapse the capsule while a spring keeps in open. By measuring the width of the capsule is possible to estimate the air pressure. The width of the capsule can be measured both in analog instruments or digital one, using a capacitor.
+Those are the most widely used pressure sensors as they are compact, reliable and require no error correction.
+
+ - **Boiling barometer**. They work by measuring the boiling temperature of water and then use this information to estimate the air pressure. There is a heater to make water boil and then an accurate thermometer measure the temperature of the water vapour. The main disantavage is their reduced convinience, but they can have a high accuracy, up to 0.5 hPa [@richner_water_1996].
 
 
 
@@ -116,17 +130,21 @@ pres <- pres %>%
     p0 = get_press_sea_level(PA_hPa, tv, heigth_diff)
   )
 ```
-
-```{r, "air-pressure-plot", fig.cap="Air pressure at Leinefelde and estimated air pressure at sea level. Pressure has been corrected for air humidity. Data from Leinefelde flux tower (451 m + 41m tower) July 2020 - May 2021"}
+\newpage
+```{r, "air-pressure-plot", fig.cap="Air pressure at Leinefelde and estimated air pressure at sea level. Pressure has been corrected for air humidity. Data from Leinefelde flux tower (451 m + 41m tower) July 2020 - May 2021, 30 min frequency."}
 pres %>%
-        gather("location", "pressure", PA_hPa, p0, factor_key = T) %>%
+        gather("location", "pressure", p0, PA_hPa, factor_key = T) %>%
 ggplot(aes(Date, pressure, color=location)) +
   geom_line() +
 labs(y="Pressure (hPa)") +
-scale_colour_discrete(name="Location", labels = c("Leinefelde", "Sea level"))
+scale_colour_discrete(name="Location", labels = c("Sea level", "Leinefelde"))
 ```
 
-You can see in Figure \@ref(fig:air-pressure-plot)
+
+The air pressure at sea level is always higher than at Leinefelde (Figure \@ref(fig:air-pressure-plot))
+The difference is around 53 hPa, and it is quite constant during the year. In the plot it is also possible to see that there are no clear seasonal patterns during the year as the pressure oscillate roughly =/- 25 hPa around the mean. Moreover, it is also interesting to notice the stability of the air pressure in a short time frame, as the data plotted has a 30 min frequency but no high frequency patterns can be observed.
+
+
 \newpage
 
 ##  Air pressure Brocken and water boling temperature
@@ -137,17 +155,26 @@ You can see in Figure \@ref(fig:air-pressure-plot)
 
 ```{r}
 pa_nc <- 991.3  # Air pressure north campus
-Rd <- 287.05 # J Kg-1 K-1 gas constant of dry airç
+Rd <- 287.05 # J Kg-1 K-1 gas constant of dry air
 g <- 9.81# m/s^2
-z1 <- 1141 #m Brocken mountain Heigth
-z0 <- 185 #m North campus Heigth
+z1 <- 1141 #m Brocken mountain Height
+z0 <- 185 #m North campus Height
 Z <- z0-z1
-pa_brocken<-   991.3 * exp((g * Z)/(Rd * c2k(15)))#hPa would be the pressure at the Brocken mountain
+ta <- 15 # C measuered at the north campus
+t_column <- ta + 0.00325 * Z #correction of temperature for elevation
+#hPa would be the pressure at the Brocken mountain
+pa_brocken<-  (991.3 * exp((g * Z)/(Rd * c2k(t_column)))) %>% round(2)
+
 ```
+On the top of the Brocken the air pressure would be `r pa_brocken` hPa
 ```{r}
 t_boil_nc <- (100 + 2.804e-2 * (pa_nc-1013.25) - 1.384e-5 *(pa_nc-1013.25)^2 )%>% round(2)
 t_boil_brocken <- (100 + 2.804e-2 * (pa_brocken-1013.25) - 1.384e-5 * (pa_brocken-1013.25)^2 )%>% round(2)
 ```
 The water would boil at `r t_boil_nc` °C at the North Campus and `r t_boil_brocken` °C on the Brocken.
-As expected, the temperature results in a higher value for the less higher place. The pressure value of the Borcken mountain was calculated using the formula mentioned in the theory background:
+As expected, the boiling temperature is lower at a higher elevation.
+
+The pressure value of the Brocken mountain was calculated using the formula mentioned in the theory background, adding correction for temperature decrease.
 $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
+
+# References
