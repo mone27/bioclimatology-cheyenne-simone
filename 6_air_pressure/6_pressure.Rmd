@@ -199,7 +199,7 @@ The air pressure at sea level is always higher than at Leinefelde
 (Figure \@ref(fig:air-pressure-plot)) The difference is around 53 hPa,
 and it is quite constant during the year. In the plot it is also
 possible to see that there are no clear seasonal patterns during the
-year as the pressure oscillate roughly =/- 25 hPa around the mean.
+year as the pressure oscillate roughly +/- 25 hPa around the mean.
 Moreover, it is also interesting to notice the stability of the air
 pressure in a short time frame, as the data plotted has a 30 min
 frequency but no high frequency patterns can be observed.
@@ -231,8 +231,10 @@ pa_brocken<-  (991.3 * exp((g * Z)/(Rd * c2k(t_column)))) %>% round(2)
 On the top of the Brocken the air pressure would be `r pa_brocken` hPa
 
 ```{r}
-t_boil_nc <- (100 + 2.804e-2 * (pa_nc-1013.25) - 1.384e-5 *(pa_nc-1013.25)^2 )%>% round(2)
-t_boil_brocken <- (100 + 2.804e-2 * (pa_brocken-1013.25) - 1.384e-5 * (pa_brocken-1013.25)^2 )%>% round(2)
+t_boil_nc <- (100 + 2.804e-2 * (pa_nc-1013.25) - 1.384e-5 *(pa_nc-1013.25)^2 ) %>%
+                round(2)
+t_boil_brocken <- (100 + 2.804e-2 * (pa_brocken-1013.25) - 1.384e-5 *
+                     (pa_brocken-1013.25)^2 ) %>% round(2)
 ```
 
 The water would boil at `r t_boil_nc` °C at the North Campus and
