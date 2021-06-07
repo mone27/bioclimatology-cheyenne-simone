@@ -3,18 +3,18 @@ title: '6th Protocol: Air Pressure'
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document:
-    toc: yes
-  html_document:
-    toc: yes
-    df_print: paged
-  html_notebook:
-    number_sections: yes
   bookdown::pdf_document2:
     toc: yes
     number_sections: yes
     includes:
       in_header: ../preamble.tex
+  html_document:
+    toc: yes
+    df_print: paged
+  html_notebook:
+    number_sections: yes
+  pdf_document:
+    toc: yes
 bibliography: ../bioclimatology-references.bib
 header-includes: \fancyhead[L]{Air Pressure}
 editor_options:
@@ -244,3 +244,4 @@ formula mentioned in the theory background, adding correction for
 temperature decrease. $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
 
 # References
+
