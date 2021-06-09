@@ -34,6 +34,9 @@ library(lubridate)
 ```{r}
 wind <- read_csv("../Data_lectures/7_Wind/Winddata_Botanical_garden.csv")
 ```
+
+1st step is to split the wind direction into its vectors. 
+
 ```{r}
 deg2rad <- function(deg) deg * pi / 180
 rad2deg <- function(rad) rad * 180 / pi
@@ -47,14 +50,15 @@ wind_dir_average <- function(wd){
   v <- sin(dir) %>% mean
   # convert back to a direction. Note atan2 uses y,x
   avg_dir <- atan2(v, u)
-  # convert back to degress
-  avg_dir <- rad2deg(avg_dir)
-  # need to transform in 0 - 360 range
-  avg_dir <- avg_dir %% (360)
-  return(avg_dir)
+  # need to convert in 0 - 360 range
+  avg_dir <- avg_dir %% (2*pi)
+  return(rad2deg(avg_dir))
 }
 
 ```
+
+1. Calculate 1 hour averages of 10 minute mean wind speed and direction
+data. Remember vectorial averaging!
 
 ```{r}
 wind_1h <- wind %>%
@@ -66,16 +70,50 @@ wind_1h <- wind %>%
 wind_1h
 ```
 
-visually checking the wind averages
+Visually checking the wind averages
 
 ```{r}
 wind %>%
   filter(week(Date)==1) %>%
 ggplot()+
-  geom_line(aes(Date, WD_deg), colour="red") +
+  geom_line(aes(Date, WD_deg), colour="lightblue") +
   geom_line(aes(Date, WD_deg), data=filter(wind_1h, week(Date)==1))
 
 ```
+2. How does the wind speed change with height? Characterize the wind
+pattern in different heights at the botanical garden. (wind rose)
+
+```{r}
+
+  
+wind_m<- wind %>%
+group_by(yday(Date)) %>%
+summarise_all(mean)
+
+windspeed <- ggplot(wind_m)+
+  geom_line(aes(Date, WS_05m), colour="yellow")+
+  geom_line(aes(Date, WS_1m), colour="blue")+
+  geom_line(aes(Date, WS_2m), colour="orange")+
+  geom_line(aes(Date, WS_5m), colour="green")+
+  geom_line(aes(Date, WS_10m), colour="brown") +
+  labs(y = "Wind speed", x = "1 year", color = "")
+
+```
+
+As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
+
+
+
+3. How does the wind speed varies over the year and what can explain the
+variability?
+
+```{r}
+windspeed
+```
+
+
+The graphs displays the variation of the wind speed along year. It is faster from end of december to beginning of april. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from. Also temperature may influence wind speed. 
+
 
 
 # References
