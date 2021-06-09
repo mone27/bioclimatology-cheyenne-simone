@@ -47,9 +47,11 @@ wind_dir_average <- function(wd){
   v <- sin(dir) %>% mean
   # convert back to a direction. Note atan2 uses y,x
   avg_dir <- atan2(v, u)
-  # need to convert in 0 - 360 range
-  avg_dir <- avg_dir %% (2*pi)
-  return(rad2deg(avg_dir))
+  # convert back to degress
+  avg_dir <- rad2deg(avg_dir)
+  # need to transform in 0 - 360 range
+  avg_dir <- avg_dir %% (360)
+  return(avg_dir)
 }
 
 ```
