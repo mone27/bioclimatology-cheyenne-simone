@@ -1,0 +1,79 @@
+---
+title: "7th Protocol: Wind"
+author: "Cheyenne Rueda and Simone Massaro"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    includes:
+      in_header: "../preamble.tex"
+  html_notebook:
+    number_sections: true
+header-includes:
+  - \fancyhead[L]{Longwave radiation}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Motivation
+
+# Background
+
+# Sensors and measuring principle
+
+averaging suing vector average [@grange_technical_2014]
+
+# Analysis
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+```{r}
+wind <- read_csv("../Data_lectures/7_Wind/Winddata_Botanical_garden.csv")
+```
+```{r}
+deg2rad <- function(deg) deg * pi / 180
+rad2deg <- function(rad) rad * 180 / pi
+
+# calculates the wind angular average over the provide input.
+# intend to be used together with group_by and summarize
+wind_dir_average <- function(wd){
+  dir <- deg2rad(wd)
+  # calc the vector components and then make the mean
+  u <- cos(dir) %>% mean
+  v <- sin(dir) %>% mean
+  # convert back to a direction. Note atan2 uses y,x
+  avg_dir <- atan2(v, u)
+  # need to convert in 0 - 360 range
+  avg_dir <- avg_dir %% (2*pi)
+  return(rad2deg(avg_dir))
+}
+
+```
+
+```{r}
+wind_1h <- wind %>%
+  group_by(round_date(Date, unit = "1 hour")) %>%
+  summarise(across(-WD_deg, mean), WD_deg = wind_dir_average(WD_deg))
+```
+
+```{r}
+wind_1h
+```
+
+visually checking the wind averages
+
+```{r}
+wind %>%
+  filter(week(Date)==1) %>%
+ggplot()+
+  geom_line(aes(Date, WD_deg), colour="red") +
+  geom_line(aes(Date, WD_deg), data=filter(wind_1h, week(Date)==1))
+
+```
+
+
+# References
