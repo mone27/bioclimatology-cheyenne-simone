@@ -32,7 +32,9 @@ library(tidyverse)
 library(lubridate)
 ```
 ```{r}
-wind <- read_csv("../Data_lectures/7_Wind/Winddata_Botanical_garden.csv")
+wind <- read_csv(here::here("Data_lectures/7_Wind/Winddata_Botanical_garden.csv")) %>% 
+  drop_na() %>% 
+  rename(WS_0.5m = WS_05m)
 ```
 
 1st step is to split the wind direction into its vectors. 
@@ -70,7 +72,7 @@ wind_1h <- wind %>%
 wind_1h
 ```
 
-Visually checking the wind averages
+Visually checking the wind averages (comment from Simone I'd actually delete this plot)
 
 ```{r}
 wind %>%
@@ -84,23 +86,60 @@ ggplot()+
 pattern in different heights at the botanical garden. (wind rose)
 
 ```{r}
-
-  
 wind_m<- wind %>%
 group_by(yday(Date)) %>%
 summarise_all(mean)
+```
 
+```{r}
 windspeed <- ggplot(wind_m)+
-  geom_line(aes(Date, WS_05m), colour="yellow")+
+  geom_line(aes(Date, WS_0.5m), colour="yellow")+
   geom_line(aes(Date, WS_1m), colour="blue")+
   geom_line(aes(Date, WS_2m), colour="orange")+
   geom_line(aes(Date, WS_5m), colour="green")+
   geom_line(aes(Date, WS_10m), colour="brown") +
   labs(y = "Wind speed", x = "1 year", color = "")
-
+windspeed
 ```
 
 As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
+
+```{r}
+## plotting the same thing using gather
+wind_m %>%
+  #just one month otherwise the plot is too compressed
+  filter(between(Date, as_datetime("2020-03-01") , as_datetime("2020-04-01") )) %>% 
+  gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
+  ggplot(aes(Date, windspeed, col=height))+
+  geom_line()
+```
+
+```{r}
+wind %>% 
+  gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
+  # converts the height into a numeric value
+  mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) %>%
+  ggplot(aes(windspeed, height, group=height)) +
+  geom_boxplot()
+```
+
+comment from Simone. I'd keep this plot
+
+```{r}
+wind_m %>%
+  gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
+  mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) %>% 
+  ggplot(aes(windspeed, height, group=height)) +
+  geom_boxplot()
+```
+
+```{r}
+library(clifro)
+```
+
+```{r}
+windrose(wind$WS_10m, wind$WD_deg, col_pal="YlGnBu")
+```
 
 
 
@@ -108,7 +147,8 @@ As it is possible to appreciate in the graph, wind speed gets faster at 10m heig
 variability?
 
 ```{r}
-windspeed
+ggplot(wind_m, aes(Date, WS_10m)) +
+  geom_line()
 ```
 
 
