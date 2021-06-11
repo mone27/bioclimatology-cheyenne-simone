@@ -114,7 +114,7 @@ windspeed <- ggplot(wind_1d)+
   geom_line(aes(Date, WS_5m), colour="green")+
   geom_line(aes(Date, WS_10m), colour="brown") +
   labs(y = "Wind speed", x = "1 year", color = "")
-windspeed
+#windspeed
 ```
 
 As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
