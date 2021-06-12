@@ -101,18 +101,24 @@ wind_1h <- wind %>%
   summarise(across(-wd, mean), wd = wind_dir_average(wd))
 ```
 
-```{r, wd_avg, }
+```{r, wd-avg, fig.cap="Comparison of wind direction original data (10 mins) and hourly average. Data from botanical gardern 15th-17th January 2021."}
 wind %>%
-  filter(between(Date, as_datetime("2020-01-15") , as_datetime("2020-01-17"))) %>%
+  filter(between(Date, as_datetime("2021-01-15") , as_datetime("2021-01-17"))) %>%
 ggplot()+
-  geom_point(aes(Date, wd), colour="lightblue", size=.8) +
-  geom_line(aes(Date, wd),
-            data=filter(wind_1h, between(Date, as_datetime("2020-01-15"),
-                                               as_datetime("2020-01-17")))) +
-  labs(y="Wind direction") +
+  geom_point(aes(Date, wd, colour="10 mins"), size=.8) +
+  geom_line(aes(Date, wd, colour="1 hour"),
+            data=filter(wind_1h, between(Date, as_datetime("2021-01-15"),
+                                               as_datetime("2021-01-17")))) +
+  labs(y="Wind direction", colour="") +
   scale_y_continuous(breaks = c(0, 90, 180, 270, 360),
-                     labels = c('N', 'E', 'S', 'W' , 'N'), limits = c(-10, 370))
+                     labels = c('N (0°)', 'E (90°)', 'S(180°)',
+                                'W(270°)', 'N (360°)'), limits = c(-10, 370))
 ```
+
+The wind speed and direction have been averaged at 1 hour. Vectorial average has been used for wind direction.
+In figure \@ref(fig:wd-avg) the average direction is compared with the original data.
+Between the 15th and the 16th of January there are some data points with a wind direction close to 0, but the average is around 350.
+
 
 \newpage
 
@@ -122,7 +128,7 @@ ggplot()+
 pattern in different heights at the botanical garden*
 
 
-```{r}
+```{r, ws-diff-height, fig.cap="Time series of wind speed at different heigth. (a) is a summer month (15th Jan 2020 - 15th Feb 2020). (b) is a winter month(15th Jun 2020 - 15th Jul 2020). Data from botanical garden."}
 ## plotting the same thing using gather
 (wind_g_1d %>%
   #just one month otherwise the plot is too compressed
@@ -144,6 +150,7 @@ plot_layout(guide="collect")
 
 ```
 
+In Figure \@ref(fig:ws-diff-height) ..
 As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
 
 
@@ -167,7 +174,7 @@ wind_prof <- mutate( wind_prof,
 ```
 
 
-```{r}
+```{r, ws_boxplot, fig.cap=""}
 wind_g_1d %>%
   ggplot() +
   geom_boxplot(aes(windspeed, height, group=height)) +
@@ -224,7 +231,7 @@ months <- map_df(1:14, function(n_mon){
 ```
 
 
-```{r, wd_year, fig.cap="Weekly average of wind directions for the year. The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
+```{r, wd-year, fig.cap="Weekly average of wind directions for the year. The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
 wind %>%
   group_by(round_date(Date, unit = "1 weeks")) %>%
   summarise(across(c(matches("WS"), Date), mean), wd = wind_dir_average(wd)) %>% 
