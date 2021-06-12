@@ -30,7 +30,26 @@ There are many types of instruments used for measuring wind speed. Here some of 
 
 **Propeller anemometer** : the way this this instrument works is very similar to the cup anemometer. It points to the mean wind direction at that moment. With the use of three propeller anemometer pointing different direction, three dimensional wind can be measured. 
 
-**Ultrasonic anemometer thermometer** : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measuread all directions and get a more accurate measurement value. An advantage is the small fluctuations that 
+**Ultrasonic anemometer thermometer** : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measuread all directions and get a more accurate measurement value. One of the advantages of using the ultrasonic anemometer is the small fluctuations detected on the measures. The speed of sounds depends on temperature and air humidity. Thus, the following equations allow the calculation of speed of sound and the temperature at high frequencies;
+
+$$C_l=D/2*((1/timeA-A)+(1/timeB-A))$$
+$$C_l=\sqrt{K_a*R_a*T_{av}}$$ *
+When $$K_a = 1.4$$, $$R_a = 287.05 J/Kg*K$$, $$T_{av} = T(1+0.513*q)$$
+
+
+![Caption for the picture.]()
+
+**Hot wire anemometer** : When a current flow is introduce within a wire, there is a release of heat. Then, the air flow goes throguh the wire and cools down removing the released energy. It can be apply in two different ways;
+
+At a constant current, the change of temperature is measure with a thin thermocouple.  This can be hard at a high speed wind.
+
+At a constant temperature, with a temperature change the current is regulated, such that the temperature is held constant and thus, with a high wind there will be a high current as well. 
+
+Common errors with anemometer. 
+The starting speed of cup and propeller anemometer is that it starts to rotate when speed is 0.5 m/s. When wind flow stops, but the cup anemometer keeps rotating a bit longer until it fully stops. In case of low wind speed, sonic anemometer are the best instruments to use but in case or rain, it cannot do measurements instead. 
+
+When installation the anemometers there are some tips to have into account. Better to set them far above ground,this way the roughness of the lower layer above soil's surface will not be affecting the measures. The same with any other object around in the area.In case of sonic anemometer, is important to protect it against birds or any type of instect that make small variation when measuring. 
+
 
 averaging suing vector average [@grange_technical_2014]
 
