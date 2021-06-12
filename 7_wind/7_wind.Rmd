@@ -93,8 +93,9 @@ wind_g <- wind %>%
   mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) 
 
 wind_1d<- wind %>%
-  group_by(yday(Date)) %>%
-  summarise(across(-wd, mean), wd = wind_dir_average(wd))
+  mutate(Date = floor_date(Date, unit = "1 day")) %>% 
+  group_by(Date) %>%
+  summarise(across(c(-wd), mean), wd = wind_dir_average(wd))
 
 wind_g_1d <- wind_1d %>% 
   gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
@@ -170,7 +171,7 @@ wind_g_1d %>%
 
 
 ```{r}
-windrose(wind$WS_10m, wind$wd, col_pal="YlGnBu")
+windrose(wind$WS_10m, wind$wd, col_pal="YlGnBu", ggtheme="bw")
 ```
 
 ```{r}
@@ -184,14 +185,18 @@ wind %>%
 3. How does the wind speed varies over the year and what can explain the
 variability?
 
-```{r}
+
+```{r, ws_year, fig.cap="Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021."}
 ggplot(wind_1d, aes(Date, WS_10m)) +
-  geom_line()
+  geom_line() +
+  labs(y="Wind speed (m/s)")
 ```
 
+During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s
 
 ```{r}
-months <- map_df(1:13, function(n_mon){
+# data frame with months start and end to draw background
+months <- map_df(1:14, function(n_mon){
   start <- as_datetime("2020-01-01")
   # offset to the correct month start
   month(start) <- month(start) + n_mon - 1
@@ -205,7 +210,7 @@ months <- map_df(1:13, function(n_mon){
 ```
 
 
-```{r}
+```{r, wd_year, fig.cap="Weekly average of wind directions for the year. The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
 wind %>%
   group_by(round_date(Date, unit = "1 weeks")) %>%
   summarise(across(c(matches("WS"), Date), mean), wd = wind_dir_average(wd)) %>% 
@@ -217,18 +222,19 @@ wind %>%
   ) +
   scale_fill_brewer(palette = "Set3") +
   geom_point(aes(Date, wd)) +
-  coord_polar(theta="y")
+  coord_polar(theta="y") +
+  labs(y="Wind direction (degrees)", fill="Month")
 ```
 
 
 
 ```{r}
-wind <- wind %>% 
+wind_q <- wind %>% 
   mutate(quarter = as_factor(quarter(Date)))
 ```
 
 ```{r}
-windrose(wind$WS_10m, wind$wd, wind$quarter, n_col= 2, col_pal="YlGnBu")
+windrose(wind_q$WS_10m, wind_q$wd, wind_q$quarter, n_col= 2, col_pal="YlGnBu")
 ```
 
 
