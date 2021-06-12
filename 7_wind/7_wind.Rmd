@@ -28,10 +28,12 @@ averaging suing vector average [@grange_technical_2014]
 
 # Analysis
 
-```{r}
+```{r, message=F}
 library(tidyverse)
 library(lubridate)
 library(clifro) # for windrose
+library(patchwork)
+library(ggthemes)
 theme_set(theme_bw()) # ggplot theme
 ```
 ```{r}
@@ -100,7 +102,7 @@ wind_1d<- wind %>%
 wind_g_1d <- wind_1d %>% 
   gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
   # converts the height into a numeric value
-  mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) 
+  mutate(height = as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", height))) 
 ```
 
 2. How does the wind speed change with height? Characterize the wind
@@ -122,12 +124,24 @@ As it is possible to appreciate in the graph, wind speed gets faster at 10m heig
 
 ```{r}
 ## plotting the same thing using gather
-wind_1d %>%
+(wind_g_1d %>%
   #just one month otherwise the plot is too compressed
-  filter(between(Date, as_datetime("2020-03-01") , as_datetime("2020-04-01") )) %>% 
-  gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m, factor_key = T) %>% 
+  filter(between(Date, as_datetime("2020-01-15") , as_datetime("2020-02-15") )) %>% 
+  mutate(height = fct_reorder(as_factor(height), sort(height, decreasing = T))) %>% 
   ggplot(aes(Date, windspeed, col=height))+
-  geom_line()
+  geom_line() +
+  scale_color_colorblind() +
+  labs(y="Windspeed (m/s)", colour="Height (m)", title="(a) Winter month")) /
+(wind_g_1d %>%
+  #just one month otherwise the plot is too compressed
+  filter(between(Date, as_datetime("2020-06-15") , as_datetime("2020-07-15") )) %>% 
+  mutate(height = fct_reorder(as_factor(height), sort(height, decreasing = T))) %>% 
+  ggplot(aes(Date, windspeed, col=height))+
+  geom_line() +
+  scale_color_colorblind() +
+  labs(y="Windspeed (m/s)", colour="Height (m)", title="(b) Summer month")) +
+plot_layout(guide="collect")
+
 ```
 
 ```{r}
