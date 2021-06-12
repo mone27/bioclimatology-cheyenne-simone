@@ -24,6 +24,14 @@ editor_options:
 
 # Sensors and measuring principle
 
+There are many types of instruments used for measuring wind speed. Here some of them will be described.
+
+**Cup Anemometer** : it consists of a set of three cups, crossing a vertical basement stick. This cross shape allows to measure the horizontal wind velocity at a specific height. The wind speed is derived from number of cycles/time or turning velocity. For measuring the wind direction, a wind vane is used. It points to the direction where the wind is coming. This is through a potentiometer to detect the right direction. 
+
+**Propeller anemometer** : the way this this instrument works is very similar to the cup anemometer. It points to the mean wind direction at that moment. With the use of three propeller anemometer pointing different direction, three dimensional wind can be measured. 
+
+**Ultrasonic anemometer thermometer** : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measuread all directions and get a more accurate measurement value. An advantage is the small fluctuations that 
+
 averaging suing vector average [@grange_technical_2014]
 
 \newpage
