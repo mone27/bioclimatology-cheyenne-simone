@@ -73,20 +73,8 @@ wind_1h <- wind %>%
   summarise(across(-wd, mean), wd = wind_dir_average(wd))
 ```
 
-```{r}
-wind_1h
-```
 
-Visually checking the wind averages (comment from Simone I'd actually delete this plot)
 
-```{r}
-wind %>%
-  filter(yday(Date)==1) %>%
-ggplot()+
-  geom_line(aes(Date, wd), colour="lightblue") +
-  geom_line(aes(Date, wd), data=filter(wind_1h, yday(Date)==1))
-
-```
 ```{r}
 # wind gathered
 wind_g <- wind %>% 
@@ -144,11 +132,7 @@ plot_layout(guide="collect")
 
 ```
 
-```{r}
-wind_g %>% 
-  ggplot(aes(windspeed, height, group=height)) +
-  geom_boxplot()
-```
+
 
 Trying to fit a log wind profile to the means
 
@@ -173,7 +157,6 @@ wind_prof <- mutate( wind_prof,
 ```
 
 
-comment from Simone. I'd keep this plot
 
 ```{r}
 wind_g_1d %>%
@@ -183,17 +166,6 @@ wind_g_1d %>%
   geom_point(aes(x=pred_ws, y=height, colour="Fitted log profile"), data = wind_prof, )
 ```
 
-
-```{r}
-windrose(wind$WS_10m, wind$wd, col_pal="YlGnBu", ggtheme="bw")
-```
-
-```{r}
-wind %>% 
-  filter(yday(Date)==190) %>% 
-  ggplot(aes(Date, wd)) +
-  geom_line()
-```
 
 
 3. How does the wind speed varies over the year and what can explain the
@@ -244,11 +216,10 @@ wind %>%
 
 ```{r}
 wind_q <- wind %>% 
-  mutate(quarter = as_factor(quarter(Date)))
-```
-
-```{r}
-windrose(wind_q$WS_10m, wind_q$wd, wind_q$quarter, n_col= 2, col_pal="YlGnBu")
+  mutate(quarter = quarter(Date) %>%
+           as_factor)
+windrose(wind_q$WS_10m, wind_q$wd, wind_q$quarter, n_col= 2, col_pal="YlGnBu",
+         ggtheme = "bw")
 ```
 
 
