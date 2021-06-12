@@ -17,7 +17,7 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-
+\newpage
 # Motivation
 
 # Background
@@ -34,21 +34,23 @@ There are many types of instruments used for measuring wind speed. Here some of 
 
 averaging suing vector average [@grange_technical_2014]
 
+\newpage
 # Analysis
 
-```{r}
+```{r, message=F}
 library(tidyverse)
 library(lubridate)
 library(clifro) # for windrose
+library(patchwork)
+library(ggthemes)
 theme_set(theme_bw()) # ggplot theme
 ```
-```{r}
+```{r, message=F}
 wind <- read_csv(here::here("Data_lectures/7_Wind/Winddata_Botanical_garden.csv")) %>% 
   drop_na() %>% 
   rename(WS_0.5m = WS_05m, wd=WD_deg)
 ```
 
-1st step is to split the wind direction into its vectors. 
 
 ```{r}
 deg2rad <- function(deg) deg * pi / 180
@@ -70,29 +72,6 @@ wind_dir_average <- function(wd){
 
 ```
 
-1. Calculate 1 hour averages of 10 minute mean wind speed and direction
-data. Remember vectorial averaging!
-
-```{r}
-wind_1h <- wind %>%
-  group_by(round_date(Date, unit = "1 hour")) %>%
-  summarise(across(-wd, mean), wd = wind_dir_average(wd))
-```
-
-```{r}
-wind_1h
-```
-
-Visually checking the wind averages (comment from Simone I'd actually delete this plot)
-
-```{r}
-wind %>%
-  filter(yday(Date)==1) %>%
-ggplot()+
-  geom_line(aes(Date, wd), colour="lightblue") +
-  geom_line(aes(Date, wd), data=filter(wind_1h, yday(Date)==1))
-
-```
 ```{r}
 # wind gathered
 wind_g <- wind %>% 
@@ -101,72 +80,92 @@ wind_g <- wind %>%
   mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) 
 
 wind_1d<- wind %>%
-  group_by(yday(Date)) %>%
-  summarise(across(-wd, mean), wd = wind_dir_average(wd))
+  mutate(Date = floor_date(Date, unit = "1 day")) %>% 
+  group_by(Date) %>%
+  summarise(across(c(-wd), mean), wd = wind_dir_average(wd))
 
 wind_g_1d <- wind_1d %>% 
   gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m) %>% 
   # converts the height into a numeric value
-  mutate(height = as.numeric(gsub(".*?([0-9]+).*", "\\1", height))) 
+  mutate(height = as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", height))) 
 ```
 
-2. How does the wind speed change with height? Characterize the wind
-pattern in different heights at the botanical garden. (wind rose)
+## Wind averages
+
+*Calculate 1 hour averages of 10 minute mean wind speed and direction
+data.*
+
+```{r}
+wind_1h <- wind %>%
+  group_by(round_date(Date, unit = "1 hour")) %>%
+  summarise(across(-wd, mean), wd = wind_dir_average(wd))
+```
+
+```{r, wd_avg, }
+wind %>%
+  filter(between(Date, as_datetime("2020-01-15") , as_datetime("2020-01-17"))) %>%
+ggplot()+
+  geom_point(aes(Date, wd), colour="lightblue", size=.8) +
+  geom_line(aes(Date, wd),
+            data=filter(wind_1h, between(Date, as_datetime("2020-01-15"),
+                                               as_datetime("2020-01-17")))) +
+  labs(y="Wind direction") +
+  scale_y_continuous(breaks = c(0, 90, 180, 270, 360),
+                     labels = c('N', 'E', 'S', 'W' , 'N'), limits = c(-10, 370))
+```
+
+\newpage
+
+## Wind speed and height
+
+*How does the wind speed change with height? Characterize the wind
+pattern in different heights at the botanical garden*
 
 
 ```{r}
-windspeed <- ggplot(wind_1d)+
-  geom_line(aes(Date, WS_0.5m), colour="yellow")+
-  geom_line(aes(Date, WS_1m), colour="blue")+
-  geom_line(aes(Date, WS_2m), colour="orange")+
-  geom_line(aes(Date, WS_5m), colour="green")+
-  geom_line(aes(Date, WS_10m), colour="brown") +
-  labs(y = "Wind speed", x = "1 year", color = "")
-#windspeed
+## plotting the same thing using gather
+(wind_g_1d %>%
+  #just one month otherwise the plot is too compressed
+  filter(between(Date, as_datetime("2020-01-15") , as_datetime("2020-02-15") )) %>% 
+  mutate(height = fct_reorder(as_factor(height), sort(height, decreasing = T))) %>% 
+  ggplot(aes(Date, windspeed, col=height))+
+  geom_line() +
+  scale_color_colorblind() +
+  labs(y="Windspeed (m/s)", colour="Height (m)", title="(a) Winter month")) /
+(wind_g_1d %>%
+  #just one month otherwise the plot is too compressed
+  filter(between(Date, as_datetime("2020-06-15") , as_datetime("2020-07-15") )) %>% 
+  mutate(height = fct_reorder(as_factor(height), sort(height, decreasing = T))) %>% 
+  ggplot(aes(Date, windspeed, col=height))+
+  geom_line() +
+  scale_color_colorblind() +
+  labs(y="Windspeed (m/s)", colour="Height (m)", title="(b) Summer month")) +
+plot_layout(guide="collect")
+
 ```
 
 As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
 
-```{r}
-## plotting the same thing using gather
-wind_1d %>%
-  #just one month otherwise the plot is too compressed
-  filter(between(Date, as_datetime("2020-03-01") , as_datetime("2020-04-01") )) %>% 
-  gather("height", "windspeed", WS_0.5m, WS_1m, WS_2m, WS_5m, WS_10m, factor_key = T) %>% 
-  ggplot(aes(Date, windspeed, col=height))+
-  geom_line()
-```
-
-```{r}
-wind_g %>% 
-  ggplot(aes(windspeed, height, group=height)) +
-  geom_boxplot()
-```
-
-Trying to fit a log wind profile to the means
 
 ```{r}
 wind_prof <- wind_g_1d %>% 
   group_by(height) %>% 
   summarize(windspeed=mean(windspeed))
 #### fit logarithmic wind profile to data and estimate the parameters u*, z0 and d ####
-z <- c(0.5,1,2,5,10)
 # initial values
 u_star_start <- 0.1
 d_start <- 0.3
 z0_start <- 0.05
 
-log_prof_model <- nls(formula = wind_prof$windspeed~u_star/0.4*(log(( z -d)) - log(z0)), 
+log_prof_model <- nls(windspeed ~u_star/0.4*(log((height - d)) - log(z0)), 
                  start = list(u_star=u_star_start,              
                               d=d_start,              
                               z0=z0_start),                     
-                 na.action = na.exclude)
+                 na.action = na.exclude, data=wind_prof)
 wind_prof <- mutate( wind_prof,
   pred_ws = predict(log_prof_model))
 ```
 
-
-comment from Simone. I'd keep this plot
 
 ```{r}
 wind_g_1d %>%
@@ -176,30 +175,42 @@ wind_g_1d %>%
   geom_point(aes(x=pred_ws, y=height, colour="Fitted log profile"), data = wind_prof, )
 ```
 
+Boxplot and fitted curve
+
+\newpage
+
+## Windspeed over year
+
+*How does the wind speed varies over the year and what can explain the
+variability?*
 
 ```{r}
-windrose(wind$WS_10m, wind$wd, col_pal="YlGnBu")
+wind_q <- wind %>% 
+  mutate(quarter = quarter(Date) %>%
+           as_factor)
+windrose(wind_q$WS_10m, wind_q$wd, wind_q$quarter, n_col= 2, col_pal="YlGnBu",
+         ggtheme = "bw")
 ```
 
-```{r}
-wind %>% 
-  filter(yday(Date)==190) %>% 
-  ggplot(aes(Date, wd)) +
-  geom_line()
-```
 
-
-3. How does the wind speed varies over the year and what can explain the
-variability?
-
-```{r}
+\newpage
+```{r, ws_year, fig.cap="Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021."}
 ggplot(wind_1d, aes(Date, WS_10m)) +
-  geom_line()
+  geom_line() +
+  labs(y="Wind speed (m/s)")
 ```
 
+During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s
+
+
+The graphs displays the variation of the wind speed along year. It is faster from end of december to beginning of april. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.
+
+
+\newpage
 
 ```{r}
-months <- map_df(1:13, function(n_mon){
+# data frame with months start and end to draw background
+months <- map_df(1:14, function(n_mon){
   start <- as_datetime("2020-01-01")
   # offset to the correct month start
   month(start) <- month(start) + n_mon - 1
@@ -213,7 +224,7 @@ months <- map_df(1:13, function(n_mon){
 ```
 
 
-```{r}
+```{r, wd_year, fig.cap="Weekly average of wind directions for the year. The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
 wind %>%
   group_by(round_date(Date, unit = "1 weeks")) %>%
   summarise(across(c(matches("WS"), Date), mean), wd = wind_dir_average(wd)) %>% 
@@ -225,24 +236,11 @@ wind %>%
   ) +
   scale_fill_brewer(palette = "Set3") +
   geom_point(aes(Date, wd)) +
-  coord_polar(theta="y")
+  coord_polar(theta="y") +
+  labs(y="Wind direction", fill="Month") +
+    scale_y_continuous(breaks = c(90, 180, 270, 360),
+                     labels = c('E', 'S', 'W', 'N' ), limits=c(0, 360))
 ```
-
-
-
-```{r}
-wind <- wind %>% 
-  mutate(quarter = as_factor(quarter(Date)))
-```
-
-```{r}
-windrose(wind$WS_10m, wind$wd, wind$quarter, n_col= 2, col_pal="YlGnBu")
-```
-
-
-
-
-The graphs displays the variation of the wind speed along year. It is faster from end of december to beginning of april. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from. Also temperature may influence wind speed. 
 
 
 
