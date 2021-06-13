@@ -22,6 +22,11 @@ editor_options:
 
 # Background
 
+Wind gradient: is only valid for neutrally stratified atmosphere
+
+$$u(z) = \frac{u_*}{k} ln(\frac{z}{z_0})$$
+
+
 # Sensors and measuring principle
 
 There are many types of instruments used for measuring wind speed. Here some of them will be described.
@@ -101,7 +106,7 @@ wind_1h <- wind %>%
   summarise(across(-wd, mean), wd = wind_dir_average(wd))
 ```
 
-```{r, wd-avg, fig.cap="Comparison of wind direction original data (10 mins) and hourly average. Data from botanical gardern 15th-17th January 2021."}
+```{r, wd-avg, fig.cap="Comparison of wind direction original data (10 mins) and hourly average. Data from botanical garden 15th-17th January 2021."}
 wind %>%
   filter(between(Date, as_datetime("2021-01-15") , as_datetime("2021-01-17"))) %>%
 ggplot()+
@@ -150,8 +155,7 @@ plot_layout(guide="collect")
 
 ```
 
-In Figure \@ref(fig:ws-diff-height) ..
-As it is possible to appreciate in the graph, wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
+As it is possible to appreciate in Figure \@ref(fig:ws-diff-height) , wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
 
 
 ```{r}
@@ -173,16 +177,20 @@ wind_prof <- mutate( wind_prof,
   pred_ws = predict(log_prof_model))
 ```
 
+\newpage 
 
-```{r, ws_boxplot, fig.cap=""}
+```{r, ws-boxplot, fig.cap="Distribution of daily means of wind speed at the different heights. The red line was obtaining by fitting a wind log profile to the mean of daily means. Data from botanical garden Jan 2020 - Feb 2021."}
 wind_g_1d %>%
   ggplot() +
   geom_boxplot(aes(windspeed, height, group=height)) +
-  geom_line(aes(x=pred_ws, y=height, colour="Fitted log profile"),  data = wind_prof) +
-  geom_point(aes(x=pred_ws, y=height, colour="Fitted log profile"), data = wind_prof, )
+  geom_line(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"),  data = wind_prof) +
+  geom_point(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"), data = wind_prof) +
+  labs(x="Windspeed (m/s)", y="Height (m)", colour="")
 ```
 
-Boxplot and fitted curve
+Wind speed depends on height, increasing with height following a logarithmic profile (Figure \@ref(fig:ws-boxplot)).
+The plot was made using daily averages instead of high frequency data, to reduce the variation in the dataset.
+
 
 \newpage
 
@@ -191,26 +199,31 @@ Boxplot and fitted curve
 *How does the wind speed varies over the year and what can explain the
 variability?*
 
-```{r}
+```{r, windrose, fig.cap="Wind rose for different quarters of the year. Data from botanical garden Jan 2020 - Feb 2021."}
 wind_q <- wind %>% 
-  mutate(quarter = quarter(Date) %>%
-           as_factor)
+  mutate(quarter = quarter(Date),
+         quarter = case_when(
+           quarter == 1 ~ "Jan-Mar",
+           quarter == 2 ~ "Apr-Jun",
+           quarter == 3 ~ "Jul-Sep",
+           quarter == 4 ~ "Oct-Dec",
+         ))
 windrose(wind_q$WS_10m, wind_q$wd, wind_q$quarter, n_col= 2, col_pal="YlGnBu",
          ggtheme = "bw")
 ```
 
 
 \newpage
-```{r, ws_year, fig.cap="Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021."}
+```{r, ws-year, fig.cap="Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021."}
 ggplot(wind_1d, aes(Date, WS_10m)) +
   geom_line() +
   labs(y="Wind speed (m/s)")
 ```
 
-During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s
+During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s (Figure \@ref(fig:ws-year))
 
 
-The graphs displays the variation of the wind speed along year. It is faster from end of december to beginning of april. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.
+The graphs displays the variation of the wind speed along year. It is faster from end of December to beginning of April. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.
 
 
 \newpage
@@ -249,6 +262,6 @@ wind %>%
                      labels = c('E', 'S', 'W', 'N' ), limits=c(0, 360))
 ```
 
-
+\newpage
 
 # References
