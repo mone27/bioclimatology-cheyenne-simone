@@ -22,9 +22,38 @@ editor_options:
 
 # Background
 
-Wind gradient: is only valid for neutrally stratified atmosphere
+Wind can be represented as a vector in 3 dimensions, two on the horizantal plan ($u$ and $v$) and one vertical ($w$).
+However, the vertical wind component is small and its means is by definition 0 so it is often not included in wind measurements.
+In this scenario the wind is commonly expressed in angular format, with the total intensity on the horizonal plan and the direction.
 
-$$u(z) = \frac{u_*}{k} ln(\frac{z}{z_0})$$
+The fact that the wind is a 3d vector and has this two formats ledas to complexities in handling wind data.
+In particular the direction cannot be averaged directly, as it's a circular variable, but can needs to be transformed to the vector components, averaged and then transformed back to an angle.
+
+The average of the wind speed can lead to problems as there two different, but both correct ways to do it [@grange_technical_2014].
+The first one is doing the averages of the vector components, the second one is doing the average of the absolute values of the wind speed.
+The first method will always result in smaller values, as wind from opposite direction can be averaged to zero.
+In the following protocol the average of the absolute values will be used.
+
+Lastly, the are several conflicting ways to define the wind direction, when using vectors the direction is the where the wind is going, but in weather forecast the wind direction is where the wind is coming from. Finally also the definition of the orientation of the u and v components can change between different instruments and software.
+
+
+If there is a neutrally stratified atmosphere, which means there are no important turbulent fluxes, the wind speed above the canopy can be modeled.
+Due to the friction with the surface the closest the wind is to the canopy the lower the speed, reaching zero at the boundary.
+The wind profile can be estimated with the following formula:
+
+
+$$u(z) = \frac{u_*}{k} ln(\frac{z-d}{z_0})$$
+where:
+
+- $z$ in $(m)$ is the height
+- $u(z)$ in $(m/s)$ is the speed of the wind at height z
+- $u_* $ in $(m/s)$ is the friction velocity. This is independent from the height and indicates the mechanical turbulence. It can be calculated using this equation $\sqrt{\frac{1}{\rho} u^\prime w^\prime}$
+
+- $k$ is the Von Karman constant (0.4)
+- $z_0$ in $(m)$ is the height where the wind speed is theoretically zero. It can be estimated as 0.1 the canopy height.
+- $d$ in $(m)$ is the displacement height, which accounts for the shift of the wind profile to the presence of a canopy. It can be estimated as $2/3$ of the canopy height.
+
+
 
 
 # Sensors and measuring principle
@@ -55,8 +84,6 @@ The starting speed of cup and propeller anemometer is that it starts to rotate w
 
 When installation the anemometers there are some tips to have into account. Better to set them far above ground,this way the roughness of the lower layer above soil's surface will not be affecting the measures. The same with any other object around in the area.In case of sonic anemometer, is important to protect it against birds or any type of instect that make small variation when measuring. 
 
-
-averaging suing vector average [@grange_technical_2014]
 
 \newpage
 # Analysis
