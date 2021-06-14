@@ -54,8 +54,6 @@ where:
 - $d$ in $(m)$ is the displacement height, which accounts for the shift of the wind profile to the presence of a canopy. It can be estimated as $2/3$ of the canopy height.
 
 
-
-
 # Sensors and measuring principle
 
 There are many types of instruments used for measuring wind speed. Here some of them will be described.
