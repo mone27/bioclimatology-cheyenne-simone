@@ -22,6 +22,10 @@ editor_options:
 
 # Background
 
+Wind can be represented as a vector in 3 dimensions.
+it a vector with three compoments, this leads to complexities when handling wind data.
+
+
 Wind gradient: is only valid for neutrally stratified atmosphere
 
 $$u(z) = \frac{u_*}{k} ln(\frac{z}{z_0})$$
@@ -55,8 +59,6 @@ The starting speed of cup and propeller anemometer is that it starts to rotate w
 
 When installation the anemometers there are some tips to have into account. Better to set them far above ground,this way the roughness of the lower layer above soil's surface will not be affecting the measures. The same with any other object around in the area.In case of sonic anemometer, is important to protect it against birds or any type of instect that make small variation when measuring. 
 
-
-averaging suing vector average [@grange_technical_2014]
 
 \newpage
 # Analysis
