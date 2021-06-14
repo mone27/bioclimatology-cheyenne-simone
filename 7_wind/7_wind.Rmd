@@ -20,9 +20,13 @@ editor_options:
 \newpage
 # Motivation
 
+Wind is a very important facto of the bioclimatology on earth. It allows a high number of plants in the dispersal of seeds and pollen, meaning an important role on plants reproduction. It also helps animals and insects to travel for longer distance around the globe. Some interesting aspects to learn about wind is its speed, energy and direction at a concrete point. Regarding wind speed, it can be described using different terms that variate upon the strenght it has. For example, it can be a smooth breeze, a strom or a hurricane in special cases. In case of hurricanes, it is normally a devastating disturbance that can reach a very destructive power on earth ecosystems. 
+In terms of temperature, wind can be distinguish by its closeness to the poles or the equator. 
+Wind also cause erosion of rocks, mountains and soils.  
+
 # Background
 
-Wind can be represented as a vector in 3 dimensions, two on the horizantal plan ($u$ and $v$) and one vertical ($w$).
+Wind can be represented as a vector in 3 dimensions, two on the horizontal plan ($u$ and $v$) and one vertical ($w$).
 However, the vertical wind component is small and its means is by definition 0 so it is often not included in wind measurements.
 In this scenario the wind is commonly expressed in angular format, with the total intensity on the horizonal plan and the direction.
 
