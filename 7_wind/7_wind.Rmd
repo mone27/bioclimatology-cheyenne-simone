@@ -68,8 +68,8 @@ $$C_l=D/2*((1/timeA-A)+(1/timeB-A))$$
 $$C_l=\sqrt{K_a*R_a*T_{av}}$$ *
 When $$K_a = 1.4$$, $$R_a = 287.05 J/Kg*K$$, $$T_{av} = T(1+0.513*q)$$
 
+![Image taken close to a farm at south Göttingen by the authors. This wind vend in shape of windmill is used to see wind's direction. ](vend1.PNG)
 
-![Caption for the picture.]()
 
 **Hot wire anemometer** : When a current flow is introduce within a wire, there is a release of heat. Then, the air flow goes throguh the wire and cools down removing the released energy. It can be apply in two different ways;
 
