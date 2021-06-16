@@ -1,0 +1,50 @@
+---
+title: "8th Protocol: Soil physics"
+author: "Cheyenne Rueda and Simone Massaro"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  bookdown::pdf_document2:
+    toc: true
+    number_sections: true
+    includes:
+      in_header: "../preamble.tex"
+  html_notebook:
+    number_sections: true
+bibliography: ../bioclimatology-references.bib
+header-includes:
+  - \fancyhead[L]{Soil physics}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, message=F}
+library(tidyverse)
+```
+```{r}
+soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
+```
+
+```{r}
+head(soil)
+```
+```{r}
+soil_g <- soil %>% 
+  gather("depth", "T_soil", starts_with("Tsoil")) #%>% 
+  #mutate(depth = str_extract(depth, "\\d+"))
+```
+```{r}
+soil_g
+```
+
+```{r}
+str_extract(soil_g$depth, "\\d+")
+```
+```{r}
+tail(soil_g$depth)
+```
+
+```{r}
+t <- c()
+```
+
