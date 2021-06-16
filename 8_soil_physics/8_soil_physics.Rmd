@@ -18,6 +18,9 @@ editor_options:
     wrap: 72
 ---
 # Motivation
+
+Soil is the 
+
 # Background
 # Sensors and measuring principle
 ```{r, message=F}
@@ -33,8 +36,8 @@ head(soil)
 ```
 ```{r}
 soil_g <- soil %>% 
-  gather("depth", "T_soil", starts_with("Tsoil")) %>% 
-  mutate(depth = str_extract(depth, "\\d+") %>% as.numeric())
+  gather(soil, "depth", "T_soil", starts_with("Tsoil")) %>% 
+  mutate(depth = str_extract(depth, "\\d+"))
 ```
 
 
@@ -42,14 +45,104 @@ soil_g <- soil %>%
 soil_g
 ```
 
-```{r, fig}
+```{r, fig.cap="Soil temperature at different depths for one day. Data from 5th of May 2020, forest botanical garden."}
 soil_g %>% 
-  filter(yday(Date)==126) %>% # last day avaialbe getting into summer
+  # last day available to bet as close as possible to summer.
+  # Number 126 was got as `max(yday(soil$Date))`
+  filter(yday(Date)==126) %>% 
   ggplot(aes(Date, T_soil, col=as_factor(depth))) +
   geom_line() +
   labs(y="Temperature soil (°C)", colour="Depth (cm)")
 ```
 ```{r}
-
+range(yday(soil$Date))
 ```
+
+```{r}
+mutate()
+```
+
+
+```{r}
+soil$prev_temp <- NA_real_
+soil$prev_temp[2:nrow(soil)] <- soil$Tsoil_5cm_degC[1:(nrow(soil)-1)]
+```
+```{r}
+#using as a reference the soil at 5 cm
+d_T_space <- soil$TSoil_2cm_degC - soil$Tsoil_5cm_degC
+d_z <- - 0.03 # m = 3 cm
+
+d_T_time <- lag(soil$Tsoil_5cm_degC) - soil$Tsoil_5cm_degC
+
+d_t <- 10 # seconds manually calculated from the dataset
+
+Cv <- 3.5e6 # J m⁻³ K⁻¹
+k <- 3.5 # W m⁻¹ K⁻¹
+```
+
+```{r}
+flux_time <- d_z * d_T_time * Cv / d_t # W m-2 
+```
+
+
+
+
+```{r}
+hist(d_T_time)
+```
+
+
+```{r}
+flux_space<- - k * d_T_space / d_z 
+```
+
+```{r}
+soil_flux <- flux_time + flux_space
+```
+
+
+```{r}
+plot(soil_flux, soil$SoilHeatFlux_Wm2)
+```
+
+
+```{r}
+plot(soil_flux, type = "l")
+lines(soil$SoilHeatFlux_Wm2, col="red")
+```
+
+```{r}
+cor(soil_flux, soil$SoilHeatFlux_Wm2, use="complete.obs")
+```
+
+```{r}
+plot(flux_space, type = "l")
+ lines(soil$SoilHeatFlux_Wm2, col="red")
+```
+
+
+
+```{r}
+hist(soil$SoilHeatFlux_Wm2)
+```
+
+```{r}
+hist(soil_flux)
+```
+
+```{r}
+hist(flux_space)
+```
+```{r}
+hist(flux_time)
+```
+
+
+```{r}
+ggplot() +
+  geom_line(aes(x = now(soi_flux), y=soil_flux, col="soil")) +
+  geom_line(aes(y=soil$SoilHeatFlux_Wm2, col="heat_flux"))
+```
+
+
 
