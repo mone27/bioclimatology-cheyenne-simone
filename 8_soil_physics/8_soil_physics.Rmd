@@ -17,11 +17,14 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-
+# Motivation
+# Background
+# Sensors and measuring principle
 ```{r, message=F}
 library(tidyverse)
+library(lubridate)
 ```
-```{r}
+```{r, message=F}
 soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
 ```
 
@@ -30,22 +33,24 @@ head(soil)
 ```
 ```{r}
 soil_g <- soil %>% 
-  gather("depth", "T_soil", starts_with("Tsoil")) #%>% 
-  #mutate(depth = str_extract(depth, "\\d+"))
+  gather("depth", "T_soil", starts_with("Tsoil")) %>% 
+  mutate(depth = str_extract(depth, "\\d+") %>% as.numeric())
 ```
+
+
 ```{r}
 soil_g
 ```
 
-```{r}
-str_extract(soil_g$depth, "\\d+")
+```{r, fig}
+soil_g %>% 
+  filter(yday(Date)==126) %>% # last day avaialbe getting into summer
+  ggplot(aes(Date, T_soil, col=as_factor(depth))) +
+  geom_line() +
+  labs(y="Temperature soil (°C)", colour="Depth (cm)")
 ```
 ```{r}
-tail(soil_g$depth)
-```
 
-```{r}
-t <- c()
 ```
 
 1. Calculate the soil heat flux in 5cm detph and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $$k=3.5 W/m*K$$ and a heat capacity $$c_p=3.5*10^6 J/m^3*K$$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?
