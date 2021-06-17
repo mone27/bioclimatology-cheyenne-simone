@@ -19,7 +19,10 @@ editor_options:
 ---
 # Motivation
 
-Soil is the 
+During the previous protocols, it has been described that earth is formed by different atmospheric layers. Well, is not only about these but also about the ones that are found more at the land surface. Soil is the first layer found when land surface is reached. It consists on the middle face between the lithosphere and the atmosphere. Thus, soil is related with other factors, such as biology and hydrology. Ecosystems are established on the soil, and soil is shaping them as the main source of resources for the natural habitats to expand (Lal & Shukla, 2004). In this report, the main focus is partly on how heat soil's storage and hydrology processes.
+
+
+Lal, R., & Shukla, M. K. (2004). Principles of soil physics. CRC Press.
 
 # Background
 
@@ -86,27 +89,25 @@ range(yday(soil$Date))
 
 1. Calculate the soil heat flux in 5cm detph and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $$k=3.5 W/m*K$$ and a heat capacity $$c_p=3.5*10^6 J/m^3*K$$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?
 
-```{r}
+#```{r}
+#soil$prev_temp <- NA_real_
+#soil$prev_temp[2:nrow(soil)] <- soil$Tsoil_5cm_degC[1:(nrow(soil)-1)]
+#```
 
-```
 
-```{r}
-soil$prev_temp <- NA_real_
-soil$prev_temp[2:nrow(soil)] <- soil$Tsoil_5cm_degC[1:(nrow(soil)-1)]
-```
+Now, we proceed with the calculation of soil heat flux at 5cm depth, suing the temperature difference between 5 and 10 cm in soil. Also, soil heat storage will be calculated. 
 ```{r}
 
 c2k <- function(c) c + 273.15
 k2c <- function(k) k - 273.15
 
-
 #using as a reference the soil at 5 cm
 d_T_space <- soil$TSoil_2cm_degC - soil$Tsoil_5cm_degC
-d_z <- - 0.03 # m
+d_z <- - 0.05 # m
 
 d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
 
-d_t <- 600 # seconds manually calculated from the dataset
+d_t <- 600 # seconds manually calculated from the dataset (10)
 
 Cv <- 3.5e6 # J m⁻³ K⁻¹
 k <- 3.5 # W m⁻¹ K⁻¹
@@ -115,19 +116,23 @@ k <- 3.5 # W m⁻¹ K⁻¹
 ```{r}
 flux_time <- d_z * d_T_time * Cv / d_t # W m-2 
 
-flux_space<- - k * d_T_space / d_z 
 ```
 
+Ground heat flux:
+
+```{r}
+flux_space<- - k * (d_T_space / d_z) # W m-2 
+```
+
+Ground heat storage:
 ```{r}
 soil_flux <- flux_time + flux_space
-```
-
-```{r}
 soil <- mutate(soil,
                soil_flux = flux_time + flux_space)
 ```
 
-```{r}
+
+```{r, wd-avg, fig.cap="Comparison between heat flux measured (red) and calculated (black).Data collected from the soil's temperature of the  botanical garden on the 15th-17th January 2021."}
 soil %>% 
   filter(week(Date)==15) %>% 
   ggplot(aes(Date, soil_flux)) +
@@ -135,30 +140,16 @@ soil %>%
   geom_line(aes(y=SoilHeatFlux_Wm2, col="measured heat flux")) +
   labs(y="Soil heat flux (W/m2)")
 ```
-```{r}
-
-```
-
-
-```{r}
-plot(soil_flux, soil$SoilHeatFlux_Wm2)
-```
-
-
+Same graph is calculated for the whole data set. 
 ```{r}
 plot(soil_flux, type = "l")
 lines(soil$SoilHeatFlux_Wm2, col="red")
 ```
-
+The covariance is calculated between the two measures to see how the two variables differ regarding what has been predicted and measured.  Since the obtained value is 0.9286653 there is a positive direct relationship, meaning that when one increases its value the other one does as well. 
 ```{r}
+?co
 cor(soil_flux, soil$SoilHeatFlux_Wm2, use="complete.obs")
 ```
-
-```{r}
-plot(flux_space, type = "l")
- lines(soil$SoilHeatFlux_Wm2, col="red")
-```
-
 
 ```{r}
 hist(soil$SoilHeatFlux_Wm2)
@@ -168,12 +159,7 @@ hist(soil$SoilHeatFlux_Wm2)
 hist(soil_flux)
 ```
 
-```{r}
-hist(flux_space)
-```
-```{r}
-hist(flux_time)
-```
+
 
 
 
