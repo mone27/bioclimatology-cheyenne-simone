@@ -22,6 +22,28 @@ editor_options:
 Soil is the 
 
 # Background
+
+Soil temperature and soil water content are both factors that alters soil respiration rate. Soil respiration is a process measured by $$CO_2 \frac{micromol} {m^2*s} $$ (Brechet et al, 2018).
+Soil is an important environmental variable partly in charge of an efficient ecosystem activity. Soil moisture drives changes in stomata conductance, photosynthesis rate and energy partitioning. Hence, water potential is the main reason of the movement of water through osmosis, gravity and air pressure. 
+
+Soil water potential is constitute by its matrix potential (adhesive force water-soil particles), osmotic potential (gradient of solute's [C]), pressure potential(pressure of air) and gravitational potential (mass of water). 
+REgarding water potential, other factors from the soil are very important. These are its particles size, pore volume or pore size. This will variate depending on the type of soil at each moment, being sandy the soil with the thickest particles size with bigger pores and thus, less water retention capacity.
+
+
+Soil characteristics can be approach by different perspectives, such as the surgace energy fluxes and hydrology. The first one regarding on the direct solar incoming radiation, reflected radiation and absorbed radiation. The second one, regards on the precipitation, evaporation, infiltration, surface runoff. Each of these cause different processes on soil structure. 
+
+Going deeper into how energy fluxes affect the soil, the ground heat flux capacity will be introduce. This process is based on Fourier's which describes the heat transfer in soil with the conduction of its components, from higher to lower temperatures. In fact, this law includes paramters such as: 
+$$k: thermal conductivity (W/m*K)$$, $$T: temeprature in K$$ and $$z: depth (m)$$. 
+
+The variation in soil temperature along a period of time depends in depth and the heat flux going inside it, thus: 
+$$ T/t = 1/C_v [...]$$ $$C_v: heatcapacity (J /m^3*K)$$ 
+The temperature along soil's profile might variates when is day or night. During day, the temperature of soil is higher than the temperature of air and thus starts to get more equally until night is set. After this occurs, the temperature of air is higher than the soil temperature, with this peak being more distinguish during midnight. 
+
+
+
+
+
+
 # Sensors and measuring principle
 ```{r, message=F}
 library(tidyverse)
@@ -54,12 +76,19 @@ soil_g %>%
   geom_line() +
   labs(y="Temperature soil (°C)", colour="Depth (cm)")
 ```
+<<<<<<< Updated upstream
 ```{r}
 range(yday(soil$Date))
 ```
+=======
+
+>>>>>>> Stashed changes
 
 1. Calculate the soil heat flux in 5cm detph and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $$k=3.5 W/m*K$$ and a heat capacity $$c_p=3.5*10^6 J/m^3*K$$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?
 
+```{r}
+
+```
 
 ```{r}
 soil$prev_temp <- NA_real_
