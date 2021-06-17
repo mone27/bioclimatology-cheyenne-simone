@@ -36,7 +36,7 @@ head(soil)
 ```
 ```{r}
 soil_g <- soil %>% 
-  gather(soil, "depth", "T_soil", starts_with("Tsoil")) %>% 
+  gather("depth", "T_soil", starts_with("Tsoil")) %>% 
   mutate(depth = str_extract(depth, "\\d+"))
 ```
 
@@ -66,13 +66,18 @@ soil$prev_temp <- NA_real_
 soil$prev_temp[2:nrow(soil)] <- soil$Tsoil_5cm_degC[1:(nrow(soil)-1)]
 ```
 ```{r}
+
+c2k <- function(c) c + 273.15
+k2c <- function(k) k - 273.15
+
+
 #using as a reference the soil at 5 cm
 d_T_space <- soil$TSoil_2cm_degC - soil$Tsoil_5cm_degC
-d_z <- - 0.03 # m = 3 cm
+d_z <- - 0.03 # m
 
-d_T_time <- lag(soil$Tsoil_5cm_degC) - soil$Tsoil_5cm_degC
+d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
 
-d_t <- 10 # seconds manually calculated from the dataset
+d_t <- 600 # seconds manually calculated from the dataset
 
 Cv <- 3.5e6 # J m⁻³ K⁻¹
 k <- 3.5 # W m⁻¹ K⁻¹
@@ -80,22 +85,29 @@ k <- 3.5 # W m⁻¹ K⁻¹
 
 ```{r}
 flux_time <- d_z * d_T_time * Cv / d_t # W m-2 
-```
 
-
-
-
-```{r}
-hist(d_T_time)
-```
-
-
-```{r}
 flux_space<- - k * d_T_space / d_z 
 ```
 
 ```{r}
 soil_flux <- flux_time + flux_space
+```
+
+```{r}
+soil <- mutate(soil,
+               soil_flux = flux_time + flux_space)
+```
+
+```{r}
+soil %>% 
+  filter(week(Date)==15) %>% 
+  ggplot(aes(Date, soil_flux)) +
+  geom_line()+
+  geom_line(aes(y=SoilHeatFlux_Wm2, col="measured heat flux")) +
+  labs(y="Soil heat flux (W/m2)")
+```
+```{r}
+
 ```
 
 
@@ -135,11 +147,7 @@ hist(flux_time)
 ```
 
 
-```{r}
-ggplot() +
-  geom_line(aes(x = now(soi_flux), y=soil_flux, col="soil")) +
-  geom_line(aes(y=soil$SoilHeatFlux_Wm2, col="heat_flux"))
-```
+
 
 
 
