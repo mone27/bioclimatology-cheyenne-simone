@@ -79,13 +79,6 @@ soil_g %>%
   geom_line() +
   labs(y="Temperature soil (°C)", colour="Depth (cm)")
 ```
-<<<<<<< Updated upstream
-```{r}
-range(yday(soil$Date))
-```
-=======
-
->>>>>>> Stashed changes
 
 1. Calculate the soil heat flux in 5cm detph and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $$k=3.5 W/m*K$$ and a heat capacity $$c_p=3.5*10^6 J/m^3*K$$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?
 
