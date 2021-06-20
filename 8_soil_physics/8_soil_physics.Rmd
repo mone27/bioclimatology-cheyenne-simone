@@ -106,8 +106,8 @@ d_z_time <- - 0.03 # m
 d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
 d_t <- 600 # seconds manually calculated from the dataset (10 min) 
 
-Cv <- 3.5e6 # J m⁻³ K⁻¹
-k <- 3.5 # W m⁻¹ K⁻¹
+Cv <- 3.5e6 # J m-3 K-1
+k <- 3.5 # W m-1 K-1
 ```
 
 ```{r}
@@ -162,8 +162,11 @@ summary(sens) %>%
     caption = 'Flux sensitivity'
   )
 ```
+
 A local sensitivity analysis [@soetaert_inverse_2010] was made for the two parameters used in the flux calculation: thermal conductivity ($k$) and heat capacity ($C_v$). The thermal conductivity has the biggest influence on the the overall flux.
 
+\newline
+# References
 
 
 
