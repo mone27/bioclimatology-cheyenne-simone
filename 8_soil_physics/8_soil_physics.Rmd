@@ -48,9 +48,12 @@ The temperature along soil's profile might variates when is day or night. During
 
 
 # Sensors and measuring principle
+
+# Analysis
 ```{r, message=F}
 library(tidyverse)
 library(lubridate)
+library(FME)
 ```
 ```{r, message=F}
 soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
@@ -95,66 +98,71 @@ c2k <- function(c) c + 273.15
 k2c <- function(k) k - 273.15
 
 #using as a reference the soil at 5 cm
-d_T_space <- soil$TSoil_2cm_degC - soil$Tsoil_5cm_degC
-d_z <- - 0.05 # m
+d_T_space <- soil$Tsoil_5cm_degC - soil$Tsoil_10cm_degC
+d_z_space <- - 0.05 # m
 
+
+d_z_time <- - 0.03 # m 
 d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
-
-d_t <- 600 # seconds manually calculated from the dataset (10)
+d_t <- 600 # seconds manually calculated from the dataset (10 min) 
 
 Cv <- 3.5e6 # J m⁻³ K⁻¹
 k <- 3.5 # W m⁻¹ K⁻¹
 ```
 
 ```{r}
-flux_time <- d_z * d_T_time * Cv / d_t # W m-2 
-
-```
-
-Ground heat flux:
-
-```{r}
-flux_space<- - k * (d_T_space / d_z) # W m-2 
-```
-
-Ground heat storage:
-```{r}
-soil_flux <- flux_time + flux_space
-soil <- mutate(soil,
-               soil_flux = flux_time + flux_space)
+soil <- soil %>% 
+  mutate(
+    flux_time = d_z_time * d_T_time * Cv / d_t, # W m-2 
+    flux_space = - k * (d_T_space / d_z_space), # W m-2 
+    soil_flux = flux_time + flux_space)
 ```
 
 
-```{r, wd-avg, fig.cap="Comparison between heat flux measured (red) and calculated (black).Data collected from the soil's temperature of the  botanical garden on the 15th-17th January 2021."}
+
+```{r, soil-flux, fig.cap="Comparison between heat flux measured (red) and calculated (black).Data collected from the soil's temperature of the  botanical garden on the 8th-15th April 2021."}
 soil %>% 
   filter(week(Date)==15) %>% 
   ggplot(aes(Date, soil_flux)) +
-  geom_line()+
-  geom_line(aes(y=SoilHeatFlux_Wm2, col="measured heat flux")) +
-  labs(y="Soil heat flux (W/m2)")
+  geom_line(aes(col="Calculated"))+
+  geom_line(aes(y=SoilHeatFlux_Wm2, col="Measured")) +
+  scale_colour_manual(values = c("black", "#F8766D")) +
+  labs(y="Soil heat flux (W/m2)", col="Type heat flux")
 ```
-Same graph is calculated for the whole data set. 
-```{r}
-plot(soil_flux, type = "l")
-lines(soil$SoilHeatFlux_Wm2, col="red")
-```
-The covariance is calculated between the two measures to see how the two variables differ regarding what has been predicted and measured.  Since the obtained value is 0.9286653 there is a positive direct relationship, meaning that when one increases its value the other one does as well. 
-```{r}
-?co
-cor(soil_flux, soil$SoilHeatFlux_Wm2, use="complete.obs")
-```
+
+The heat flux measured at 5cm depth is compared with the one calculated in Figure \@ref(fig:soil-flux).
+The two fluxes are overall comparable, with the exception of the  
+
+### Influence of Cv and K
 
 ```{r}
-hist(soil$SoilHeatFlux_Wm2)
+calc_soil_flux <- function(pars){
+  d_T_space <- soil$Tsoil_5cm_degC - soil$Tsoil_10cm_degC
+  d_z_space <- - 0.05 # m
+  
+  
+  d_z_time <- - 0.03 # m 
+  d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
+  flux_time = d_z_time * d_T_time * pars$Cv / d_t # W m-2
+  flux_space = - pars$k * (d_T_space / d_z_space) # W m-2
+  
+  soil_flux <-  flux_time + flux_space
+  tibble(soil_flux=soil_flux[-1]) #remove first row that is NA
+}
 ```
 
 ```{r}
-hist(soil_flux)
+pars <- list(Cv = 3.6e6, k=3.5)
+sens <- sensFun(calc_soil_flux, pars, map=NULL)
+
+summary(sens) %>% 
+  knitr::kable(
+    booktabs = TRUE,
+    digits = 2,
+    caption = 'Flux sensitivity'
+  )
 ```
-
-
-
-
+A local sensitivity analysis [@soetaert_inverse_2010] was made for the two parameters used in the flux calculation: thermal conductivity ($k$) and heat capacity ($C_v$). The thermal conductivity has the biggest influence on the the overall flux.
 
 
 
