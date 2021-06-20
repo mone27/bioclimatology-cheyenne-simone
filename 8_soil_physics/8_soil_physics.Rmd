@@ -59,29 +59,7 @@ library(FME)
 soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
 ```
 
-```{r}
-head(soil)
-```
-```{r}
-soil_g <- soil %>% 
-  gather("depth", "T_soil", starts_with("Tsoil")) %>% 
-  mutate(depth = str_extract(depth, "\\d+"))
-```
 
-
-```{r}
-soil_g
-```
-
-```{r, fig.cap="Soil temperature at different depths for one day. Data from 5th of May 2020, forest botanical garden."}
-soil_g %>% 
-  # last day available to bet as close as possible to summer.
-  # Number 126 was got as `max(yday(soil$Date))`
-  filter(yday(Date)==126) %>% 
-  ggplot(aes(Date, T_soil, col=as_factor(depth))) +
-  geom_line() +
-  labs(y="Temperature soil (°C)", colour="Depth (cm)")
-```
 
 1. Calculate the soil heat flux in 5cm detph and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $$k=3.5 W/m*K$$ and a heat capacity $$c_p=3.5*10^6 J/m^3*K$$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?
 
@@ -165,6 +143,32 @@ summary(sens) %>%
 A local sensitivity analysis [@soetaert_inverse_2010] was made for the two parameters used in the flux calculation: thermal conductivity ($k$) and heat capacity ($C_v$). The thermal conductivity has the biggest influence on the the overall flux.
 
 
+
+2. Visualize the soil temperature in different depths and discuss the temporal variability across one day.
+```{r}
+head(soil)
+```
+```{r}
+soil_g <- soil %>% 
+  gather("depth", "T_soil", starts_with("Tsoil")) %>% 
+  mutate(depth = str_extract(depth, "\\d+"))
+```
+
+
+```{r}
+soil_g
+```
+
+```{r, fig.cap="Soil temperature at different depths for one day. Data from 5th of May 2020, forest botanical garden."}
+soil_g %>% 
+  # last day available to bet as close as possible to summer.
+  # Number 126 was got as `max(yday(soil$Date))`
+  filter(yday(Date)==126) %>% 
+  ggplot(aes(Date, T_soil, col=as_factor(depth))) +
+  geom_line() +
+  labs(y="Temperature soil (°C)", colour="Depth (cm)")
+```
+This graph shows the soil  temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast. The opposite is happening at a depth of 2cm or 5cm in soil, where the variations of temperature are stronger. Just before the dawn in the morning, the soil reaches the lowest temperature values, between 8-9 degrees ºC at this depths. Then during the day, the highest temperature is reached (12-13ºC)around 6pm where the sun starts going down starting the sunset. 
 
 
 
