@@ -8,16 +8,16 @@ output:
     number_sections: yes
     includes:
       in_header: ../preamble.tex
-    keep_md: true
   html_document:
     number_sections: yes
-    keep_md: true
 bibliography: ../bioclimatology-references.bib
 header-includes: \fancyhead[L]{Soil physics}
 editor_options:
   markdown:
     wrap: 72
 ---
+
+\newpage
 
 # Motivation
 
@@ -67,20 +67,38 @@ The temperature along soil profile varies between day and night. During the day,
 
 # Sensors and measuring principle
 
-This is a sensor
-\newline
+## Soil hydrology
 
+For soil hydrology the main variable that are measured are the water content and the water potential.
+
+To measure water content **time domain reflectrometry** it is used.
+The principle behind this sensor is that the dielectric constant of the soil depends on the amount of water present.
+The dielectric constant is estimated by measuring the travel time of a electromagnetic impulse between two rods inserted into the soil.
+
+Water potential is measured using **tensionmeters**, that consists in a porous ceramic cap connect with a water reservoir under vacuum.
+The has a low water potential therefore attracts the water from the tensiometer, until an equilibrium point is reached. By measuring the, negative, pressure in the water filled tube the water potential of the soil can be estimated.
+
+## Soil tempertature
+ 
+ Soil temperature is measured by **temperature sensors** placed a different depth.
+ Usually a resistance sensor, like the *Pt100*, is used as long term stability is more important than high frequency response rate.
+ The presence of multiple temperature sensor along the soil profile allows also to estimate the soil heat fluxes.
+ 
+Soil heat flux can also be directly measured using **heat flux plates**, which using a series of thermocouple estimated the amount of heat transferred between the hot and the cold side
+ 
+ 
+\newpage
 
 # Analysis
 ```{r, message=F}
 library(tidyverse)
 library(lubridate)
 library(FME)
+library(kableExtra)
 ```
 ```{r, message=F}
 soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
 ```
-
 
 
 ## Soil Heat flux
@@ -113,9 +131,7 @@ soil <- soil %>%
     flux_space = - k * (d_T_space / d_z_space), # W m-2 
     soil_flux = flux_time + flux_space)
 ```
-
-
-
+\newpage
 ```{r, soil-flux, fig.cap="Comparison between heat flux measured (red) and calculated (black) over 1 week. Data collected at the botanical garden on the 8th-15th April 2021 at frequency of 10 minutes."}
 soil %>% 
   filter(week(Date)==15) %>% 
@@ -129,40 +145,37 @@ soil %>%
 The heat flux measured at 5cm depth is compared with the one calculated in Figure \@ref(fig:soil-flux).
 The two fluxes are overall comparable, with the exception of the early morning, when the measured flux stays constant at around -25 $W/m^2$ while the calculated fluxes drops further.
 
+\newpage
 
 
 ### Influence of Cv and K
-
 ```{r}
 calc_soil_flux <- function(pars){
   d_T_space <- soil$Tsoil_5cm_degC - soil$Tsoil_10cm_degC
-  d_z_space <- - 0.05 # m
-  
-  
+  d_z_space <- - 0.05#m 
   d_z_time <- - 0.03 # m 
   d_T_time <- c2k(lag(soil$Tsoil_5cm_degC)) - c2k(soil$Tsoil_5cm_degC)
   flux_time = d_z_time * d_T_time * pars$Cv / d_t # W m-2
   flux_space = - pars$k * (d_T_space / d_z_space) # W m-2
-  
   soil_flux <-  flux_time + flux_space
   tibble(soil_flux=soil_flux[-1]) #remove first row that is NA
 }
-```
-
-```{r sens}
 pars <- list(Cv = 3.6e6, k=3.5)
 sens <- sensFun(calc_soil_flux, pars, map=NULL)
-
+```
+```{r sens}
 summary(sens) %>% 
   knitr::kable(
     booktabs = TRUE,
     digits = 2,
     caption = 'Flux sensitivity'
-  )
+  ) %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 A local sensitivity analysis [@soetaert_inverse_2010] was made for the two parameters used in the flux calculation: thermal conductivity ($k$) and heat capacity ($C_v$). The thermal conductivity has the biggest influence on the the overall flux (Table \@ref(tab:sens)).
-\newline
+
+\newpage
 
 ## Soil temperature profile
 
@@ -184,10 +197,12 @@ soil_g %>%
   geom_line() +
   labs(y="Temperature soil (°C)", colour="Depth (cm)")
 ```
+
 The Figure \@ref(fig:profile) shows the soil temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast.
 The opposite is happening at a depth of 2cm or 5cm in soil, where the variations of temperature are stronger.
 Just before the dawn in the morning, the soil reaches the lowest temperature values, between 8-9 °C at this depths.
 Then during the day, the highest temperature is reached (12-13 °C) around 6pm where the sun starts going down starting the sunset. 
-\newline
+
+\newpage
 
 # References
