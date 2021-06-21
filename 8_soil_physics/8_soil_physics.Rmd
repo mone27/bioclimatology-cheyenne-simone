@@ -8,6 +8,8 @@ output:
     number_sections: yes
     includes:
       in_header: ../preamble.tex
+  word_document:
+    toc: yes
   html_document:
     number_sections: yes
 bibliography: ../bioclimatology-references.bib
@@ -78,13 +80,13 @@ The dielectric constant is estimated by measuring the travel time of a electroma
 Water potential is measured using **tensionmeters**, that consists in a porous ceramic cap connect with a water reservoir under vacuum.
 The has a low water potential therefore attracts the water from the tensiometer, until an equilibrium point is reached. By measuring the, negative, pressure in the water filled tube the water potential of the soil can be estimated.
 
-## Soil tempertature
+## Soil temperature
  
  Soil temperature is measured by **temperature sensors** placed a different depth.
  Usually a resistance sensor, like the *Pt100*, is used as long term stability is more important than high frequency response rate.
  The presence of multiple temperature sensor along the soil profile allows also to estimate the soil heat fluxes.
  
-Soil heat flux can also be directly measured using **heat flux plates**, which using a series of thermocouple estimated the amount of heat transferred between the hot and the cold side
+Soil heat flux can also be directly measured using **heat flux plates**, which using a series of thermocouple estimated the amount of heat transferred between the hot and the cold side.
  
  
 \newpage
@@ -171,6 +173,7 @@ summary(sens) %>%
     caption = 'Flux sensitivity'
   ) %>% 
   kable_styling(latex_options = "HOLD_position")
+
 ```
 
 A local sensitivity analysis [@soetaert_inverse_2010] was made for the two parameters used in the flux calculation: thermal conductivity ($k$) and heat capacity ($C_v$). The thermal conductivity has the biggest influence on the the overall flux (Table \@ref(tab:sens)).
