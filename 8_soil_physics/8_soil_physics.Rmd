@@ -10,6 +10,8 @@ output:
       in_header: ../preamble.tex
   word_document:
     toc: yes
+  pdf_document:
+    toc: yes
   html_document:
     number_sections: yes
 bibliography: ../bioclimatology-references.bib
