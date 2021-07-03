@@ -1,0 +1,68 @@
+---
+title: "fluxes"
+author: "Cheyenne"
+date: "3/7/2021"
+output: html_document
+---
+
+
+1.
+Calculate the half hourly latent heat flux, the net ecosystem exchange of CO 2 and the sensible heat flux from the high frequency turbulence data. 
+```{r}
+library(tidyverse)
+```
+
+
+
+
+
+```{r}
+
+coflux <- read_csv2("../Data_lectures/soilCO2flux.csv")
+contant <- read_csv2("../Data_lectures/constants.csv")
+
+p <- contant$`P (hPa)`
+
+R<- 8.314 #J/molK
+
+T <- contant$`T (ºC)`+273
+M <- p/R*T
+dcflux <- coflux %>% group_by(`Chamber nº`) %>% 
+  mutate(dt= `Time (s)`-lag(`Time (s)`), dc = `CO2 (ppm)`- lag(`CO2 (ppm)`))
+dc <- dcflux$dc
+dt <- dcflux$dt
+
+A<- pi*r^2
+
+topheight=13.5
+
+r <- contant$`radius (m)`
+
+chambers <- tribble(~"Tsoil",~"chamber",~"height",
+17,	1,0.16225,		
+17,	2,0.17,
+16.8,	3,0.1495,
+16.7,	4,0.154,
+17.2,	5,	0.159
+
+) %>% 
+  mutate(V=pi*r^2*(height+topheight))
+
+def <- left_join(dcflux,chambers, by= c("Chamber nº"="chamber"))
+
+
+
+f <-mutate(def, Fc=(dc/dt)*(M*V/A))
+
+str(coflux)
+names(coflux)
+
+ggplot(f)+
+  geom_line(aes(x=`Time (s)`, y= Fc, color=as.character(`Chamber nº`)))
+
+
+
+```
+
+
+
