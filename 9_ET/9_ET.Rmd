@@ -25,40 +25,42 @@ editor_options:
 
 # Analysis
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 library(lubridate)
-et <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv" , locale = locale(decimal_mark = ",")) %>% 
+et <- read_csv(
+  "../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv",
+  locale = locale(decimal_mark = ",")) %>% 
   rename(loc_id = replicates)
 meteo <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv")
 ```
-```{r}
-et
-```
 
-```{r}
-meteo
-```
 
 ```{r}
 #' Potential evapotranspiration using Priestley-Taylor equation
+#' input data is W/s internally converted to MJ/d
 calc_pet <- function(T_air, Rn, G){
   g <- 0.067 # kPa K -1
-  s <- ( 4098 * (0.6108 * exp((17.27 * T_air ) / (T_air +237.3) ) ) ) / ( T_air + 237.3 )^2
-  pet <- 1.26 * s * (Rn - G)/ (s + g)
+  Rn <- Rn * 0.0864 # convert to MJ/day
+  G <- G * 0.0864 # convert to MJ/day
+  s <- ( 4098 * 0.6108 * exp((17.27 * T_air ) / (T_air +237.3) ) ) / ( T_air + 237.3 )^2
+  pet <- 1.26 * s * (Rn - G) / (s + g)
+  return(pet)
 }
-
 ```
+
+
 ```{r}
 #adding R_n and G to the 
 (meteo_d <- meteo %>% 
-  group_by(Date = floor_date(Date, "day")) %>% 
   # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864, G_d = mean(`GroundHeatflux_Wm-2`) * 0.0864, T_air = mean(TA_degC)) %>% 
-  mutate(
-    PET = calc_pet(T_air, R_n_d, G_d)
-  ))
+  # calculating with high frequency data and then averaging over the day
+  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(PET = mean(PET)))
 ```
+
+
 
 ```{r}
 ggplot(meteo_d, aes(Date, PET)) +
@@ -66,7 +68,17 @@ ggplot(meteo_d, aes(Date, PET)) +
   labs(y="PET (mm)")
 ```
 
+```{r}
+et %>% 
+  left_join(meteo_d, by = c("date"= "Date")) %>% 
+  drop_na() %>% 
+  gather("type", "et", et_pan, PET) %>% 
+  ggplot(aes(date, et, col=type)) +
+  geom_line() +
+  labs(y= "Evapotranspiration (mm)")
+```
 
+## Piché evaporimeters
 ```{r}
 pich_d <- 3 #cm
 pich_inn_d <- 0.9 # cm
@@ -94,7 +106,7 @@ et %>%
   drop_na() %>% #removing first empty day
 ggplot(aes(date)) +
   geom_line(aes(y=et_pan, col="pan"), size=.7) +
-  geom_point(aes(y = et_pich, col=spot, shape=spot))
+  geom_point(aes(y = et_pich, col=spot))
   
 ```
 ```{r}
@@ -103,17 +115,75 @@ ggplot(et, aes(spot, et_pich)) +
 ```
 
 
+
+ ## PET WIP
+ 
+```{r}
+# this is like floor_date(x, "day"), but instead of changing the day at midnight
+# it changes to the next day after the given hour
+floor_time_day <- function(date, hour){
+  date <- case_when(
+    hour(date) <= hour ~ date, #keeping the same day
+    hour(date) > hour ~ date + days(1) # going to next day
+  )
+  floor_date(date, "day")
+}
+```
+
+
+```{r}
+meteo %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(R_n_d = mean(`NetRadiation_Wm-2`) , G_d = mean(`GroundHeatflux_Wm-2`), T_air = mean(TA_degC)) %>% 
+  mutate(
+    PET = calc_pet(T_air, R_n_d, G_d)
+  )
+```
+
+
+```{r}
+#adding R_n and G to the 
+meteo %>% 
+  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
+  # calculating with high frequency data and then averaging over the day
+  group_by(Date = floor_date(Date, "hour")) %>% 
+  summarise(across(everything(), mean)) %>% 
+  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(PET = mean(PET))
+```
+
+```{r}
+#adding R_n and G to the 
+meteo %>% 
+  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
+  # calculating with high frequency data and then averaging over the day
+  group_by(Date = floor_date(Date, "30 min")) %>% 
+  summarise(across(everything(), mean)) %>% 
+  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(PET = mean(PET))
+```
+```{r}
+#adding R_n and G to the 
+meteo %>% 
+  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
+  # calculating with high frequency data and then averaging over the day
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(across(everything(), mean)) %>% 
+  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  summarise(PET = mean(PET))
+```
+
 ```{r}
 et %>% 
   left_join(meteo_d, by = c("date"= "Date")) %>% 
+  drop_na() %>% 
   gather("type", "et", et_pan, PET) %>% 
-  ggplot(aes(date, et, col=type)) +
-  geom_line() +
-  labs(y= "Evapotranspiration (mm)")
+  ggplot(aes(date, et, fill=type)) +
+  geom_bar(stat="identity", position="dodge") 
 ```
 
 
-```{r}
-et
-```
 
