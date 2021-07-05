@@ -24,3 +24,96 @@ editor_options:
 # Sensors and measuring principle
 
 # Analysis
+
+```{r}
+library(tidyverse)
+library(lubridate)
+et <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv" , locale = locale(decimal_mark = ",")) %>% 
+  rename(loc_id = replicates)
+meteo <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv")
+```
+```{r}
+et
+```
+
+```{r}
+meteo
+```
+
+```{r}
+#' Potential evapotranspiration using Priestley-Taylor equation
+calc_pet <- function(T_air, Rn, G){
+  g <- 0.067 # kPa K -1
+  s <- ( 4098 * (0.6108 * exp((17.27 * T_air ) / (T_air +237.3) ) ) ) / ( T_air + 237.3 )^2
+  pet <- 1.26 * s * (Rn - G)/ (s + g)
+}
+
+```
+```{r}
+#adding R_n and G to the 
+(meteo_d <- meteo %>% 
+  group_by(Date = floor_date(Date, "day")) %>% 
+  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
+  summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864, G_d = mean(`GroundHeatflux_Wm-2`) * 0.0864, T_air = mean(TA_degC)) %>% 
+  mutate(
+    PET = calc_pet(T_air, R_n_d, G_d)
+  ))
+```
+
+```{r}
+ggplot(meteo_d, aes(Date, PET)) +
+  geom_line() +
+  labs(y="PET (mm)")
+```
+
+
+```{r}
+pich_d <- 3 #cm
+pich_inn_d <- 0.9 # cm
+# calc area exposed to air:
+#2 times the area of the pare dish (two sides) - the area of glass
+pich_dish_area <- 2 * (pi / 4 * pich_d ^ 2) - (pi / 4 * pich_inn_d ^ 2) # cm^2
+pich_int_area <- (pi/4 * pich_inn_d ^2 ) # cm^2
+```
+
+```{r}
+et <- et %>% 
+  group_by(loc_id) %>% 
+  mutate(
+    # here the scale is the opposite, the lower the number the more the water
+    diff_pich = pich_height_cm - lag(pich_height_cm),
+    et_pan = lag(pan_height_mm) - pan_height_mm,
+    # need to convert to right unit
+    et_pich = diff_pich * pich_dish_area * pich_int_area / 10
+  )
+```
+
+
+```{r}
+et %>% 
+  drop_na() %>% #removing first empty day
+ggplot(aes(date)) +
+  geom_line(aes(y=et_pan, col="pan"), size=.7) +
+  geom_point(aes(y = et_pich, col=spot, shape=spot))
+  
+```
+```{r}
+ggplot(et, aes(spot, et_pich)) +
+  geom_boxplot()
+```
+
+
+```{r}
+et %>% 
+  left_join(meteo_d, by = c("date"= "Date")) %>% 
+  gather("type", "et", et_pan, PET) %>% 
+  ggplot(aes(date, et, col=type)) +
+  geom_line() +
+  labs(y= "Evapotranspiration (mm)")
+```
+
+
+```{r}
+et
+```
+
