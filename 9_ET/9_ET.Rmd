@@ -19,9 +19,21 @@ editor_options:
 
 # Motivation
 
+In this chapter we will focus on evapotranspiration. This term is well known in many environmental study fields, but, what is the most precise definition given to this term?
+
+Evapotranspiration is referred according to the relationship of two other factors, such as the soil water evaporation and plant transpiration. The actual evapotranspiration is the one that is measured from these two factors mentioned before, considering changes and not ideal conditions in the meteorological conditions and the type of soil (Labedzki, 2011). In contrast, potential evapotranspiration is that one that occurs with ideal conditions such as abundance of water storage and meteorological conditions. Some differences between potantial and actual evapotranspiration are the infiltration capacity of soil, possible diseases, pH of soil and its fertility. 
+
+Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD–Books on Demand.
+
+
+
 # Background
 
 # Sensors and measuring principle
+
+
+
+
 
 # Analysis
 
