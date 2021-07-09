@@ -29,6 +29,7 @@ editor_options:
 Calculate the half hourly latent heat flux, the net ecosystem exchange of CO 2 and the sensible heat flux from the high frequency turbulence data. 
 ```{r}
 library(tidyverse)
+library(cowplot)
 ```
 
 
@@ -121,10 +122,18 @@ ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","U","V","W","T_SONIC",
 ```
 
 
-```{r}
+```{r, message=F}
 ec_test_path <- "../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat"
 ec <-read_csv(ec_test_path, skip=4, col_names = ec_col_names, na=c("", "NaN"))
+
+set.seed(100)
+# taking 4 sample data for plots
+ec_samples_paths <- sample(dir_ls("../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"), 4)
+ec_samples <- map(ec_samples_paths, ~read_csv(.x, skip=4, col_names = ec_col_names, na=c("", "NaN")))
 ```
+
+
+
 ```{r}
 head(ec)
 ```
@@ -135,7 +144,7 @@ head(ec)
 ```{r}
 # the emp
 process_ec_file <- function(file, p=function(){}) {
-  ec <-read_csv(file, skip=4, col_names = ec_col_names, col_types = cols())
+  ec <-read_csv(file, skip=4, col_names = ec_col_names, col_types = cols(), na=c("", "NaN"))
   time <- str_extract(file, "\\d+.dat$") %>% 
     parse_date_time("YmdHM")
   flux <- calc_fluxes(ec) %>% 
@@ -207,8 +216,8 @@ despike <- function(data, times_sd = 5) {
 ```
 
 ```{r}
-co2_mean <- mean(ec_test$CO2, na.rm=T)
-co2_sd <- sd(ec_test$CO2, na.rm=T)
+co2_mean <- mean(ec$CO2, na.rm=T)
+co2_sd <- sd(ec$CO2, na.rm=T)
 ggplot(ec_test, aes(TIMESTAMP, CO2)) +
   geom_line() +
   geom_hline(yintercept = co2_mean) +
@@ -216,14 +225,20 @@ ggplot(ec_test, aes(TIMESTAMP, CO2)) +
 ```
 
 ```{r}
-co2_mean <- mean(ec_test$CO2, na.rm=T)
-co2_sd <- sd(ec_test$CO2, na.rm=T) * 1.5
-ggplot(ec_test, aes(TIMESTAMP, despike(CO2, times_sd = 1.5))) +
-  geom_hline(yintercept = co2_mean) +
-  geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2) +
-  geom_line(aes(y = CO2), color="grey50") +
-  geom_line()
+plots <- map(ec_samples, function(ec){
+  co2_mean <- mean(ec$CO2, na.rm=T)
+  co2_sd <- sd(ec$CO2, na.rm=T) * 1.5
+  ggplot(ec, aes(TIMESTAMP, despike(CO2, times_sd = 1.5))) +
+    geom_hline(yintercept = co2_mean) +
+    geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2) +
+    geom_line(aes(y = CO2), color="grey50") +
+    geom_line()
+})
+
+plot_grid(plots[[1]], plots[[2]], plots[[3]], plots[[4]], nrow=2)
 ```
+
+
 
 
 ### Rotations
@@ -238,25 +253,55 @@ rotations are for later
 ```{r}
 # maybe find a better name, lag that supports negative values
 lag2 <- function(x, n){
-  ifelse(n => 0, lag(x, n), lead(x, -n))
+  if (n >= 0){
+    lag(x, n)
+  }
+  else{
+    lead(x, -n)
+  }
+}
+
+#lags the second argument
+lagged_cov <-  function(x, y, n){
+  cov(x, lag2(y, n), use="complete.obs")
+}
+
+max_n_cov <- function(w, gas){
+  opt <- optimize(function(n){
+    # the optimize function use doubles, leg uses ints
+    lagged_cov(w, gas, as.integer(n)) 
+  }, interval = c(-2000, 2000), maximum = T, tol=1)
+  return(opt$maximum)
+}
+
+time_lag_correction <- function(w, gas){
+  lag2(gas, max_n_cov(w, gas))
 }
 ```
 
 ```{r}
-lagged_cov <- function(w, gas, range=20){
-  map(seq(-range, range), function(n){
-    cov(w, lag2(gas, n), use="complete.obs")
-  })
-}
+
 ```
 
-```{r}
-lagged_cov(ec$W, ec$CO2)
-```
+Testing with data
+
+it doesn't seem that good
+
 
 ```{r}
-cov(ec$W, lead(ec$CO2, 5), use="complete.obs")
+plots <- map(ec_samples, function(ec){
+  co2_lagged_cov <- tibble( n = seq(-2000, 2000), 
+                         lagged_cov = map_dbl(n,~ lagged_cov(ec$W, ec$CO2, .x)))
+
+  ggplot(co2_lagged_cov, aes( x= n , y = lagged_cov)) +
+    geom_line() +
+    geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red")
+})
+plot_grid(plots[[1]], plots[[2]], plots[[3]], plots[[4]], nrow=2)
 ```
+
+
+
 
 
 
