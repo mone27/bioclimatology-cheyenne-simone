@@ -110,7 +110,6 @@ ggplot(co2flux, aes(chamber, Fc)) +
 library(fs)
 library(lubridate)
 library(progressr)
-handlers(global = TRUE)
 ```
 
 ```{r}
@@ -123,15 +122,18 @@ ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","U","V","W","T_SONIC",
 
 
 ```{r}
-ec_test <-read_csv("../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat", skip=4, col_names = ec_col_names)
+ec_test_path <- "../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat"
+ec <-read_csv(ec_test_path, skip=4, col_names = ec_col_names, na=c("", "NaN"))
 ```
 ```{r}
-head(ec_test)
+head(ec)
 ```
 
 
+# Raw flux calculation
 
 ```{r}
+# the emp
 process_ec_file <- function(file, p=function(){}) {
   ec <-read_csv(file, skip=4, col_names = ec_col_names, col_types = cols())
   time <- str_extract(file, "\\d+.dat$") %>% 
@@ -148,28 +150,38 @@ process_ec_file <- function(file, p=function(){}) {
 # Molar Gas Constant
 R <- 8.314 # J/mol K
 calc_fluxes <- function(ec){
-  T_a <- ec$T_CELL + 
-  CO2_flux <- calc_CO2_flux(ec$W, ec$CO2, ec$PRESS_CELL, ec$T_CELL)
+  # celsius to kelvin
+  T_a <- ec$T_CELL + 273.15
+  # need to convert pressure to Pa from kPa
+  p_a <- ec$PRESS_CELL * 1e3
+  rho_m <- calc_rho_m(p_a, T_a)
+  CO2_flux <- calc_CO2_flux(ec$W, ec$CO2, rho_m)
   #H20_flux <- calc_H20_flux(w, h2o)
-  tibble(co2 = CO2_flux)
+  tibble(co2 = CO2_flux, rho=rho_m)
 }
 
-calc_CO2_flux <- function(w, co2, p, T_a, rho=1.2){
-  rho <- p / (R * T_a)
-  cov(w, co2, use="complete.obs") * rho
+calc_CO2_flux <- function(w, co2, rho_m){
+  cov(w, co2, use="complete.obs") * rho_M
+}
+
+calc_rho_m <- function(p, T_a){
+  mean( p / (R * T_a), na.rm=T)
 }
 ```
 ```{r}
 calc_fluxes(ec_test)
 ```
 
+
 ```{r}
-process_ec_file(file)
+process_ec_file(ec_test_path)
 ```
+
 
 ```{r}
 files <- dir_ls("../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/")
 with_progress({
+  # this is to have a progress bar
   p <- progressor(along=files)
   ec_flux <- map_dfr(files, process_ec_file, p)
 })
@@ -180,6 +192,72 @@ ggplot(ec_flux, aes(time, co2)) +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line()
 ```
+#### Despike
+```{r}
+# data is a vector, need to find a better name
+despike <- function(data, times_sd = 5) {
+  #browser()
+  mean_data <- mean(data, na.rm=T)
+  sd_data <- sd(data, na.rm=T)
+  spikes <- abs(data - mean_data) > (times_sd*sd_data)
+  # spikes will be NAs
+  data[spikes] <- NA
+  return(data)
+}
+```
+
+```{r}
+co2_mean <- mean(ec_test$CO2, na.rm=T)
+co2_sd <- sd(ec_test$CO2, na.rm=T)
+ggplot(ec_test, aes(TIMESTAMP, CO2)) +
+  geom_line() +
+  geom_hline(yintercept = co2_mean) +
+  geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2)
+```
+
+```{r}
+co2_mean <- mean(ec_test$CO2, na.rm=T)
+co2_sd <- sd(ec_test$CO2, na.rm=T) * 1.5
+ggplot(ec_test, aes(TIMESTAMP, despike(CO2, times_sd = 1.5))) +
+  geom_hline(yintercept = co2_mean) +
+  geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2) +
+  geom_line(aes(y = CO2), color="grey50") +
+  geom_line()
+```
+
+
+### Rotations
+
+rotations are for later 
+```{r}
+
+```
+
+### Time lag correction
+
+```{r}
+# maybe find a better name, lag that supports negative values
+lag2 <- function(x, n){
+  ifelse(n => 0, lag(x, n), lead(x, -n))
+}
+```
+
+```{r}
+lagged_cov <- function(w, gas, range=20){
+  map(seq(-range, range), function(n){
+    cov(w, lag2(gas, n), use="complete.obs")
+  })
+}
+```
+
+```{r}
+lagged_cov(ec$W, ec$CO2)
+```
+
+```{r}
+cov(ec$W, lead(ec$CO2, 5), use="complete.obs")
+```
+
 
 
 
