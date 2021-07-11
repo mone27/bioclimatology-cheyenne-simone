@@ -29,7 +29,8 @@ editor_options:
 Calculate the half hourly latent heat flux, the net ecosystem exchange of CO 2 and the sensible heat flux from the high frequency turbulence data. 
 ```{r}
 library(tidyverse)
-library(cowplot)
+library(cowplot) #multiple plots
+library(naniar) # to replace missing values 
 ```
 
 
@@ -114,10 +115,10 @@ library(progressr)
 ```
 
 ```{r}
-ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","U","V","W","T_SONIC",
+ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","u","v","w","T_sonic",
                    "SA_DIAG_VALUE","CO2_ABS","H2O_ABS","CO2_CONC",
                    "H2O_CONC","CO2_POW_SAM","H2O_POW_SAM","CO2_POW_REF",
-                   "H2O_POW_REF","CO2","H2O","T_CELL","PRESS_CELL",
+                   "H2O_POW_REF","co2","h2o","T_CELL","PRESS_CELL",
                    "GA_DIAG_CODE","T_DEW","CO2_STR")
 ```
 
@@ -126,9 +127,12 @@ ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","U","V","W","T_SONIC",
 ec_test_path <- "../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat"
 ec <-read_csv(ec_test_path, skip=4, col_names = ec_col_names, na=c("", "NaN"))
 
-set.seed(100)
-# taking 4 sample data for plots
-ec_samples_paths <- sample(dir_ls("../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"), 4)
+files <- dir_ls("../Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/")
+
+# taking 4 sample data for plots at 4 different moment of the day
+# need to convert integer and remove the last element
+idx <- seq(1, 48, length.out=10) %>% as.integer() %>% head(-1)
+ec_samples_paths <- files[idx]
 ec_samples <- map(ec_samples_paths, ~read_csv(.x, skip=4, col_names = ec_col_names, na=c("", "NaN")))
 ```
 
@@ -201,6 +205,34 @@ ggplot(ec_flux, aes(time, co2)) +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line()
 ```
+
+#### Remove implausible values
+```{r}
+
+remove_implausible <- function(ec){
+  ec %>% 
+    replace_with_na_at(c("u", "v", "w"), ~abs(.x) > 10) %>% 
+    replace_with_na_at("co2", ~!between(.x, 350, 700)) %>% 
+    replace_with_na_at("T_sonic", ~!between(.x, -15, 50)) %>% 
+    replace_with_na_at("h2o", ~!between(.x, 2, 30))
+}
+
+```
+
+
+```{r}
+# manually checking with some fake data that the function is working as intended
+tibble(
+  u = seq (-15, 15, length.out=20),
+  v = u,
+  w = u,
+  co2 = seq (30, 800, length.out=20),
+  T_sonic = seq (-20, 80, length.out=20),
+  h2o = seq (0, 40, length.out=20),
+) %>% 
+  remove_implausible()
+```
+
 #### Despike
 ```{r}
 # data is a vector, need to find a better name
@@ -225,7 +257,7 @@ ggplot(ec_test, aes(TIMESTAMP, CO2)) +
 ```
 
 ```{r}
-plots <- map(ec_samples, function(ec){
+plots_despike <- map(ec_samples, function(ec){
   co2_mean <- mean(ec$CO2, na.rm=T)
   co2_sd <- sd(ec$CO2, na.rm=T) * 1.5
   ggplot(ec, aes(TIMESTAMP, despike(CO2, times_sd = 1.5))) +
@@ -235,7 +267,7 @@ plots <- map(ec_samples, function(ec){
     geom_line()
 })
 
-plot_grid(plots[[1]], plots[[2]], plots[[3]], plots[[4]], nrow=2)
+do.call(plot_grid, c(plots_despike[1:4], nrow=2))
 ```
 
 
@@ -245,6 +277,34 @@ plot_grid(plots[[1]], plots[[2]], plots[[3]], plots[[4]], nrow=2)
 
 rotations are for later 
 ```{r}
+# wind should have 3 columns u, v, and w
+double_rotation <- function(wind){
+  
+  wind %>% 
+    # 1st rotation around z into the mean wind direction
+    mutate(
+      # need to use atan2 otherwise the angle may have the wrong sign
+      theta = atan2(mean(v,na.rm = T), mean(u,na.rm = T)),
+      u_1 = u*cos(theta) + v*sin(theta),
+      v_1 = -u*sin(theta) + v*cos(theta),
+      w_1 = w
+    ) %>%
+    # 2nd rotation around new y-axis to nullify the vertical wind speed, to be used for further analysis
+    mutate(
+      phi = atan2(mean(w_1,na.rm = T), mean(u_1,na.rm = T)),
+      u_2 = u_1*cos(phi) + w_1*sin(phi),
+      v_2 = v_1,
+      w_2 = -u_1*sin(phi) + w_1*cos(phi)
+    ) %>% 
+    # rename variables
+    select(
+      u = u_2,
+      v = v_2,
+      w = w_2,
+      !all_of("u_1", "v_1", "w_1", "theta", "phi")
+    )
+}
+
 
 ```
 
@@ -267,10 +327,11 @@ lagged_cov <-  function(x, y, n){
 }
 
 max_n_cov <- function(w, gas){
+  #maximise the absolute value of the covariance
   opt <- optimize(function(n){
     # the optimize function use doubles, leg uses ints
-    lagged_cov(w, gas, as.integer(n)) 
-  }, interval = c(-2000, 2000), maximum = T, tol=1)
+    abs(lagged_cov(w, gas, as.integer(n)))
+  }, interval = c(-100, 100), maximum = T, tol=1)
   return(opt$maximum)
 }
 
@@ -289,20 +350,39 @@ it doesn't seem that good
 
 
 ```{r}
-plots <- map(ec_samples, function(ec){
-  co2_lagged_cov <- tibble( n = seq(-2000, 2000), 
+plots_lag <- map(ec_samples, function(ec){
+  co2_lagged_cov <- tibble( n = seq(-100, 100, 5), 
                          lagged_cov = map_dbl(n,~ lagged_cov(ec$W, ec$CO2, .x)))
 
   ggplot(co2_lagged_cov, aes( x= n , y = lagged_cov)) +
     geom_line() +
-    geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red")
+    geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red") +
+    labs(title=ec$TIMESTAMP[1])
 })
-plot_grid(plots[[1]], plots[[2]], plots[[3]], plots[[4]], nrow=2)
+
+do.call(plot_grid, c(plots_lag))
 ```
 
 
 
 
+
+```{r}
+counter <- 1
+```
+
+
+```{r}
+ec <- read_csv(files[counter], skip=4, col_names = ec_col_names, na=c("", "NaN"))
+counter <<- counter + 1
+co2_lagged_cov <- tibble( n = seq(-100, 100, 20), 
+                       lagged_cov = map_dbl(n, ~lagged_cov(ec$W, ec$CO2, .x)))
+
+ggplot(co2_lagged_cov, aes( x= n , y = lagged_cov)) +
+  geom_line() +
+  geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red") +
+    labs(title=ec$TIMESTAMP[1])
+```
 
 
 
