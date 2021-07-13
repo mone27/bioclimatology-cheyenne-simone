@@ -31,48 +31,60 @@ Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD–Books on Demand.
 
 # Sensors and measuring principle
 
+There are many different ways to measure evapotranspiration,some are more accessible than others and depending the scenario some of them might be more suitable than others. The measurement of evapotranspiration claims quantitative data, and this data can be measure by water evaporation and the energy flux between soil and atmosphere.Rana and Kater (2000), describes the different ways to measure evapotranspiration based on hydrological, micrometeorological, plant physiology and analytical approaches. The first one includes: soil water balance and weighing lysimeters, the second one, energy balance and Bowen ration, aerodynamic method and eddy covariance. Plant physiology approach is based on sap flow method or chambers system. Last one, analytical approach are based on Penman-Montheith model. After this one, empirical approach can also be taken into account, such as process based on crop coefficient approach and soil water balance modeling [@articlenoauthor_rana_nodate]. 
+
+
+Some of the most frequently measurements applied to evapotranspiration and that we have seeing in class are:
+
+Evaporation pan: a circle panel where precipitation is accumulated and then, with the help of a measuring bucket and based on a scale, water los can be measured by the difference between the potential evapotranspiration of 2 days. Some of the erros are the expansion of water, wrong reading, limited recording for a volume of water and the possibility of the oasis effect to occur. 
+
+Piché evaporimeter
+
+Weighing lysimeter
+
+Bowen ratio energy balance method
+
+
 
 
 
 
 # Analysis
 
-```{r, message=FALSE}
+```{r}
 library(tidyverse)
 library(lubridate)
-et <- read_csv(
-  "../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv",
-  locale = locale(decimal_mark = ",")) %>% 
+et <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv" , locale = locale(decimal_mark = ",")) %>% 
   rename(loc_id = replicates)
 meteo <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv")
 ```
+```{r}
+et
+```
 
+```{r}
+meteo
+```
 
 ```{r}
 #' Potential evapotranspiration using Priestley-Taylor equation
-#' input data is W/s internally converted to MJ/d
 calc_pet <- function(T_air, Rn, G){
   g <- 0.067 # kPa K -1
-  Rn <- Rn * 0.0864 # convert to MJ/day
-  G <- G * 0.0864 # convert to MJ/day
-  s <- ( 4098 * 0.6108 * exp((17.27 * T_air ) / (T_air +237.3) ) ) / ( T_air + 237.3 )^2
-  pet <- 1.26 * s * (Rn - G) / (s + g)
-  return(pet)
+  s <- ( 4098 * (0.6108 * exp((17.27 * T_air ) / (T_air +237.3) ) ) ) / ( T_air + 237.3 )^2
+  pet <- 1.26 * s * (Rn - G)/ (s + g)
 }
+
 ```
-
-
 ```{r}
 #adding R_n and G to the 
 (meteo_d <- meteo %>% 
-  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  # calculating with high frequency data and then averaging over the day
-  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
   group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(PET = mean(PET)))
+  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
+  summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864, G_d = mean(`GroundHeatflux_Wm-2`) * 0.0864, T_air = mean(TA_degC)) %>% 
+  mutate(
+    PET = calc_pet(T_air, R_n_d, G_d)
+  ))
 ```
-
-
 
 ```{r}
 ggplot(meteo_d, aes(Date, PET)) +
@@ -80,17 +92,7 @@ ggplot(meteo_d, aes(Date, PET)) +
   labs(y="PET (mm)")
 ```
 
-```{r}
-et %>% 
-  left_join(meteo_d, by = c("date"= "Date")) %>% 
-  drop_na() %>% 
-  gather("type", "et", et_pan, PET) %>% 
-  ggplot(aes(date, et, col=type)) +
-  geom_line() +
-  labs(y= "Evapotranspiration (mm)")
-```
 
-## Piché evaporimeters
 ```{r}
 pich_d <- 3 #cm
 pich_inn_d <- 0.9 # cm
@@ -118,7 +120,7 @@ et %>%
   drop_na() %>% #removing first empty day
 ggplot(aes(date)) +
   geom_line(aes(y=et_pan, col="pan"), size=.7) +
-  geom_point(aes(y = et_pich, col=spot))
+  geom_point(aes(y = et_pich, col=spot, shape=spot))
   
 ```
 ```{r}
@@ -127,75 +129,21 @@ ggplot(et, aes(spot, et_pich)) +
 ```
 
 
-
- ## PET WIP
- 
-```{r}
-# this is like floor_date(x, "day"), but instead of changing the day at midnight
-# it changes to the next day after the given hour
-floor_time_day <- function(date, hour){
-  date <- case_when(
-    hour(date) <= hour ~ date, #keeping the same day
-    hour(date) > hour ~ date + days(1) # going to next day
-  )
-  floor_date(date, "day")
-}
-```
-
-
-```{r}
-meteo %>% 
-  group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(R_n_d = mean(`NetRadiation_Wm-2`) , G_d = mean(`GroundHeatflux_Wm-2`), T_air = mean(TA_degC)) %>% 
-  mutate(
-    PET = calc_pet(T_air, R_n_d, G_d)
-  )
-```
-
-
-```{r}
-#adding R_n and G to the 
-meteo %>% 
-  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  # calculating with high frequency data and then averaging over the day
-  group_by(Date = floor_date(Date, "hour")) %>% 
-  summarise(across(everything(), mean)) %>% 
-  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
-  group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(PET = mean(PET))
-```
-
-```{r}
-#adding R_n and G to the 
-meteo %>% 
-  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  # calculating with high frequency data and then averaging over the day
-  group_by(Date = floor_date(Date, "30 min")) %>% 
-  summarise(across(everything(), mean)) %>% 
-  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
-  group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(PET = mean(PET))
-```
-```{r}
-#adding R_n and G to the 
-meteo %>% 
-  # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  # calculating with high frequency data and then averaging over the day
-  group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(across(everything(), mean)) %>% 
-  mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
-  group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(PET = mean(PET))
-```
-
 ```{r}
 et %>% 
   left_join(meteo_d, by = c("date"= "Date")) %>% 
-  drop_na() %>% 
   gather("type", "et", et_pan, PET) %>% 
-  ggplot(aes(date, et, fill=type)) +
-  geom_bar(stat="identity", position="dodge") 
+  ggplot(aes(date, et, col=type)) +
+  geom_line() +
+  labs(y= "Evapotranspiration (mm)")
 ```
 
+
+```{r}
+et
+```
+
+
+# References
 
 
