@@ -3,7 +3,7 @@ title: "9th Protocol: Evapotranspiration"
 author: "Cheyenne Rueda and Simone Massaro"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document:
+  bookdown::pdf_document2:
     toc: true
     number_sections: true
     includes:
@@ -16,12 +16,12 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-
+\newpage
 # Motivation
 
 In this chapter we will focus on evapotranspiration. This term is well known in many environmental study fields, but, what is the most precise definition given to this term?
 
-Evapotranspiration is referred according to the relationship of two other factors, such as the soil water evaporation and plant transpiration. The actual evapotranspiration is the one that is measured from these two factors mentioned before, considering changes and not ideal conditions in the meteorological conditions and the type of soil (Labedzki, 2011). In contrast, potential evapotranspiration is that one that occurs with ideal conditions such as abundance of water storage and meteorological conditions. Some differences between potantial and actual evapotranspiration are the infiltration capacity of soil, possible diseases, pH of soil and its fertility. 
+Evapotranspiration (ET) is referred according to the relationship of two other factors, such as the soil water evaporation and plant transpiration. The actual evapotranspiration is the one that is measured from these two factors mentioned before, considering changes and not ideal conditions in the meteorological conditions and the type of soil (Labedzki, 2011). In contrast, potential evapotranspiration is that one that occurs with ideal conditions such as abundance of water storage and meteorological conditions. Some differences between potantial and actual evapotranspiration are the infiltration capacity of soil, possible diseases, pH of soil and its fertility. 
 
 Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD–Books on Demand.
 
@@ -36,10 +36,13 @@ Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD–Books on Demand.
 
 
 # Analysis
+## Potential evapotranspiration
 
 ```{r, message=FALSE}
 library(tidyverse)
 library(lubridate)
+library(scales)
+theme_set(theme_bw())
 et <- read_csv(
   "../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv",
   locale = locale(decimal_mark = ",")) %>% 
@@ -64,20 +67,30 @@ calc_pet <- function(T_air, Rn, G){
 
 ```{r}
 #adding R_n and G to the 
-(meteo_d <- meteo %>% 
+meteo_d <- meteo %>% 
   # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
   # calculating with high frequency data and then averaging over the day
   mutate(PET = calc_pet(TA_degC, `NetRadiation_Wm-2`, `GroundHeatflux_Wm-2`)) %>% 
   group_by(Date = floor_date(Date, "day")) %>% 
-  summarise(PET = mean(PET)))
+  summarise(PET = mean(PET))
 ```
 
 
-
-```{r}
+```{r, pet, fig.cap="Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021."}
 ggplot(meteo_d, aes(Date, PET)) +
   geom_line() +
   labs(y="PET (mm)")
+```
+During the four days of measurement the potential ET has been estimated using the Priestley-Taylor (Figure \@ref(fig:pet)).
+The daily potential ET varies a significantly during the 4 days, ranging from 6mm to almost 12 mm.
+This reflects the change in the weather conditions, as the day 1 and 4 were cloudy and colder. 
+
+```{r}
+et <- et %>% 
+  group_by(loc_id) %>% 
+  mutate(
+    et_pan = lag(pan_height_mm) - pan_height_mm,
+  )
 ```
 
 ```{r}
@@ -90,13 +103,19 @@ et %>%
   labs(y= "Evapotranspiration (mm)")
 ```
 
+TODO
+
 ## Piché evaporimeters
+
+The potential ET has been measured using Piché evaporimeters in different locations around the botanical garden.
+The measures values have been compared between the different locations and the evaporation pan
 ```{r}
 pich_d <- 3 #cm
 pich_inn_d <- 0.9 # cm
 # calc area exposed to air:
-#2 times the area of the pare dish (two sides) - the area of glass
+# 2 times the area of the pare dish (two sides) - the area of glass
 pich_dish_area <- 2 * (pi / 4 * pich_d ^ 2) - (pi / 4 * pich_inn_d ^ 2) # cm^2
+# area inside the tube
 pich_int_area <- (pi/4 * pich_inn_d ^2 ) # cm^2
 ```
 
@@ -106,23 +125,30 @@ et <- et %>%
   mutate(
     # here the scale is the opposite, the lower the number the more the water
     diff_pich = pich_height_cm - lag(pich_height_cm),
-    et_pan = lag(pan_height_mm) - pan_height_mm,
-    # need to convert to right unit
+    # need to convert to mm of ET
     et_pich = diff_pich * pich_dish_area * pich_int_area / 10
   )
 ```
 
 
-```{r}
+```{r, pan-pich, fig.cap="Comparison between evapotranspiration pan and the "}
+spot_cols <- hue_pal()(4)
+names(spot_cols) <- unique(et$spot)
 et %>% 
   drop_na() %>% #removing first empty day
 ggplot(aes(date)) +
-  geom_line(aes(y=et_pan, col="pan"), size=.7) +
-  geom_point(aes(y = et_pich, col=spot))
-  
+  geom_line(aes(y=et_pan, col="Pan"), size=.7) +
+  geom_jitter(aes(y = et_pich, col=spot), width = .06, height = 0) +
+  scale_color_manual(values=c(spot_cols, "Pan" = "black" )) +
+  labs(y="Potential evapotranspiration (mm)", colour="Location")
 ```
+
+
+
 ```{r}
-ggplot(et, aes(spot, et_pich)) +
+et %>% 
+  drop_na() %>% 
+ggplot(aes(spot, et_pich, col=spot)) +
   geom_boxplot()
 ```
 
