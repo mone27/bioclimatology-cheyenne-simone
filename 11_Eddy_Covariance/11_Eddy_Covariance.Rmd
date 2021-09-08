@@ -1,0 +1,425 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Eddy Covariance
+
+## Motivation
+
+## Background
+
+## Sensors and Measuring principles
+
+## Analisys
+
+```{r}
+library(fs)
+library(lubridate)
+library(progressr)
+library(xfun)
+
+handlers(
+  handler_progress(
+    format   = ":spin :current/:total (:message) [:bar] :percent in :elapsed ETA: :eta"
+))
+```
+
+```{r}
+ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","u","v","w","T_sonic",
+                   "SA_DIAG_VALUE","CO2_ABS","H2O_ABS","CO2_CONC",
+                   "H2O_CONC","CO2_POW_SAM","H2O_POW_SAM","CO2_POW_REF",
+                   "H2O_POW_REF","co2","h2o","T_CELL","PRESS_CELL",
+                   "GA_DIAG_CODE","T_DEW","CO2_STR")
+```
+
+
+```{r, message=F}
+ec_test_path <- here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat")
+ec <-read_csv(ec_test_path, skip=4, col_names = ec_col_names, na=c("", "NaN"))
+
+files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
+
+# taking 4 sample data for plots at 4 different moment of the day
+# need to convert integer and remove the last element
+idx <- seq(1, 48, length.out=10) %>% as.integer() %>% head(-1)
+ec_samples_paths <- files[idx]
+ec_samples <- map(ec_samples_paths, ~read_csv(.x, skip=4, col_names = ec_col_names, na=c("", "NaN")))
+```
+
+
+
+```{r}
+head(ec)
+```
+
+
+### Raw flux calculation
+
+```{r}
+# the emp
+process_ec_file <- function(file, p=function(){}) {
+  ec <-read_csv(file, skip=4, col_names = ec_col_names, col_types = cols(), na=c("", "NaN"))
+  time <- str_extract(file, "\\d+.dat$") %>% 
+    parse_date_time("YmdHM")
+  flux <- calc_fluxes(ec) %>% 
+    mutate(time = time)
+  p() # step progress bar
+  return(flux)
+}
+```
+
+
+```{r}
+# Molar Gas Constant
+R <- 8.314 # J/mol K
+calc_fluxes <- function(ec){
+  # celsius to kelvin
+  T_a <- ec$T_CELL + 273.15
+  # need to convert pressure to Pa from kPa
+  p_a <- ec$PRESS_CELL * 1e3
+  
+  # how to calc this?
+  rho_a <- 1
+  # How to calc lambda 
+  # how to calc Cp
+
+  tibble(
+    rho_m = calc_rho_m(p_a, T_a),
+    co2 = calc_co2_flux(ec$w, ec$co2, rho_m),
+    h2o = calc_h2o_flux(ec$w, ec$h2o, rho_m),
+    sens_heat = calc_sens_heat_flux(ec$w, ec$T_sonic, rho_a),
+    lat_heat = calc_lat_heat_flux(h2o),
+    mom = calc_mom_flux(ec$u, ec$v, ec$w, rho_a)
+  )
+}
+
+calc_co2_flux <- function(w, co2, rho_m){
+  cov(w, co2, use="complete.obs") * rho_m
+}
+
+calc_h2o_flux <- function(w, h2o, rho_m){
+  cov(w, h2o, use="complete.obs") * rho_m
+}
+
+calc_mom_flux <-  function(u, v, w, rho_a){
+  sqrt(
+    cov(w, u, use="complete.obs")^2 * cov(w, v, use="complete.obs")^2
+  ) * rho_a
+}
+
+calc_sens_heat_flux <- function(w, T_sonic, rho_a, Cp= 1000){
+  cov(w, T_sonic, use="complete.obs") * rho_a * Cp
+}
+
+calc_lat_heat_flux <- function(h2o_flux, lambda = 2256e3 ) {
+  h2o_flux * lambda
+}
+
+calc_rho_m <- function(p, T_a){
+  mean( p / (R * T_a), na.rm=T)
+}
+```
+```{r}
+calc_fluxes(ec)
+```
+
+
+```{r}
+process_ec_file(ec_test_path)
+```
+
+
+```{r}
+files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
+cache_rds(with_progress({
+  # this is to have a progress bar
+  p <- progressor(along=files)
+  ec_flux <- map_dfr(files, process_ec_file, p)
+}))
+```
+
+```{r}
+ggplot(ec_flux, aes(time, co2)) +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line()
+```
+
+#### Remove implausible values
+```{r}
+remove_implausible <- function(ec){
+  ec %>% 
+    replace_with_na_at(c("u", "v", "w"), ~abs(.x) > 10) %>% 
+    replace_with_na_at("co2", ~!between(.x, 350, 700)) %>% 
+    replace_with_na_at("T_sonic", ~!between(.x, -15, 50)) %>% 
+    replace_with_na_at("h2o", ~!between(.x, 2, 30))
+}
+
+```
+
+
+```{r}
+# manually checking with some fake data that the function is working as intended
+tibble(
+  u = seq (-15, 15, length.out=20),
+  v = u,
+  w = u,
+  co2 = seq (30, 800, length.out=20),
+  T_sonic = seq (-20, 80, length.out=20),
+  h2o = seq (0, 40, length.out=20),
+) %>% 
+  remove_implausible()
+```
+
+#### Despike
+```{r}
+# data is a vector, need to find a better name
+despike <- function(data, times_sd = 5) {
+  #browser()
+  mean_data <- mean(data, na.rm=T)
+  sd_data <- sd(data, na.rm=T)
+  spikes <- abs(data - mean_data) > (times_sd*sd_data)
+  # spikes will be NAs
+  data[spikes] <- NA
+  return(data)
+}
+```
+
+```{r}
+co2_mean <- mean(ec$co2, na.rm=T)
+co2_sd <- sd(ec$co2, na.rm=T)
+ggplot(ec, aes(TIMESTAMP, co2)) +
+  geom_line() +
+  geom_hline(yintercept = co2_mean) +
+  geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2)
+```
+
+```{r}
+plots_despike <- map(ec_samples, function(ec){
+  co2_mean <- mean(ec$co2, na.rm=T)
+  co2_sd <- sd(ec$CO2, na.rm=T) * 1.8
+  ggplot(ec, aes(TIMESTAMP, despike(co2, times_sd = 1.8))) +
+    geom_hline(yintercept = co2_mean) +
+    geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2) +
+    geom_line(aes(y = co2), color="grey70") +
+    geom_line() #can make this blue or another color
+})
+
+do.call(plot_grid, c(plots_despike[1:4], nrow=2))
+```
+```{r}
+plots_despike[1]
+```
+
+
+
+
+### Rotations
+
+rotations are for later 
+```{r}
+# wind should have 3 columns u, v, and w
+double_rotation <- function(wind){
+  
+  wind %>% 
+    # 1st rotation around z into the mean wind direction
+    mutate(
+      # need to use atan2 otherwise the angle may have the wrong sign
+      theta = atan2(mean(v,na.rm = T), mean(u,na.rm = T)),
+      u_1 = u*cos(theta) + v*sin(theta),
+      v_1 = -u*sin(theta) + v*cos(theta),
+      w_1 = w
+    ) %>%
+    # 2nd rotation around new y-axis to nullify the vertical wind speed, to be used for further analysis
+    mutate(
+      phi = atan2(mean(w_1,na.rm = T), mean(u_1,na.rm = T)),
+      u_2 = u_1*cos(phi) + w_1*sin(phi),
+      v_2 = v_1,
+      w_2 = -u_1*sin(phi) + w_1*cos(phi)
+    ) %>% 
+    # rename variables
+    mutate(
+      u = u_2,
+      v = v_2,
+      w = w_2) %>% 
+    # remove temp variables
+    select(
+      -u_1, -v_1, -w_1, -theta, -phi, 
+    )
+}
+
+```
+
+```{r}
+rot_wind <- double_rotation(ec)
+cat("mean vertical component:", mean(rot_wind$w))
+cat("\nmean wind direction:", mean(atan2(rot_wind$v, rot_wind$u)))
+```
+
+```{r}
+ccf_vals <- ccf(ec$w,ec$co2, type = "correlation",lag.max = 700, plot=F, na.action = na.exclude) 
+
+ccf_vals$lag[which.max(ccf_vals$acf)]
+```
+```{r}
+ccf(ec$w,ec$co2, type = "correlation",lag.max = 700, na.action = na.exclude) 
+```
+Here NAs are removed before on individual vectors and not in couples. This can lead to shift between them
+```{r}
+ccf(na.omit(ec$w),na.omit(ec$co2), type = "correlation",lag.max = 700) 
+```
+
+
+
+### Time lag correction
+
+```{r}
+# maybe find a better name, lag that supports negative values
+lag2 <- function(x, n){
+  if (n >= 0){
+    lag(x, n)
+  }
+  else{
+    lead(x, -n)
+  }
+}
+
+#lags the second argument
+lagged_cor <-  function(x, y, n){
+  cor(x, lag2(y, n), use="complete.obs")
+}
+
+max_n_cor <- function(w, gas){
+  #maximise the absolute value of the covariance
+  opt <- optimize(function(n){
+    # the optimize function use doubles, leg uses ints
+    abs(lagged_cor(w, gas, as.integer(n)))
+  }, interval = c(-700, 700), maximum = T, tol=1)
+  return(opt$maximum)
+}
+
+time_lag_correction <- function(w, gas){
+  lag2(gas, max_n_cor(w, gas) %>% as.integer )
+}
+```
+
+```{r}
+tibble( n = seq(-700, 700, 5), 
+      lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$co2, .x))) %>% 
+  ggplot(aes( x= n , y = lagged_cor)) +
+    geom_line() +
+    geom_vline(xintercept = max_n_cor(ec$w, ec$co2), col="red")
+    #labs(title=ec$TIMESTAMP[1])
+```
+
+```{r}
+max_n_cor_ccf <- function(w, gas){
+  ccf_vals <- ccf(w,gas, type = "correlation",lag.max = 700, plot=F, na.action = na.exclude) 
+  return(ccf_vals$lag[which.max(ccf_vals$acf)])
+}
+```
+
+
+
+```{r}
+plots_lag <- map(ec_samples, function(ec){
+  co2_lagged_cor <- tibble( n = seq(-700, 700, 5), 
+                         lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$co2, .x)))
+
+  ggplot(co2_lagged_cor, aes( x= n , y = lagged_cor)) +
+    geom_line() +
+    geom_vline(xintercept = max_n_cor(ec$w, ec$co2), col="red") +
+    geom_vline(xintercept = max_n_cor_ccf(ec$w, ec$co2), col="blue") +
+    labs(title=ec$TIMESTAMP[1])
+})
+
+do.call(plot_grid, c(plots_lag))
+```
+
+```{r}
+plots_lag <- map(ec_samples, function(ec){
+  co2_lagged_cor <- tibble( n = seq(-700, 700, 5), 
+                         lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$T_sonic, .x)))
+
+  ggplot(co2_lagged_cor, aes( x= n , y = lagged_cor)) +
+    geom_line() +
+    geom_vline(xintercept = max_n_cor(ec$w, ec$T_sonic), col="red") +
+    geom_vline(xintercept = max_n_cor_ccf(ec$w, ec$T_sonic), col="blue") +
+    labs(title=ec$TIMESTAMP[1])
+})
+
+do.call(plot_grid, c(plots_lag))
+```
+
+```{r}
+apply_corr <- function(ec){
+  ec %>% 
+    #remove_implausible() %>% # this takes ages like 11 s
+    mutate(across(c(u, v, w, co2, h2o, T_sonic), despike)) %>% 
+    double_rotation %>%
+    mutate(across(c(co2, h2o), ~time_lag_correction(w, .x)))
+}
+
+process_ec_file_corr <- function(file, p=function(){}) {
+  ec <-read_csv(file, skip=4, col_names = ec_col_names, col_types = cols(), na=c("", "NaN"))
+  time <- str_extract(file, "\\d+.dat$") %>% 
+    parse_date_time("YmdHM")
+  flux <- ec %>% 
+    apply_corr %>% 
+    calc_fluxes %>% 
+    mutate(time = time)
+  p() # step progress bar
+  return(flux)
+}
+```
+
+
+
+### Calc fluxes after correction
+```{r}
+files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
+
+cache_rds(with_progress({
+  # this is to have a progress bar
+  p <- progressor(along=files)
+  ec_flux_corr <- map_dfr(files, process_ec_file_corr, p)
+}))
+```
+
+
+
+```{r}
+ggplot() +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line(aes(time, co2, col="raw"), data = ec_flux) +
+  geom_line(aes(time, co2, col="corrected"), data= ec_flux_corr) +
+  scale_color_colorblind()
+```
+
+```{r}
+ggplot() +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line(aes(time, h2o, col="raw"), data = ec_flux) +
+  geom_line(aes(time, h2o, col="corrected"), data= ec_flux_corr) +
+  scale_color_colorblind()
+```
+
+## tester
+
+```{r}
+# counter <- 1
+```
+
+
+```{r}
+# ec <- read_csv(files[counter], skip=4, col_names = ec_col_names, na=c("", "NaN"))
+# counter <<- counter + 1
+# co2_lagged_cov <- tibble( n = seq(-100, 100, 20), 
+#                        lagged_cov = map_dbl(n, ~lagged_cov(ec$W, ec$CO2, .x)))
+# 
+# ggplot(co2_lagged_cov, aes( x= n , y = lagged_cov)) +
+#   geom_line() +
+#   geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red") +
+#     labs(title=ec$TIMESTAMP[1])
+```
+
