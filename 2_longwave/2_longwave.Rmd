@@ -17,40 +17,38 @@ editor_options:
     wrap: 72
 ---
 
+# Longwave radiation
+
 ```{r, include=F}
 library(tidyverse)
 library(lubridate)
 library(tsibble)
 library(scales)
+library(here)
 ```
 \newpage
-# Motivation
+## Motivation
 
 
 All bodies with a temperature above the absolute zero emit electromagnetic radiation.
 The wavelength and intensity of this radiation depends on the temperature of the body.
 Within the temperature range of the earth surface, the emitted radiation has a wavelength between 3 and 100 mm and it is defined as longwave.
 
-Emitting longwave radiation is the only way for the plant to cool itself down, making it a crucial aspect in maintaining a steady climate.
+Emitting longwave radiation is the only way for the plant to cool itself down, making it a crucial component in the overall energy balance of the earth.
 In fact climate change is caused by green house emissions, which capture part of the longwave radiation emitted by the planet surface and then re-emit in back towards the Earth.
 This results in a bigger amount of radiation reaching the earth surface, hence increasing its temperature ^[J. E. Harries, The greenhouse Earth: A view from space, 1996
 https://doi.org/10.1002/qj.49712253202].
 
-Contrary to shortwave radiation, that is zero at night, longwave is a constantly present in terrestrial ecosystem.
-Especially during night the longwave radiation can have a substantial impact on the surface temperature.
+Longwave is a constantly present in terrestrial ecosystem for all the day. Energy loss in form of longwave radiation can have a substantial impact on the surface temperature, especially during night.
 
-# Background
+## Background
 
-Longwave radiation has an important impact on the research and
-measurement of the global energy balance. Longwave radiation implements
-big changes energy budget when modeling land surface. The measurement of
-longwave radiation is more complicated in comparison with shortwave
-radiation. This fact is due to the variables that are measured to
-estimate shortwave radiation such as vapor pressure and air temperature.
-Thus, longwave radiation estimation will differ according to the
-atmospheric emissivity and temperature ^[Sridhar, V., & Elliott, R. L. (2002). On the development of a simple
-downwelling longwave radiation scheme. Agricultural and Forest
-Meteorology, 112(3-4), 237-243.].
+
+Longwave radiation is electromagnetic radiation with a wavelength between 3 and 100 mm, hence it falls into the Infrared section of the spectrum.
+
+The overall amount of radiation emitted by a body depends on its temperature following the Stefan-Boltzmann law [bonan_climate_2019].
+
+
 
 The changes produced in the radiation balance of the atmosphere are
 induced by global warming as an adaptation to this process. These
@@ -102,7 +100,7 @@ $$E = \varepsilon \sigma T^4$$
 
 $$R_{lw} = (1-\varepsilon)*A$$
 
- - *Longwace radiation balance:*
+ - *Longwave radiation balance:*
 
 $$Q_{lw} =  A-E-R_{lw}$$
 
@@ -117,11 +115,18 @@ $$Rn = (S_{incoming} - S_{outgoing}+(L_{incoming}) - L_{outgoing})$$
 Also, emissivity can be defined as (1-$\tau$) and thus, the fraction of longwave radiation that is reaching the earth surface and being bounced back, can be explained (Bonan,2019). 
 ^[Bonan, G. (2019). *Climate change and terrestrial ecosystem modeling*. Cambridge University Press.].
 
-# Sensors and measuring principle
+as reference?  Sridhar & Elliott. (2002)
 
-Longwave radiation is an important flux to understand how climatology
-works in earth and understand processes such as global. Thus, some
-instruments have been developed as well to measure longwave radiation.
+## Sensors and measuring principle
+
+The measurement of longwave radiation is more complicated in comparison with shortwave
+radiation. This fact is due to the variables that are measured to
+estimate shortwave radiation such as vapor pressure and air temperature.
+Thus, longwave radiation estimation will differ according to the
+atmospheric emissivity and temperature ^[Sridhar, V., & Elliott, R. L. (2002). On the development of a simple
+downwelling longwave radiation scheme. Agricultural and Forest
+Meteorology, 112(3-4), 237-243.].
+
 
 The pyrgeometer measures this type of radiation from the atmosphere and
 the Earth's surface. This device is based on a sensitive range with
@@ -148,10 +153,10 @@ These last two are similar instruments, but the last one (NR-Lite2) only
 gives one value as output in shape of voltage which is proportional to
 the Rn or net radiation.
 
-# Analysis
+## Analysis
 
 ```{r, message=FALSE}
-rad <- read_csv("../Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv")
+rad <- read_csv(here("Data_lectures/2_Longwave_radiation/LW_SW_TSoil_BotGarten.csv"))
 names(rad) <- c("datetime", "t_sens", "sw_in", "sw_out", "lw_in_sens", "lw_out_sens", "t_soil")
 ```
 
@@ -204,7 +209,7 @@ rad_d <- rad %>%
   summarize_all(mean, na.rm = TRUE)
 ```
 \newpage
-## Surface and Sky temperature
+### Surface and Sky temperature
 
 *Derive the sky and surface temperature from the longwave radiation
 components. How do they differ and why? Discuss! During which periods of
@@ -263,7 +268,7 @@ low surface temperature. Conversely, on sunny days (eg. 7th of July) the
 surface temperature is higher, but the sky temperature is low.
 
 \newpage
-## Net radiation
+### Net radiation
 
 *Calculate the net radiation over the meadow in the forest botanical
 garden and plot the four components. How do the four components change
@@ -306,7 +311,7 @@ march, that is probably explained by clear skies but still low air
 temperature.
 
 \newpage
-## Change emissity in the sensor
+### Change emissity in the sensor
 
 In the field activity we tried to measure the temperature of the surface
 by using different emissivity settings in the sensor and see how that

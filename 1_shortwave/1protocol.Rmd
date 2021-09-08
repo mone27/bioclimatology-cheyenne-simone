@@ -16,9 +16,11 @@ editor_options:
     wrap: sentence
 ---
 
+# Shortwave radiation
+
 \newpage
 
-## 1.1 Motivation
+## Motivation
 
 The sun is the energy source of the radiation incoming to Earth.
 This radiation is classified as short-wave or long-wave radiation.
@@ -34,7 +36,7 @@ With same effect, the canopy on earth helps to maintain a good temperature enoug
     Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy.
     *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371
 
-## 1.2 Background
+## Background
 
 Electromagnetic radiation is measured in joules ($J$).
 The radiant energy measured per time is a flux and its units are $J/s = W$ (watts).
@@ -67,15 +69,15 @@ Transmissivity is the fraction of energy going through a medium without experime
 
 In addition, shortwave is formed by different components:
 
-Direct solar radiation \$ (S) \$: is the incident radiant flux density falling into a horizontal surface which will differ with the position of the sun.
+Direct solar radiation $ (S) $: is the incident radiant flux density falling into a horizontal surface which will differ with the position of the sun.
 
-Diffuse solar radiation \$(D) \$: the incident radiant flux density arriving to the surface of earth after scattered and reflected during its way by other molecules as well present in air.
+Diffuse solar radiation $(D) $: the incident radiant flux density arriving to the surface of earth after scattered and reflected during its way by other molecules as well present in air.
 
-Global radiation \$ (G) \$: is the sum of diffuse and direct solar radiation.
+Global radiation $ (G) $: is the sum of diffuse and direct solar radiation.
 
 $$ G = S + D $$
 
-## 1.3 Sensors and measuring principle
+## Sensors and measuring principle
 
 Shortwave solar radiation can be measured with the use of different instruments developed specifically for this.
 Following, some of them will be introduced and some of them will be used in the practicals of the course.
@@ -101,21 +103,22 @@ These instruments are known as:
 -   Campbell-Stokes sunshine autograph: as its name shows, this instrument is used to measure the sunshine duration of days.
     A circumference made of glass burns a paper where the sunshine time period is register.
 
-## 1.4 Analysis
+## Analysis
 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
+library(here)
 
 
 shortwavedata <- read.csv(
-  "Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv",
+  here("1_shortwave/Exercise_1st_lect/Shortwave_incoming_diffuse_W_m-2_Hainich_2020.csv"),
   header = TRUE, sep = ",")
 shortwavedata$Date<- as.POSIXct(shortwavedata$Date, format= "%Y-%m-%d %H:%M")
 
 calib_factorsdata <- read.csv(
-  "Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv")
+  here("1_shortwave/Exercise_1st_lect/Shortwave_incoming_outgoing_belowcanopy_mV_Hainich_2020.csv"))
 calib_factorsdata$Date<- as.POSIXct(calib_factorsdata$Date
                                     , format= "%Y-%m-%d %H:%M")
 
@@ -136,7 +139,7 @@ sw_b <- drop_na(sw_b)
 
 \newpage
 
-### 1.4.1
+### Albedo
 
 *Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
 
@@ -161,7 +164,7 @@ ggplot(sw_b_d, aes(x=Date))+
 
 \newpage
 
-### 1.4.2
+### Absorption coefficient
 
 *How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?*
 
@@ -177,7 +180,7 @@ ggplot(sw_b_d, aes(x=Date))+
 
 \newpage
 
-### 1.4.3
+### Transmission coefficient
 
 *Derive the transmission coefficient of the forest. How does the transmission coefficient vary throughout the day and the year? Discuss potential reasons.*
 
@@ -219,7 +222,7 @@ ggplot(aes(x=Date))+
 
 \newpage
 
-### 1.4.4
+### Diffuse and direct radiation
 
 *Calculate the direct solar radiation and plot global, diffuse and direct solar radiation. Compare a clear sky and a cloudy day. What's the difference and why?*
 

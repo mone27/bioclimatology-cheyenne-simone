@@ -16,27 +16,60 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 \newpage
-# Motivation
+# Evapotranspiration
 
-In this chapter we will focus on evapotranspiration. This term is well known in many environmental study fields, but, what is the most precise definition given to this term?
+## Motivation
 
-Evapotranspiration (ET) is referred according to the relationship of two other factors, such as the soil water evaporation and plant transpiration. The actual evapotranspiration is the one that is measured from these two factors mentioned before, considering changes and not ideal conditions in the meteorological conditions and the type of soil (Labedzki, 2011). In contrast, potential evapotranspiration is that one that occurs with ideal conditions such as abundance of water storage and meteorological conditions. Some differences between potantial and actual evapotranspiration are the infiltration capacity of soil, possible diseases, pH of soil and its fertility. 
+In this chapter we will focus on evapotranspiration. This term is well
+known in many environmental study fields, but, what is the most precise
+definition given to this term?
 
-Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD–Books on Demand.
+Evapotranspiration (ET) is referred according to the relationship of two
+other factors, such as the soil water evaporation and plant
+transpiration. The actual evapotranspiration is the one that is measured
+from these two factors mentioned before, considering changes and not
+ideal conditions in the meteorological conditions and the type of soil
+(Labedzki, 2011). In contrast, potential evapotranspiration is that one
+that occurs with ideal conditions such as abundance of water storage and
+meteorological conditions. Some differences between potantial and actual
+evapotranspiration are the infiltration capacity of soil, possible
+diseases, pH of soil and its fertility.
+
+Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD--Books on Demand.
+
+## Background
 
 
-
-# Background
-
-# Sensors and measuring principle
-
-There are many different ways to measure evapotranspiration,some are more accessible than others and depending the scenario some of them might be more suitable than others. The measurement of evapotranspiration claims quantitative data, and this data can be measure by water evaporation and the energy flux between soil and atmosphere.Rana and Kater (2000), describes the different ways to measure evapotranspiration based on hydrological, micrometeorological, plant physiology and analytical approaches. The first one includes: soil water balance and weighing lysimeters, the second one, energy balance and Bowen ration, aerodynamic method and eddy covariance. Plant physiology approach is based on sap flow method or chambers system. Last one, analytical approach are based on Penman-Montheith model. After this one, empirical approach can also be taken into account, such as process based on crop coefficient approach and soil water balance modeling [@articlenoauthor_rana_nodate]. 
+## Sensors and measuring principle
 
 
-Some of the most frequently measurements applied to evapotranspiration and that we have seeing in class are:
+There are many different ways to measure evapotranspiration,some are
+more accessible than others and depending the scenario some of them
+might be more suitable than others. The measurement of
+evapotranspiration claims quantitative data, and this data can be
+measure by water evaporation and the energy flux between soil and
+atmosphere.Rana and Kater (2000), describes the different ways to
+measure evapotranspiration based on hydrological, micrometeorological,
+plant physiology and analytical approaches. The first one includes: soil
+water balance and weighing lysimeters, the second one, energy balance
+and Bowen ration, aerodynamic method and eddy covariance. Plant
+physiology approach is based on sap flow method or chambers system. Last
+one, analytical approach are based on Penman-Montheith model. After this
+one, empirical approach can also be taken into account, such as process
+based on crop coefficient approach and soil water balance modeling
+[@articlenoauthor_rana_nodate].
 
-Evaporation pan: a circle panel where precipitation is accumulated and then, with the help of a measuring bucket and based on a scale, water los can be measured by the difference between the potential evapotranspiration of 2 days. Some of the erros are the expansion of water, wrong reading, limited recording for a volume of water and the possibility of the oasis effect to occur. 
+Some of the most frequently measurements applied to evapotranspiration
+and that we have seeing in class are:
+
+Evaporation pan: a circle panel where precipitation is accumulated and
+then, with the help of a measuring bucket and based on a scale, water
+los can be measured by the difference between the potential
+evapotranspiration of 2 days. Some of the erros are the expansion of
+water, wrong reading, limited recording for a volume of water and the
+possibility of the oasis effect to occur.
 
 Piché evaporimeter
 
@@ -44,26 +77,22 @@ Weighing lysimeter
 
 Bowen ratio energy balance method
 
+## Analysis
 
 
+### Potential evapotranspiration
 
-
-
-# Analysis
-## Potential evapotranspiration
 
 ```{r}
 library(tidyverse)
 library(lubridate)
 library(scales)
 theme_set(theme_bw())
-et <- read_csv(
-  "../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv",
-  locale = locale(decimal_mark = ",")) %>% 
-et <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv" , locale = locale(decimal_mark = ",")) %>% 
+et <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv") , locale = locale(decimal_mark = ",")) %>% 
   rename(loc_id = replicates)
-meteo <- read_csv("../Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv")
+meteo <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv"))
 ```
+
 ```{r}
 et
 ```
@@ -81,6 +110,7 @@ calc_pet <- function(T_air, Rn, G){
 }
 
 ```
+
 ```{r}
 #adding R_n and G to the 
 meteo_d <- meteo %>% 
@@ -90,7 +120,6 @@ meteo_d <- meteo %>%
   group_by(Date = floor_date(Date, "day")) %>% 
   summarise(PET = mean(PET))
 ```
-
 
 ```{r, pet, fig.cap="Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021."}
 (meteo_d <- meteo %>% 
@@ -107,9 +136,12 @@ ggplot(meteo_d, aes(Date, PET)) +
   geom_line() +
   labs(y="PET (mm)")
 ```
-During the four days of measurement the potential ET has been estimated using the Priestley-Taylor (Figure \@ref(fig:pet)).
-The daily potential ET varies a significantly during the 4 days, ranging from 6mm to almost 12 mm.
-This reflects the change in the weather conditions, as the day 1 and 4 were cloudy and colder. 
+
+During the four days of measurement the potential ET has been estimated
+using the Priestley-Taylor (Figure \@ref(fig:pet)). The daily potential
+ET varies a significantly during the 4 days, ranging from 6mm to almost
+12 mm. This reflects the change in the weather conditions, as the day 1
+and 4 were cloudy and colder.
 
 ```{r}
 et <- et %>% 
@@ -119,13 +151,15 @@ et <- et %>%
   )
 ```
 
-
 TODO
 
-## Piché evaporimeters
+### Piché evaporimeters
 
-The potential ET has been measured using Piché evaporimeters in different locations around the botanical garden.
-The measures values have been compared between the different locations and the evaporation pan
+The potential ET has been measured using Piché evaporimeters in
+different locations around the botanical garden. The measures values
+have been compared between the different locations and the evaporation
+pan
+
 ```{r}
 pich_d <- 3 #cm
 pich_inn_d <- 0.9 # cm
@@ -147,7 +181,6 @@ et <- et %>%
   )
 ```
 
-
 ```{r, pan-pich, fig.cap="Comparison between evapotranspiration pan and the "}
 spot_cols <- hue_pal()(4)
 names(spot_cols) <- unique(et$spot)
@@ -160,15 +193,12 @@ ggplot(aes(date)) +
   labs(y="Potential evapotranspiration (mm)", colour="Location")
 ```
 
-
-
 ```{r}
 et %>% 
   drop_na() %>% 
 ggplot(aes(spot, et_pich, col=spot)) +
   geom_boxplot()
 ```
-
 
 ```{r}
 et %>% 
@@ -179,12 +209,7 @@ et %>%
   labs(y= "Evapotranspiration (mm)")
 ```
 
-
 ```{r}
 et
 ```
-
-
-# References
-
 

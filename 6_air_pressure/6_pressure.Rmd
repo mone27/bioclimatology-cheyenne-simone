@@ -24,7 +24,9 @@ editor_options:
 
 \newpage
 
-# Motivation
+# Air Pressure
+
+## Motivation
 
 Air pressure is commonly known by experts as a factor that is constantly
 regulating the characteristics of natural systems. Changes in cloud
@@ -46,7 +48,7 @@ center of the planet from all directions, to all the earth component.
 More concretely, the troposphere (the coolest layer to earth surface)
 has the higher amount of air.
 
-# Background
+## Background
 
 There are different processes that affects air pressure. The main one is
 the reduction of air pressure with the increase of elevation. The
@@ -99,7 +101,7 @@ following equation can be used to estimate the relationship:
 
 $$T_{boil} = 100 + 2.804 \times 10^{-2} (p-1013.25hPa) - 1.384 \times 10^{-5} (p-1013.25hPa)^2$$
 
-# Sensors and measuring principle
+## Sensors and measuring principle
 
 There are several sensors to measure the air pressure and each of these
 use different measurement principles.
@@ -134,15 +136,16 @@ use different measurement principles.
 
 \newpage
 
-# Analysis
+## Analysis
 
 ```{r, include=F}
 library(tidyverse)
+library(here)
 theme_set(theme_bw())
 ```
 
 ```{r, message = F}
-pres <- read_csv("../Data_lectures/6_Air_pressure/TA_RH_PA_Leinefelde.csv")
+pres <- read_csv(here("Data_lectures/6_Air_pressure/TA_RH_PA_Leinefelde.csv"))
 ```
 
 ```{r}
@@ -244,6 +247,4 @@ temperature is lower at a higher elevation.
 The pressure value of the Brocken mountain was calculated using the
 formula mentioned in the theory background, adding correction for
 temperature decrease. $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
-
-# References
 

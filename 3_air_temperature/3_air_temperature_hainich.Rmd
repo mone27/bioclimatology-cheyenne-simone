@@ -6,6 +6,12 @@ output: html_notebook
 ```{r}
 library(tidyverse)
 library(lubridate)
+
+between_dates <- function(x, start, end){
+  between(x, 
+          parse_date_time(start, c("dm", "dmy")),
+          parse_date_time(end, c("dm", "dmy")))
+}
 ```
 
 
@@ -14,39 +20,134 @@ Indicate time periods when the two temperatures differ and explain
 why.
 
 ```{r}
-df <- read_csv("../Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.csv")
+temp <- read_csv("../Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.csv") %>% 
+  mutate(diff_canopy = TA_44m - TA_2m) %>% 
+  drop_na()
+```
+
+```{r}
+temp_d <- temp %>% 
+  group_by(Date = round_date(Date, "1d")) %>% 
+  summarize_all(mean)
 ```
 
 
+```{r}
+temp %>% 
+  filter(Date > as_date("2019-06-1") & Date < as_date("2019-06-7"))  %>%
+  ggplot(aes(x=Date)) +
+  geom_line(aes(y=TA_44m, colour="44m")) +
+  geom_line(aes(y=TA_2m, colour="2m"))
+```
 
 ```{r}
-ggplot(df, aes(x=Date)) +
+ggplot(temp, aes(x=Date)) +
+  geom_line(aes(y=TA_44m, colour="44m")) +
+  geom_line(aes(y=TA_2m, colour="2m"))
+```
+
+
+```{r}
+temp_d %>% 
+  ggplot(aes(Date, temp, col = height)) +
   geom_line(aes(y=TA_44m, colour="44m")) +
   geom_line(aes(y=TA_2m, colour="2m"))
 ```
 ```{r}
-df$diff_t <- df$TA_44m - df$TA_2m
+temp %>% 
+  group_by(Date = round_date(Date, "6h")) %>% 
+  summarize_all(mean) %>% 
+  ggplot(aes(Date)) +
+  geom_line(aes(y=diff_canopy, colour="diff"))
+```
+```{r}
+temp %>% 
+  filter(month(Date) == 4) %>% 
+  group_by(Date = round_date(Date, "30min")) %>% 
+  summarize_all(mean) %>% 
+  pivot_longer(c(-Date, -Tsoil_002m_degC), names_to = "h", values_to = "temp") %>% 
+  ggplot(aes(Date, temp, col = h)) +
+  geom_line()
+```
+```{r}
+temp %>% 
+  filter(between_dates(Date, "15 April 2019", "")) %>% 
+  group_by(Date = round_date(Date, "30min")) %>% 
+  summarize_all(mean) %>% 
+  pivot_longer(c(TA_2m, TA_44m, diff_canopy), names_to = "h", values_to = "temp") %>% 
+  ggplot(aes(Date, temp, col = h)) +
+  geom_line()
+```
+
+
+
+```{r}
+temp %>% 
+  pivot_longer(c(-Date, -Tsoil_002m_degC), names_to = "h", values_to = "temp") %>% 
+  ggplot(aes(h, temp, col = h)) +
+  geom_boxplot()
+```
+
+
+
+
+```{r}
+temp$diff_t <- temp$TA_44m - temp$TA_2m
 ```
 
 ```{r}
-ggplot(df, aes(x=Date)) +
+ggplot(temp, aes(x=Date)) +
   geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
 ```
 ```{r}
-df %>%
+temp %>%
   filter(Date > as_date("2019-06-1") & Date < as_date("2019-07-1"))  %>%
   ggplot(aes(x=Date)) +
   geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
 ```
 
 ```{r}
-df %>%
+temp %>%
   filter(Date > as_date("2019-06-1") & Date < as_date("2019-06-8"))  %>%
   ggplot(aes(x=Date)) +
   geom_line(aes(y=diff_t, colour="diff 44 2 m")) 
 ```
+
+
 Plot air temperature in 2 m height and soil temperature in 0.02 m
 depth. Explain the characteristics of the time series?
+
+
+```{r}
+temp %>% 
+  #filter(between_dates(Date, "15 April 2019", "")) %>% 
+  group_by(Date = round_date(Date, "1d")) %>% 
+  summarize_all(mean) %>% 
+  pivot_longer(c(TA_2m, Tsoil_002m_degC), names_to = "h", values_to = "temp") %>% 
+  ggplot(aes(Date, temp, col = h)) +
+  geom_line()
+```
+
+```{r}
+temp %>% 
+  filter(between_dates(Date, "1 May 2019", "30 May 2019")) %>% 
+  group_by(Date = round_date(Date, "1h")) %>% 
+  summarize_all(mean) %>% 
+  pivot_longer(c(TA_2m, Tsoil_002m_degC), names_to = "h", values_to = "temp") %>% 
+  ggplot(aes(Date, temp, col = h)) +
+  geom_line()
+```
+
+```{r}
+temp %>% 
+  group_by(Date = round_date(Date, "1d")) %>% 
+  summarize_all(mean) %>% 
+  ggplot(aes(TA_2m, Tsoil_002m_degC)) +
+  geom_point() +
+  geom_smooth(method = "lm", se=F)
+```
+
+
 
 Estimate the response time of a mercury thermometer (soil
 temperature) and an Assmann thermometer (air temperature).

@@ -22,8 +22,9 @@ editor_options:
 ---
 
 \newpage
+# Soil physics
 
-# Motivation
+## Motivation
 
 During the previous protocols, it has been described that earth is formed by different atmospheric layers.
 Well, is not only about these but also about the ones that are found more at the land surface.
@@ -39,7 +40,7 @@ however at high temperature it is often limited by moisture [@orchard_relationsh
 
 In this report, the main focus is partly on soil heat storage and hydrology processes.
 
-# Background
+## Background
 
 Soil temperature and soil water content are both factors that alters soil respiration rate. Soil respiration is a process measured in $\frac{\mu mol} {m^2 s}$ of $CO_2$ [@courtois_spatial_2018].
 Soil is an important environmental variable partly in charge of an efficient ecosystem activity.
@@ -69,9 +70,9 @@ $C_v$: heat capacity in $(J m^{-3}K{-1})$
 The temperature along soil profile varies between day and night. During the day, the temperature of soil is higher than the temperature of air and thus starts to get more equally until night is set. After this occurs, the temperature of air is higher than the soil temperature, with this peak being more distinguish during midnight. 
 
 
-# Sensors and measuring principle
+## Sensors and measuring principle
 
-## Soil hydrology
+### Soil hydrology
 
 For soil hydrology the main variable that are measured are the water content and the water potential.
 
@@ -82,7 +83,7 @@ The dielectric constant is estimated by measuring the travel time of a electroma
 Water potential is measured using **tensionmeters**, that consists in a porous ceramic cap connect with a water reservoir under vacuum.
 The has a low water potential therefore attracts the water from the tensiometer, until an equilibrium point is reached. By measuring the, negative, pressure in the water filled tube the water potential of the soil can be estimated.
 
-## Soil temperature
+### Soil temperature
  
  Soil temperature is measured by **temperature sensors** placed a different depth.
  Usually a resistance sensor, like the *Pt100*, is used as long term stability is more important than high frequency response rate.
@@ -93,7 +94,7 @@ Soil heat flux can also be directly measured using **heat flux plates**, which u
  
 \newpage
 
-# Analysis
+## Analysis
 ```{r, message=F}
 library(tidyverse)
 library(lubridate)
@@ -101,7 +102,7 @@ library(FME)
 library(kableExtra)
 ```
 ```{r, message=F}
-soil <- read_csv("../Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv")
+soil <- read_csv(here::here("Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv"))
 ```
 
 
@@ -152,7 +153,7 @@ The two fluxes are overall comparable, with the exception of the early morning, 
 \newpage
 
 
-### Influence of Cv and K
+#### Influence of Cv and K
 ```{r}
 calc_soil_flux <- function(pars){
   d_T_space <- soil$Tsoil_5cm_degC - soil$Tsoil_10cm_degC
@@ -182,7 +183,7 @@ A local sensitivity analysis [@soetaert_inverse_2010] was made for the two param
 
 \newpage
 
-## Soil temperature profile
+### Soil temperature profile
 
 *Visualize the soil temperature in different depths and discuss the temporal variability across one day.*
 
@@ -210,4 +211,3 @@ Then during the day, the highest temperature is reached (12-13 °C) around 6pm w
 
 \newpage
 
-# References

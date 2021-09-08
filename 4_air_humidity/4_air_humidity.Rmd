@@ -4,12 +4,22 @@ output:
   html_notebook: default
   pdf_document: default
 ---
+# Air humidity
+
+## Motivation
+
+## Background
+
+## Sensors and measuring principle
+
+## Analysis
 
 ```{r, include=FALSE}
 library(tidyverse)
 library(lubridate)
 library(patchwork)
 library(scales)
+library(here)
 ```
 
 ## Formulas
@@ -22,7 +32,7 @@ $$e_s = 6.1078 e^{\frac{17.08085 T_a} {234.175°C + T_a}}$$
 $$T_d = \frac{(len(e_a) - ln(6.1708))\cdot234.17} {17.08085 - ln(e_a) + ln(6.1078)}$$
 
 ```{r, message=FALSE}
-hum <- read_csv("../Data_lectures/4_air_humidity/04_Air_humidity_TA_RH_PA_NP_Hainich.csv")
+hum <- read_csv(here("Data_lectures/4_air_humidity/04_Air_humidity_TA_RH_PA_NP_Hainich.csv"))
 names(hum) <- c("datetime", "ta", "rh", "pa")
 ```
 
@@ -203,7 +213,6 @@ In this case they do not differ to much?
 ### When is the vapour pressure deficit and equivalent temperature largest?
 ```{r}
 (hum_d %>%
-   gather("type", "val", t_eq, t) %>%
   ggplot(aes(datetime, t_eq, colour="Equivalent\ntemperature"))+
     geom_line() +
     labs(y="Equivalent temperature (°C)", colour="")  +
@@ -219,7 +228,7 @@ In this case they do not differ to much?
 
 During summer is the largest vapour pressure deficit and equivalent temperature values.
 
-# Field data
+### Field data
 
 ```{r}
 spin <- tibble(
