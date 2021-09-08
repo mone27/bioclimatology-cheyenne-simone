@@ -1,0 +1,5 @@
+bookdown::pdf_book:
+  title: "Bioclimatology report"
+  references: bioclimatology-references.bib
+  includes:
+    in_header: preamble.tex

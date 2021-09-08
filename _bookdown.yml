@@ -1,0 +1,15 @@
+book_filename: "Bioclimatology reports"
+rmd_files:
+ - "index.Rmd"
+ - "1_shortwave/1protocol.Rmd"
+ - "2_longwave/2_longwave.Rmd"
+ - "3_air_temperature/3_air_temperature.Rmd"
+ - "4_air_humidity/4_air_humidity.Rmd"
+ - "5_precipitation/5_precipitation.Rmd"
+ - "6_air_pressure/6_pressure.Rmd"
+ - "7_wind/7_wind.Rmd"
+ - "8_soil_physics/8_soil_physics.Rmd"
+ - "9_ET/9_ET.Rmd"
+ - "10_turbulent_fluxes/10_turbulent_fluxes.Rmd"
+ - '11_Eddy_Covariance/11_Eddy_Covariance.Rmd'
+delete_merged_file: true
