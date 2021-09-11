@@ -12,11 +12,18 @@ output:
 header-includes:
   - \fancyhead[L]{Shortwave radiation}
 ---
+\newpage
 # Precipitation
 
 ## Motivation
 
+Water is needed to plants for photosynthesis and transpiration.
+
+
+
 ## Background
+
+The precipitation is measured in millimeter (mm)
 
 ## Sensors and measuring principle
 

@@ -70,7 +70,7 @@ The soil temperature daily variation is limited compared to the air one (Figure 
 In general the air and the soil temperature follow a similar pattern, but the daily oscillation in the air temperature are bigger (Figure \@ref(fig:temp-scatter)).
 
 
-```{r}
+```{r, warning=FALSE}
 temp <- read_csv(here("Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.csv")) %>% 
   mutate(diff_canopy = TA_44m - TA_2m) %>% 
   drop_na()

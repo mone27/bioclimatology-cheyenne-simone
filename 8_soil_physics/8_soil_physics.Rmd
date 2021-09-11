@@ -143,7 +143,7 @@ soil %>%
   ggplot(aes(Date, soil_flux)) +
   geom_line(aes(col="Calculated"))+
   geom_line(aes(y=SoilHeatFlux_Wm2, col="Measured")) +
-  scale_colour_manual(values = c("black", "#F8766D")) +
+  scale_colour_colorblind() +
   labs(y="Soil heat flux (W/m2)", col="Type heat flux")
 ```
 
@@ -201,7 +201,8 @@ soil_g %>%
   filter(yday(Date)==126) %>% 
   ggplot(aes(Date, T_soil, col=as_factor(depth))) +
   geom_line() +
-  labs(y="Temperature soil (°C)", colour="Depth (cm)")
+  labs(y="Temperature soil (°C)", colour="Depth (cm)") +
+  scale_color_colorblind()
 ```
 
 The Figure \@ref(fig:profile) shows the soil temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast.

@@ -166,7 +166,8 @@ ggplot()+
   labs(y="Wind direction", colour="") +
   scale_y_continuous(breaks = c(0, 90, 180, 270, 360),
                      labels = c('N (0°)', 'E (90°)', 'S(180°)',
-                                'W(270°)', 'N (360°)'), limits = c(-10, 370))
+                                'W(270°)', 'N (360°)'), limits = c(-10, 370)) +
+  scale_color_colorblind()
 ```
 
 The wind speed and direction have been averaged at 1 hour. Vectorial average has been used for wind direction.
@@ -234,7 +235,8 @@ wind_g_1d %>%
   geom_boxplot(aes(windspeed, height, group=height)) +
   geom_line(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"),  data = wind_prof) +
   geom_point(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"), data = wind_prof) +
-  labs(x="Windspeed (m/s)", y="Height (m)", colour="")
+  labs(x="Windspeed [m/s]", y="Height [m]", colour="") +
+  scale_color_colorblind()
 ```
 
 Wind speed depends on height, increasing with height following a logarithmic profile (Figure \@ref(fig:ws-boxplot)).

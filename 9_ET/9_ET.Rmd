@@ -83,7 +83,7 @@ Bowen ratio energy balance method
 ### Potential evapotranspiration
 
 
-```{r}
+```{r, warning=FALSE}
 library(tidyverse)
 library(lubridate)
 library(scales)
@@ -93,13 +93,7 @@ et <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_
 meteo <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv"))
 ```
 
-```{r}
-et
-```
 
-```{r}
-meteo
-```
 
 ```{r}
 #' Potential evapotranspiration using Priestley-Taylor equation
@@ -190,26 +184,26 @@ ggplot(aes(date)) +
   geom_line(aes(y=et_pan, col="Pan"), size=.7) +
   geom_jitter(aes(y = et_pich, col=spot), width = .06, height = 0) +
   scale_color_manual(values=c(spot_cols, "Pan" = "black" )) +
-  labs(y="Potential evapotranspiration (mm)", colour="Location")
+  labs(y="Potential evapotranspiration (mm)", colour="Location") +
+  scale_color_colorblind()
 ```
 
-```{r}
+```{r, fig.cap="Piche evaporimeters"}
 et %>% 
   drop_na() %>% 
 ggplot(aes(spot, et_pich, col=spot)) +
-  geom_boxplot()
+  geom_boxplot() +
+  scale_color_colorblind()
 ```
 
-```{r}
+```{r, fig.cap="Pan vs potential evapo"}
 et %>% 
   left_join(meteo_d, by = c("date"= "Date")) %>% 
   gather("type", "et", et_pan, PET) %>% 
   ggplot(aes(date, et, col=type)) +
   geom_line() +
-  labs(y= "Evapotranspiration (mm)")
+  labs(y= "Evapotranspiration (mm)") +
+  scale_color_colorblind()
 ```
 
-```{r}
-et
-```
 
