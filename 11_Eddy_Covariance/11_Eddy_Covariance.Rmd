@@ -130,13 +130,13 @@ process_ec_file(ec_test_path)
 ```
 
 
-```{r}
+```{r, message=FALSE, results=F}
 files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
-cache_rds(with_progress({
+with_progress({
   # this is to have a progress bar
   p <- progressor(along=files)
-  ec_flux <- map_dfr(files, process_ec_file, p)
-}))
+  ec_flux <- cache_rds(map_dfr(files, process_ec_file, p))
+})
 ```
 
 ```{r}
@@ -376,14 +376,14 @@ process_ec_file_corr <- function(file, p=function(){}) {
 
 
 ### Calc fluxes after correction
-```{r}
+```{r, message=FALSE, results=F}
 files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
 
-cache_rds(with_progress({
+with_progress({
   # this is to have a progress bar
   p <- progressor(along=files)
-  ec_flux_corr <- map_dfr(files, process_ec_file_corr, p)
-}))
+  ec_flux_corr <- cache_rds(map_dfr(files, process_ec_file_corr, p))
+})
 ```
 
 
@@ -404,22 +404,4 @@ ggplot() +
   scale_color_colorblind()
 ```
 
-## tester
-
-```{r}
-# counter <- 1
-```
-
-
-```{r}
-# ec <- read_csv(files[counter], skip=4, col_names = ec_col_names, na=c("", "NaN"))
-# counter <<- counter + 1
-# co2_lagged_cov <- tibble( n = seq(-100, 100, 20), 
-#                        lagged_cov = map_dbl(n, ~lagged_cov(ec$W, ec$CO2, .x)))
-# 
-# ggplot(co2_lagged_cov, aes( x= n , y = lagged_cov)) +
-#   geom_line() +
-#   geom_vline(xintercept = max_n_cov(ec$W, ec$CO2), col="red") +
-#     labs(title=ec$TIMESTAMP[1])
-```
 
