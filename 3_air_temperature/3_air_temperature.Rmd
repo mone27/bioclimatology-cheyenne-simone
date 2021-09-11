@@ -83,6 +83,7 @@ temp %>%
   ggplot(aes( x = Date)) +
   geom_line(aes(y=Tsoil_002m_degC, col="Soil 2 cm")) +
   geom_line(aes(y=TA_2m, col="Air 2 meters")) +
+  scale_color_colorblind() +
   labs(y = "Temperature (°C)", col="Heigth")
 ```
 
@@ -92,6 +93,7 @@ temp %>%
   ggplot(aes(Date)) +
   geom_line(aes(y=Tsoil_002m_degC, col="Soil 2 cm")) +
   geom_line(aes(y=TA_2m, col="Air 2 meters")) +
+  scale_color_colorblind() +
   labs(y = "Temperature (°C)", col="Heigth")
 ```
 
@@ -101,6 +103,7 @@ temp %>%
   summarize_all(mean) %>% 
   ggplot(aes(TA_2m, Tsoil_002m_degC)) +
   geom_point() +
+  scale_color_colorblind() +
   geom_smooth(method = "lm", se=F)
 ```
 

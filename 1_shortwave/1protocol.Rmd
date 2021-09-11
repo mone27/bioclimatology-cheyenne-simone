@@ -16,9 +16,9 @@ editor_options:
     wrap: sentence
 ---
 
+\newpage
 # Shortwave radiation
 
-\newpage
 
 ## Motivation
 
@@ -28,13 +28,8 @@ Besides,short-wave radiation is considered to be more intensive than long-wave d
 Albedo is defined as the fraction of radiation being returned from the material of the surface, for example, it can be land, canopy or water.
 Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere.
 This article describes the albedo of earth in relation with the variations in temperature of planet.
-Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide, this will be reflected at some point on the partial cooling of earth due to more particles scattering the sun radiation [^1].
+Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide, this will be reflected at some point on the partial cooling of earth due to more particles scattering the sun radiation [@perkins_core_2019].
 With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
-
-[^1]: Perkins, S.
-    (2019).
-    Core Concept: Albedo is a simple concept that plays complicated roles in climate and astronomy.
-    *Proceedings of the National Academy of Sciences*, *116*(51), 25369-25371
 
 ## Background
 
@@ -83,11 +78,11 @@ Shortwave solar radiation can be measured with the use of different instruments 
 Following, some of them will be introduced and some of them will be used in the practicals of the course.
 These instruments are known as:
 
--   Pyrheliometer: allows the direct measurement of shorwave radiation coming directly from the sun.
+-   **Pyrheliometer**: allows the direct measurement of shorwave radiation coming directly from the sun.
     It is disposed by a sensor that reacts at wavelengths around 0.2-4 micrometers.
     It needs to be set close to a sun tracker, this way it is possible to follow the movement of sun along day.
 
--   Pyranometer: this instrument measured the global shortwave radiation including the reflected shortwave radiation.
+-   **Pyranometer**: this instrument measured the global shortwave radiation including the reflected shortwave radiation.
     It is based on the use of a sensor sensible at same wavelengths as the pyrheliometer, although in this case it must be parallel to the soil surface (horizontal).
     If the shortwave reflected needs to be measure, the sensor would need to be turn downwards facing the surface.
     In the case of Pyranometer, it is also used to measure diffused shortwave radiation.
@@ -96,11 +91,11 @@ These instruments are known as:
     Normally these voltages are small, this is why the application of a thermopile.
     In order to decrease the error that winds and air temperature may induce, a glass is situated around the detector.
 
--   PAR Quantum sensor: this sensor is used for the measurement of Photosynthetically Active Radiation, it is more sensitive than the other with a range between 400-700 nm.
+-   **PAR Quantum sensor**: this sensor is used for the measurement of Photosynthetically Active Radiation, it is more sensitive than the other with a range between 400-700 nm.
     It is formed by a filter on top of the sensor and a photodiode semiconductor made out of silicon.
     This way, incident light makes react the semiconductor, current measured in voltages with the used of resistance.
 
--   Campbell-Stokes sunshine autograph: as its name shows, this instrument is used to measure the sunshine duration of days.
+-   **Campbell-Stokes sunshine autograph**: this instrument is used to measure the sunshine duration of days.
     A circumference made of glass burns a paper where the sunshine time period is register.
 
 ## Analysis
