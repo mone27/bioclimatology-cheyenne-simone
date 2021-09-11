@@ -1,4 +1,8 @@
-
+---
+title: "Bioclimatology"
+bibliography: "bioclimatology-references.bib"
+site: bookdown::bookdown_site
+---
 Bioclimatology report
 
 ```{r setup, include=F}
