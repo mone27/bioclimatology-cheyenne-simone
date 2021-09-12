@@ -13,11 +13,16 @@ output: html_notebook
 
 ## Analisys
 
-```{r}
+```{r, include=FALSE}
 library(fs)
 library(lubridate)
 library(progressr)
 library(xfun)
+library(naniar)
+library(kableExtra)
+library(cowplot)
+
+theme_set(theme_bw())
 
 handlers(
   handler_progress(
@@ -35,7 +40,8 @@ ec_col_names <-  c("TIMESTAMP","TIMESTAMPS","u","v","w","T_sonic",
 
 
 ```{r, message=F}
-ec_test_path <- here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat")
+ec_test_path <- here::here("Data_lectures/10_Turbulent_fluxes_II/
+                           10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat")
 ec <-read_csv(ec_test_path, skip=4, col_names = ec_col_names, na=c("", "NaN"))
 
 files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
@@ -44,13 +50,8 @@ files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_
 # need to convert integer and remove the last element
 idx <- seq(1, 48, length.out=10) %>% as.integer() %>% head(-1)
 ec_samples_paths <- files[idx]
-ec_samples <- map(ec_samples_paths, ~read_csv(.x, skip=4, col_names = ec_col_names, na=c("", "NaN")))
-```
-
-
-
-```{r}
-head(ec)
+ec_samples <- map(ec_samples_paths,
+                  ~read_csv(.x, skip=4, col_names = ec_col_names, na=c("", "NaN")))
 ```
 
 
@@ -73,6 +74,8 @@ process_ec_file <- function(file, p=function(){}) {
 ```{r}
 # Molar Gas Constant
 R <- 8.314 # J/mol K
+
+#' Calcuates all fluxes
 calc_fluxes <- function(ec){
   # celsius to kelvin
   T_a <- ec$T_CELL + 273.15
@@ -120,14 +123,7 @@ calc_rho_m <- function(p, T_a){
   mean( p / (R * T_a), na.rm=T)
 }
 ```
-```{r}
-calc_fluxes(ec)
-```
 
-
-```{r}
-process_ec_file(ec_test_path)
-```
 
 
 ```{r, message=FALSE, results=F}
@@ -138,14 +134,18 @@ with_progress({
   ec_flux <- cache_rds(map_dfr(files, process_ec_file, p))
 })
 ```
+\newpage
+### Flux corrections
 
-```{r}
-ggplot(ec_flux, aes(time, co2)) +
-  geom_hline(yintercept = 0, linetype=2) +
-  geom_line()
-```
+In order to properly measure the fluxes several corrections are necessary. In the subsequent section the main correction are analyzed individually and tested then the fluxes with the corrections are calculated.
+
 
 #### Remove implausible values
+
+The first step is not a proper correction, but a plausibility check. All the readings outside sensible ranges are discarded.
+To test this function some artificial data has been generated and as seen in Table \@ref(tab:impl-values) the out of range values were correctly removed.
+
+
 ```{r}
 remove_implausible <- function(ec){
   ec %>% 
@@ -154,11 +154,10 @@ remove_implausible <- function(ec){
     replace_with_na_at("T_sonic", ~!between(.x, -15, 50)) %>% 
     replace_with_na_at("h2o", ~!between(.x, 2, 30))
 }
-
 ```
 
 
-```{r}
+```{r, impl-values}
 # manually checking with some fake data that the function is working as intended
 tibble(
   u = seq (-15, 15, length.out=20),
@@ -168,14 +167,21 @@ tibble(
   T_sonic = seq (-20, 80, length.out=20),
   h2o = seq (0, 40, length.out=20),
 ) %>% 
-  remove_implausible()
+  remove_implausible() %>% 
+  kbl(booktabs=T, caption="Example dataset after removal of implausible values") %>% 
+  kable_styling(latex_options = "hold_position")
 ```
 
+\newpage
 #### Despike
+
+Despiking consists in removing spikes in the data, which are moment where suddenly very different.
+Here the spikes are considered as the values where the different from the mean is bigger than a certain number of times (default 5) the standard deviation. This is a simple despiking method and the number should be properly tuned for each measured variable according to their characteristics and sensor behavior.
+
+Figure \@ref(fig:despike) shows how this despiking filter works. The limit of 1.8 standard deviations is artificially low and used in the plot only as an example of the deskipe. All the values that are outside the range mean +/- 1.8 standard deviation are removed and replaced with NAs.
+
 ```{r}
-# data is a vector, need to find a better name
 despike <- function(data, times_sd = 5) {
-  #browser()
   mean_data <- mean(data, na.rm=T)
   sd_data <- sd(data, na.rm=T)
   spikes <- abs(data - mean_data) > (times_sd*sd_data)
@@ -185,38 +191,29 @@ despike <- function(data, times_sd = 5) {
 }
 ```
 
-```{r}
-co2_mean <- mean(ec$co2, na.rm=T)
-co2_sd <- sd(ec$co2, na.rm=T)
-ggplot(ec, aes(TIMESTAMP, co2)) +
-  geom_line() +
-  geom_hline(yintercept = co2_mean) +
-  geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2)
-```
-
-```{r}
+```{r despike, warning=FALSE, fig.cap="Example of how despiking work with articially low factor of +/- 1.8 standard deviations. Grey sections is the data that was removed. Dashed lines are the mean +/- 1.8 standard deviation. Each subplot is a different time of the day. Data from Hainich national park 31st May 2021."}
 plots_despike <- map(ec_samples, function(ec){
   co2_mean <- mean(ec$co2, na.rm=T)
-  co2_sd <- sd(ec$CO2, na.rm=T) * 1.8
+  co2_sd <- sd(ec$co2, na.rm=T) * 1.8
   ggplot(ec, aes(TIMESTAMP, despike(co2, times_sd = 1.8))) +
     geom_hline(yintercept = co2_mean) +
     geom_hline(yintercept = c(co2_mean + co2_sd, co2_mean - co2_sd), linetype=2) +
-    geom_line(aes(y = co2), color="grey70") +
-    geom_line() #can make this blue or another color
+    geom_line(aes(y = co2), color="grey60") +
+    geom_line(colour = colorblind_pal()(2)[2]) +
+    labs(x="Time", y="CO2 [umol mol-1]")
 })
 
-do.call(plot_grid, c(plots_despike[1:4], nrow=2))
-```
-```{r}
-plots_despike[1]
+do.call(plot_grid, c(plots_despike[c(1, 3, 6, 9)], nrow=2))
 ```
 
+\newpage
 
+#### Rotations
 
+The reference system of the wind is rotated in order to have a zero mean in the vertical wind component and a zero mean wind direction.
 
-### Rotations
+Table \@ref(tab:wind-rot), shows the values of the wind means before and after the double rotation, which works correctly.
 
-rotations are for later 
 ```{r}
 # wind should have 3 columns u, v, and w
 double_rotation <- function(wind){
@@ -250,26 +247,17 @@ double_rotation <- function(wind){
 
 ```
 
-```{r}
+```{r wind-rot}
 rot_wind <- double_rotation(ec)
-cat("mean vertical component:", mean(rot_wind$w))
-cat("\nmean wind direction:", mean(atan2(rot_wind$v, rot_wind$u)))
+
+tribble(~"Variable", ~"Before correction", ~"After correction",
+  "Mean vertical wind", mean(ec$w), mean(rot_wind$w),
+  "Mean wind direction", mean(atan2(ec$v, ec$u)), mean(atan2(rot_wind$v, rot_wind$u))) %>% 
+  kbl(booktabs = T, caption="Mean wind speed and direction before and after double rotation") %>% 
+  kable_styling(latex_options = "hold_position")
 ```
 
-```{r}
-ccf_vals <- ccf(ec$w,ec$co2, type = "correlation",lag.max = 700, plot=F, na.action = na.exclude) 
-
-ccf_vals$lag[which.max(ccf_vals$acf)]
-```
-```{r}
-ccf(ec$w,ec$co2, type = "correlation",lag.max = 700, na.action = na.exclude) 
-```
-Here NAs are removed before on individual vectors and not in couples. This can lead to shift between them
-```{r}
-ccf(na.omit(ec$w),na.omit(ec$co2), type = "correlation",lag.max = 700) 
-```
-
-
+\newpage
 
 ### Time lag correction
 
@@ -303,58 +291,51 @@ time_lag_correction <- function(w, gas){
 }
 ```
 
-```{r}
-tibble( n = seq(-700, 700, 5), 
-      lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$co2, .x))) %>% 
-  ggplot(aes( x= n , y = lagged_cor)) +
-    geom_line() +
-    geom_vline(xintercept = max_n_cor(ec$w, ec$co2), col="red")
-    #labs(title=ec$TIMESTAMP[1])
-```
-
-```{r}
-max_n_cor_ccf <- function(w, gas){
-  ccf_vals <- ccf(w,gas, type = "correlation",lag.max = 700, plot=F, na.action = na.exclude) 
-  return(ccf_vals$lag[which.max(ccf_vals$acf)])
-}
-```
-
-
-
-```{r}
+```{r cor-co2, fig.cap="Time lag optimization for CO2. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021."}
 plots_lag <- map(ec_samples, function(ec){
   co2_lagged_cor <- tibble( n = seq(-700, 700, 5), 
                          lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$co2, .x)))
-
+  max_cor <- max_n_cor(ec$w, ec$co2) %>% round(0)
   ggplot(co2_lagged_cor, aes( x= n , y = lagged_cor)) +
     geom_line() +
-    geom_vline(xintercept = max_n_cor(ec$w, ec$co2), col="red") +
-    geom_vline(xintercept = max_n_cor_ccf(ec$w, ec$co2), col="blue") +
-    labs(title=ec$TIMESTAMP[1])
+    geom_vline(xintercept = max_cor, col=colorblind_pal()(2)[2]) +
+    labs(title=ec$TIMESTAMP[1] %>% 
+           format("%Hh%M") %>% 
+           paste(" cor:", max_cor), y="correl", x="time lag")
 })
 
 do.call(plot_grid, c(plots_lag))
 ```
 
-```{r}
+\newpage
+
+```{r cor-tsonic, fig.cap="Time lag optimization for sonic temperature. The expected time lag optimization is 0 as the sonic temperature is measured by the anemometer itself. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021."}
 plots_lag <- map(ec_samples, function(ec){
   co2_lagged_cor <- tibble( n = seq(-700, 700, 5), 
                          lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$T_sonic, .x)))
-
+  max_cor <- max_n_cor(ec$w, ec$T_sonic) %>% round(0)
   ggplot(co2_lagged_cor, aes( x= n , y = lagged_cor)) +
     geom_line() +
-    geom_vline(xintercept = max_n_cor(ec$w, ec$T_sonic), col="red") +
-    geom_vline(xintercept = max_n_cor_ccf(ec$w, ec$T_sonic), col="blue") +
-    labs(title=ec$TIMESTAMP[1])
+    geom_vline(xintercept = max_cor, col=colorblind_pal()(2)[2]) +
+    labs(title=ec$TIMESTAMP[1] %>% 
+           format("%Hh%M") %>% 
+           paste(" cor:", max_cor), y="correl", x="time lag")
 })
 
 do.call(plot_grid, c(plots_lag))
 ```
+
+\newpage
+
+### Corrected fluxes
+
+
+All the correction are applied to the fluxes calculations and each variable is analyzed.
 
 ```{r}
 apply_corr <- function(ec){
   ec %>% 
-    #remove_implausible() %>% # this takes ages like 11 s
+    #remove_implausible() %>% # this step is very slow and not really needed.
     mutate(across(c(u, v, w, co2, h2o, T_sonic), despike)) %>% 
     double_rotation %>%
     mutate(across(c(co2, h2o), ~time_lag_correction(w, .x)))
@@ -374,8 +355,6 @@ process_ec_file_corr <- function(file, p=function(){}) {
 ```
 
 
-
-### Calc fluxes after correction
 ```{r, message=FALSE, results=F}
 files <- dir_ls(here::here("Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/"))
 
@@ -386,22 +365,82 @@ with_progress({
 })
 ```
 
+\newpage
+
+#### CO2 fluxes
 
 
-```{r}
+The latent heat flux (Figure \@ref(fig:co2-flux))
+
+```{r co2-flux, fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, co2, col="raw"), data = ec_flux) +
   geom_line(aes(time, co2, col="corrected"), data= ec_flux_corr) +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x="Time", y="CO2 flux [umol m-2 s-1]", col="Flux")
 ```
 
-```{r}
+\newpage
+
+#### H2O fluxes        
+
+
+The latent heat flux (Figure \@ref(fig:h2o-flux))
+
+```{r h2o-flux, fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, h2o, col="raw"), data = ec_flux) +
   geom_line(aes(time, h2o, col="corrected"), data= ec_flux_corr) +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x="Time", y="H2O flux [umol m-2 s-1]", col="Flux")
 ```
 
 
+\newpage
+
+#### Sensible heat fluxes        
+
+
+The latent heat flux (Figure \@ref(fig:sens-heat-flux))
+
+```{r sens-heat-flux,  fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+ggplot() +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line(aes(time, sens_heat, col="raw"), data = ec_flux) +
+  geom_line(aes(time, sens_heat, col="corrected"), data= ec_flux_corr) +
+  scale_color_colorblind() +
+  labs(x="Time", y="Sensible heat flux [W m-2]", col="Flux")
+```
+
+\newpage
+
+#### Latent heat fluxes      
+
+
+The latent heat flux (Figure \@ref(fig:lat-heat-flux))
+
+```{r lat-heat-flux,  fig.cap="Latent heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+ggplot() +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line(aes(time, lat_heat, col="raw"), data = ec_flux) +
+  geom_line(aes(time, lat_heat, col="corrected"), data= ec_flux_corr) +
+  scale_color_colorblind() +
+  labs(x="Time", y="Latent heat flux [W m-2]", col="Flux")
+```
+
+\newpage
+
+#### Momentum fluxes         
+
+The latent heat flux (Figure \@ref(fig:mom-flux))
+
+```{r mom-flux,  fig.cap="Momentum fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+ggplot() +
+  geom_hline(yintercept = 0, linetype=2) +
+  geom_line(aes(time, sens_heat, col="raw"), data = ec_flux) +
+  geom_line(aes(time, sens_heat, col="corrected"), data= ec_flux_corr) +
+  scale_color_colorblind() +
+  labs(x="Time", y="Sensible heat flux [kg m-1 s-2]", col="Flux")
+```
