@@ -8,36 +8,96 @@ output:
 
 ## Motivation
 
+Water goes from the ecosystems to the atmosphere under the form of water vapour.
+
+Latent heat
+
+connected to water availability
+
 ## Background
 
-## Sensors and measuring principle
+The behaviors of water in the air are complex and depending on the contest the are different variable used to measure the air humidity and connected parameters.
+They are:
 
-## Analysis
 
-```{r, include=FALSE}
-library(tidyverse)
-library(lubridate)
-library(patchwork)
-library(scales)
-library(here)
-```
+ - Actual vapor pressure [hPa]
+ 
+ The actual vapour pressure is the partial vapour pressure of water, which is the fraction of the total air pressure that is due to water moleculs. It is defined using the ideal gas law as following:
+It is one of the most common measurement of the air water content. 
 
-## Formulas
+$$e_a = \rho_v R_v T$$
 
--Saturation vapour pressure [hPa]
+
+- Saturation vapour pressure [hPa]
+
+The amount of water vapour that can be contained into the air is limited, the saturation vapour pressure is the water vapour pressure that a saturated air would have. It is strongly dependent on temperature increasing exponentially with incrase in temperatures. It can be estimated with the following formula:
 
 $$e_s = 6.1078 e^{\frac{17.08085 T_a} {234.175°C + T_a}}$$
--Dewpoint temperature [ºC]
+
+- Relative humidity [%]
+
+The relative humidity is ratio between the actual vapur pressure and the saturation vapour pressure expressed in percentage.
+It is a common way of describing humidity.
+
+- Dewpoint temperature [ºC]
+
+The dew point temperature is the temperature when the water in the air would start condensing. This happens when the actual vapur pressure becomes equal to the saturation one.
+It can be estimated with the following formula:
 
 $$T_d = \frac{(len(e_a) - ln(6.1708))\cdot234.17} {17.08085 - ln(e_a) + ln(6.1078)}$$
 
-```{r, message=FALSE}
-hum <- read_csv(here("Data_lectures/4_air_humidity/04_Air_humidity_TA_RH_PA_NP_Hainich.csv"))
-names(hum) <- c("datetime", "ta", "rh", "pa")
-```
+- Absolute humidity [$Kg m^{-3}$]
+
+The absolute humidity represent the actual mass of water present in a unit volume of air. It is defined as the density of water vapour:
+
+$$\rho_v = \frac{e_a}{(R_v T)}$$
+
+- Specific humidity [$Kg / Kg$]
+
+The specific humidity (q) is the ratio between the density of water vapour of the density of moist air
+
+$$q = \frac{e_a}{p-0.378 e_a}$$
+
+- Mixing ratio [$Kg / Kg$]
+
+The specific humidity (q) is the ratio between the density of water vapour of the density of dry air
+
+$$q = \frac{e_a}{p-0.378 e_a}$$
+
+- Vapor pressure deficit [hPa]
+
+The vaopur pressure deficit is the difference between the saturation vapour pressure and the actual vapour pressure. It indicates which is the amount of water that can still be added in the atmosphere before reaching saturation.
+
+- Equivalent temperature [°C]
+
+The equivalent temperature is the temperature that would be reached if the energy release by the condesation of all water is used to heat up the air mass. Therefore by definition it is always higher than the actual air temperature.
+
+Can be estimated with the following formula:
+
+$$T_{eq} = T_a + \frac{L_v}{C_p} m \approx T_a + 2.5 m $$
+ where:
+ 
+ - $L_v$ = $2.5  10^6 J Kg^{-1}$ is the latent heat of vaporization
+ - $C_p$ = $1004.6 J Kg^{-1} K^{1}$ is the specific heat capacity of dry air
+ - $m$ = mixing ratio in $g / Kg$
+ - $T_a$ = air temperature in K
+
+## Sensors and measuring principle
+
+There are numerous principles used to measure variable related to air humidity.
+
+ - **Condensation**. The condensation hygrometers measure the dew point temperature, when the moisture in the air start to condense.
+    - **Dew point mirror**. There is a mirror that is cooled down to the dew point temperature. Small droplets on the mirror are then detected on the top of the mirror by a reflected LED light.
+    - **LiCL dew point hygrometer**. The is a solution of LiCl, that is hygroscopic and conducts electricity only when wet this connected to an heating system is used to estimate the dew point temperature.
+- **Hygroscopic**. The basic principle is the change of dimension due to the change in humidity. The most common sensor to use this principles is the **Hair hygrometer**, that uses a series of proerply treated horse hairs connected to a spring that change their size in relation to the relative humidity.
+- **Spectroscopric**. Different gas absorbs certain infrared light at specific wavelengths and water vapour has it own characteristic asbosption bands. **Infrared gas analyzer** measure the amount of IR light that is absorbed by the air on some specific wavelenght and can use this information to estimate the number of water molecules. This sensors are used in Eddy Covariance setups and can provide high frequency and high accuracy measurements.
+- **Capacitative**. Some material change their dialectic properties with the change of humidity, hence by measuring the change of capacity it is possible to estimate the air humidity. This sensors are fast, accurate and have long-term stability making them common. 
+- **Psychrometric**. The humidity is estimated by measuring the normal air temperature and the air temperature of a wet themometer. The wet thermometer will have a lower temperature as water evaporation substract energy. The amount of evaporation is related to the air humidity, hence by knowing the entity of the temperature reduction of the wet thermometer it is possible to calculate the air humidity. This principle is used by the Assmann and spinning Psychrometers, which allows to have an analong measurement of air humidity with a good accuracy.
 
 
-Calculate and visualize: 
+## Analysis
+
+Using the field meaurement of relavitve humidity, air temperature and air pressure from the Hainich national park the following variables were calculated and used of the subsquent analysis. 
 
 1. Actual vapor pressure 
 2. Saturation vapor pressure 
@@ -47,6 +107,21 @@ Calculate and visualize:
 6. Mixing ratio 
 7. Vapor pressure deficit 
 8. Equivalent temperature 
+
+```{r, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(patchwork)
+library(scales)
+library(here)
+library(ggthemes)
+```
+
+
+```{r, message=FALSE}
+hum <- read_csv(here("Data_lectures/4_air_humidity/04_Air_humidity_TA_RH_PA_NP_Hainich.csv"))
+names(hum) <- c("datetime", "ta", "rh", "pa")
+```
 
 ```{r}
 c2k <- function(c) c + 273.15
@@ -84,9 +159,8 @@ remove_x_axis <- function() theme(
 ```
 
 
-
 ```{r}
-# add all the variables to the humidty dataframe
+# add all the variables to the humidity dataframe
 hum <- mutate(hum,
     es = get_es(ta),
     ea = rh2ea(rh, es),
@@ -107,128 +181,131 @@ hum_w <- hum %>%
   summarize_all(mean, na.rm=T)
 ```
 
-```{r}
-head(hum)
-```
 
+\newpage
 
+### Actual and saturation vapour pressure
 
-### How and when do actual and saturation vapour pressure differ?
+The saturation vapour pressure and the actual vapour pressure are compared during one year (Figure \@ref(fig:es-ea-year)) and during one week time period (Figure \@ref(fig:es-ea-week)).
 
-```{r}
+```{r, es-ea-year, fig.cap="Comparison between saturation vapour pressure and actual vapour pressure for one year. Data averaged on a day. Data from Hainich national park 2018."}
 hum_d %>%
-  gather("type", "val", es, ea) %>%
+  gather("type", "val", es, ea, factor_key = T) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()+
-  labs(title="Saturation vs Actual vapour pressure", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure", subtitle = "1 year, daily average") +
-  scale_color_discrete(labels=c("actual", "saturation"))
+  labs(x="Time", y="Vapour pressure [hPa]", colour="Vapur pressure") +
+  scale_color_colorblind(labels=c("saturation", "actual")) +
+  theme(legend.position = "top")
 ```
-```{r}
+
+\newpage
+
+```{r, es-ea-week, fig.cap="Comparison between saturation vapour pressure and actual vapour pressure for the first week of the year. Data averaged over 30 minutes. Data from Hainich national park 2018."}
 hum %>%
   filter(week(datetime) ==1) %>%
-  gather("type", "val", es, ea) %>%
+  gather("type", "val", es, ea, factor_key = T) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()+
-  labs(title="Saturation vs Actual vapour pressure. 1 week", x="Datetime", y="Vapour pressure (hPa)", colour="Vapur pressure") +
-  scale_color_discrete(labels=c("actual", "saturation"))
+    labs(x="Time", y="Vapour pressure [hPa]", colour="Vapur pressure") +
+    scale_color_colorblind(labels=c("saturation", "actual"))
 ```
 
+During the year the saturation water vapour ranges from around 5 hPa in the winter to more than 40 hPa in August.
+There is a clear yearly cycle that is directly connected to the change of air temperature.
 
-During the year, the biggest differences between actual and saturation vapour pressure can be found after summer period, normally due to the first incoming rains with the beginning of autumn. 
+The variation in actual vapour pressure are much smaller, but still show a seasonal pattern.
 
+During the summer there is the biggest different between the actual and the saturation vapour pressure, due to the the high saturation vapour pressure but relatively limited water availability. Conversely during winter the saturation vapour pressure is much smaller and the water availability higher resulting in a small pressure deficit.
 
+\newpage
 
-### Compare air and dew point temperature, how do they differ and how are they related to relative humidity?
+### Air and dew point temperature
 
-```{r}
+```{r, air-dew, fig.cap="Comparison of air temperature with dew point temperature (fig. a), showed in relation with the relative humidity (fig. b). Data averaged over one day. Data from Hainich national park 2018.", warning=FALSE}
 p_td <- hum_d %>%
   gather("type", "val", ta, td) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line()+
-  labs(title="Temperature air vs temperature dew point", x="Datetime", y="Temperature (°C)", colour="Temperature", subtitle = "1 year, daily average") +
-  scale_color_discrete(labels=c("air", "dew point")) +
+  labs(x="Datetime", y="Temperature [°C]", colour="Temperature") +
+  scale_color_colorblind(labels=c("air", "dew point")) +
   remove_x_axis()
 
 p_rh <- ggplot(hum_d, aes(datetime, rh))+
     geom_area() +
   geom_hline(yintercept = 100, linetype="dashed", size=.2) +
-  labs(y="Relative Humidity (%)", x="Datetime")
+  labs(y="Rel. humidity [%]", x="Time")
 
 p_td / p_rh +
-  plot_layout(heights = c(4, 2))
+  plot_layout(heights = c(4, 2)) +
+  plot_annotation(tag_levels = "a")
 ```
 
 
+With the analysis of the graphs, a direct relationship between a lower amount of relative humidity during summer and wider difference between the graphs of Tair and Tdewpoint can be concluded. This means, that the temperature of air reaches its peak in summer due to less relative humidity in air, while at the beginning and end of the year more similarities can be seen.
 
 
-With the analysis of the graphs, a direct relationship between a lower amount of relative humidity during summer and wider difference between the graphs of Tair and Tdewpoint can be concluded. This means, that the temperature of air reaches its peak in summer due to less relative humidity in air, while at the beggining and end of the year more similarities can be seen.
-
-
-
+\newpage
 ### When is absolute humidity largest and why?
 
-```{r}
+```{r, abs-hum, fig.cap="Absolute humidity over the year. Data averaged over one day. Data from Hainich national park 2018."}
 hum_d %>%
   ggplot(aes(datetime, abs_hum))+
-    geom_line(colour=hue_pal()(1)) +
-  labs(title="Absolute humidity", x="Datetime", y="Absolute humidity (g/kg)", subtitle = "1 year, daily average")
+    geom_line() +
+  labs(x="Datetime", y="Absolute humidity [g/kg]")
 ```
 
+\newpage
 
+### Mixing ratio and specific humidity
 
-### Compare mixing ratio and specific humidity, how and why do they differ?
-
-```{r}
-( hum %>%
+```{r, mix-ratio-spec-hum, fig.cap="Comparison of mixing ratio and specific humidity (fig. a). Data averaged at 30 minutes from last week of July 2018. Data from Hainich national park."}
+hum %>%
   filter(week(datetime) ==30) %>%
   gather("type", "val", spec_hum, mix_ratio) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line() +
-  labs(y="Water content (Kg/Kg)", colour="", title="Mixing ratio vs specific humidity") +
-    scale_color_discrete(labels=c("Mixing ratio", "Specific humidity")) +
-    remove_x_axis()) +
-
-  (hum %>%
-  filter(week(datetime) ==30) %>%
-  ggplot(aes(datetime, rh))+
-    geom_area() +
-  geom_hline(yintercept = 100, linetype="dashed", size=.2) +
-  labs(y="Relative Humidity (%)", x="Datetime") ) +
-
-  plot_layout(heights = c(4, 1))
+    labs(y="Water content [Kg/Kg]", colour="") +
+    scale_color_colorblind(labels=c("Mixing ratio", "Specific humidity"))
 ```
 
-```{r}
-cor(hum$mix_ratio-hum$spec_hum, hum$rh, "pairwise.complete.obs")
-```
+\newpage
 
+### Vapour pressure deficit
 
-
-In this case they do not differ to much?
-
-
-
-
-
-### When is the vapour pressure deficit and equivalent temperature largest?
-```{r}
-(hum_d %>%
-  ggplot(aes(datetime, t_eq, colour="Equivalent\ntemperature"))+
-    geom_line() +
-    labs(y="Equivalent temperature (°C)", colour="")  +
-    remove_x_axis()
-) /
-(hum_d %>%
-   ggplot(aes(datetime, p_def, colour="Pressure\ndeficit")) +
+```{r, p-def, fig.cap="Vapur pressure deficit over the year. Data averaged over one day. Data from Hainich national park 2018."}
+hum_d %>%
+   ggplot(aes(datetime, p_def)) +
    geom_line() +
-   scale_colour_brewer(palette = "Set2") +
-   labs(y="Pressure deficit (hPa)", colour="")
- )
+   labs(y="Pressure deficit [hPa]")
+```
+\newpage
+
+```{r, p-def-week, fig.cap="Vapur pressure deficit over one week. Data averaged over 30 minuts. Data from Hainich national park last week july 2018."}
+hum %>%
+  filter(week(datetime) == 30) %>% 
+   ggplot(aes(datetime, p_def)) +
+   geom_line() +
+   labs(y="Pressure deficit [hPa]")
 ```
 
 During summer is the largest vapour pressure deficit and equivalent temperature values.
 
-### Field data
+\newpage
+
+### Equivalent temperature
+
+```{r, eq-temp, fig.cap="Equivalent temperature compared to air temperature. Data averaged over one day. Data from Hainich national park 2018."}
+hum_d %>%
+  gather("type", "val", t_eq, ta, factor_key = T) %>%
+  ggplot(aes(datetime, val, colour=type))+
+    geom_line() +
+    scale_color_colorblind(labels = c("Equivalent", "Air")) +
+    labs(y="Temperature [°C]", x="Time", colour="Temperature")
+```
+
+\newpage
+
+### Field humidity measurements
 
 ```{r}
 spin <- tibble(
@@ -251,8 +328,6 @@ spin <- spin %>%
     t_eq = get_t_eq(t_dry, mix_ratio)
     
   )
-
-spin
 ```
 
 ```{r}
@@ -274,31 +349,23 @@ assman1 <- tibble(
     t_eq = get_t_eq(t_dry, mix_ratio)
     
   )
-assman1
 ```
 
 
-```{r}
-assman1 <- tibble(
-  t_dry = 16.6,
-  t_wet = 11.0,
-  p = 977.2
-) %>%
-  mutate(
-    es_wet = get_es(t_wet),
-    es = get_es(t_dry), 
-    ea = get_ea_dry(es_wet, t_dry, t_wet, p),
-    td = get_td(ea),
-    rh = get_rh(ea, es),
-    abs_hum = get_abs_hum(ea, t_dry),
-    spec_hum = get_spec_hum(ea, p),
-    mix_ratio = get_mix_ratio(ea, p),
-    p_def = get_p_def(ea, es),
-    t_eq = get_t_eq(t_dry, mix_ratio)
-    
-  )
-assman1
+The humidity has been measured in the field using two different psychrometer, an assmann and an spinning one.
+The measures of the the instruments are compared in table \@ref(tab:spin-assmann).
+The two measures are comparable but show a significant difference (~20 % in relative humidity).
+This is incongruence is probably due to inaccuracies in the measurement and possibly different conditions between the measures. Moreover the thermometers of the spinning psychrometer are not protected from the direct sunlight which can compromise the reading, in fact the dry temperature is higher and the wet temperature is lower in the spinning psychrometer.
+
+
+```{r, spin-assmann}
+spin %>% 
+  bind_rows(assman1) %>% 
+  t() %>% 
+  kableExtra::kbl(col.names = c("Spinning", "Assmann"), digits = 1, caption = "Comparioson of measurement between spinning and assman psychrometer", booktabs=T) 
 ```
+
+
 
 
 

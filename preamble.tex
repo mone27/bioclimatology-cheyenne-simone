@@ -1,10 +1,16 @@
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-
-\fancyhead[R]{Experimental bioclimatology}
-\fancyfoot[L]{Cheyenne Rueda \& Simone Massaro}
-\fancyfoot[R]{\thepage}
-\fancyfoot[C]{}
-
 % for having figures and tables staying in order
 \usepackage{float}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{%
+\markboth{\thesection.\ #1}{}}
+\fancyhead[R]{Experimental bioclimatology}
+%\fancehead[L]{\leftmark}
+\fancyfoot[L]{Simone Massaro \& Cheyenne Rueda}
+\fancyfoot[R]{\thepage}
+\fancyfoot[C]{}
+\usepackage[labelfont=bf]{caption}
+
+
+
