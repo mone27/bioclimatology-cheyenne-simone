@@ -83,31 +83,33 @@ co2flux <- co2 %>%
     # for plotting
     chamber = as.factor(chamber)
   )
-
-co2flux
 ```
 
 
-```{r}
+```{r, fig.cap=""}
 ggplot(co2flux, aes(time, co2, col=chamber)) +
-  geom_line()
+  geom_line() +
+  scale_color_colorblind()
 ```
 
 ```{r}
 ggplot(co2flux, aes(time, dt/dc, col=chamber)) +
-  geom_line()
+  geom_line() +
+  scale_color_colorblind()
 ```
 ```{r}
 ggplot(co2flux, aes(time, Fc, col=chamber)) +
-  geom_line()
+  geom_line() +
+  scale_color_colorblind()
 ```
 
 ```{r}
-ggplot(co2flux, aes(chamber, Fc)) +
-  geom_boxplot()
+ggplot(co2flux, aes(chamber, Fc, col=chamber)) +
+  geom_boxplot() +
+  scale_color_colorblind()
 ```
 
-
+\newpage
 
 
 

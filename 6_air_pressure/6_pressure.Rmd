@@ -195,7 +195,7 @@ pres %>%
 ggplot(aes(Date, pressure, color=location)) +
   geom_line() +
 labs(y="Pressure (hPa)") +
-scale_colour_discrete(name="Location", labels = c("Sea level", "Leinefelde"))
+scale_colour_colorblind(name="Location", labels = c("Sea level", "Leinefelde"))
 ```
 
 The air pressure at sea level is always higher than at Leinefelde
