@@ -88,9 +88,15 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 theme_set(theme_bw())
-et <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv") , locale = locale(decimal_mark = ",")) %>% 
+
+et <- "Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv" %>% 
+  here::here() %>% 
+  read_csv(locale = locale(decimal_mark = ",")) %>% 
   rename(loc_id = replicates)
-meteo <- read_csv(here::here("Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv"))
+meteo <- 
+  "Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv" %>% 
+  here::here() %>% 
+  read_csv()
 ```
 
 
@@ -119,7 +125,9 @@ meteo_d <- meteo %>%
 (meteo_d <- meteo %>% 
   group_by(Date = floor_date(Date, "day")) %>% 
   # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
-  summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864, G_d = mean(`GroundHeatflux_Wm-2`) * 0.0864, T_air = mean(TA_degC)) %>% 
+  summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864,
+            G_d = mean(`GroundHeatflux_Wm-2`) * 0.0864,
+            T_air = mean(TA_degC)) %>% 
   mutate(
     PET = calc_pet(T_air, R_n_d, G_d)
   ))

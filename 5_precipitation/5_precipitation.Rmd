@@ -14,6 +14,7 @@ header-includes:
 ---
 
 \newpage
+\newpage
 
 # Precipitation
 
@@ -114,12 +115,13 @@ sites <- sites %>%
         x="Latitude [deg]")) +
   scale_color_colorblind()
 ```
-## Evapotranspiration index
 
-*Precipitation is used as a driver/source for evapotranspiration. The ratio between
+### Evapotranspiration index
+
+Precipitation is used as a driver/source for evapotranspiration. The ratio between
 evapotranspiration and precipitation (evapotranspiration index = ET_idx) is a very useful indicator
 how precipitation is used by plants during photosynthesis. Calculate the ET_idx for all sites and
-visualise it. What surprised you and how do the ET_idx differs across ecosystems? Discuss.*
+visualise it. What surprised you and how do the ET_idx differs across ecosystems? Discuss.
 
 
 ```{r et-index, fig.cap="Evapotranspiration index"}

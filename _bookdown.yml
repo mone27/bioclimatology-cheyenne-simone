@@ -1,4 +1,4 @@
-book_filename: "Bioclimatology reports"
+book_filename: "Bioclimatology-reports"
 rmd_files:
  - "index.Rmd"
  - "1_shortwave/1protocol.Rmd"

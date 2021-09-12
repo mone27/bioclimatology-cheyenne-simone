@@ -24,28 +24,28 @@ In particular those are the most common fluxes that are measured:
  - **CO2**. Carbon dioxide is one of the main variable measured in EC setups, as it is the main outcome of photosynthesis  and respiration. The flux can be calculated as:
 
 $$F_{co2} = \rho_m\overline{w`c_{co2}`}$$
-where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the CO2 concentration.
-The measurement unit is $\mu mol / m^2s$.
+   where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the CO2 concentration.
+   The measurement unit is $\mu mol / m^2s$.
 
 - **H2O**. The amount of water vapour exchanged can be The flux can be calculated as:
 
 $$E_{h2o} = \rho_m\overline{w`c_{h2o}`}$$
-where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the H2O concentration.
-The measurement unit is $\mu mol / m^2s$.
+   where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the H2O concentration.
+   The measurement unit is $\mu mol / m^2s$.
 
 - **Latent heat**. Latent heat flux is the amount of energy that is transferred due the evaporation of water vapour. In fact it is directly connected to the H2O flux and can be calculated as:
 
 $$LE = \lambda E$$
-where $\lambda$ is the latent heat of vaporization of water and $E$ is the H2O flux.
+   where $\lambda$ is the latent heat of vaporization of water and $E$ is the H2O flux.
 
-The unit of measurement is $W/m^2$
+   The unit of measurement is $W/m^2$
 
 - **Sensible heat**. The sensible heat flux is the amount of energy exchanged as heat. The heat energy can be transferred through the movement of air masses.
 The flux can be calculated as:
 
 $$H = \rho_a c_p \overline{w`T`}$$
-where $\rho_a$ is the air density, $c_p$ is the air heat capacity and $\overline{w`T`}$ the covariance between the vertical wind speed (w) and T the air temperature.
-The measurement unit is $W / m^2$.
+   where $\rho_a$ is the air density, $c_p$ is the air heat capacity and $\overline{w`T`}$ the covariance between the vertical wind speed (w) and T the air temperature.
+   The measurement unit is $W / m^2$.
 
 - **Momentum**. Momentum is the amount of mechanical energy that is transferred from the wind to the ecosystem. It is by definition negative, as the the ecosystem cannot transfer mechanical energy to the wind. 
 
@@ -296,7 +296,8 @@ double_rotation <- function(wind){
       v_1 = -u*sin(theta) + v*cos(theta),
       w_1 = w
     ) %>%
-    # 2nd rotation around new y-axis to nullify the vertical wind speed, to be used for further analysis
+    # 2nd rotation around new y-axis to nullify the vertical wind speed
+    # to be used for further analysis
     mutate(
       phi = atan2(mean(w_1,na.rm = T), mean(u_1,na.rm = T)),
       u_2 = u_1*cos(phi) + w_1*sin(phi),
@@ -363,9 +364,9 @@ time_lag_correction <- function(w, gas){
 }
 ```
 
-Figure @\ref(fig:cor-co2) show the time log correction for the CO2 sensor. As it can been seen during the day (7h - 17h) there is a clear peak in the correlation plot and the time lag found by the optimization algorithm is in a sensible range.
+Figure \@ref(fig:cor-co2) show the time log correction for the CO2 sensor. As it can been seen during the day (7h - 17h) there is a clear peak in the correlation plot and the time lag found by the optimization algorithm is in a sensible range.
 However during night the is no peak and the found time lag is outside a sensible range. This is probably due to the fact that at night the turbulent fluxes are not well developed and therefore it is difficult to correctly apply EC.
-In order to better test this hypothesis in figure @\ref(fig:cor-tsonic) the time lag correction has been applied to the the sonic temperature, where it should be 0 as it is measured together with the wind speed. The time lag correction is correctly found to be 0 during the day, but not for the night. This confirms that the time lag correction is working properly and the problem is related to the fluxes themselves.
+In order to better test this hypothesis in figure \@ref(fig:cor-tsonic) the time lag correction has been applied to the the sonic temperature, where it should be 0 as it is measured together with the wind speed. The time lag correction is correctly found to be 0 during the day, but not for the night. This confirms that the time lag correction is working properly and the problem is related to the fluxes themselves.
 
 In real life conditions more complex algorithm and quality assurance system are used to avoid this kind of errors.
 

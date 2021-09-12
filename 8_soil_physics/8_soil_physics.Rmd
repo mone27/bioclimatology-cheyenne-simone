@@ -106,7 +106,7 @@ soil <- read_csv(here::here("Data_lectures/8_Soil_physics/Soil_temperature_bot_g
 ```
 
 
-## Soil Heat flux
+### Soil Heat flux
 *Calculate the soil heat flux in 5cm depth and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity $k=3.5 W/m K$ and a heat capacity $c_p=3.5\times10^6 J/m^3K$. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?*
 
 

@@ -4,6 +4,7 @@ output:
   html_notebook: default
   pdf_document: default
 ---
+\newpage
 # Air humidity
 
 ## Motivation
@@ -94,6 +95,7 @@ There are numerous principles used to measure variable related to air humidity.
 - **Capacitative**. Some material change their dialectic properties with the change of humidity, hence by measuring the change of capacity it is possible to estimate the air humidity. This sensors are fast, accurate and have long-term stability making them common. 
 - **Psychrometric**. The humidity is estimated by measuring the normal air temperature and the air temperature of a wet themometer. The wet thermometer will have a lower temperature as water evaporation substract energy. The amount of evaporation is related to the air humidity, hence by knowing the entity of the temperature reduction of the wet thermometer it is possible to calculate the air humidity. This principle is used by the Assmann and spinning Psychrometers, which allows to have an analong measurement of air humidity with a good accuracy.
 
+\newpage
 
 ## Analysis
 
@@ -195,7 +197,7 @@ hum_d %>%
     geom_line()+
   labs(x="Time", y="Vapour pressure [hPa]", colour="Vapur pressure") +
   scale_color_colorblind(labels=c("saturation", "actual")) +
-  theme(legend.position = "top")
+  theme(legend.position = "bottom")
 ```
 
 \newpage
@@ -364,8 +366,5 @@ spin %>%
   t() %>% 
   kableExtra::kbl(col.names = c("Spinning", "Assmann"), digits = 1, caption = "Comparioson of measurement between spinning and assman psychrometer", booktabs=T) 
 ```
-
-
-
 
 

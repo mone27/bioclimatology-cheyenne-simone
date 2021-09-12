@@ -33,52 +33,50 @@ With same effect, the canopy on earth helps to maintain a good temperature enoug
 
 ## Background
 
-Electromagnetic radiation is measured in joules ($J$).
-The radiant energy measured per time is a flux and its units are $J/s = W$ (watts).
-The energy flux liberated by an object differs with the temperature and is defined by Planck's law.
-Therefore, there is a direct relationship between a high temperature and a greater radiation rate.
+Electromagnetic radiation are oscillations of a magnetic and electric field. Electromagnetic radiation is formed by waves, that have a characteristics wavelength and frequency.
+Electromagnetic radiation is a form of energy, hence it is measured in Joule and the radiation intensity $J/s = W$ (Watts).
 
-The sun liberates short-wave radiation $(0.2 - 4) \mu m$.
+Every body emits electromagnetic radiation, the intensity and the wavelength of the emitted radiation depends on its temperature and is described by Planck's law.
+
+Due to its temperature the sun emits short-wave radiation, that have a wavelength in the range $(0.2 - 4) \mu m$.    
 Solar radiation is composed by ultraviolet radiation with a lower value than $0.4 \mu m$, visible radiation $(0.4-0.7) \mu m$ and near-infrared $>0.5 \mu m$.
 In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of $3-100 \mu m$, and this ratio is known as long wave radiation or infrared.
+
 Stefan-Boltzmann law describes the total amount of radiation emitted from bodies at a specific temperature.
-This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the broadband emissivity ($\varepsilon$);
+This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the emissivity ($\varepsilon$);
 
 $$L= \varepsilon \sigma T^4$$
 
-This law was developed for a blackbody.
-A blackbody is described as the body that absorbs radiation at a wavelength frequency and emits the highest amount of energy capable at any wavelength as well (Bonan, 2019).
-Bonan (p42, 2019), defines emissivity as "*the ratio of the actual emittance to the blackbody emittance".*
+
+The emissivity as $\varepsilon$ "*the ratio of the actual emittance to the blackbody emittance".*. A blackbody is described as the body that absorbs and emits all the radiation [@bonan_climate_2019]
+
+The solar radiation reaches the ecosystems and it is divided in 3 components: reflected, absorbed and transmitted. The amount of radiation in each of this component depends on the properties of the canopy and on the wavelength ($\lambda$). The following equation is true:
 
 $$1= \sigma(\lambda)+r(\lambda)+t(\lambda)$$
+where:
 
-$\sigma(\lambda)$ Is the process of acquiring a photon energy and transforming it into internal energy
+- Adsorption ($\sigma(\lambda)$) is the fraction of light that it blocked and absorbed by the medium.
 
-$r(\lambda)$
+- Reflectivity $r(\lambda)$ is the fraction of electromagnetic wave that is reflected backward.
 
-Reflectivity is the change in direction of the electromagnetic wave.
+- Transmissivity $t(\lambda)$  is the fraction of energy going through a medium without experimenting any change.
 
-$t(\lambda)$
 
-Transmissivity is the fraction of energy going through a medium without experimenting any change.
+Incoming shortwave radiation is formed by two different components:
 
-In addition, shortwave is formed by different components:
+ - Direct solar radiation ($S$): is the incident radiant flux density falling into a horizontal surface which will differ with the position of the sun.
 
-Direct solar radiation $ (S) $: is the incident radiant flux density falling into a horizontal surface which will differ with the position of the sun.
+ - Diffuse solar radiation ($D$): the incident radiant flux density arriving to the surface of earth after scattered and reflected during its way by other molecules as well present in air.
 
-Diffuse solar radiation $(D) $: the incident radiant flux density arriving to the surface of earth after scattered and reflected during its way by other molecules as well present in air.
-
-Global radiation $ (G) $: is the sum of diffuse and direct solar radiation.
+Global radiation ($G$): is the sum of diffuse and direct solar radiation.
 
 $$ G = S + D $$
 
 ## Sensors and measuring principle
 
-Shortwave solar radiation can be measured with the use of different instruments developed specifically for this.
-Following, some of them will be introduced and some of them will be used in the practicals of the course.
-These instruments are known as:
+Shortwave solar radiation can be measured with the use of different instruments that use different priciples. The main ones are:
 
--   **Pyrheliometer**: allows the direct measurement of shorwave radiation coming directly from the sun.
+-   **Pyrheliometer**: allows the direct measurement of shortwave radiation coming directly from the sun.
     It is disposed by a sensor that reacts at wavelengths around 0.2-4 micrometers.
     It needs to be set close to a sun tracker, this way it is possible to follow the movement of sun along day.
 
@@ -98,6 +96,7 @@ These instruments are known as:
 -   **Campbell-Stokes sunshine autograph**: this instrument is used to measure the sunshine duration of days.
     A circumference made of glass burns a paper where the sunshine time period is register.
 
+\newpage
 ## Analysis
 
 ```{r, warning=FALSE, message=FALSE}
@@ -136,9 +135,8 @@ sw_b <- drop_na(sw_b)
 
 ### Albedo
 
-*Derive the albedo from the shortwave radiation components. How and why do the albedo varies over the year?*
-
-During the winter there are some peaks in the albedo and can be explained by measurement errors due to the low amount of radiation. The albedo is relatively constant across the year, in the range 10-17%. During the summer the albedo is higher, due to the higher reflecantance of the green canopy compared to the dark ground. 
+The albedo is the fraction of incoming solar radiation that is reflected upwards by the earth surface (Figure \@ref(fig:alb-year)).
+During the winter there are some peaks in the albedo and can be explained by measurement errors due to the low amount of radiation. The albedo is relatively constant across the year, in the range 10-17%. During the summer the albedo is higher, due to the higher reflectance of the green canopy compared to the dark ground. 
 
 ```{r}
 sw_b <- mutate(sw_b,
@@ -162,9 +160,9 @@ ggplot(sw_b_d, aes(x=Date))+
 
 ### Absorption coefficient
 
-*How large is the absorption coefficient in the shortwave radiation range? How does the absorption coefficient varies with time and what could a high and low absorption coefficient indicate for a plant canopy?*
+The Absorption coefficient is the fraction of incoming radiation that is absorbed by the ecosystems (Figure \@ref(fig:abscoeff-year)).
 
-The absorption is quite constant, but during winter is higher (up to 90%) to then decrease when there are leaves (83%). The peaks during the winter can be connected to measurement errors due to the low amount of radiation.
+The absorption is quite constant, but during winter is higher (up to 90%) to then decrease in summer when there are leaves (83%). The peaks during the winter can be connected to measurement errors due to the low amount of radiation.
 
 ```{r, abscoeff-year, fig.cap="Absorption coefficient over the year, daily average. Data from Hainich national park 2020."}
 ggplot(sw_b_d, aes(x=Date))+
@@ -179,20 +177,20 @@ ggplot(sw_b_d, aes(x=Date))+
 
 ### Transmission coefficient
 
-*Derive the transmission coefficient of the forest. How does the transmission coefficient vary throughout the day and the year? Discuss potential reasons.*
+The Transmission coefficient is the fraction of light that is transmitted through the canopy and reach the ground below (Figure \@ref(fig:trans-year)).
 
 During the year there is a clear difference between summer and winter. During winter the transmission is around 30% while during summer it is around 5%. This shows how effective are the trees in capturing available light.
 
-```{r, transmitted-year, fig.cap="Absorption coefficient over the year, daily average. Data from Hainich national park 2020."}
+```{r, trans-year, fig.cap="Absorption coefficient over the year, daily average. Data from Hainich national park 2020."}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=transmitted))+
-  labs(y = "Trasmission coefficient", x = "Time period") +
+  labs(y = "Trasmission coefficient", x = "Time") +
   ylim(0,.5)
 ```
 
 \newpage
 
-During summer days there is a daily cycle of the transmission coefficient. It is lower during the morning and evening and higher in the middle of the day. This can be explained because when the sun is low on the horizon there is more reflection and the light penetrates less in the canopy, thus resulting in a reduced transmission coefficient.
+During summer days there is a daily cycle of the transmission coefficient (Figure \@ref(fig:transcoeff-summerday)). It is lower during the morning and evening and higher in the middle of the day. This can be explained because when the sun is low on the horizon there is more reflection and the light penetrates less in the canopy, thus resulting in a reduced transmission coefficient.
 
 ```{r, transcoeff-summerday, fig.cap="daily cycle trasmittion coefficient. Data every 30 mints. Data from Hainich national park 1st July 2020."}
 sw_b %>%
@@ -206,9 +204,9 @@ ggplot(aes(x=Date))+
 
 ### Radiation below canopy
 
-The absolute value of the radiation below the canopy is relatively constant between summer and winter with the notable exception of spring. There are no leaves in the canopy yet, but the solar radiation is getting stronger. This can explain the why in beech forest there is a some undergrowth only during spring.
+The absolute value of the radiation below the canopy (Figure \@ref(fig:belowcanopy-year)) is relatively constant between summer and winter with the notable exception of spring. There are no leaves in the canopy yet, but the solar radiation is getting stronger. This can explain the why in beech forest there is a some undergrowth only during spring.
 
-```{r, tbelowcanopy-year, fig.cap="Radiation trasmitted below the canopy over the year. Data is averaged daily. Data from Hainich national park 2020."}
+```{r, belowcanopy-year, fig.cap="Radiation trasmitted below the canopy over the year. Data is averaged daily. Data from Hainich national park 2020."}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=belowcanopy))+
   labs(y = "Transmitted radiation [W m-2]", x = "Time")
@@ -219,16 +217,15 @@ ggplot(sw_b_d, aes(x=Date))+
 
 ### Diffuse and direct radiation
 
-*Calculate the direct solar radiation and plot global, diffuse and direct solar radiation. Compare a clear sky and a cloudy day. What's the difference and why?*
 
-The total radiation is sum of the diffuse and direct. The amount of direct radiation changes a lot during the year. You can see that April and September were relatively sunny months (direct and total radiation are similar), while July and August were cloudy (big difference between direct and total) The diffuse radiation has a its own pattern across the year.
+The total radiation is sum of the diffuse and direct (Figure \@ref(fig:radiation-week)). The amount of direct radiation changes a lot during the year. You can see that April and September were relatively sunny months (direct and total radiation are similar), while July and August were cloudy (big difference between direct and total) The diffuse radiation has a its own pattern across the year.
 
 ```{r}
 shortwavedata <- mutate(shortwavedata,
                         direct = Shortwave_incoming_W_m.2 - Shortwave_incoming_diffuse_W_m.2)
 ```
 
-```{r, radiation-weekr, fig.cap=""}
+```{r, radiation-week, fig.cap="Direct and diffuse component of shortwave radiation over a year. Data is averaged weekly. Data from Hainich national park 2020."}
 shortwavedata%>%
   group_by(week(Date)) %>%
   summarise_all(mean) %>%
@@ -244,7 +241,7 @@ shortwavedata%>%
 
 This is a summer week from July, where it is possible to clearly see the difference between cloudy and sunny day. The 8th of July (first day) was cloudy with virtually no direct radiation, while the 13th of July was very sunny with almost all radiation direct.
 
-```{r, radiation-weeklyr, fig.cap=""}
+```{r, radiation-weeklyr, fig.cap="Total and direct component of shortwave radiation over a week. Data is averaged over 30 min. Data from Hainich national park second week July 2020."}
 shortwavedata%>%
   filter(week(Date)==28) %>%
   gather("type", "rad", Shortwave_incoming_W_m.2, direct, factor_key = T)  %>%

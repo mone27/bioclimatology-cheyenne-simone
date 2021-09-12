@@ -8,7 +8,7 @@ params:
 Bioclimatology report
 
 ```{r setup, include=F}
-knitr::opts_chunk$set(cache = T, echo = params$include_code)
+knitr::opts_chunk$set(cache = T, echo = params$include_code, message = F)
 
 library(ggplot2)
 theme_set(theme_bw())
