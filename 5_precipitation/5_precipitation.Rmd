@@ -12,7 +12,9 @@ output:
 header-includes:
   - \fancyhead[L]{Shortwave radiation}
 ---
+
 \newpage
+
 # Precipitation
 
 ## Motivation
@@ -23,9 +25,27 @@ Water is needed to plants for photosynthesis and transpiration.
 
 ## Background
 
-The precipitation is measured in millimeter (mm)
+The precipitation is usually in form of liquid water, but can also be solid in case of snow or hail.
+
+It measured in measured in volume per unit area ($m^3/m^2$). The standard unit is the millimeters of rain, which corresponds to liter per squared meter.
+The precipitation intensity is measured in millimeter per hour ($mm/h$)
 
 ## Sensors and measuring principle
+
+The precipitation sensors, pluviometers, measure the amount of rainfall on a know area.
+The most common ones uses a **tipping bucket** that when gets filled with water it switch position and empty itself. By counting the number of swings of the bucket it is possible to calculate the amount of precipitation.
+This sensors are the most common one, as they are simple and relatively reliable, however they can produce inaccurante measurements if the amount of precipitation is very low that the buckets doesn't fill or when there is an high rain intensity that the bucket cannot fill fast enough.
+
+To overcome this limitation there are **weighting** pluviometers, which have a very sensitive scale under a bucket that collects all the precipitations.
+
+A completely different type of sensors are the **laser beam** pluviometers, that can estimate the number, size and speed of water droplet and therefore produce an accurate measurement of rain.
+
+
+Precipitation measurements present additional challenges, in presence of strong winds there is turbulence around the instrument that reduce the amount of rain collected. To mitigate this there are wind shield that can be installed around pluviometers.
+Moreover precipitation can be solid, hence heating may be required to properly measure it. Finally precipitation has an high spatial heterogeneity, which requires the use of several sensors.
+
+
+\newpage
 
 ## Analysis
 ```{r, include = F}
@@ -57,14 +77,11 @@ sites_avg <- sites %>%
   inner_join(prec_avg, by="site")
 ```
 
-## ET and precipitation at different latitudes
+### ET and precipitation at different latitudes
 
-*Visualise the annual sums of evapotranspiration and precipitation according to its geographic
-latitude (boxplot?). How and why does precipitation and evapotranspiration varies? Which impact
-has the underlying ecosystem?*
+The precipitation and the Evapotranspiration (ET)
 
 ```{r}
-# this t makes no sense as name TODO chanve this
 prec_t <- prec %>%
   gather("site", "prec", -Date)
 
@@ -77,9 +94,7 @@ sites <- sites %>%
   inner_join(prec_et, by="site") 
 ```
 
-```{r}
-sites
-```
+
 
 
 ```{r}
@@ -89,6 +104,9 @@ sites
         y="Total yearly precipitation (mm)",
         x="Latitude (deg)"))
 ```
+
+\newpage
+
 ```{r}
 (et_box <- ggplot(sites, aes(Lat, et, colour=site)) +
   geom_boxplot() +
