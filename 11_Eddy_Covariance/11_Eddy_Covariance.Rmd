@@ -9,9 +9,8 @@ output: html_notebook
 
 The atmosphere and the ecosystem exchange energy and gases through turbulent flows. The main gas transported are CO2 and water vapour, while energy is transferred as sensible heat fluxes and momentum fluxes.
 
-Eddy Covariance is a technique that measures the entity of the turbulent fluxes. 
-
-Important monitor ecosystem, carbon balance
+Eddy Covariance (EC) is a technique that measures the entity of the turbulent fluxes. It can measure a wide range of variables, automatically, continuously, with high accuracy and with minimal impact on the ecosystems.
+It is primary method used to monitor the carbon balance of ecosystems.
 
 ## Background
 
@@ -56,22 +55,26 @@ where $\rho_a$ is the air density and $u$ and $v$ the two horizontal wind compon
 The measurement unit is $Kg / ms^2$.
 
 
-Eddies have different sizes and speed but many of them are small and very fast (fraction of seconds), therefore instruments with high response rate are needed. 
-
-The Eddy Covariance tecnique is very powerful as it can measure a wide range of variables, automatically, continuously, with high accuracy and with minimal impact on the ecosystems. However, the flux calculation are based on several assumptions and require complex post processing to reduce the errors.
+The Eddy Covariance technique is very powerful, however, flux calculation are based on several assumptions and require complex post processing to reduce the errors.
 
 First of all Eddy covariance can be applied only when there is a well developed turbulent layer, which is often not the case at night. Then measurements in heterogenous enviroments or on slopes can affect the turbulence and hence the flxes measurers.
 
 The EC data needs to be preprocessed to remove instruments errors (despiking and calibration) and compensate for non ideal instrument setup (time lag correction, coordinate rotations). Flux can then be calculated for a time period and then additional correction applied due to the loss of high frequency information (spectral corrections) and change in gas density (Webb-Pearmen-Leuning correction).
 
-Each instrument and variable need to have each of the steps metioned above tailored for its specific charatecristcs.
+Each instrument and variable need to have each of the steps mentioned above tailored for its specific characteristics.
 
 
 
 
 ## Sensors and Measuring principles
 
+Eddies have different sizes and speed but many of them are small and very fast (fraction of seconds), therefore instruments with high response rate are needed. 
 
+A basic EC setup consist of two instruments, an anemometer and a gas analyzer.
+The anemometer is a 3D sonic anemometer, that can therefore also measure the vertical component of the wind and have high frequency reading.
+The gas analyzer measure the concentrations using the absorption of specific infrared wavelenghts. The most commonly measured gas are CO2, H2O and methane. Gas analyzer can be open path, where the measurement chamber is directly exposed to the air or closed path where the measure take place in a separate chamber and the air is pumped through a pipe.
+
+The EC instruments are mounted on a tower as they need to be above the ecosystem where the turbulence layer is well developed.
 
 
 ## Analisys

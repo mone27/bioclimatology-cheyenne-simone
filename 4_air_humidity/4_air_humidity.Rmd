@@ -9,11 +9,12 @@ output:
 
 ## Motivation
 
-Water goes from the ecosystems to the atmosphere under the form of water vapour.
+Air is a mixture of different gases and water vapour is a small fraction but still plays a crucial role for ecosystems.
 
-Latent heat
+The movement of water into the plant is driven by the transpiration, which happens as water leaving the plant from the leaf stomata. The features of this phenomenon are dependent on the amount of water present in the atmosphere, the lower the humidity the higher the stomata conductivity. 
 
-connected to water availability
+Water vapour is also important in the energy balance of ecosystems , as an significant fraction of the sun energy is converted is latent heat flux, or water evaporating goes from the surface.
+
 
 ## Background
 
@@ -21,7 +22,7 @@ The behaviors of water in the air are complex and depending on the contest the a
 They are:
 
 
- - Actual vapor pressure [hPa]
+ - Actual vapor pressure [$hPa$]
  
  The actual vapour pressure is the partial vapour pressure of water, which is the fraction of the total air pressure that is due to water moleculs. It is defined using the ideal gas law as following:
 It is one of the most common measurement of the air water content. 
@@ -29,7 +30,7 @@ It is one of the most common measurement of the air water content.
 $$e_a = \rho_v R_v T$$
 
 
-- Saturation vapour pressure [hPa]
+- Saturation vapour pressure [$hPa$]
 
 The amount of water vapour that can be contained into the air is limited, the saturation vapour pressure is the water vapour pressure that a saturated air would have. It is strongly dependent on temperature increasing exponentially with incrase in temperatures. It can be estimated with the following formula:
 
@@ -40,14 +41,14 @@ $$e_s = 6.1078 e^{\frac{17.08085 T_a} {234.175°C + T_a}}$$
 The relative humidity is ratio between the actual vapur pressure and the saturation vapour pressure expressed in percentage.
 It is a common way of describing humidity.
 
-- Dewpoint temperature [ºC]
+- Dewpoint temperature [$\degree C$]
 
 The dew point temperature is the temperature when the water in the air would start condensing. This happens when the actual vapur pressure becomes equal to the saturation one.
 It can be estimated with the following formula:
 
 $$T_d = \frac{(len(e_a) - ln(6.1708))\cdot234.17} {17.08085 - ln(e_a) + ln(6.1078)}$$
 
-- Absolute humidity [$Kg m^{-3}$]
+- Absolute humidity [$Kg \quad m^{-3}$]
 
 The absolute humidity represent the actual mass of water present in a unit volume of air. It is defined as the density of water vapour:
 
@@ -65,11 +66,11 @@ The specific humidity (q) is the ratio between the density of water vapour of th
 
 $$q = \frac{e_a}{p-0.378 e_a}$$
 
-- Vapor pressure deficit [hPa]
+- Vapor pressure deficit [$hPa$]
 
 The vaopur pressure deficit is the difference between the saturation vapour pressure and the actual vapour pressure. It indicates which is the amount of water that can still be added in the atmosphere before reaching saturation.
 
-- Equivalent temperature [°C]
+- Equivalent temperature [$\degree C$]
 
 The equivalent temperature is the temperature that would be reached if the energy release by the condesation of all water is used to heat up the air mass. Therefore by definition it is always higher than the actual air temperature.
 
@@ -89,7 +90,7 @@ There are numerous principles used to measure variable related to air humidity.
 
  - **Condensation**. The condensation hygrometers measure the dew point temperature, when the moisture in the air start to condense.
     - **Dew point mirror**. There is a mirror that is cooled down to the dew point temperature. Small droplets on the mirror are then detected on the top of the mirror by a reflected LED light.
-    - **LiCL dew point hygrometer**. The is a solution of LiCl, that is hygroscopic and conducts electricity only when wet this connected to an heating system is used to estimate the dew point temperature.
+    - **LiCL dew point hygrometer**. The is a solution of LiCl, that is hygroscopic and conducts electricity only when wet. This is connected to an heating system is used to estimate the dew point temperature.
 - **Hygroscopic**. The basic principle is the change of dimension due to the change in humidity. The most common sensor to use this principles is the **Hair hygrometer**, that uses a series of proerply treated horse hairs connected to a spring that change their size in relation to the relative humidity.
 - **Spectroscopric**. Different gas absorbs certain infrared light at specific wavelengths and water vapour has it own characteristic asbosption bands. **Infrared gas analyzer** measure the amount of IR light that is absorbed by the air on some specific wavelenght and can use this information to estimate the number of water molecules. This sensors are used in Eddy Covariance setups and can provide high frequency and high accuracy measurements.
 - **Capacitative**. Some material change their dialectic properties with the change of humidity, hence by measuring the change of capacity it is possible to estimate the air humidity. This sensors are fast, accurate and have long-term stability making them common. 

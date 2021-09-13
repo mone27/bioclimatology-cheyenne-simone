@@ -60,27 +60,23 @@ $$E = \varepsilon \sigma T^4$$ Where:
 -   $T$ is the body temperature in $K$
 
 
-The incoming longwave radiation depends on the temperature of the sky and it is partly abosrbed by the ecosystems and partly reflected according to the following formula:
+As a consequence of Stefan-Boltzmann law the amount of longwave radation emitted by ecosystems depents on their temperature. 
+
+The incoming longwave radiation depends on the temperature of the sky and it is partly absorbed by the ecosystems and partly reflected [@stephens_global_2012] according to the following formula:
 
 $$L_{w, relf} = (1-\varepsilon)L_{w, in}$$
 
 The amount of longwave radiation incoming depends on the temperature of the sky, hence in cloudy days there is an higher incoming longwave radiation compared to sunny days. This phenomenon is particularly important at nights, where the longwave balance is a major driver of the overall temperature.
 
-The ecosystem emits longwave radiation depending on the temperature 
 
 The net longwave radiation is summarized by this equation:
 
 
 $$L_{w, net} = L_{w, in} - L_{w, refl} - L_{w, emit}= \varepsilon(\sigma\varepsilon_{sky} T^4_{sky}) - \sigma\varepsilon T^4$$
-The overall net radiation includes also the shortwave component.
+The overall net radiation includes also the shortwave component:
 
 $$R_{w, net} = S_{w, in} - S_{w, out} + L_{w, in} - L_{w, out}$$
 
-
-^[Stephens, G. L., Wild, M., Stackhouse Jr, P. W., L'Ecuyer, T., Kato,
-S., & Henderson, D. S. (2012). The global character of the flux of
-downward longwave radiation. *Journal of Climate*, *25*(7),
-2329-2340.].
 
 
 
@@ -159,12 +155,20 @@ rad_d <- rad %>%
 \newpage
 ### Surface and Sky temperature
 
-*Derive the sky and surface temperature from the longwave radiation
-components. How do they differ and why? Discuss! During which periods of
-the year sky and surface temperature differ the most and the less?*
 
 The surface and the sky temperature are plotted for one year using a weekly (Figure \@ref(fig:lw-week)) and daily aggregation (Figure \@ref(fig:lw-day)).
 
+The sky temperatures is always lower than the surface one. The surface
+temperature ranges from `r round(min(rad_d$t_surface, na.rm=T))` C to
+`r round(max(rad_d$t_surface, na.rm=T))` C, while the sky temperature
+has a bigger range from `r round(min(rad_d$t_sky, na.rm=T))` C to
+`r round(max(rad_d$t_sky, na.rm=T))` C. The temperature of the sky
+mainly depends on the cloud cover and the temperature of the air.
+
+During the last week of march there is biggest different in temperature,
+with the sky temperature plummeting to -20 °C, while the surface temperature remains above 0 °C.
+This is probably due to snow cover that insulates the surface from the cold air.
+For the rest of the year the temperature difference is relatively constant.
 
 ```{r, label=lw-week, fig.cap="Weekly average of sky and surface temperatures over one year. Data from botanical garden 2020."}
 rad_w %>%
@@ -187,21 +191,18 @@ ggplot(aes(x=datetime, y=temp, colour=type)) +
   labs(y="Temperature [°C]", x="Time")
 ```
 
-The sky temperatures is always lower than the surface one. The surface
-temperature ranges from `r round(min(rad_d$t_surface, na.rm=T))` C to
-`r round(max(rad_d$t_surface, na.rm=T))` C, while the sky temperature
-has a bigger range from `r round(min(rad_d$t_sky, na.rm=T))` C to
-`r round(max(rad_d$t_sky, na.rm=T))` C. The temperature of the sky
-mainly depends on the cloud cover and the temperature of the air.
-
-During the last week of march there is biggest different in temperature,
-with the sky temperature plummeting to -20 °C, while the surface temperature remains above 0 °C.
-This is probably due to snow cover that insulates the surface from the cold air.
-For the rest of the year the temperature difference is relatively constant.
 
 \newpage
 
 The difference between the sky at the surface temperature is also analyzed using high frequency data (10 minutes) for a month (Figure \@ref(fig:lw-one-month)) and a week (Figure \@ref(fig:lw-one-week)).
+
+The surface temperature has a clear day cycle and in the month of July for the majority of the time oscillates in the 10°C - 30°C range. 
+
+On the other hand the sky temperature has no daily cycle, but over the month has still important variations from -5°C to 20 °C.
+
+Moreover, it can be clearly seen how during cloudy days (eg. 9th of July) there is a high sky temperature, but a
+low surface temperature. Conversely, on sunny days (eg. 7th of July) the
+surface temperature is higher, but the sky temperature is low.
 
 
 ```{r, label=lw-one-month, fig.cap="Sky and surface temperatures during July 2020. Data frequency 10 minutes. Data from botanical garden."}
@@ -211,7 +212,8 @@ rad %>%
 ggplot(aes(x=datetime, y=temp, colour=type)) +
   geom_line()  +
   scale_color_colorblind() +
-  labs(y="Temperature [°C]", x="Time")
+  labs(y="Temperature [°C]", x="Time", col="") +
+  theme(legend.position = "bottom")
 ```
 
 \newpage
@@ -222,38 +224,15 @@ filter(rad, between(datetime, as_datetime("2020-07-03"), as_datetime("2020-07-12
 ggplot(aes(x=datetime, y=temp, colour=type)) +
   geom_line()  +
   scale_color_colorblind() +
-  labs(y="Temperature [°C]", x="Time")
+  labs(y="Temperature [°C]", x="Time", col="") +
+  theme(legend.position = "bottom")
 ```
-
-The surface temperature has a clear day cycle and in the month of July for the majority of the time oscillates in the 10°C - 30°C range. 
-
-On the other hand the sky temperature has no daily cycle, but over the month has still important variations from -5°C to 20 °C.
-
-
-Moreover, it can be clearly seen how during cloudy days (eg. 9th of July) there is a high sky temperature, but a
-low surface temperature. Conversely, on sunny days (eg. 7th of July) the
-surface temperature is higher, but the sky temperature is low.
 
 \newpage
 ### Net radiation
 
-*Calculate the net radiation over the meadow in the forest botanical
-garden and plot the four components. How do the four components change
-over the season and why? Which unexpected results you found? Discuss!*
 
 The longwave and shortwave components are merged to calculate the overall net radiation for one year in figure \@ref(fig:net-rad-year).
-
-
-```{r, net-rad-year, fig.cap="Net radiation over the year. The four components (shortwave incoming, shortwave outgoing, longwave incoming, longwave outgoing) are showed. Data averaged over a week. Data from botanical garden 2020."}
-rad_w %>%
-  gather(key="type", value="radiation", lw_in, lw_out, sw_in, sw_out, net_rad,
-         factor_key = T) %>%
-ggplot() +
-  geom_line(aes(x=datetime, y=radiation, colour=type)) +
-  scale_color_colorblind() +
-  labs(y="Radiation [W m-2]",
-       x="Time", caption = "Weekly average", colour="Radiation")
-```
 
 The net radiation has a yearly cycle.
 During the summer it has a relatively constant value at around
@@ -279,6 +258,18 @@ There is a notable low peak of incoming longwave in the last week of
 march, that is probably explained by clear skies but still low air
 temperature.
 
+```{r, net-rad-year, fig.cap="Net radiation over the year. The four components (shortwave incoming, shortwave outgoing, longwave incoming, longwave outgoing) are showed. Data averaged over a week. Data from botanical garden 2020."}
+rad_w %>%
+  gather(key="type", value="radiation", lw_out, lw_in, sw_in, sw_out, net_rad,
+         factor_key = T) %>%
+ggplot() +
+  geom_line(aes(x=datetime, y=radiation, colour=type)) +
+  scale_color_colorblind() +
+  labs(y="Radiation [W m-2]",
+       x="Time", caption = "Weekly average", colour="Radiation") 
+```
+
+
 
 \newpage
 ### Change emissity in the sensor
@@ -289,7 +280,7 @@ could influence the readings. However, there have been some issues with
 the sensor, so the data has been generated using the formula from the
 theory
 
-In this virtual experiment the real temperature is set to $19 °C$ and
+In this virtual experiment the real temperature is set to 19 °C and
 the emissivity is changed, resulting in different temperature estimates.
 
 ```{r}

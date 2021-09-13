@@ -9,7 +9,7 @@ output: html_notebook
 
 Temperature is arguably the environmental variable with the biggest impact of ecosystems.
 The speed of all chemical reactions is strongly influenced by temperature in a non-linear way, therefore processes like photosynthesis and respiration shows an strong response to temperature changes. 
-Moreover, thermal energy is the main way ecosystem can store energy, hence the temperature constantly change to mantain energy balance.
+Moreover, thermal energy is the main way ecosystem can store energy, hence the temperature constantly change to maintain energy balance.
 Finally the temperature often influences water availability.
 
 
@@ -22,17 +22,17 @@ The SI unit to measure temperature is the Kelvin degree K, that use a reference 
 Often other measurement units are used mainly degrees Celsius (°C) and  Fahrenheit (°F). 
 
 
-In a gas the temperature is related to the pressure by the ideal gas law. 
+In a gas the temperature is related to the pressure by the ideal gas law: 
 
 $$pV = nRT$$
 Therefore in the troposphere there is a drop in temperature with height, as the pressured is reduced with height.
 
 ## Sensors and measuring principle
 
-Temperature is measured using different principles, for analog sensors the the measures are connected to thermal expasion of materials. The increase in temperature results in an increase of volume or lenght and its magnitude on the materials properties.
+Temperature is measured using different principles, for analog sensors the the measures are connected to thermal expansion of materials. The increase in temperature results in an increase of volume or length and its magnitude on the materials properties.
 In particular the most common sensors are:
 
-- **Mercury Thermometer**. The sensor has a bulb filled with mercury (or other luquid) that expands or contracts with the change in temperature, that is then connect to a graded pipe where is possible to make the reading.
+- **Mercury Thermometer**. The sensor has a bulb filled with mercury (or other liquid) that expands or contracts with the change in temperature, that is then connect to a graded pipe where is possible to make the reading.
 
 - **Bimetal Thermometer**. The sensor is based on the different expansion coefficient of metals, hence by putting two different metals (eg. iron and copper) next to each other the temperature can be measured by the amount of the bent.
 
@@ -43,11 +43,12 @@ In particular the most common sensors are:
    - *Positive temperature coefficient (PTC)*. Increase Usually made of platin.
    - *Negative temperature coefficient (NTC)*. Decrease the resistance with an increase in temperature, they are usually made of semi conductors
 
+\newpage
 
 ## Analysis
 
 
-```{r}
+```{r, include=F}
 library(tidyverse)
 library(lubridate)
 library(here)
@@ -62,19 +63,19 @@ between_dates <- function(x, start, end){
 
 ### Hainich time series
 
-The temperature changes at different height of the canopy, due to the different incoming solar radiation and emitted longwave radiation. Similarly the top soil temperature can be significantly different from the air temperature just above the soil, this is due to the higher heat capacity and lower conductivity of the soil compared to the air. 
-In this analysis the air temperature at 2 meters is compared with the temperature 2 cm below the soil.
-
-The soil temperature daily variation is limited compared to the air one (Figure \@ref(fig:temp-year) and \@ref(fig:temp-month)). In one day the air temperature can change up to 10 °C, while the soil temperature only a few degrees. However, over the year the total variation of air and soil temperature are similar (Figure \@ref(fig:temp-year)). Moreover also the yearly mean are similar.
-
-In general the air and the soil temperature follow a similar pattern, but the daily oscillation in the air temperature are bigger (Figure \@ref(fig:temp-scatter)).
-
 
 ```{r, warning=FALSE}
 temp <- read_csv(here("Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.csv")) %>% 
   mutate(diff_canopy = TA_44m - TA_2m) %>% 
   drop_na()
 ```
+
+The temperature changes at different height of the canopy, due to the different incoming solar radiation and emitted longwave radiation. Similarly the top soil temperature can be significantly different from the air temperature just above the soil, this is due to the higher heat capacity and lower conductivity of the soil compared to the air. 
+In this analysis the air temperature at 2 meters is compared with the temperature 2 cm below the soil.
+
+The soil temperature daily variation is limited compared to the air one (Figure \@ref(fig:temp-year) and \@ref(fig:temp-month)). In one day the air temperature can change up to 10 °C, while the soil temperature only a few degrees. However, over the year the total variation of air and soil temperature are similar (Figure \@ref(fig:temp-year)). Moreover also the yearly mean are similar.
+
+In general the air and the soil temperature follow a similar pattern, but the daily oscillation in the air temperature are bigger (Figure \@ref(fig:temp-scatter)).
 
 ```{r temp-year, fig.cap="Comparison time series temperature at 2 m and 2 cm in the soil for 2019. Measurement averaged over 1 day. Data from Hainich national park"}
 temp %>% 
@@ -84,7 +85,7 @@ temp %>%
   geom_line(aes(y=Tsoil_002m_degC, col="Soil 2 cm")) +
   geom_line(aes(y=TA_2m, col="Air 2 meters")) +
   scale_color_colorblind() +
-  labs(y = "Temperature (°C)", col="Heigth")
+  labs(y = "Temperature [°C]", col="Heigth")
 ```
 
 ```{r temp-month, fig.cap="Comparison time series temperature at 2 m and 2 cm in the soil for the month of May 2019. measurement frequency 30 min. Data from Hainich national park"}
@@ -97,27 +98,26 @@ temp %>%
   labs(y = "Temperature (°C)", col="Heigth")
 ```
 
-```{r temp-scatter, fig.cap="Scatter plot with regression line between temperature at 2 m and 2 cm in the soil for 2019. measurement averaged over 1 day. Data from Hainich national park"}
+```{r temp-scatter, fig.cap="Scatter plot with regression line between temperature at 2 m and 2 cm in the soil for 2019. measurement averaged over 1 day. Data from Hainich national park."}
 temp %>% 
   group_by(Date = round_date(Date, "1d")) %>% 
   summarize_all(mean) %>% 
   ggplot(aes(TA_2m, Tsoil_002m_degC)) +
   geom_point() +
   scale_color_colorblind() +
-  geom_smooth(method = "lm", se=F)
+  geom_smooth(method = "lm", se=F, colour = colorblind_pal()(2)[2])
 ```
 
 ```{r}
-cor(temp$TA_2m, temp$Tsoil_002m_degC)
+tribble( ~"Variable", ~"Value",
+  "Correlation air and soil temperature", cor(temp$TA_2m, temp$Tsoil_002m_degC),
+  "Mean temperature air", mean(temp$TA_2m),
+  "Mean temperature soil",  mean(temp$Tsoil_002m_degC)) %>% 
+  kable(booktabs=T, caption="Summary soil and air temperature") %>% 
+  kable_styling(latex_options = "hold_position")
 ```
 
-
-```{r}
-cat(" Mean Air: ", mean(temp$TA_2m), "\n",
-    "Mean soil: ", mean(temp$Tsoil_002m_degC))
-```
-
-
+\newpage
 
 ### Temperature sensors response time
 
@@ -131,14 +131,11 @@ In the field the sensors where heated up and then the temperature measured every
 The air temperature was also recorded for reference.
 
 
-#### Resistance sensor 
 
 ```{r}
-
 res_wire <- 3.7 # Omega. This has been measured in the field
 r_0 <- 100 # Omega at 100 degrees
 a <- 4e-3
-
 
 #' converts resistance to temperature
 get_temp <- function(resistance) {
@@ -146,11 +143,10 @@ get_temp <- function(resistance) {
 }
 ```
 
-
 ```{r}
-temp_res <- read.csv(here("3_air_temperature/resistance_sensor_cooling response.csv"), header = T)
+temp_res <- read.csv(here("3_air_temperature/resistance_sensor_cooling response.csv"),
+                     header = T)
 ```
-
 
 ```{r}
 # add the time (in seconds) and the temperature after conversion from resistance
@@ -158,13 +154,6 @@ temp_res <- temp_res %>%
   mutate(time = 0:(nrow(temp_res)-1) * 10,
          temp = get_temp(resistance) )
 ```
-
-```{r, fig.cap="Temperature decrease over time for resistance thermometer"}
-ggplot(temp_res, aes(time, temp)) +
-  geom_line() +
-  labs(y = "Temperature (°C)", x = "Time (s)")
-```
-
 
 ```{r}
 T_a <- 13.0 # calculations done in the field
@@ -174,17 +163,20 @@ temp_res <- temp_res %>%
   mutate(log_t = log((T_0 - T_a) / (temp - T_a)) )
 ```
 
-
 ```{r}
-(model_res <- lm(time ~ log_t, data=temp_res))
+model_res <- lm(time ~ log_t, data=temp_res)
 ```
 
-The time response rate for the resistance sensor is `r round(coef(model_res)[1])` seconds.
+```{r, fig.cap="Temperature decrease over time for resistance thermometer."}
+ggplot(temp_res, aes(time, temp)) +
+  geom_line() +
+  labs(y = "Temperature (°C)", x = "Time (s)")
+```
 
-#### Mercury termometer
 
 ```{r}
-temp_merc <- read.csv(here("3_air_temperature/mercury_termometer_cooling_response.csv"), header = T)
+temp_merc <- read.csv(here("3_air_temperature/mercury_termometer_cooling_response.csv"),
+                      header = T)
 ```
 
 
@@ -195,24 +187,25 @@ T_0 <- temp_merc$temp[1] # first measure
 temp_merc <- mutate(temp_merc, log_t = log((T_0 - T_a) / (temp - T_a)) )
 ```
 
-```{r, fig.cap="Temperature decrease over time for mercury thermometer"}
+```{r}
+model_merc <- lm(time ~ log_t, data=temp_merc)
+```
+
+```{r, fig.cap="Temperature decrease over time for mercury thermometer."}
 ggplot(temp_merc, aes(time, temp)) +
   geom_line() +
-  labs(y = "Temperature (°C)", x = "Time (s)")
+  labs(y = "Temperature [°C]", x = "Time [s]")
 ```
 
-```{r}
-(model_merc <- lm(time ~ log_t, data=temp_merc))
-```
 
-The time response rate for the mercury sensor is `r round(coef(model_res)[1])` seconds.
+The time response rate for the resistance sensor is `r round(coef(model_res)[2])` seconds.
 
+The time response rate for the mercury sensor is `r round(coef(model_merc)[2])` seconds.
 
 
 The mercury thermometer has an higher response time than the resistance one.
 
 This is against the expectations as the mass, and therefore the thermal inertia, of the mercury sensor is smaller than the resistance one.
-
 
 
 

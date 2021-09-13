@@ -3,5 +3,13 @@ bookdown::pdf_book:
   bibliography: bioclimatology-references.bib
   includes:
     in_header: preamble.tex
-pagedown::html_paged:
-  toc: true
+bookdown::gitbook:
+  config:
+    toc:
+      before: |
+        <li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+    download: "pdf"
+    sharing:
+      facebook: no
+      twitter: no
+      all: no

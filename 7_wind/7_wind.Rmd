@@ -212,7 +212,7 @@ As it is possible to appreciate in Figure \@ref(fig:ws-diff-height) , wind speed
 wind_prof <- wind_g_1d %>% 
   group_by(height) %>% 
   summarize(windspeed=mean(windspeed))
-#### fit logarithmic wind profile to data and estimate the parameters u*, z0 and d ####
+#### fit logarithmic wind profile to data and estimate the parameters u*, z0 and d
 # initial values
 u_star_start <- 0.1
 d_start <- 0.3
@@ -233,10 +233,11 @@ wind_prof <- mutate( wind_prof,
 wind_g_1d %>%
   ggplot() +
   geom_boxplot(aes(windspeed, height, group=height)) +
-  geom_line(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"),  data = wind_prof) +
-  geom_point(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"), data = wind_prof) +
-  labs(x="Windspeed [m/s]", y="Height [m]", colour="") +
-  scale_color_colorblind()
+  geom_line(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"),
+            data = wind_prof, col=colorblind_pal()(2)[2] ) +
+  geom_point(aes(x=pred_ws, y=height, colour="Estimated\nlog profile"),
+             data = wind_prof, col=colorblind_pal()(2)[2] ) +
+  labs(x="Windspeed [m/s]", y="Height [m]", colour="")
 ```
 
 Wind speed depends on height, increasing with height following a logarithmic profile (Figure \@ref(fig:ws-boxplot)).
