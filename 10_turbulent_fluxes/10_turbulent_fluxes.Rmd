@@ -16,18 +16,78 @@ editor_options:
   markdown: 
     wrap: 72
 ---
+
 # Turbulent fluxes
 
 ## Motivation
 
+Part of the turbulent fluxes regulating the natural systems on earth is
+CO2 flux. In this chapter, we learned some ways to trace the flux if
+this important gas, also well known as green house gas. First, a small
+introduction about the carbon cycle in land ecosystems. Carbon
+approaches vegetation through the photosynthesis. Afterwards, carbon is
+allocated in different parts of plants; leafs, stem and root, while part
+of it is also lost by the leaching of soil and erosion. During the
+process of plant respiration, Carbon dioxide is also released in small
+amounts, together with the respiration of roots and other microorganisms
+present in soil. Although seems as a process easy to quantify, it also
+has its adversities, such as the turbulent movement of gas fluxes in
+forests.
+
 ## Background
+
+The measurement of the net CO2 exchange can be achieved by direct or
+continuous way, this way ecosystem is not disturbed. Also it can be
+measured by the integration over the entire ecosystem. Some researches
+have been going on measuring the carbon cycle at a global scale. This is
+known as the integrated carbon observation system (ICOS). The ICOS
+consists on the long term assessment of European carbon balance, with
+sample plots at different levels: atmosphere, terrestrial ecosystem and
+ocean. This programme is not the only one, also Fluxnet; measuring CO2,
+water vapor and energy flux all along the world. Thanks to these type of
+initiatives, other natural factors can be analyzed such as ;
+temperature, precipitation, temperature and soil moisture. As an
+example, the drought experienced in Europe in 2018, where a big
+decreasing in the CO2 uptake in central Europe was experienced, while
+and increase was observed in southern and northern countries of Europe.
+Besides the consequences of this drought period, the European average
+had a smaller effect than in 2003.
+
+A simple definition of flux is the exchange of any quantity per area and
+time. The flux of CO2 and H2O is measured with µmol m^-2^ s⁻ ¹ and mmol
+m^-2^ s⁻ ¹ respectively. Leaf evapotranspiration and Heat is measured by
+J m^-2^ \*s\^-1.
 
 ## Sensors and measuring principle
 
+According to what flux is going to be measured, some instruments can be
+required as an additional equipment. The instruments can be: chambers,
+lysimeter and sap flow. The following formula describes the principle on
+which gas chambers are based on to measured CO2 flux in soil.
+
+The CO2 flux assumption is based on its linear increase, using the
+following formula;
+
+Fc = $$(dc/dt) (M*V/A)$$\$
+
+dc: change of CO2 concentration from t 1 to t 2 (µmol mol ⁻ ¹)
+
+dt: change in time (s)
+
+M =p/RTmolar volume (mol m ⁻ ³)
+
+R = 8.314 J mol⁻ ¹ K ⁻ ¹
+
+V: chamber volume (m³)
+
+A: chamber surface area (m²)
+
 ## Analysis
 
-1.
-Calculate the half hourly latent heat flux, the net ecosystem exchange of CO 2 and the sensible heat flux from the high frequency turbulence data. 
+1.  Calculate the half hourly latent heat flux, the net ecosystem
+    exchange of CO 2 and the sensible heat flux from the high frequency
+    turbulence data.
+
 ```{r}
 library(tidyverse)
 library(cowplot) #multiple plots
@@ -35,9 +95,6 @@ library(naniar) # to replace missing values
 library(ggthemes)
 theme_set(theme_bw())
 ```
-
-
-
 
 ## Respiration chambers
 
@@ -85,7 +142,6 @@ co2flux <- co2 %>%
   )
 ```
 
-
 ```{r, fig.cap=""}
 ggplot(co2flux, aes(time, co2, col=chamber)) +
   geom_line() +
@@ -97,6 +153,7 @@ ggplot(co2flux, aes(time, dt/dc, col=chamber)) +
   geom_line() +
   scale_color_colorblind()
 ```
+
 ```{r}
 ggplot(co2flux, aes(time, Fc, col=chamber)) +
   geom_line() +
@@ -110,6 +167,3 @@ ggplot(co2flux, aes(chamber, Fc, col=chamber)) +
 ```
 
 \newpage
-
-
-
