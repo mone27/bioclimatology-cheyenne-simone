@@ -5,12 +5,19 @@ site: bookdown::bookdown_site
 params:
   include_code: true
 ---
-Bioclimatology report
 
 ```{r setup, include=F}
-knitr::opts_chunk$set(cache = T, echo = params$include_code, message = F)
+knitr::opts_chunk$set(cache = T, echo = params$include_code, message = F, warning = F)
 
 library(ggplot2)
 theme_set(theme_bw())
 ```
 
+# Preface {-}
+
+This is the Term Paper for Experimental bioclimatology course (summer semester 2021) at Uni Göttingen, prof. Alexander Knohl.
+
+The term paper is a group work between Simone Massaro and Cheyenne Rueda.
+
+All the code is available at [https://github.com/mone27/bioclimatology-cheyenne-simone](https://github.com/mone27/bioclimatology-cheyenne-simone).
+This term paper is also available in html format at https://bookdown.org/massaro_simone_it// 

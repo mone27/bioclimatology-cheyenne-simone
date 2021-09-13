@@ -22,42 +22,40 @@ editor_options:
 
 ## Motivation
 
-The sun is the energy source of the radiation incoming to Earth.
-This radiation is classified as short-wave or long-wave radiation.
-Besides,short-wave radiation is considered to be more intensive than long-wave due to its higher wave frequency.
-Albedo is defined as the fraction of radiation being returned from the material of the surface, for example, it can be land, canopy or water.
-Around 30% of the light coming from the sun is reflected back to space when arriving to the atmosphere.
-This article describes the albedo of earth in relation with the variations in temperature of planet.
-Normally albedo will stay constant, but natural processes such as the active eruption of a volcano can liberate some particles such as sulfur dioxide, this will be reflected at some point on the partial cooling of earth due to more particles scattering the sun radiation [@perkins_core_2019].
-With same effect, the canopy on earth helps to maintain a good temperature enough for the welfare on ecosystems.
+The sun is the source of all energy reaching the Earth. It arrives under the form of electromagnetic radiation, in particular of light in the shortwave range.
+
+The incoming shortwave radiation heats up the surface and the atmosphere with different intensity. This is the core reason behind numerous phenomena on the earth, from seasons to winds.
+Moreover a small fraction of shortwave radiation is captured by the plants through photosynthesis, its converted to chemical energy and it is the basis for the whole biosphere.
+
 
 ## Background
 
 Electromagnetic radiation are oscillations of a magnetic and electric field. Electromagnetic radiation is formed by waves, that have a characteristics wavelength and frequency.
-Electromagnetic radiation is a form of energy, hence it is measured in Joule and the radiation intensity $J/s = W$ (Watts).
+
+Electromagnetic radiation is a form of energy, hence it is measured in Joule ($J$) and its intensity Watts ($J/s = W$).
 
 Every body emits electromagnetic radiation, the intensity and the wavelength of the emitted radiation depends on its temperature and is described by Planck's law.
 
 Due to its temperature the sun emits short-wave radiation, that have a wavelength in the range $(0.2 - 4) \mu m$.    
-Solar radiation is composed by ultraviolet radiation with a lower value than $0.4 \mu m$, visible radiation $(0.4-0.7) \mu m$ and near-infrared $>0.5 \mu m$.
+Solar radiation is composed by ultraviolet radiation with a wavelenght lower than $0.4 \mu m$, visible radiation $(0.4-0.7) \mu m$ and near-infrared $>0.5 \mu m$.
 In contrast with sun radiation, the radiation emitted by objects in earth will not surpass the range of $3-100 \mu m$, and this ratio is known as long wave radiation or infrared.
 
 Stefan-Boltzmann law describes the total amount of radiation emitted from bodies at a specific temperature.
-This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5,67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the emissivity ($\varepsilon$);
+This law consists on the calculation of emittance (L) in ($W / m^2$) produced equal the product of the Stefan-Boltzmann constant ($\sigma= 5.67 10 ^{-8} \frac{W}{m^2} K^{-4}$) and the emissivity ($\varepsilon$);
 
 $$L= \varepsilon \sigma T^4$$
 
 
-The emissivity as $\varepsilon$ "*the ratio of the actual emittance to the blackbody emittance".*. A blackbody is described as the body that absorbs and emits all the radiation [@bonan_climate_2019]
+The emissivity as $\varepsilon$ "*the ratio of the actual emittance to the blackbody emittance"*. A blackbody is described as the body that absorbs and emits all the radiation [@bonan_climate_2019]
 
 The solar radiation reaches the ecosystems and it is divided in 3 components: reflected, absorbed and transmitted. The amount of radiation in each of this component depends on the properties of the canopy and on the wavelength ($\lambda$). The following equation is true:
 
 $$1= \sigma(\lambda)+r(\lambda)+t(\lambda)$$
 where:
 
-- Adsorption ($\sigma(\lambda)$) is the fraction of light that it blocked and absorbed by the medium.
+- Adsorption $\sigma(\lambda)$ is the fraction of light that it blocked and absorbed by the medium.
 
-- Reflectivity $r(\lambda)$ is the fraction of electromagnetic wave that is reflected backward.
+- Reflectivity $r(\lambda)$ is the fraction of electromagnetic wave that is reflected backward. The reflectivity of a surface is also called albedo [@perkins_core_2019].
 
 - Transmissivity $t(\lambda)$  is the fraction of energy going through a medium without experimenting any change.
 
@@ -149,7 +147,7 @@ sw_b_d <- sw_b %>%
   summarise_all(mean)
 ```
 
-```{r, alb-year, fig.cap="Albedo over the year. Data is averaged daily. Data from Hainich national park 2020."}
+```{r, alb-year, fig.cap="Surface albedo over the year. Data is averaged daily. Data from Hainich national park 2020."}
 ggplot(sw_b_d, aes(x=Date))+
   geom_line(aes(y=albedo)) +
   labs(y = "Albedo", x = "Time")
@@ -229,7 +227,8 @@ shortwavedata <- mutate(shortwavedata,
 shortwavedata%>%
   group_by(week(Date)) %>%
   summarise_all(mean) %>%
-  gather("type", "rad", Shortwave_incoming_W_m.2 , direct , Shortwave_incoming_diffuse_W_m.2, factor_key = T)  %>%
+  gather("type", "rad", Shortwave_incoming_W_m.2,
+         direct, Shortwave_incoming_diffuse_W_m.2, factor_key = T)  %>%
   ggplot(aes(x=Date, y=rad, color=type)) +
     geom_line() +
     scale_color_colorblind(labels=c("total", "direct", "diffuse")) +
@@ -239,7 +238,7 @@ shortwavedata%>%
 
 \newpage
 
-This is a summer week from July, where it is possible to clearly see the difference between cloudy and sunny day. The 8th of July (first day) was cloudy with virtually no direct radiation, while the 13th of July was very sunny with almost all radiation direct.
+Figure \@ref(fig:radiation-weeklyr) shows a summer week, where it is possible to clearly see the difference between cloudy and sunny day. The 8th of July (first day) was cloudy with virtually no direct radiation, while the 13th of July was very sunny with almost all radiation direct.
 
 ```{r, radiation-weeklyr, fig.cap="Total and direct component of shortwave radiation over a week. Data is averaged over 30 min. Data from Hainich national park second week July 2020."}
 shortwavedata%>%
