@@ -65,13 +65,13 @@ ways, by data driven or with the use of instruments. Later, this data is
 required in ecosystem modelling. According to what flux is going to be
 measured, some instruments can be required as an additional equipment.
 The instruments can be: chambers, lysimeter and sap flow. The following
-formula describes the principle on which gas chambers are based on to
+formula describes the principle on which **gas chambers** are based on to
 measured CO2 flux in soil.
 
 The CO2 flux assumption is based on its linear increase, using the
 following formula;
 
-Fc = $$(dc/dt) (M*V/A)$$\$
+Fc = $$(dc/dt) *(M*V/A)$$$
 
 dc: change of CO2 concentration from t 1 to t 2 (µmol mol ⁻ ¹)
 

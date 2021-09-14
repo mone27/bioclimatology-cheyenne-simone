@@ -45,9 +45,9 @@ more accessible than others and depending the scenario some of them
 might be more suitable than others. The measurement of
 evapotranspiration claims quantitative data, and this data can be
 measure by water evaporation and the energy flux between soil and
-atmosphere.Rana and Kater (2000), describes the different ways to
+atmosphere. Rana and Kater (2000), describes the different ways to
 measure evapotranspiration based on hydrological, micrometeorological,
-plant physiology and analytical approaches. The first one includes: soil
+plant physiology and analytic approaches. The first one includes: soil
 water balance and weighing lysimeters, the second one, energy balance
 and Bowen ration, aerodynamic method and eddy covariance. Plant
 physiology approach is based on sap flow method or chambers system. Last
@@ -78,10 +78,9 @@ change of mass over time. They can measure the net infiltration from
 precipitation or irrigation systems and the quantity of net evaporation
 between different wetting events (Meissner et al., 2020).
 
-{Meissner, R., Rupp, H., & Haselow,
-L. (2020). Use of lysimeters for monitoring soil water balance
-parameters and nutrient leaching. In *Climate change and soil
-interactions* (pp. 171-205). Elsevier.}
+{Meissner, R., Rupp, H., & Haselow, L. (2020). Use of lysimeters for
+monitoring soil water balance parameters and nutrient leaching. In
+*Climate change and soil interactions* (pp. 171-205). Elsevier.}
 
 Bowen ratio energy balance method: also known as BREB method has been
 widely used to quantify water balance. It estimates the latent heat flux
@@ -93,11 +92,10 @@ information about aerodynamic characteristics of zone of interest, it
 integrates latent hear fluxes over a wide areas and gives an estimation
 of these flux in short time period intervals (e.g. less than half hour).
 
-{Todd, R. W., Evett, S. R., &
-Howell, T. A. (2000). The Bowen ratio-energy balance method for
-estimating latent heat flux of irrigated alfalfa evaluated in a
-semi-arid, advective environment. *Agricultural and Forest Meteorology*,
-*103*(4), 335-348.}
+{Todd, R. W., Evett, S. R., & Howell, T. A. (2000). The Bowen
+ratio-energy balance method for estimating latent heat flux of irrigated
+alfalfa evaluated in a semi-arid, advective environment. *Agricultural
+and Forest Meteorology*, *103*(4), 335-348.}
 
 ## Analysis
 

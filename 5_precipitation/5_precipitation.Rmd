@@ -20,22 +20,21 @@ header-includes:
 
 ## Motivation
 
-Water is needed to plants for photosynthesis and transpiration.
-
+Precipitation is a very important process in climatology or weather meteorology. Precipitation in relation with water, occurs when atmospheric conditions become saturated enhancing 100% of relative humidity and thus, water condensates and later, it precipitates. Besides, precipitation is a key process part of the water cycle. Its function is to provide with water the natural ecosystem in the planet. Water is the first component needed by plants, to allow the processes of photosynthesis and transpiration.
 
 
 ## Background
 
-The precipitation is usually in form of liquid water, but can also be solid in case of snow or hail.
+The precipitation is usually in form of liquid water, but can also be solid in case of snow or hail. In the previous section, we referred to water condensation. Although this is important part, first needs to be a cloud formation. This takes place by the presence of a warm air flow, thus its cooler surrounding will rise due to a lower density. Together with an increase in height, the air parcel expands and cools down with the dry adiabatic lapse rate. Then, condensation occurs when air temperature and dew point temperature. During the condensation latent heat is released. 
 
-It measured in measured in volume per unit area ($m^3/m^2$). The standard unit is the millimeters of rain, which corresponds to liter per squared meter.
+It measured in measured in volume per unit area ($m^3/m^2$). The standard unit is  millimeters of rain (mm), which corresponds to a liter per squared meter.
 The precipitation intensity is measured in millimeter per hour ($mm/h$)
 
 ## Sensors and measuring principle
 
 The precipitation sensors, pluviometers, measure the amount of rainfall on a know area.
 The most common ones uses a **tipping bucket** that when gets filled with water it switch position and empty itself. By counting the number of swings of the bucket it is possible to calculate the amount of precipitation.
-This sensors are the most common one, as they are simple and relatively reliable, however they can produce inaccurante measurements if the amount of precipitation is very low that the buckets doesn't fill or when there is an high rain intensity that the bucket cannot fill fast enough.
+This sensors are the most common one, as they are simple and relatively reliable, however they can produce inaccurate measurements if the amount of precipitation is very low that the buckets doesn't fill or when there is an high rain intensity that the bucket cannot fill fast enough.
 
 To overcome this limitation there are **weighting** pluviometers, which have a very sensitive scale under a bucket that collects all the precipitations.
 
