@@ -22,7 +22,7 @@ editor_options:
 ## Motivation
 
 Part of the turbulent fluxes regulating the natural systems on earth is
-CO2 flux. In this chapter, we learned some ways to trace the flux if
+CO2 flux. In this chapter, we learned some ways to trace the flux of
 this important gas, also well known as green house gas. First, a small
 introduction about the carbon cycle in land ecosystems. Carbon
 approaches vegetation through the photosynthesis. Afterwards, carbon is
@@ -45,7 +45,7 @@ consists on the long term assessment of European carbon balance, with
 sample plots at different levels: atmosphere, terrestrial ecosystem and
 ocean. This programme is not the only one, also Fluxnet; measuring CO2,
 water vapor and energy flux all along the world. Thanks to these type of
-initiatives, other natural factors can be analyzed such as ;
+initiatives, other natural factors can be analyzed such as
 temperature, precipitation, temperature and soil moisture. As an
 example, the drought experienced in Europe in 2018, where a big
 decreasing in the CO2 uptake in central Europe was experienced, while
@@ -54,9 +54,7 @@ Besides the consequences of this drought period, the European average
 had a smaller effect than in 2003.
 
 A simple definition of flux is the exchange of any quantity per area and
-time. The flux of CO2 and H2O is measured with µmol m^-2^ s⁻ ¹ and mmol
-m^-2^ s⁻ ¹ respectively. Leaf evapotranspiration and Heat is measured by
-J m^-2^ \*s\^-1.
+time. The flux of CO2 and H2O is measured with $\mu mol\ m^{-2} s{-1}$ and $mmol\ m^{-2} s{-1}$ respectively. Leaf evapotranspiration and Heat is measured by $W m^{-2}$.
 
 ## Sensors and measuring principle
 
@@ -71,19 +69,20 @@ measured CO2 flux in soil.
 The CO2 flux assumption is based on its linear increase, using the
 following formula;
 
-Fc = $$(dc/dt) *(M*V/A)$$$
+$$F_c = \frac{dc}{dt} \frac{M*V}{A}$$\$
 
-dc: change of CO2 concentration from t 1 to t 2 (µmol mol ⁻ ¹)
+where:
+ - $dc$: change of CO2 concentration ($\mu mol\ mol^{-1}$)
 
-dt: change in time (s)
+ - $dt$: change in time ($s$)
 
-M =p/RTmolar volume (mol m ⁻ ³)
+ - M = $p / R\ T$ molar volume ($mol\ m^{-3}$)
 
-R = 8.314 J mol⁻ ¹ K ⁻ ¹
+ - R = 8.314 $J\ mol^{-1} K^{-1}$
 
-V: chamber volume (m³)
+ - V: chamber volume ($m^3$)
 
-A: chamber surface area (m²)
+ - A: chamber surface area ($m^2$)
 
 ## Analysis
 

@@ -480,7 +480,7 @@ ggplot() +
   geom_line(aes(time, h2o, col="raw"), data = ec_flux) +
   geom_line(aes(time, h2o, col="corrected"), data= ec_flux_corr) +
   scale_color_colorblind() +
-  labs(x="Time", y="H2O flux [umol m-2 s-1]", col="Flux")
+  labs(x="Time", y="H2O flux [mmol m-2 s-1]", col="Flux")
 ```
 
 \newpage

@@ -41,7 +41,7 @@ $$e_s = 6.1078 e^{\frac{17.08085 T_a} {234.175°C + T_a}}$$
 The relative humidity is ratio between the actual vapur pressure and the saturation vapour pressure expressed in percentage.
 It is a common way of describing humidity.
 
-- Dewpoint temperature [$\degree C$]
+- Dewpoint temperature [$^{\circ} C$]
 
 The dew point temperature is the temperature when the water in the air would start condensing. This happens when the actual vapur pressure becomes equal to the saturation one.
 It can be estimated with the following formula:
@@ -70,7 +70,7 @@ $$q = \frac{e_a}{p-0.378 e_a}$$
 
 The vaopur pressure deficit is the difference between the saturation vapour pressure and the actual vapour pressure. It indicates which is the amount of water that can still be added in the atmosphere before reaching saturation.
 
-- Equivalent temperature [$\degree C$]
+- Equivalent temperature [$^{\circ} C$]
 
 The equivalent temperature is the temperature that would be reached if the energy release by the condesation of all water is used to heat up the air mass. Therefore by definition it is always higher than the actual air temperature.
 
