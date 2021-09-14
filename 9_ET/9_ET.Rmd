@@ -18,32 +18,27 @@ editor_options:
 ---
 
 \newpage
+
 # Evapotranspiration
 
 ## Motivation
 
-In this chapter we will focus on evapotranspiration. This term is well
-known in many environmental study fields, but, what is the most precise
-definition given to this term?
-
-Evapotranspiration (ET) is referred according to the relationship of two
-other factors, such as the soil water evaporation and plant
-transpiration. The actual evapotranspiration is the one that is measured
-from these two factors mentioned before, considering changes and not
-ideal conditions in the meteorological conditions and the type of soil
-(Labedzki, 2011). In contrast, potential evapotranspiration is that one
-that occurs with ideal conditions such as abundance of water storage and
-meteorological conditions. Some differences between potantial and actual
-evapotranspiration are the infiltration capacity of soil, possible
-diseases, pH of soil and its fertility.
+In this chapter we will focus on evapotranspiration. Evapotranspiration
+(ET) is referred according to the relationship of two other factors,
+such as the soil water evaporation and plant transpiration. The actual
+evapotranspiration is the one that is measured from these two factors
+mentioned before, considering changes and not ideal meteorological
+conditions and type of soil (Labedzki, 2011). In contrast, potential
+evapotranspiration occurs with ideal conditions such as abundance of
+water storage and meteorological conditions. Some differences between
+potantial and actual evapotranspiration are the infiltration capacity of
+soil, possible diseases, pH of soil and its fertility.
 
 Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD--Books on Demand.
 
 ## Background
 
-
 ## Sensors and measuring principle
-
 
 There are many different ways to measure evapotranspiration,some are
 more accessible than others and depending the scenario some of them
@@ -66,22 +61,47 @@ and that we have seeing in class are:
 
 Evaporation pan: a circle panel where precipitation is accumulated and
 then, with the help of a measuring bucket and based on a scale, water
-los can be measured by the difference between the potential
-evapotranspiration of 2 days. Some of the erros are the expansion of
-water, wrong reading, limited recording for a volume of water and the
-possibility of the oasis effect to occur.
+loss can be measured by the difference between the potential
+evapotranspiration of 2 days. Some of the errors are related to the
+expansion of water, wrong reading, limited recording for a volume of
+water and the possibility of the oasis effect to occur.
 
-Piché evaporimeter
+Piché evaporimeter: is a type of atometer applied in the measurement
+rate of evaporation from a wet disc with absorbent paper. Results are
+dependent on wind speed that goes through the disc, as well as the wet
+bulb saturation deficit. The rate of evaporation is usually expressed as
+the volume of water evaporated per unit area in unit time.
 
-Weighing lysimeter
+Weighing lysimeter: they allow the mass or volumetric soil water content
+variation to be measured by weighing the lysimeter and determining its
+change of mass over time. They can measure the net infiltration from
+precipitation or irrigation systems and the quantity of net evaporation
+between different wetting events (Meissner et al., 2020).
 
-Bowen ratio energy balance method
+{Meissner, R., Rupp, H., & Haselow,
+L. (2020). Use of lysimeters for monitoring soil water balance
+parameters and nutrient leaching. In *Climate change and soil
+interactions* (pp. 171-205). Elsevier.}
+
+Bowen ratio energy balance method: also known as BREB method has been
+widely used to quantify water balance. It estimates the latent heat flux
+from a surface using measurements of air temperature and humidity
+gradients, net radiation and soil heat flux. In comparison with other
+methods such as eddy covariance or weighting lysimeters, is an indirect
+method (Todd et al., 200). Some advantages are that it does not require
+information about aerodynamic characteristics of zone of interest, it
+integrates latent hear fluxes over a wide areas and gives an estimation
+of these flux in short time period intervals (e.g. less than half hour).
+
+{Todd, R. W., Evett, S. R., &
+Howell, T. A. (2000). The Bowen ratio-energy balance method for
+estimating latent heat flux of irrigated alfalfa evaluated in a
+semi-arid, advective environment. *Agricultural and Forest Meteorology*,
+*103*(4), 335-348.}
 
 ## Analysis
 
-
 ### Potential evapotranspiration
-
 
 ```{r, warning=FALSE}
 library(tidyverse)
@@ -98,8 +118,6 @@ meteo <-
   here::here() %>% 
   read_csv()
 ```
-
-
 
 ```{r}
 #' Potential evapotranspiration using Priestley-Taylor equation
@@ -213,5 +231,3 @@ et %>%
   labs(y= "Evapotranspiration (mm)") +
   scale_color_colorblind()
 ```
-
-

@@ -60,10 +60,13 @@ J m^-2^ \*s\^-1.
 
 ## Sensors and measuring principle
 
-According to what flux is going to be measured, some instruments can be
-required as an additional equipment. The instruments can be: chambers,
-lysimeter and sap flow. The following formula describes the principle on
-which gas chambers are based on to measured CO2 flux in soil.
+The data measurement of gas fluxes can be done with the use of different
+ways, by data driven or with the use of instruments. Later, this data is
+required in ecosystem modelling. According to what flux is going to be
+measured, some instruments can be required as an additional equipment.
+The instruments can be: chambers, lysimeter and sap flow. The following
+formula describes the principle on which gas chambers are based on to
+measured CO2 flux in soil.
 
 The CO2 flux assumption is based on its linear increase, using the
 following formula;
