@@ -26,19 +26,13 @@ editor_options:
 
 ## Motivation
 
-During the previous protocols, it has been described that earth is formed by different atmospheric layers.
-Well, is not only about these but also about the ones that are found more at the land surface.
-Soil is the first layer found when land surface is reached.
-It consists on the middle face between the lithosphere and the atmosphere.
-Thus, soil is related with other factors, such as biology and hydrology.
-Ecosystems are established on the soil, and soil is shaping them as the main source of resources for the natural habitats to expand [@lal_principles_2004].
+Soil is the physical foundation of terrestrial ecosystems [@lal_principles_2004]. The soil is composed by different layers and is the interface between the lithosphere and the biosphere. Several processes fundamental like decomposition and nutrient transport take place into the soil, hence studying soil physical, chemical and biological properties is crucial to understand ecosystems.
 
 Soil temperature and water content have a direct impact on two key process in the ecosystem: photosynthesis and respiration, which are basis of carbon dynamics. The former takes place in the canopy, but it requires the transpiration of water that comes from the soil. Moreover the soil temperature influences the leaves energy balance.
-The majority of ecosystem respiration takes places in the soil [@yuste_soil_2005] and the soil temperature and humidity are the mail variables that control the soil respiration.
+The majority of ecosystem respiration takes places in the soil [@yuste_soil_2005] and the soil temperature and humidity are the main variables that control the soil respiration.
 The respiration increases exponentially with temperature [@lloyd_temperature_1994],
-however at high temperature it is often limited by moisture [@orchard_relationship_1983].
+however at high temperature it is often limited by water availability [@orchard_relationship_1983].
 
-In this report, the main focus is partly on soil heat storage and hydrology processes.
 
 ## Background
 
@@ -47,25 +41,26 @@ Soil is an important environmental variable partly in charge of an efficient eco
 Soil moisture drives changes in stomata conductance, photosynthesis rate and energy partitioning. Water potential is the main reason of the movement of water through osmosis, gravity and air pressure. 
 
 Soil water potential is constitute by its matrix potential (adhesive force water-soil particles), osmotic potential (gradient of solute's [C]), pressure potential(pressure of air) and gravitational potential (mass of water). 
-REgarding water potential, other factors from the soil are very important.
-These are its particles size, pore volume or pore size. This will variate depending on the type of soil at each moment, being sandy the soil with the thickest particles size with bigger pores and thus, less water retention capacity.
+
+The matric potential is mainly influenced by the physical proprieties of the soil water potential, other factors from the soil are very important: particles size, pore volume or pore size. This varies depending on the type of soil, being sandy the soil with the thickest particles size with bigger pores and thus, less water retention capacity.
 
 
-Soil characteristics can be approach by different perspectives, such as the surface energy fluxes and hydrology.
-The first one regarding on the direct solar incoming radiation, reflected radiation and absorbed radiation.
-The second one, regards on the precipitation, evaporation, infiltration, surface runoff. Each of these cause different processes on soil structure. 
+The soil can store energy as heat, which results in different temperature in the different layers of the soil.
+The  heat flux in the soil depends both on the time and and temperature gradient.
 
-Going deeper into how energy fluxes affect the soil, the ground heat flux capacity will be introduced.
-This process is based on Fourier's which describes the heat transfer in soil with the conduction of its components, from higher to lower temperatures.
-In fact, this law includes parameters such as: 
+This dependece on the temperature gradient is described by the Fourier's law which illustrates how the heat transfer in soil with the conduction of its components, from higher to lower temperatures.
+
+$$G = -k \frac{\partial T}{\partial z}$$
+where: 
 
  - $k$: Thermal conductivity in $(W/mK)$
- - $T$ Temperature in $K$ 
- - $z$ depth in $m$
+ - $T$: Temperature in $K$ 
+ - $z$: depth in $m$
 
-The variation in soil temperature along a period of time depends in depth and the heat flux going inside it, as described by the following equation: 
-$$ T/t = 1/C_v [...]$$
-$C_v$: heat capacity in $(J m^{-3}K{-1})$ 
+If the time component is also included in the equation the following relation is true:
+
+$$ \frac{\partial T}{\partial t} = \frac{1}{C_v} [\frac{\partial}{\partial z}(k\frac{\partial T}{\partial z})]$$
+where $C_v$ is heat capacity in $J\ m^{-3}K{-1}$ 
 
 The temperature along soil profile varies between day and night. During the day, the temperature of soil is higher than the temperature of air and thus starts to get more equally until night is set. After this occurs, the temperature of air is higher than the soil temperature, with this peak being more distinguish during midnight. 
 
@@ -85,7 +80,7 @@ The has a low water potential therefore attracts the water from the tensiometer,
 
 ### Soil temperature
  
- Soil temperature is measured by **temperature sensors** placed a different depth.
+ Soil temperature is measured by **temperature sensors** placed at different depth.
  Usually a resistance sensor, like the *Pt100*, is used as long term stability is more important than high frequency response rate.
  The presence of multiple temperature sensor along the soil profile allows also to estimate the soil heat fluxes.
  
@@ -185,7 +180,10 @@ A local sensitivity analysis [@soetaert_inverse_2010] was made for the two param
 
 ### Soil temperature profile
 
-*Visualize the soil temperature in different depths and discuss the temporal variability across one day.*
+The Figure \@ref(fig:profile) shows the soil temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast.
+The opposite is happening at a depth of 2cm or 5cm in soil, where the variations of temperature are stronger.
+Just before the dawn in the morning, the soil reaches the lowest temperature values, between 8-9 °C at this depths.
+Then during the day, the highest temperature is reached (12-13 °C) around 6pm where the sun starts going down starting the sunset. 
 
 ```{r}
 soil_g <- soil %>% 
@@ -205,10 +203,6 @@ soil_g %>%
   scale_color_colorblind()
 ```
 
-The Figure \@ref(fig:profile) shows the soil temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast.
-The opposite is happening at a depth of 2cm or 5cm in soil, where the variations of temperature are stronger.
-Just before the dawn in the morning, the soil reaches the lowest temperature values, between 8-9 °C at this depths.
-Then during the day, the highest temperature is reached (12-13 °C) around 6pm where the sun starts going down starting the sunset. 
 
 \newpage
 

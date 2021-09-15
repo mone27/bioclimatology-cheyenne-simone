@@ -23,20 +23,50 @@ editor_options:
 
 ## Motivation
 
-In this chapter we will focus on evapotranspiration. Evapotranspiration
-(ET) is referred according to the relationship of two other factors,
-such as the soil water evaporation and plant transpiration. The actual
-evapotranspiration is the one that is measured from these two factors
-mentioned before, considering changes and not ideal meteorological
-conditions and type of soil (Labedzki, 2011). In contrast, potential
-evapotranspiration occurs with ideal conditions such as abundance of
-water storage and meteorological conditions. Some differences between
-potantial and actual evapotranspiration are the infiltration capacity of
-soil, possible diseases, pH of soil and its fertility.
+The evapotranspiration (ET) is an important variable for ecosystems, as it represents the amount of water that is evaporating. This is a good indication of the amount of photosyntetic activity and by comparing it the potential ET water stress of ecosystems can be estimated.
 
-Labedzki, L. (Ed.). (2011). Evapotranspiration. BoD--Books on Demand.
+Evaporanspiration is important to hold the global and continental scale hydrologic cycle. Evapotranspiration is influenced by a combination of factors; the increase of temperature, decrease of bulk canopy due to higher CO2 emissions and large scale land use change. [@likens_Encyclopedia_2009]
+
+
 
 ## Background
+
+The ET is the actual amount of water that evaporates. In contrast the potential ET is the amount of water that would evaporate if there would be unlimited water available in the soil [@labedzki_Evapotranspiration_2011].
+
+The difference between the ET and the potential ET indicates the water stress of an ecosystem.
+
+The measurement unit for ET is mm. The ET is often the ET on a daily basis.
+
+The ET is measured in the field using different instruments, while the potential ET can be either measured or estimated using other enviromental variables.
+
+In particular the Penman-Monteith is the most precise way to estimate the ET. It takes into account the energy available from the sun and the speed at which the water can evaporate, that depends on temperature, air humidity and wind.
+
+$${LE=\frac{s (R_n-G) + \rho_a c_p \left( e_s - e_a \right) / r_a }
+{s + \gamma \left ( 1 + r_a / r_s \right)}}$$
+
+
+where:
+
+- $S$ Slope of saturation vapor pressure (kPa / K)
+- $R$ N Net radiation (W m -2 )
+- $G$ Ground heat flux (W m -2 )
+- $\rho$ Air density (kg m -3 )
+- $C_p$ Specific heat capacity at constant pressure (J kg -1 K -1 )
+- $e_s$ Saturation vapor pressure (kPa)
+- $e_a$ Actual vapor pressure (kPa)
+- $\gamma$ Psychrometric constant (kPa K -1 )
+- $r_s$ Stomata resistance (s m -1 )
+- $r_a$ Aerodynamic resistance (s m -1 )
+
+A useful aproximation of the Penman-Monteith equation is the Priestley-Taylor formula which requires less meteorolical data
+
+$$ PET \approx  1.26 \frac{s}{s+\gamma} \left(R_N - G \right) $$
+where:
+
+- PET is the daily evapotranspiration 
+- s is the saturation vapour pressure ($kPa/K$)
+- $R_N$ is the net radiation in $MJ / m^2 d$
+- $G$ is the soil heat flux in $MJ / m^2 d$
 
 ## Sensors and measuring principle
 
@@ -54,52 +84,50 @@ physiology approach is based on sap flow method or chambers system. Last
 one, analytical approach are based on Penman-Montheith model. After this
 one, empirical approach can also be taken into account, such as process
 based on crop coefficient approach and soil water balance modeling
-[@articlenoauthor_rana_nodate].
+[@rana_Measurement_2000].
 
 Some of the most frequently measurements applied to evapotranspiration
 and that we have seeing in class are:
 
-Evaporation pan: a circle panel where precipitation is accumulated and
+ - **Evaporation pan**: a circle panel where precipitation is accumulated and
 then, with the help of a measuring bucket and based on a scale, water
 loss can be measured by the difference between the potential
 evapotranspiration of 2 days. Some of the errors are related to the
 expansion of water, wrong reading, limited recording for a volume of
 water and the possibility of the oasis effect to occur.
 
-Piché evaporimeter: is a type of atometer applied in the measurement
+ - **Piché evaporimeter**: is a type of atometer applied in the measurement
 rate of evaporation from a wet disc with absorbent paper. Results are
 dependent on wind speed that goes through the disc, as well as the wet
 bulb saturation deficit. The rate of evaporation is usually expressed as
 the volume of water evaporated per unit area in unit time.
 
-Weighing lysimeter: they allow the mass or volumetric soil water content
+ - **Weighing lysimeter**: they allow the mass or volumetric soil water content
 variation to be measured by weighing the lysimeter and determining its
 change of mass over time. They can measure the net infiltration from
 precipitation or irrigation systems and the quantity of net evaporation
-between different wetting events (Meissner et al., 2020).
-
-{Meissner, R., Rupp, H., & Haselow, L. (2020). Use of lysimeters for
-monitoring soil water balance parameters and nutrient leaching. In
-*Climate change and soil interactions* (pp. 171-205). Elsevier.}
+between different wetting events [@meissner_Chapter_2020].
 
 Bowen ratio energy balance method: also known as BREB method has been
 widely used to quantify water balance. It estimates the latent heat flux
 from a surface using measurements of air temperature and humidity
 gradients, net radiation and soil heat flux. In comparison with other
 methods such as eddy covariance or weighting lysimeters, is an indirect
-method (Todd et al., 200). Some advantages are that it does not require
+method [@todd_Bowen_2000]. Some advantages are that it does not require
 information about aerodynamic characteristics of zone of interest, it
 integrates latent hear fluxes over a wide areas and gives an estimation
 of these flux in short time period intervals (e.g. less than half hour).
 
-{Todd, R. W., Evett, S. R., & Howell, T. A. (2000). The Bowen
-ratio-energy balance method for estimating latent heat flux of irrigated
-alfalfa evaluated in a semi-arid, advective environment. *Agricultural
-and Forest Meteorology*, *103*(4), 335-348.}
 
 ## Analysis
 
 ### Potential evapotranspiration
+
+During the four days of measurement the potential ET has been estimated
+using the Priestley-Taylor (Figure \@ref(fig:pet)). The daily potential
+ET varies a significantly during the 4 days, ranging from 6mm to almost
+12 mm. This reflects the change in the weather conditions, as the day 1
+and 4 were cloudy and colder.
 
 ```{r, warning=FALSE}
 library(tidyverse)
@@ -137,8 +165,9 @@ meteo_d <- meteo %>%
   summarise(PET = mean(PET))
 ```
 
-```{r, pet, fig.cap="Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021."}
-(meteo_d <- meteo %>% 
+
+```{r}
+meteo_d <- meteo %>% 
   group_by(Date = floor_date(Date, "day")) %>% 
   # Need to convert from W (J/s) to MJ/d, using a factor 0.0864
   summarise(R_n_d = mean(`NetRadiation_Wm-2`) * 0.0864,
@@ -146,20 +175,8 @@ meteo_d <- meteo %>%
             T_air = mean(TA_degC)) %>% 
   mutate(
     PET = calc_pet(T_air, R_n_d, G_d)
-  ))
+  )
 ```
-
-```{r}
-ggplot(meteo_d, aes(Date, PET)) +
-  geom_line() +
-  labs(y="PET (mm)")
-```
-
-During the four days of measurement the potential ET has been estimated
-using the Priestley-Taylor (Figure \@ref(fig:pet)). The daily potential
-ET varies a significantly during the 4 days, ranging from 6mm to almost
-12 mm. This reflects the change in the weather conditions, as the day 1
-and 4 were cloudy and colder.
 
 ```{r}
 et <- et %>% 
@@ -169,14 +186,26 @@ et <- et %>%
   )
 ```
 
-TODO
+```{r pet, fig.cap="Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021."}
+ggplot(meteo_d, aes(Date, PET)) +
+  geom_line() +
+  labs(y="PET [mm]")
+```
 
-### Piché evaporimeters
+\newpage
 
-The potential ET has been measured using Piché evaporimeters in
-different locations around the botanical garden. The measures values
-have been compared between the different locations and the evaporation
-pan
+### Field Measurements
+
+The potential ET (PET) has been measured using 8 Piché evaporimeters in
+4 different locations around the botanical garden. Moreover a evaporation pan has aslo been used to measure the PET.
+
+The piché evaporimeters were put in different location, some in the shade, some under the sunlight.
+Therefore a variation in the measured PET is expected (Figure \@ref(fig:pan-pich)), but overall the measures are comparable and is cleat that the ET on the 27th of June was higher.   
+The piché evaporimeters between each other (Figure \@ref(fig:pich-box)), it possible to see a reasonable pattern, for example the PET in the tower (exposed to the sun) is much higher than in the canopy of the fir.
+Finally the two evaporimeters in the same location report similar values for all location, but the fir. This is a confirmation that the field measurements are correct. The different measures may be related to problem in the piché evaporimeters sealing.
+
+Finally the PET of the pan is compared with the PET estimated with the Priestley-Taylor equation (Figure \@ref(fig:pan-pet)). However, the values are very different with the PET from Priestley-Taylor being more than the double of the PET from the Pan. All the deta processing steps have been double checked but no explanation has been found for this difference.
+
 
 ```{r}
 pich_d <- 3 #cm
@@ -199,7 +228,7 @@ et <- et %>%
   )
 ```
 
-```{r, pan-pich, fig.cap="Comparison between evapotranspiration pan and the "}
+```{r, pan-pich, fig.cap="Comparison of Potential Evapotranspiration between the evaporatin pan and 8 Piché evaporimeters in 4 different locations (fir, pole, tower, acer). Data from field measurement 26-28 June 2021."}
 spot_cols <- hue_pal()(4)
 names(spot_cols) <- unique(et$spot)
 et %>% 
@@ -208,24 +237,29 @@ ggplot(aes(date)) +
   geom_line(aes(y=et_pan, col="Pan"), size=.7) +
   geom_jitter(aes(y = et_pich, col=spot), width = .06, height = 0) +
   scale_color_manual(values=c(spot_cols, "Pan" = "black" )) +
-  labs(y="Potential evapotranspiration (mm)", colour="Location") +
+  labs(y="Potential Evapotranspiration [mm]", colour="Location") +
   scale_color_colorblind()
 ```
 
-```{r, fig.cap="Piche evaporimeters"}
+```{r pich-box, fig.cap="PET at the different location. Data from field measurements 26-28 June 2021."}
 et %>% 
   drop_na() %>% 
 ggplot(aes(spot, et_pich, col=spot)) +
   geom_boxplot() +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x='Location', y = "PET [mm]", col="Location")
 ```
 
-```{r, fig.cap="Pan vs potential evapo"}
+
+```{r pan-pet, fig.cap="Comparison of the PET between the field measure with the evaporation pan and the estimation using the Priestley-Taylor equation. Data from field measurements and botanical garden 25-28 June 2021."}
 et %>% 
   left_join(meteo_d, by = c("date"= "Date")) %>% 
-  gather("type", "et", et_pan, PET) %>% 
+  gather("type", "et", PET, et_pan, factor_key = T) %>% 
   ggplot(aes(date, et, col=type)) +
   geom_line() +
-  labs(y= "Evapotranspiration (mm)") +
-  scale_color_colorblind()
+  labs(y= "Potential Evapotranspiration [mm]", x="Date", col="PET") +
+  scale_color_colorblind(labels = c("Priestley-Taylor", "Evap. pan"))
 ```
+
+
+\newpage

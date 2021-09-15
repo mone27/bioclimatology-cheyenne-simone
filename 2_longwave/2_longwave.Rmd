@@ -258,7 +258,7 @@ There is a notable low peak of incoming longwave in the last week of
 march, that is probably explained by clear skies but still low air
 temperature.
 
-```{r, net-rad-year, fig.cap="Net radiation over the year. The four components (shortwave incoming, shortwave outgoing, longwave incoming, longwave outgoing) are showed. Data averaged over a week. Data from botanical garden 2020."}
+```{r, net-rad-year, fig.cap="Net radiation over the year. The four components of the radiation (shortwave incoming, shortwave outgoing, longwave incoming, longwave outgoing) are also showed. Data averaged over a week. Data from botanical garden 2020."}
 rad_w %>%
   gather(key="type", value="radiation", lw_out, lw_in, sw_in, sw_out, net_rad,
          factor_key = T) %>%

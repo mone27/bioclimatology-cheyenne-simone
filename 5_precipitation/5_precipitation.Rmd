@@ -28,15 +28,16 @@ Precipitation is a very important process in climatology or weather meteorology.
 The precipitation is usually in form of liquid water, but can also be solid in case of snow or hail. In the previous section, we referred to water condensation. Although this is important part, first needs to be a cloud formation. This takes place by the presence of a warm air flow, thus its cooler surrounding will rise due to a lower density. Together with an increase in height, the air parcel expands and cools down with the dry adiabatic lapse rate. Then, condensation occurs when air temperature and dew point temperature. During the condensation latent heat is released.
 
 It is measured as a volume of water per unit area ($m^3/m^2$). The standard unit is the millimeters (mm) of rain, which corresponds to a liter per squared meter.
-The precipitation intensity is measured in millimeter per hour ($mm/h$)
+The precipitation intensity is measured in millimeter per hour ($mm/h$).
 
 ## Sensors and measuring principle
 
 The precipitation sensors, pluviometers, measure the amount of rainfall on a know area.
+
 The most common ones uses a **tipping bucket** that when gets filled with water it switch position and empty itself. By counting the number of swings of the bucket it is possible to calculate the amount of precipitation.
 This sensors are the most common one, as they are simple and relatively reliable, however they can produce inaccurate measurements if the amount of precipitation is very low that the buckets doesn't fill or when there is an high rain intensity that the bucket cannot fill fast enough.
 
-To overcome this limitation there are **weighting** pluviometers, which have a very sensitive scale under a bucket that collects all the precipitations.
+To overcome this limitation there are **weighting pluviometers**, which have a very sensitive scale under a bucket that collects all the precipitations.
 
 A completely different type of sensors are the **laser beam** pluviometers, that can estimate the number, size and speed of water droplet and therefore produce an accurate measurement of rain.
 
@@ -79,7 +80,7 @@ sites_avg <- sites %>%
 
 ### ET and precipitation at different latitudes
 
-The precipitation and the Evapotranspiration (ET)
+The latitude has an clear influence on precipitation, the closer to the equator the bigger the precipitation (Figure \@ref(fig:prec)). This relation depends on the local conditions, for example is not true if deserts are included, but still show an important global pattern.
 
 ```{r}
 prec_t <- prec %>%
@@ -95,50 +96,48 @@ sites <- sites %>%
 ```
 
 
-
-
-```{r prec, fig.cap="Precipitation"}
-(prec_box <-  ggplot(sites, aes(Lat, prec, colour=site)) +
+```{r prec, fig.cap="Cumulative yearly precipitation in relation to the latitide 2004-2009. "}
+ggplot(sites, aes(Lat, prec, colour=site)) +
   geom_boxplot() +
-   labs(title="Cumlative precipitation at different latitudes",
-        y="Total yearly precipitation (mm)",
-        x="Latitude (deg)"))
+   labs(y="Total yearly precipitation [mm]",
+        x="Latitude [deg]") +
+  scale_color_colorblind()
 ```
 
 \newpage
 
-```{r et, fig.cap="Cumlative evapotranspiration at different latitudes"}
+The evapotranspiration (ET) also shows a similar pattern (Figure \@ref(fig:et)). In the tropical forest the ET is much higher than the rest. The latitude pattern is not completely followed by the site in Italy, is likely due to the summer drought in the mediterran ecoesystem that limits the total ET as there is a lack of water.
+
+```{r et, fig.cap="Cumlative evapotranspiration at different latitudes. Data from Fluxnet database 2004-2009."}
 (et_box <- ggplot(sites, aes(Lat, et, colour=site)) +
   geom_boxplot() +
-    labs(y="Total evapotranspiratio [mm]",
+    labs(y="Total evapotranspiration [mm]",
         x="Latitude [deg]")) +
   scale_color_colorblind()
 ```
 
 ### Evapotranspiration index
 
-Precipitation is used as a driver/source for evapotranspiration. The ratio between
-evapotranspiration and precipitation (evapotranspiration index = ET_idx) is a very useful indicator
-how precipitation is used by plants during photosynthesis. Calculate the ET_idx for all sites and
-visualise it. What surprised you and how do the ET_idx differs across ecosystems? Discuss.
+The ratio between evapotranspiration and precipitation (evapotranspiration index) is a very useful indicator
+how precipitation is used by plants during photosynthesis. Evapotranspiration index is the fraction between precipitation and what is coming back to atmosphere through evapotranspiration. 
+
+The evapotranspiration index shows have a more interesting pattern (Figure \@ref(fig:et-index)). The sites in Germany and and Finland have similar values of ET_idx and and overall good efficiency in using water. For the site in French Guyana that ET_idx is lower and this probably due to the fact that the ecosystem is energy limited, the amount of radiation coming from the sun is not enough to evaporate all the available water. 
+
+The lowest ET_idx is Italy and its value is probably connected to the water stress of plants, that close stomata and reduce the transpiration even if there may be some water available. Moreover the precipitations are concentrated in the winter when the potential ET is lower and the plant cannot effectively use all the water.
 
 
-```{r et-index, fig.cap="Evapotranspiration index"}
+
+```{r et-index, fig.cap="Evapotranspiration index for different sites. Data from Fluxnet database 2004-2009."}
 sites$et_idx <- sites$et/sites$prec
 
 sites %>% 
 ggplot(aes(site, et_idx, colour = site))+
          geom_boxplot()+
-         labs( x="Different site", y="Evapotranspiration index") +
+         labs( x="Site", y="Evapotranspiration index [mm/mm]") +
   scale_color_colorblind()
         
 ```
 
-As we can see,evapotranspiration index is the fraction between precipitation and what is coming back to atmosphere through evapotranspiration. 
-
-what is intercepted by cannopy and what is being lose by soil hydrology processes. Other variables such as wind speed, surface humidity and solar radiation are not being taken into account in the calculation of this index, which probably are the ones causing differences on what it could have been expected at the beginning for some of the places. 
-
-we can see a higher evapotranspiration index in places where there is plenty precipitation and evapotranspiration rate by canopy. Hainich and Hyytiala are represented as the higher, this can be due to their higher latitudes providing this ecosystems with more precipitation rate. Guyaflux is at lower latitude and thus more close to the equator. This means a more tropical weather where high amount of rain and sun is normally occurring. Collelongo is place in a drier climate with high radiation but less annual precipitation rates. 
 
 
 

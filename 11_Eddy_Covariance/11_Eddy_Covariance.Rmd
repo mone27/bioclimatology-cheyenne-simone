@@ -3,11 +3,11 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-# Eddy Covariance
+# Turbulent Fluxes Eddy Covariance
 
 ## Motivation
 
-The atmosphere and the ecosystem exchange energy and gases through turbulent flows. The main gas transported are CO2 and water vapour, while energy is transferred as sensible heat fluxes and momentum fluxes.
+The atmosphere and the ecosystem exchange energy and gases through turbulent flows. The main gas transported are $CO_2$ and water vapour, while energy is transferred as sensible heat fluxes and momentum fluxes.
 
 Eddy Covariance (EC) is a technique that measures the entity of the turbulent fluxes. It can measure a wide range of variables, automatically, continuously, with high accuracy and with minimal impact on the ecosystems.
 It is primary method used to monitor the carbon balance of ecosystems.
@@ -20,22 +20,22 @@ The fluxes can then be calculated as the covariance between the vertical wind an
 
 In particular those are the most common fluxes that are measured:
 
- - **CO2**. Carbon dioxide is one of the main variable measured in EC setups, as it is the main outcome of photosynthesis  and respiration. The flux can be calculated as:
+ - $\pmb{CO_2}$. Carbon dioxide is one of the main variable measured in EC setups, as it is the main outcome of photosynthesis  and respiration. The flux can be calculated as:
 
 $$F_{co2} = \rho_m\overline{w`c_{co2}`}$$
-   where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the CO2 concentration.
+   where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the $CO_2$ concentration.
    The measurement unit is $\mu mol / m^2s$.
 
-- **H2O**. The amount of water vapour exchanged can be The flux can be calculated as:
+- $\pmb{H_2O}$. The amount of water vapour exchanged can be The flux can be calculated as:
 
 $$E_{h2o} = \rho_m\overline{w`c_{h2o}`}$$
    where $\rho_m$ is the air molar density and $\overline{w`c`}$ the covariance between the vertical wind speed (w) and the H2O concentration.
    The measurement unit is $\mu mol / m^2s$.
 
-- **Latent heat**. Latent heat flux is the amount of energy that is transferred due the evaporation of water vapour. In fact it is directly connected to the H2O flux and can be calculated as:
+- **Latent heat**. Latent heat flux is the amount of energy that is transferred due the evaporation of water vapour. In fact it is directly connected to the $H_2O$ flux and can be calculated as:
 
 $$LE = \lambda E$$
-   where $\lambda$ is the latent heat of vaporization of water and $E$ is the H2O flux.
+   where $\lambda$ is the latent heat of vaporization of water and $E$ is the $H_2O$ flux.
 
    The unit of measurement is $W/m^2$
 
@@ -70,9 +70,9 @@ Each instrument and variable need to have each of the steps mentioned above tail
 
 Eddies have different sizes and speed but many of them are small and very fast (fraction of seconds), therefore instruments with high response rate are needed. 
 
-A basic EC setup consist of two instruments, an anemometer and a gas analyzer.
+A basic EC setup consist of two instruments, an **anemometer** and a **gas analyzer**.
 The anemometer is a 3D sonic anemometer, that can therefore also measure the vertical component of the wind and have high frequency reading.
-The gas analyzer measure the concentrations using the absorption of specific infrared wavelenghts. The most commonly measured gas are CO2, H2O and methane. Gas analyzer can be open path, where the measurement chamber is directly exposed to the air or closed path where the measure take place in a separate chamber and the air is pumped through a pipe.
+The gas analyzer measure the concentrations using the absorption of specific infrared wavelenghts. The most commonly measured gas are $CO_2$, $H_2O$ and methane. Gas analyzer can be open path, where the measurement chamber is directly exposed to the air or closed path where the measure take place in a separate chamber and the air is pumped through a pipe.
 
 The EC instruments are mounted on a tower as they need to be above the ecosystem where the turbulence layer is well developed.
 
@@ -367,14 +367,14 @@ time_lag_correction <- function(w, gas){
 }
 ```
 
-Figure \@ref(fig:cor-co2) show the time log correction for the CO2 sensor. As it can been seen during the day (7h - 17h) there is a clear peak in the correlation plot and the time lag found by the optimization algorithm is in a sensible range.
+Figure \@ref(fig:cor-co2) show the time log correction for the $CO_2$ sensor. As it can been seen during the day (7h - 17h) there is a clear peak in the correlation plot and the time lag found by the optimization algorithm is in a sensible range.
 However during night the is no peak and the found time lag is outside a sensible range. This is probably due to the fact that at night the turbulent fluxes are not well developed and therefore it is difficult to correctly apply EC.
 In order to better test this hypothesis in figure \@ref(fig:cor-tsonic) the time lag correction has been applied to the the sonic temperature, where it should be 0 as it is measured together with the wind speed. The time lag correction is correctly found to be 0 during the day, but not for the night. This confirms that the time lag correction is working properly and the problem is related to the fluxes themselves.
 
 In real life conditions more complex algorithm and quality assurance system are used to avoid this kind of errors.
 
 
-```{r cor-co2, fig.cap="Time lag correction for CO2. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021."}
+```{r cor-co2, fig.cap="Time lag correction for $CO_2$. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021."}
 plots_lag <- map(ec_samples, function(ec){
   co2_lagged_cor <- tibble( n = seq(-700, 700, 5), 
                          lagged_cor = map_dbl(n,~ lagged_cor(ec$w, ec$co2, .x)))
@@ -450,14 +450,14 @@ with_progress({
 
 \newpage
 
-#### CO2 fluxes
+#### $\pmb{CO_2}$ fluxes
 
 
-The CO2 flux (Figure \@ref(fig:co2-flux)) has a clear daily pattern, negative during the day and positive during the night. This is expected as during the day there is photosynthesis and CO2 is abosrbed by plants resulting in an overall negative flux, while during the night there is only respiration that produces positive CO2 fluxes.
+The $CO_2$ flux (Figure \@ref(fig:co2-flux)) has a clear daily pattern, negative during the day and positive during the night. This is expected as during the day there is photosynthesis and $CO_2$ is absorbed by plants resulting in an overall negative flux, while during the night there is only respiration that produces positive $CO_2$ fluxes.
 
-The importance of correction can also be seen with the raw fluxes underestimating the CO2 flux. This is striking on the 30 of May and is mainly due to the missing time lag correction.
+The importance of correction can also be seen with the raw fluxes underestimating the $CO_2$ flux. This is striking on the 30 of May and is mainly due to the missing time lag correction.
 
-```{r co2-flux, fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+```{r co2-flux, fig.cap="$CO_2$ fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every half an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, co2, col="raw"), data = ec_flux) +
@@ -468,13 +468,13 @@ ggplot() +
 
 \newpage
 
-#### H2O fluxes        
+#### $\pmb{H_2O}$ fluxes        
 
 The water fluxes have also a a daily pattern (Figure \@ref(fig:h2o-flux)), with the majority of the water exchanged during the day from the ecosystem to the atmosphere. The evapotraspiration of water during the day is the process that drives the fluxes.
 
 In this figure \@ref(fig:h2o-flux) the importance of water flux correction is evident. 
 
-```{r h2o-flux, fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+```{r h2o-flux, fig.cap="$H_2O$ fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every half an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, h2o, col="raw"), data = ec_flux) +
@@ -490,7 +490,7 @@ ggplot() +
 
 The latent heat flux (Figure \@ref(fig:lat-heat-flux)) is by definition has the same pattern of water vapour fluxes.
 
-```{r lat-heat-flux,  fig.cap="Latent heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+```{r lat-heat-flux,  fig.cap="Latent heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every half an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, lat_heat, col="raw"), data = ec_flux) +
@@ -509,7 +509,7 @@ During the night the situation is often the inverse, but the amount of the flux 
 
 The calculation of the sensible heat flux doesn't require a gas a analyzer as the air temperature is measured by the sonic anemometer, hence there is no time lag and the entity of the flux correction is limited. 
 
-```{r sens-heat-flux,  fig.cap="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+```{r sens-heat-flux,  fig.cap="Sensible heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every half an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_hline(yintercept = 0, linetype=2) +
   geom_line(aes(time, sens_heat, col="raw"), data = ec_flux) +
@@ -526,7 +526,7 @@ The momentum flux (Figure \@ref(fig:mom-flux)) is dependent on the wind speed, t
 
 The main flux correction relevant to the momentum is the coordinate rotation, as there is not time lag. The raw fluxes are often significantly different from the corrected ones.  
 
-```{r mom-flux,  fig.cap="Momentum fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021."}
+```{r mom-flux,  fig.cap="Momentum fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every half an hour. Data from Hainich national park first week June 2021."}
 ggplot() +
   geom_line(aes(time, mom, col="raw"), data = ec_flux) +
   geom_line(aes(time, mom, col="corrected"), data= ec_flux_corr) +

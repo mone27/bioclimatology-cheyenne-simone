@@ -17,12 +17,12 @@ editor_options:
     wrap: 72
 ---
 
-# Turbulent fluxes
+# Turbulent fluxes $\pmb{CO_2}$
 
 ## Motivation
 
 Part of the turbulent fluxes regulating the natural systems on earth is
-CO2 flux. In this chapter, we learned some ways to trace the flux of
+$CO_2$ flux. In this chapter, we learned some ways to trace the flux of
 this important gas, also well known as green house gas. First, a small
 introduction about the carbon cycle in land ecosystems. Carbon
 approaches vegetation through the photosynthesis. Afterwards, carbon is
@@ -36,25 +36,25 @@ forests.
 
 ## Background
 
-The measurement of the net CO2 exchange can be achieved by direct or
+The measurement of the net $CO_2$ exchange can be achieved by direct or
 continuous way, this way ecosystem is not disturbed. Also it can be
 measured by the integration over the entire ecosystem. Some researches
 have been going on measuring the carbon cycle at a global scale. This is
 known as the integrated carbon observation system (ICOS). The ICOS
 consists on the long term assessment of European carbon balance, with
 sample plots at different levels: atmosphere, terrestrial ecosystem and
-ocean. This programme is not the only one, also Fluxnet; measuring CO2,
+ocean. This programme is not the only one, also Fluxnet; measuring $CO_2$,
 water vapor and energy flux all along the world. Thanks to these type of
 initiatives, other natural factors can be analyzed such as
 temperature, precipitation, temperature and soil moisture. As an
 example, the drought experienced in Europe in 2018, where a big
-decreasing in the CO2 uptake in central Europe was experienced, while
+decreasing in the $CO_2$ uptake in central Europe was experienced, while
 and increase was observed in southern and northern countries of Europe.
 Besides the consequences of this drought period, the European average
 had a smaller effect than in 2003.
 
 A simple definition of flux is the exchange of any quantity per area and
-time. The flux of CO2 and H2O is measured with $\mu mol\ m^{-2} s{-1}$ and $mmol\ m^{-2} s{-1}$ respectively. Leaf evapotranspiration and Heat is measured by $W m^{-2}$.
+time. The flux of $CO_2$ and $H_2O$ is measured with $\mu mol\ m^{-2} s{-1}$ and $mmol\ m^{-2} s{-1}$ respectively. Leaf evapotranspiration and Heat is measured by $W m^{-2}$.
 
 ## Sensors and measuring principle
 
@@ -64,15 +64,16 @@ required in ecosystem modelling. According to what flux is going to be
 measured, some instruments can be required as an additional equipment.
 The instruments can be: chambers, lysimeter and sap flow. The following
 formula describes the principle on which **gas chambers** are based on to
-measured CO2 flux in soil.
+measured $CO_2$ flux in soil.
 
-The CO2 flux assumption is based on its linear increase, using the
+The $CO_2$ flux assumption is based on its linear increase, using the
 following formula;
 
-$$F_c = \frac{dc}{dt} \frac{M*V}{A}$$\$
+$$F_c = \frac{dc}{dt} \frac{MV}{A}$$
 
 where:
- - $dc$: change of CO2 concentration ($\mu mol\ mol^{-1}$)
+
+ - $dc$: change of $CO_2$ concentration ($\mu mol\ mol^{-1}$)
 
  - $dt$: change in time ($s$)
 
@@ -87,7 +88,7 @@ where:
 ## Analysis
 
 1.  Calculate the half hourly latent heat flux, the net ecosystem
-    exchange of CO 2 and the sensible heat flux from the high frequency
+    exchange of $CO_2$ and the sensible heat flux from the high frequency
     turbulence data.
 
 ```{r}
@@ -99,6 +100,15 @@ theme_set(theme_bw())
 ```
 
 ## Respiration chambers
+
+Field data were collected with respiration chambers.
+Four chambers were installed and for each of them the $CO_2$ concentration measured roughly every 10 minutes.
+
+The $CO_2$ concentration increase linearly over time (Figure \@ref(fig:co2)) in all chamber, the slope of this increase is a bit different for each chamber and varies slightly with time, but is overall constant (Figure \@ref(fig:co2-slope)).
+
+The $Co_2$ flux is the computed (Figure \@ref(fig:co2-flux-chamber-box)). The Different chambers have different respiration rates, higher in 1 and 2, lower in 3 and 4 and intermediate in 5. The respiration between different chambers is overall comparable.
+
+In Figure \@ref(fig:co2-flux-chamber) the time flux over time is plotted. This is expected to be constant, but this is only the case for the chamber 4, that is very stable. For the other chambers there is a much higher variation and in particular in the first two chambers the flux increases over time. This is probably due to measurement errors as the field it was hard to estimate when the $CO_2$ concentration in the chamber was stabilizing.
 
 ```{r}
 co2 <- read_csv2(here::here("Data_lectures/soilCO2flux.csv"),
@@ -144,28 +154,42 @@ co2flux <- co2 %>%
   )
 ```
 
-```{r, fig.cap=""}
+\newpage
+
+```{r co2, fig.cap="Increase of $CO_2$ concetration over time in each of the chamber. Data from field measurements."}
 ggplot(co2flux, aes(time, co2, col=chamber)) +
   geom_line() +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x="Time [s]", y="CO2 [umol mol-1]")
 ```
 
-```{r}
-ggplot(co2flux, aes(time, dt/dc, col=chamber)) +
+\newpage
+
+```{r co2-slope, fig.cap="Slope of the increase in $CO_2$ concetration over time in each of the chamber. Data from field measurements."}
+ggplot(co2flux, aes(time, dc/dt, col=chamber)) +
   geom_line() +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x="Time [s]", y="Slope CO2 increase [umol mol-1 s-1]")
 ```
 
-```{r}
-ggplot(co2flux, aes(time, Fc, col=chamber)) +
-  geom_line() +
-  scale_color_colorblind()
-```
+\newpage
 
-```{r}
+```{r co2-flux-chamber-box, fig.cap="$CO_2$ flux measured in the different chambers. Data from field measurements."}
 ggplot(co2flux, aes(chamber, Fc, col=chamber)) +
   geom_boxplot() +
-  scale_color_colorblind()
+  scale_color_colorblind() +
+  labs(x="Chamber", y="CO2 flux [umol s-1 m-2]")
 ```
+
+\newpage
+
+```{r co2-flux-chamber, fig.cap="$CO_2$ flux measured in the different chambers over time. Data from field measurements."}
+ggplot(co2flux, aes(time, Fc, col=chamber)) +
+  geom_line() +
+  scale_color_colorblind() +
+  labs(x="Time [s]", y="CO2 flux [umol s-1 m-2]")
+```
+
+
 
 \newpage

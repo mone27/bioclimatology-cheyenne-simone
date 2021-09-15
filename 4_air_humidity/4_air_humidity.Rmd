@@ -108,7 +108,7 @@ Using the field meaurement of relavitve humidity, air temperature and air pressu
 4. Absolute humidity 
 5. Specific humidity 
 6. Mixing ratio 
-7. Vapor pressure deficit 
+7. Vapour pressure deficit
 8. Equivalent temperature 
 
 ```{r, include=FALSE}
@@ -140,7 +140,8 @@ rh2ea <- function(rh, e_s) rh/100 * e_s
 # convert the output in g/Kg 
 get_abs_hum <- function(e_a, ta) (e_a * 100 / (Rv * c2k(ta)) ) * 1000
 
-#here there is no need to convert to Pa because the pressures is present both at numerator and denominator
+#here there is no need to convert to Pa
+# because the pressures is present both at numerator and denominator
 get_spec_hum <- function(e_a, p) 0.622 * e_a / (p - 0.378 * e_a) * 1000 # g/Kg
 get_mix_ratio <- function(e_a, p) 0.622 * e_a / (p - e_a) * 1000 # g/Kg
 
@@ -224,6 +225,8 @@ During the summer there is the biggest different between the actual and the satu
 
 ### Air and dew point temperature
 
+The relative humidity and the air and dew point temperature are compared (Figure \@ref(fig:air-dew)).
+
 ```{r, air-dew, fig.cap="Comparison of air temperature with dew point temperature (fig. a), showed in relation with the relative humidity (fig. b). Data averaged over one day. Data from Hainich national park 2018.", warning=FALSE}
 p_td <- hum_d %>%
   gather("type", "val", ta, td) %>%
@@ -248,7 +251,9 @@ With the analysis of the graphs, a direct relationship between a lower amount of
 
 
 \newpage
-### When is absolute humidity largest and why?
+### Absolute humidity
+
+The absolute humidity is largest during the summer compared to winter (Figure \@ref(fig:abs-hum)). This may seem counterintuitive as during winter the relative humidity is much higher than during summer, however the amount of water that can be hold in the air during summer is much higher than during winter. In fact the is a strong relation with temperature as can be seen in the last week of March where there is a sudden drop in the the absolute humidity.
 
 ```{r, abs-hum, fig.cap="Absolute humidity over the year. Data averaged over one day. Data from Hainich national park 2018."}
 hum_d %>%
@@ -261,13 +266,15 @@ hum_d %>%
 
 ### Mixing ratio and specific humidity
 
-```{r, mix-ratio-spec-hum, fig.cap="Comparison of mixing ratio and specific humidity (fig. a). Data averaged at 30 minutes from last week of July 2018. Data from Hainich national park."}
+The mixing ratio and the specific are very similar (Figure \@ref(fig:mix-ratio-spec-hum)). The only different between them is that the first if the density of water is calculated over dry air in the former and moist in the latter. It is possible to see that with higher values of mixing ratio, and therefore water content, the difference between the two variable is bigger to to the bigger difference in density between wet and dry air.
+
+```{r, mix-ratio-spec-hum, fig.cap="Comparison of mixing ratio and specific humidity. Data averaged at 30 minutes from last week of July 2018. Data from Hainich national park."}
 hum %>%
   filter(week(datetime) ==30) %>%
   gather("type", "val", spec_hum, mix_ratio) %>%
   ggplot(aes(datetime, val, colour=type))+
     geom_line() +
-    labs(y="Water content [Kg/Kg]", colour="") +
+    labs(y="Water content [Kg/Kg]", colour="", x="Time") +
     scale_color_colorblind(labels=c("Mixing ratio", "Specific humidity"))
 ```
 
@@ -275,27 +282,33 @@ hum %>%
 
 ### Vapour pressure deficit
 
+The vapour pressure deficit has a yearly cycle (Figure \@ref(fig:p-def)), it is almost zero during the winter and reaches its maximum during the summer.
+
 ```{r, p-def, fig.cap="Vapur pressure deficit over the year. Data averaged over one day. Data from Hainich national park 2018."}
 hum_d %>%
    ggplot(aes(datetime, p_def)) +
    geom_line() +
-   labs(y="Pressure deficit [hPa]")
+   labs(y="Pressure deficit [hPa]", x="Time")
 ```
+
 \newpage
 
-```{r, p-def-week, fig.cap="Vapur pressure deficit over one week. Data averaged over 30 minuts. Data from Hainich national park last week july 2018."}
+The vapour pressure deficit has also a daily cycle (Figure \@ref(fig:p-def-week)), with higher values during the afternoon where the temperature is still high but the water reserves have been depleted during the day. It then reaches a minimum in the early hours of the morning, mainly due to the low temperatures.
+
+```{r, p-def-week, fig.cap="Vapur pressure deficit over one week. Data averaged over 30 mins. Data from Hainich national park last week july 2018."}
 hum %>%
   filter(week(datetime) == 30) %>% 
    ggplot(aes(datetime, p_def)) +
    geom_line() +
-   labs(y="Pressure deficit [hPa]")
+   labs(y="Pressure deficit [hPa]", x="Time")
 ```
 
-During summer is the largest vapour pressure deficit and equivalent temperature values.
 
 \newpage
 
 ### Equivalent temperature
+
+The equivalent temperature is of course strongly dependent on the base air temperature, but the difference is bigger when the absolute humidity is higher, hence it has a yearly cycle (Figure \@ref(fig:eq-temp)). During the summer the equivalent temperature is roughly the double of the air temperature.
 
 ```{r, eq-temp, fig.cap="Equivalent temperature compared to air temperature. Data averaged over one day. Data from Hainich national park 2018."}
 hum_d %>%
@@ -309,6 +322,11 @@ hum_d %>%
 \newpage
 
 ### Field humidity measurements
+
+The humidity has been measured in the field using two different psychrometer, an assmann and an spinning one.
+The measures of the the instruments are compared in table \@ref(tab:spin-assmann).
+The two measures are comparable but show a significant difference (~20 % in relative humidity).
+This is incongruence is probably due to inaccuracies in the measurement and possibly different conditions between the measures. Moreover the thermometers of the spinning psychrometer are not protected from the direct sunlight which can compromise the reading, in fact the dry temperature is higher and the wet temperature is lower in the spinning psychrometer.
 
 ```{r}
 spin <- tibble(
@@ -355,17 +373,14 @@ assman1 <- tibble(
 ```
 
 
-The humidity has been measured in the field using two different psychrometer, an assmann and an spinning one.
-The measures of the the instruments are compared in table \@ref(tab:spin-assmann).
-The two measures are comparable but show a significant difference (~20 % in relative humidity).
-This is incongruence is probably due to inaccuracies in the measurement and possibly different conditions between the measures. Moreover the thermometers of the spinning psychrometer are not protected from the direct sunlight which can compromise the reading, in fact the dry temperature is higher and the wet temperature is lower in the spinning psychrometer.
-
 
 ```{r, spin-assmann}
 spin %>% 
   bind_rows(assman1) %>% 
   t() %>% 
-  kableExtra::kbl(col.names = c("Spinning", "Assmann"), digits = 1, caption = "Comparioson of measurement between spinning and assman psychrometer", booktabs=T) 
+  kableExtra::kbl(col.names = c("Spinning", "Assmann"), digits = 1, caption = "Comparioson of measurement between spinning and assman psychrometer", booktabs=T) %>% 
+  kableExtra::kable_styling(latex_options = "hold_position")
 ```
 
+\newpage
 

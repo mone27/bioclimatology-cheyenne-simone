@@ -23,9 +23,10 @@ editor_options:
 
 ## Motivation
 
-Wind is a very important factor of the bioclimatology on earth. It allows a high number of plants in the dispersal of seeds and pollen, meaning an important role on plants reproduction. It also helps animals and insects to travel for longer distance around the globe. Some interesting aspects to learn about wind is its speed, energy and direction at a concrete point. Regarding wind speed, it can be described using different terms that variate upon the strength it has. For example, it can be a smooth breeze, a storm or a hurricane in special cases. In case of hurricanes, it is normally a devastating disturbance that can reach a very destructive power on earth ecosystems. 
-In terms of temperature, wind can be distinguish by its closeness to the poles or the equator. 
-Wind also cause erosion of rocks, mountains and soils.  
+Wind is a very important factor of Earth climate. It is the main phenomenon that transport matter and energy between different location on the globe and layers of the atmosphere.
+Wind properties, like speed and direction, can vary a lot. For example, it can be ranged from a smooth breeze to a storm or a hurricane. In case of hurricanes, it is normally a devastating disturbance that can reach a very destructive power on earth ecosystems. 
+Moreover wind is also the main way many plant disperse seeds and pollen. Animals as well use wind for movement.
+Finally winds also shapes the earth surface trough erosion of rocks and sediments movement.
 
 ## Background
 
@@ -54,7 +55,7 @@ where:
 
 - $z$ in $(m)$ is the height
 - $u(z)$ in $(m/s)$ is the speed of the wind at height z
-- $u_* $ in $(m/s)$ is the friction velocity. This is independent from the height and indicates the mechanical turbulence. It can be calculated using this equation $\sqrt{\frac{1}{\rho} u^\prime w^\prime}$
+- $u_*$ in $(m/s)$ is the friction velocity. This is independent from the height and indicates the mechanical turbulence. It can be calculated using this equation $\sqrt{\frac{1}{\rho} u^\prime w^\prime}$
 
 - $k$ is the Von Karman constant (0.4)
 - $z_0$ in $(m)$ is the height where the wind speed is theoretically zero. It can be estimated as 0.1 the canopy height.
@@ -69,11 +70,16 @@ There are many types of instruments used for measuring wind speed. Here some of 
 
 **Propeller anemometer** : the way this this instrument works is very similar to the cup anemometer. It points to the mean wind direction at that moment. With the use of three propeller anemometer pointing different direction, three dimensional wind can be measured. 
 
-**Ultrasonic anemometer thermometer** : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measuread all directions and get a more accurate measurement value. One of the advantages of using the ultrasonic anemometer is the small fluctuations detected on the measures. The speed of sounds depends on temperature and air humidity. Thus, the following equations allow the calculation of speed of sound and the temperature at high frequencies;
+**Ultrasonic anemometer thermometer** : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measured all directions and get a more accurate measurement value. One of the advantages of using the ultrasonic anemometer is the small fluctuations detected on the measures. The speed of sounds depends on temperature and air humidity. Thus, the following equations allow the calculation of speed of sound and the temperature at high frequencies;
 
-$$C_l=D/2*((1/timeA-A)+(1/timeB-A))$$
-$$C_l=\sqrt{K_a*R_a*T_{av}}$$ *
-When $$K_a = 1.4$$, $$R_a = 287.05 J/Kg*K$$, $$T_{av} = T(1+0.513*q)$$
+$$C_l=\frac{D}{2}(\frac{1}{time_A-A}+\frac{1}{time_B-A})$$
+$$C_l=\sqrt{K_a*R_a*T_{av}}$$
+
+Where:
+
+ - $K_a = 1.4$
+ - $R_a = 287.05 J/Kg*K$
+ - $T_{av} = T(1+0.513*q)$
 
 
 **Hot wire anemometer** : When a current flow is introduce within a wire, there is a release of heat. Then, the air flow goes throguh the wire and cools down removing the released energy. It can be apply in two different ways;
@@ -82,10 +88,11 @@ At a constant current, the change of temperature is measure with a thin thermoco
 
 At a constant temperature, with a temperature change the current is regulated, such that the temperature is held constant and thus, with a high wind there will be a high current as well. 
 
-Common errors with anemometer. 
-The starting speed of cup and propeller anemometer is that it starts to rotate when speed is 0.5 m/s. When wind flow stops, but the cup anemometer keeps rotating a bit longer until it fully stops. In case of low wind speed, sonic anemometer are the best instruments to use but in case or rain, it cannot do measurements instead. 
 
-When installation the anemometers there are some tips to have into account. Better to set them far above ground,this way the roughness of the lower layer above soil's surface will not be affecting the measures. The same with any other object around in the area.In case of sonic anemometer, is important to protect it against birds or any type of instect that make small variation when measuring. 
+
+Each type of anemometer has its more limitations. For example the starting speed of cup and propeller anemometer is that it starts to rotate when speed is 0.5 m/s. When wind flow stops, but the cup anemometer keeps rotating a bit longer until it fully stops. In case of low wind speed, sonic anemometer are the best instruments to use but in case or rain, it cannot do measurements instead. 
+
+During installation the anemometers there are some tips to take into account. Better to set them far above ground, this way the roughness of the lower layer above soil's surface will not be affecting the measures. The same with any other object around in the area. In case of sonic anemometer, is important to protect it against birds or any type of insect that make small variation when measuring. 
 
 
 \newpage
@@ -146,8 +153,9 @@ wind_g_1d <- wind_1d %>%
 
 ### Wind averages
 
-*Calculate 1 hour averages of 10 minute mean wind speed and direction
-data.*
+The wind speed and direction have been averaged at 1 hour. Vectorial average has been used for wind direction.
+In figure \@ref(fig:wd-avg) the average direction is compared with the original data.
+Between the 15th and the 16th of January there are some data points with a wind direction close to 0 °N, but the average is around 350 °N.
 
 ```{r}
 wind_1h <- wind %>%
@@ -163,28 +171,26 @@ ggplot()+
   geom_line(aes(Date, wd, colour="1 hour"),
             data=filter(wind_1h, between(Date, as_datetime("2021-01-15"),
                                                as_datetime("2021-01-17")))) +
-  labs(y="Wind direction", colour="") +
+  labs(y="Wind direction [°N]", colour="Frequency") +
   scale_y_continuous(breaks = c(0, 90, 180, 270, 360),
                      labels = c('N (0°)', 'E (90°)', 'S(180°)',
                                 'W(270°)', 'N (360°)'), limits = c(-10, 370)) +
   scale_color_colorblind()
 ```
 
-The wind speed and direction have been averaged at 1 hour. Vectorial average has been used for wind direction.
-In figure \@ref(fig:wd-avg) the average direction is compared with the original data.
-Between the 15th and the 16th of January there are some data points with a wind direction close to 0, but the average is around 350.
-
 
 \newpage
 
 ### Wind speed and height
 
-*How does the wind speed change with height? Characterize the wind
-pattern in different heights at the botanical garden*
+As it is possible to appreciate in Figure \@ref(fig:ws-diff-height) , wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
+The pattern is also consistent across different seasons.
 
+
+Wind speed depends on height, increasing with height following a logarithmic profile (Figure \@ref(fig:ws-boxplot)).
+The plot was made using daily averages instead of high frequency data, to reduce the variation in the dataset.
 
 ```{r, ws-diff-height, fig.cap="Time series of wind speed at different heigth. (a) is a summer month (15th Jan 2020 - 15th Feb 2020). (b) is a winter month(15th Jun 2020 - 15th Jul 2020). Data from botanical garden."}
-## plotting the same thing using gather
 (wind_g_1d %>%
   #just one month otherwise the plot is too compressed
   filter(between(Date, as_datetime("2020-01-15") , as_datetime("2020-02-15") )) %>% 
@@ -192,7 +198,7 @@ pattern in different heights at the botanical garden*
   ggplot(aes(Date, windspeed, col=height))+
   geom_line() +
   scale_color_colorblind() +
-  labs(y="Windspeed (m/s)", colour="Height (m)", title="(a) Winter month")) /
+  labs(y="Windspeed [m/s]", colour="Height [m]", title="(a) Winter month")) /
 (wind_g_1d %>%
   #just one month otherwise the plot is too compressed
   filter(between(Date, as_datetime("2020-06-15") , as_datetime("2020-07-15") )) %>% 
@@ -200,12 +206,10 @@ pattern in different heights at the botanical garden*
   ggplot(aes(Date, windspeed, col=height))+
   geom_line() +
   scale_color_colorblind() +
-  labs(y="Windspeed (m/s)", colour="Height (m)", title="(b) Summer month")) +
+  labs(y="Windspeed [m/s]", colour="Height [m]", title="(b) Summer month")) +
 plot_layout(guide="collect")
 
 ```
-
-As it is possible to appreciate in Figure \@ref(fig:ws-diff-height) , wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height. 
 
 
 ```{r}
@@ -229,7 +233,7 @@ wind_prof <- mutate( wind_prof,
 
 \newpage 
 
-```{r, ws-boxplot, fig.cap="Distribution of daily means of wind speed at the different heights. The red line was obtaining by fitting a wind log profile to the mean of daily means. Data from botanical garden Jan 2020 - Feb 2021."}
+```{r, ws-boxplot, fig.cap="Distribution of daily means of wind speed at the different heights. The yellow line was obtaining by fitting a wind log profile to the mean of daily means. Data from botanical garden Jan 2020 - Feb 2021."}
 wind_g_1d %>%
   ggplot() +
   geom_boxplot(aes(windspeed, height, group=height)) +
@@ -240,16 +244,18 @@ wind_g_1d %>%
   labs(x="Windspeed [m/s]", y="Height [m]", colour="")
 ```
 
-Wind speed depends on height, increasing with height following a logarithmic profile (Figure \@ref(fig:ws-boxplot)).
-The plot was made using daily averages instead of high frequency data, to reduce the variation in the dataset.
-
 
 \newpage
 
 ### Windspeed over year
 
-*How does the wind speed varies over the year and what can explain the
-variability?*
+The wind rose for different quarters of the year are plotted (Figure \@ref(fig:windrose)) and then yearly pattern of wind speed and wind direction analyzed separately.
+
+During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s (Figure \@ref(fig:ws-year)).
+
+The graphs displays the variation of the wind speed along year. It is faster from end of December to beginning of April. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.
+
+The wind direction is usually coming from overall the south (Figure \@ref(fig:wd-year)) for the majority of th year, with the exception of the early summer where the north direction is also common. The reason why the prevalent winds are from the south is probably connected with the direction of the slope of the hill where the station is located, which is in the south direction.
 
 ```{r, windrose, fig.cap="Wind rose for different quarters of the year. Data from botanical garden Jan 2020 - Feb 2021."}
 wind_q <- wind %>% 
@@ -272,10 +278,6 @@ ggplot(wind_1d, aes(Date, WS_10m)) +
   labs(y="Wind speed (m/s)")
 ```
 
-During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s (Figure \@ref(fig:ws-year))
-
-
-The graphs displays the variation of the wind speed along year. It is faster from end of December to beginning of April. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.
 
 
 \newpage
@@ -296,7 +298,7 @@ months <- map_df(1:14, function(n_mon){
 ```
 
 
-```{r, wd-year, fig.cap="Weekly average of wind directions for the year. The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
+```{r, wd-year, fig.cap="Weekly average of wind directions for the year (black dots). The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021."}
 wind %>%
   group_by(round_date(Date, unit = "1 weeks")) %>%
   summarise(across(c(matches("WS"), Date), mean), wd = wind_dir_average(wd)) %>% 

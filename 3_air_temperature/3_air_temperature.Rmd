@@ -73,7 +73,7 @@ temp <- read_csv(here("Data_lectures/3_Air_temperature/Hainich_T_air_soil_degC.c
 The temperature changes at different height of the canopy, due to the different incoming solar radiation and emitted longwave radiation. Similarly the top soil temperature can be significantly different from the air temperature just above the soil, this is due to the higher heat capacity and lower conductivity of the soil compared to the air. 
 In this analysis the air temperature at 2 meters is compared with the temperature 2 cm below the soil.
 
-The soil temperature daily variation is limited compared to the air one (Figure \@ref(fig:temp-year) and \@ref(fig:temp-month)). In one day the air temperature can change up to 10 °C, while the soil temperature only a few degrees. However, over the year the total variation of air and soil temperature are similar (Figure \@ref(fig:temp-year)). Moreover also the yearly mean are similar.
+The soil temperature daily variation is limited compared to the air one (Figure \@ref(fig:temp-year) and \@ref(fig:temp-month)). In one day the air temperature can change up to 10 °C, while the soil temperature only a few degrees. However, over the year the total variation of air and soil temperature are similar (Figure \@ref(fig:temp-year)). Moreover also the yearly mean are similar (Table \@ref(tab:air-soil)).
 
 In general the air and the soil temperature follow a similar pattern, but the daily oscillation in the air temperature are bigger (Figure \@ref(fig:temp-scatter)).
 
@@ -105,10 +105,11 @@ temp %>%
   ggplot(aes(TA_2m, Tsoil_002m_degC)) +
   geom_point() +
   scale_color_colorblind() +
-  geom_smooth(method = "lm", se=F, colour = colorblind_pal()(2)[2])
+  geom_smooth(method = "lm", se=F, colour = colorblind_pal()(2)[2]) +
+  labs(x="Temperature air 2m [°C]", y = "Temperature soil 2cm [°C]")
 ```
 
-```{r}
+```{r air-sol}
 tribble( ~"Variable", ~"Value",
   "Correlation air and soil temperature", cor(temp$TA_2m, temp$Tsoil_002m_degC),
   "Mean temperature air", mean(temp$TA_2m),
@@ -116,6 +117,7 @@ tribble( ~"Variable", ~"Value",
   kable(booktabs=T, caption="Summary soil and air temperature") %>% 
   kable_styling(latex_options = "hold_position")
 ```
+
 
 \newpage
 
@@ -170,7 +172,7 @@ model_res <- lm(time ~ log_t, data=temp_res)
 ```{r, fig.cap="Temperature decrease over time for resistance thermometer."}
 ggplot(temp_res, aes(time, temp)) +
   geom_line() +
-  labs(y = "Temperature (°C)", x = "Time (s)")
+  labs(y = "Temperature [°C]", x = "Time [s]")
 ```
 
 

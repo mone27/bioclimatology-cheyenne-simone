@@ -28,25 +28,9 @@ editor_options:
 
 ## Motivation
 
-Air pressure is commonly known by experts as a factor that is constantly
-regulating the characteristics of natural systems. Changes in cloud
-densities, clouds movement and humid conditions of air. All these are
-examples of how air dynamic alters natural components of earth. But,
-what is the reason that explains the movement of air pressure? The
-molecules floating in the air have different directional movements or
-for instance, changes in its momentum. Following the same process as
-water particles when heated, air molecules move faster when air is hot.
-Air pressure is as well strongly related with the weather humidity
-conditions. Air is fluid. The molecules can easily move in all
-directions [@bonan_climate_2019].
+Air pressure is constantly regulating the characteristics of the atmosphere and impacting the ecosystems. Winds and cloud formation all depends on the differences in air pressure.
 
-Theory explains the different layers the atmosphere is composed by. Each
-of these layers presents air in different amounts. The air of the
-atmosphere exerts pressure through all of them and this is known as *air
-pressure* or *atmospheric pressure*, which makes force towards the
-center of the planet from all directions, to all the earth component.
-More concretely, the troposphere (the coolest layer to earth surface)
-has the higher amount of air.
+The air pressure depends on the weight of the air column above and on the air temperature. In fact the air molecules move faster when air is hot and this increases the pressure [@bonan_climate_2019].
 
 ## Background
 
@@ -65,7 +49,7 @@ at a know elevation.
 
 $$p(0) = p(z) exp({\frac{g \Delta z} {R_d T}})$$
 
-The air temperature is a important component of the formula, as warm air
+The air temperature is an important component of the formula, as warm air
 is less dense and therefore the air column weights less. However, air
 temperature also depends on altitude, hence, the mean temperature over
 the column is used considering an estimate decrease in temperature of
@@ -94,7 +78,7 @@ pressure. However, this is a small value so hPa (100 Pa) is commonly
 used as a reference amount of this unit. Another unit that commonly used
 in barometers is the torr or mmHg, that originates from the millimeters
 of mercury used in the first barometers. Those are the values to change
-between units: 760 mmHg = 760 torr = 1013.25 hPa.
+between units: $760 mmHg = 760 torr = 1013.25 hPa$.
 
 Pressure influences the boiling point temperature of water. The
 following equation can be used to estimate the relationship:
@@ -172,7 +156,14 @@ get_press_sea_level <- function(pz, tv, Dz, g = 9.81) {
 
 ### Air pressure sea level
 
-*Calculate the air pressure at sea level for the Leinefelde site.*
+The air pressure at sea level is always higher than at Leinefelde
+(Figure \@ref(fig:air-pressure-plot)) The difference is around 53 hPa,
+and it is quite constant during the year. In the plot it is also
+possible to see that there are no clear seasonal patterns during the
+year as the pressure oscillate roughly +/- 25 hPa around the mean.
+Moreover, it is also interesting to notice the stability of the air
+pressure in a short time frame, as the data plotted has a 30 min
+frequency but no high frequency patterns can be observed.
 
 ```{r}
 heigth_diff <- 451 + 44 # elevation + tower height
@@ -187,7 +178,6 @@ pres <- pres %>%
   )
 ```
 
-\newpage
 
 ```{r, "air-pressure-plot", fig.cap="Air pressure at Leinefelde and estimated air pressure at sea level. Pressure has been corrected for air humidity. Data from Leinefelde flux tower (451 m + 41m tower) July 2020 - May 2021, 30 min frequency."}
 pres %>%
@@ -198,14 +188,6 @@ labs(y="Pressure (hPa)") +
 scale_colour_colorblind(name="Location", labels = c("Sea level", "Leinefelde"))
 ```
 
-The air pressure at sea level is always higher than at Leinefelde
-(Figure \@ref(fig:air-pressure-plot)) The difference is around 53 hPa,
-and it is quite constant during the year. In the plot it is also
-possible to see that there are no clear seasonal patterns during the
-year as the pressure oscillate roughly +/- 25 hPa around the mean.
-Moreover, it is also interesting to notice the stability of the air
-pressure in a short time frame, as the data plotted has a 30 min
-frequency but no high frequency patterns can be observed.
 
 \newpage
 

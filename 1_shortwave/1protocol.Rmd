@@ -190,7 +190,7 @@ ggplot(sw_b_d, aes(x=Date))+
 
 During summer days there is a daily cycle of the transmission coefficient (Figure \@ref(fig:transcoeff-summerday)). It is lower during the morning and evening and higher in the middle of the day. This can be explained because when the sun is low on the horizon there is more reflection and the light penetrates less in the canopy, thus resulting in a reduced transmission coefficient.
 
-```{r, transcoeff-summerday, fig.cap="daily cycle trasmittion coefficient. Data every 30 mints. Data from Hainich national park 1st July 2020."}
+```{r, transcoeff-summerday, fig.cap="Daily cycle trasmittion coefficient. Data every 30 mins. Data from Hainich national park 1st July 2020."}
 sw_b %>%
   filter(between(Date, as_datetime("2020-07-1"), as_datetime("2020-07-2"))) %>%
 ggplot(aes(x=Date))+
