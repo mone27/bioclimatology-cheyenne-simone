@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Eddy Covariance | Experimental bioclimatology Term Paper</title>
+  <meta name="description" content="11 Eddy Covariance | Experimental bioclimatology Term Paper" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Eddy Covariance | Experimental bioclimatology Term Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Eddy Covariance | Experimental bioclimatology Term Paper" />
+  
+  
+  
+
+<meta name="author" content="Simone Massaro and Cheyenne Rueda" />
+
+
+<meta name="date" content="2021-09-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="turbulent-fluxes.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html"><i class="fa fa-check"></i><b>1</b> Shortwave radiation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#sensors-and-measuring-principle"><i class="fa fa-check"></i><b>1.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="1.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#analysis"><i class="fa fa-check"></i><b>1.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#albedo"><i class="fa fa-check"></i><b>1.4.1</b> Albedo</a></li>
+<li class="chapter" data-level="1.4.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#absorption-coefficient"><i class="fa fa-check"></i><b>1.4.2</b> Absorption coefficient</a></li>
+<li class="chapter" data-level="1.4.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#transmission-coefficient"><i class="fa fa-check"></i><b>1.4.3</b> Transmission coefficient</a></li>
+<li class="chapter" data-level="1.4.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#radiation-below-canopy"><i class="fa fa-check"></i><b>1.4.4</b> Radiation below canopy</a></li>
+<li class="chapter" data-level="1.4.5" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#diffuse-and-direct-radiation"><i class="fa fa-check"></i><b>1.4.5</b> Diffuse and direct radiation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="longwave-radiation.html"><a href="longwave-radiation.html"><i class="fa fa-check"></i><b>2</b> Longwave radiation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#motivation-1"><i class="fa fa-check"></i><b>2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#background-1"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#sensors-and-measuring-principle-1"><i class="fa fa-check"></i><b>2.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="2.4" data-path="longwave-radiation.html"><a href="longwave-radiation.html#analysis-1"><i class="fa fa-check"></i><b>2.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#surface-and-sky-temperature"><i class="fa fa-check"></i><b>2.4.1</b> Surface and Sky temperature</a></li>
+<li class="chapter" data-level="2.4.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#net-radiation"><i class="fa fa-check"></i><b>2.4.2</b> Net radiation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#change-emissity-in-the-sensor"><i class="fa fa-check"></i><b>2.4.3</b> Change emissity in the sensor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="air-temperature.html"><a href="air-temperature.html"><i class="fa fa-check"></i><b>3</b> Air temperature</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="air-temperature.html"><a href="air-temperature.html#motivation-2"><i class="fa fa-check"></i><b>3.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2" data-path="air-temperature.html"><a href="air-temperature.html#background-2"><i class="fa fa-check"></i><b>3.2</b> Background</a></li>
+<li class="chapter" data-level="3.3" data-path="air-temperature.html"><a href="air-temperature.html#sensors-and-measuring-principle-2"><i class="fa fa-check"></i><b>3.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="3.4" data-path="air-temperature.html"><a href="air-temperature.html#analysis-2"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="air-temperature.html"><a href="air-temperature.html#hainich-time-series"><i class="fa fa-check"></i><b>3.4.1</b> Hainich time series</a></li>
+<li class="chapter" data-level="3.4.2" data-path="air-temperature.html"><a href="air-temperature.html#temperature-sensors-response-time"><i class="fa fa-check"></i><b>3.4.2</b> Temperature sensors response time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="air-humidity.html"><a href="air-humidity.html"><i class="fa fa-check"></i><b>4</b> Air humidity</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="air-humidity.html"><a href="air-humidity.html#motivation-3"><i class="fa fa-check"></i><b>4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2" data-path="air-humidity.html"><a href="air-humidity.html#background-3"><i class="fa fa-check"></i><b>4.2</b> Background</a></li>
+<li class="chapter" data-level="4.3" data-path="air-humidity.html"><a href="air-humidity.html#sensors-and-measuring-principle-3"><i class="fa fa-check"></i><b>4.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="4.4" data-path="air-humidity.html"><a href="air-humidity.html#analysis-3"><i class="fa fa-check"></i><b>4.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="air-humidity.html"><a href="air-humidity.html#actual-and-saturation-vapour-pressure"><i class="fa fa-check"></i><b>4.4.1</b> Actual and saturation vapour pressure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="air-humidity.html"><a href="air-humidity.html#air-and-dew-point-temperature"><i class="fa fa-check"></i><b>4.4.2</b> Air and dew point temperature</a></li>
+<li class="chapter" data-level="4.4.3" data-path="air-humidity.html"><a href="air-humidity.html#when-is-absolute-humidity-largest-and-why"><i class="fa fa-check"></i><b>4.4.3</b> When is absolute humidity largest and why?</a></li>
+<li class="chapter" data-level="4.4.4" data-path="air-humidity.html"><a href="air-humidity.html#mixing-ratio-and-specific-humidity"><i class="fa fa-check"></i><b>4.4.4</b> Mixing ratio and specific humidity</a></li>
+<li class="chapter" data-level="4.4.5" data-path="air-humidity.html"><a href="air-humidity.html#vapour-pressure-deficit"><i class="fa fa-check"></i><b>4.4.5</b> Vapour pressure deficit</a></li>
+<li class="chapter" data-level="4.4.6" data-path="air-humidity.html"><a href="air-humidity.html#equivalent-temperature"><i class="fa fa-check"></i><b>4.4.6</b> Equivalent temperature</a></li>
+<li class="chapter" data-level="4.4.7" data-path="air-humidity.html"><a href="air-humidity.html#field-humidity-measurements"><i class="fa fa-check"></i><b>4.4.7</b> Field humidity measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="precipitation.html"><a href="precipitation.html"><i class="fa fa-check"></i><b>5</b> Precipitation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="precipitation.html"><a href="precipitation.html#motivation-4"><i class="fa fa-check"></i><b>5.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="precipitation.html"><a href="precipitation.html#background-4"><i class="fa fa-check"></i><b>5.2</b> Background</a></li>
+<li class="chapter" data-level="5.3" data-path="precipitation.html"><a href="precipitation.html#sensors-and-measuring-principle-4"><i class="fa fa-check"></i><b>5.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="5.4" data-path="precipitation.html"><a href="precipitation.html#analysis-4"><i class="fa fa-check"></i><b>5.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="precipitation.html"><a href="precipitation.html#et-and-precipitation-at-different-latitudes"><i class="fa fa-check"></i><b>5.4.1</b> ET and precipitation at different latitudes</a></li>
+<li class="chapter" data-level="5.4.2" data-path="precipitation.html"><a href="precipitation.html#evapotranspiration-index"><i class="fa fa-check"></i><b>5.4.2</b> Evapotranspiration index</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="air-pressure.html"><a href="air-pressure.html"><i class="fa fa-check"></i><b>6</b> Air Pressure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="air-pressure.html"><a href="air-pressure.html#motivation-5"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
+<li class="chapter" data-level="6.2" data-path="air-pressure.html"><a href="air-pressure.html#background-5"><i class="fa fa-check"></i><b>6.2</b> Background</a></li>
+<li class="chapter" data-level="6.3" data-path="air-pressure.html"><a href="air-pressure.html#sensors-and-measuring-principle-5"><i class="fa fa-check"></i><b>6.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="6.4" data-path="air-pressure.html"><a href="air-pressure.html#analysis-5"><i class="fa fa-check"></i><b>6.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-sea-level"><i class="fa fa-check"></i><b>6.4.1</b> Air pressure sea level</a></li>
+<li class="chapter" data-level="6.4.2" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-brocken-and-water-boling-temperature"><i class="fa fa-check"></i><b>6.4.2</b> Air pressure Brocken and water boling temperature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>7</b> Wind</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wind.html"><a href="wind.html#motivation-6"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
+<li class="chapter" data-level="7.2" data-path="wind.html"><a href="wind.html#background-6"><i class="fa fa-check"></i><b>7.2</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="wind.html"><a href="wind.html#sensors-and-measuring-principle-6"><i class="fa fa-check"></i><b>7.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="7.4" data-path="wind.html"><a href="wind.html#analysis-6"><i class="fa fa-check"></i><b>7.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="wind.html"><a href="wind.html#wind-averages"><i class="fa fa-check"></i><b>7.4.1</b> Wind averages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="wind.html"><a href="wind.html#wind-speed-and-height"><i class="fa fa-check"></i><b>7.4.2</b> Wind speed and height</a></li>
+<li class="chapter" data-level="7.4.3" data-path="wind.html"><a href="wind.html#windspeed-over-year"><i class="fa fa-check"></i><b>7.4.3</b> Windspeed over year</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="soil-physics.html"><a href="soil-physics.html"><i class="fa fa-check"></i><b>8</b> Soil physics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="soil-physics.html"><a href="soil-physics.html#motivation-7"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="soil-physics.html"><a href="soil-physics.html#background-7"><i class="fa fa-check"></i><b>8.2</b> Background</a></li>
+<li class="chapter" data-level="8.3" data-path="soil-physics.html"><a href="soil-physics.html#sensors-and-measuring-principle-7"><i class="fa fa-check"></i><b>8.3</b> Sensors and measuring principle</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-hydrology"><i class="fa fa-check"></i><b>8.3.1</b> Soil hydrology</a></li>
+<li class="chapter" data-level="8.3.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature"><i class="fa fa-check"></i><b>8.3.2</b> Soil temperature</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="soil-physics.html"><a href="soil-physics.html#analysis-7"><i class="fa fa-check"></i><b>8.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-heat-flux"><i class="fa fa-check"></i><b>8.4.1</b> Soil Heat flux</a></li>
+<li class="chapter" data-level="8.4.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature-profile"><i class="fa fa-check"></i><b>8.4.2</b> Soil temperature profile</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="evapotranspiration.html"><a href="evapotranspiration.html"><i class="fa fa-check"></i><b>9</b> Evapotranspiration</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#motivation-8"><i class="fa fa-check"></i><b>9.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#background-8"><i class="fa fa-check"></i><b>9.2</b> Background</a></li>
+<li class="chapter" data-level="9.3" data-path="evapotranspiration.html"><a href="evapotranspiration.html#sensors-and-measuring-principle-8"><i class="fa fa-check"></i><b>9.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="9.4" data-path="evapotranspiration.html"><a href="evapotranspiration.html#analysis-8"><i class="fa fa-check"></i><b>9.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#potential-evapotranspiration"><i class="fa fa-check"></i><b>9.4.1</b> Potential evapotranspiration</a></li>
+<li class="chapter" data-level="9.4.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#piché-evaporimeters"><i class="fa fa-check"></i><b>9.4.2</b> Piché evaporimeters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html"><i class="fa fa-check"></i><b>10</b> Turbulent fluxes</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html#motivation-9"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.2" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html#background-9"><i class="fa fa-check"></i><b>10.2</b> Background</a></li>
+<li class="chapter" data-level="10.3" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html#sensors-and-measuring-principle-9"><i class="fa fa-check"></i><b>10.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="10.4" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html#analysis-9"><i class="fa fa-check"></i><b>10.4</b> Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="turbulent-fluxes.html"><a href="turbulent-fluxes.html#respiration-chambers"><i class="fa fa-check"></i><b>10.5</b> Respiration chambers</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="eddy-covariance.html"><a href="eddy-covariance.html"><i class="fa fa-check"></i><b>11</b> Eddy Covariance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="eddy-covariance.html"><a href="eddy-covariance.html#motivation-10"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2" data-path="eddy-covariance.html"><a href="eddy-covariance.html#background-10"><i class="fa fa-check"></i><b>11.2</b> Background</a></li>
+<li class="chapter" data-level="11.3" data-path="eddy-covariance.html"><a href="eddy-covariance.html#sensors-and-measuring-principles"><i class="fa fa-check"></i><b>11.3</b> Sensors and Measuring principles</a></li>
+<li class="chapter" data-level="11.4" data-path="eddy-covariance.html"><a href="eddy-covariance.html#analisys"><i class="fa fa-check"></i><b>11.4</b> Analisys</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="eddy-covariance.html"><a href="eddy-covariance.html#raw-flux-calculation"><i class="fa fa-check"></i><b>11.4.1</b> Raw flux calculation</a></li>
+<li class="chapter" data-level="11.4.2" data-path="eddy-covariance.html"><a href="eddy-covariance.html#flux-corrections"><i class="fa fa-check"></i><b>11.4.2</b> Flux corrections</a></li>
+<li class="chapter" data-level="11.4.3" data-path="eddy-covariance.html"><a href="eddy-covariance.html#time-lag-correction"><i class="fa fa-check"></i><b>11.4.3</b> Time lag correction</a></li>
+<li class="chapter" data-level="11.4.4" data-path="eddy-covariance.html"><a href="eddy-covariance.html#corrected-fluxes"><i class="fa fa-check"></i><b>11.4.4</b> Corrected fluxes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experimental bioclimatology Term Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eddy-covariance" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Eddy Covariance</h1>
+<div id="motivation-10" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Motivation</h2>
+<p>The atmosphere and the ecosystem exchange energy and gases through turbulent flows. The main gas transported are CO2 and water vapour, while energy is transferred as sensible heat fluxes and momentum fluxes.</p>
+<p>Eddy Covariance (EC) is a technique that measures the entity of the turbulent fluxes. It can measure a wide range of variables, automatically, continuously, with high accuracy and with minimal impact on the ecosystems.
+It is primary method used to monitor the carbon balance of ecosystems.</p>
+</div>
+<div id="background-10" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Background</h2>
+<p>The air flow next to the surface becomes turbulent, with eddies that transport mass and energy between the atmosphere and the ecosystems. It is possible to measure the properties of the eddies and use them to estimate the different fluxes.
+Therefore in an Eddy Covariance setup the first instrument needed is an anemometer that measures the 3 components of the wind, this can then be paired with a gas analyzer to measure the change of concentration.
+The fluxes can then be calculated as the covariance between the vertical wind and the property of interest.</p>
+<p>In particular those are the most common fluxes that are measured:</p>
+<ul>
+<li><strong>CO2</strong>. Carbon dioxide is one of the main variable measured in EC setups, as it is the main outcome of photosynthesis and respiration. The flux can be calculated as:</li>
+</ul>
+<p><span class="math display">\[F_{co2} = \rho_m\overline{w`c_{co2}`}\]</span>
+where <span class="math inline">\(\rho_m\)</span> is the air molar density and <span class="math inline">\(\overline{w`c`}\)</span> the covariance between the vertical wind speed (w) and the CO2 concentration.
+The measurement unit is <span class="math inline">\(\mu mol / m^2s\)</span>.</p>
+<ul>
+<li><strong>H2O</strong>. The amount of water vapour exchanged can be The flux can be calculated as:</li>
+</ul>
+<p><span class="math display">\[E_{h2o} = \rho_m\overline{w`c_{h2o}`}\]</span>
+where <span class="math inline">\(\rho_m\)</span> is the air molar density and <span class="math inline">\(\overline{w`c`}\)</span> the covariance between the vertical wind speed (w) and the H2O concentration.
+The measurement unit is <span class="math inline">\(\mu mol / m^2s\)</span>.</p>
+<ul>
+<li><strong>Latent heat</strong>. Latent heat flux is the amount of energy that is transferred due the evaporation of water vapour. In fact it is directly connected to the H2O flux and can be calculated as:</li>
+</ul>
+<p><span class="math display">\[LE = \lambda E\]</span>
+where <span class="math inline">\(\lambda\)</span> is the latent heat of vaporization of water and <span class="math inline">\(E\)</span> is the H2O flux.</p>
+<p>The unit of measurement is <span class="math inline">\(W/m^2\)</span></p>
+<ul>
+<li><strong>Sensible heat</strong>. The sensible heat flux is the amount of energy exchanged as heat. The heat energy can be transferred through the movement of air masses.
+The flux can be calculated as:</li>
+</ul>
+<p><span class="math display">\[H = \rho_a c_p \overline{w`T`}\]</span>
+where <span class="math inline">\(\rho_a\)</span> is the air density, <span class="math inline">\(c_p\)</span> is the air heat capacity and <span class="math inline">\(\overline{w`T`}\)</span> the covariance between the vertical wind speed (w) and T the air temperature.
+The measurement unit is <span class="math inline">\(W / m^2\)</span>.</p>
+<ul>
+<li><strong>Momentum</strong>. Momentum is the amount of mechanical energy that is transferred from the wind to the ecosystem. It is by definition negative, as the the ecosystem cannot transfer mechanical energy to the wind.</li>
+</ul>
+<p>The flux can be calculated using only measures from a 3D anemometer as:</p>
+<p><span class="math display">\[\tau = \rho_a \sqrt{(\overline{w`u`})^2 + (\overline{w`v`})^2}\]</span>
+where <span class="math inline">\(\rho_a\)</span> is the air density and <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> the two horizontal wind components.
+The measurement unit is <span class="math inline">\(Kg / ms^2\)</span>.</p>
+<p>The Eddy Covariance technique is very powerful, however, flux calculation are based on several assumptions and require complex post processing to reduce the errors.</p>
+<p>First of all Eddy covariance can be applied only when there is a well developed turbulent layer, which is often not the case at night. Then measurements in heterogenous enviroments or on slopes can affect the turbulence and hence the flxes measurers.</p>
+<p>The EC data needs to be preprocessed to remove instruments errors (despiking and calibration) and compensate for non ideal instrument setup (time lag correction, coordinate rotations). Flux can then be calculated for a time period and then additional correction applied due to the loss of high frequency information (spectral corrections) and change in gas density (Webb-Pearmen-Leuning correction).</p>
+<p>Each instrument and variable need to have each of the steps mentioned above tailored for its specific characteristics.</p>
+</div>
+<div id="sensors-and-measuring-principles" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Sensors and Measuring principles</h2>
+<p>Eddies have different sizes and speed but many of them are small and very fast (fraction of seconds), therefore instruments with high response rate are needed.</p>
+<p>A basic EC setup consist of two instruments, an anemometer and a gas analyzer.
+The anemometer is a 3D sonic anemometer, that can therefore also measure the vertical component of the wind and have high frequency reading.
+The gas analyzer measure the concentrations using the absorption of specific infrared wavelenghts. The most commonly measured gas are CO2, H2O and methane. Gas analyzer can be open path, where the measurement chamber is directly exposed to the air or closed path where the measure take place in a separate chamber and the air is pumped through a pipe.</p>
+<p>The EC instruments are mounted on a tower as they need to be above the ecosystem where the turbulence layer is well developed.</p>
+</div>
+<div id="analisys" class="section level2" number="11.4">
+<h2><span class="header-section-number">11.4</span> Analisys</h2>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="eddy-covariance.html#cb106-1" aria-hidden="true" tabindex="-1"></a>ec_col_names <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;TIMESTAMP&quot;</span>,<span class="st">&quot;TIMESTAMPS&quot;</span>,<span class="st">&quot;u&quot;</span>,<span class="st">&quot;v&quot;</span>,<span class="st">&quot;w&quot;</span>,<span class="st">&quot;T_sonic&quot;</span>,</span>
+<span id="cb106-2"><a href="eddy-covariance.html#cb106-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;SA_DIAG_VALUE&quot;</span>,<span class="st">&quot;CO2_ABS&quot;</span>,<span class="st">&quot;H2O_ABS&quot;</span>,<span class="st">&quot;CO2_CONC&quot;</span>,</span>
+<span id="cb106-3"><a href="eddy-covariance.html#cb106-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;H2O_CONC&quot;</span>,<span class="st">&quot;CO2_POW_SAM&quot;</span>,<span class="st">&quot;H2O_POW_SAM&quot;</span>,<span class="st">&quot;CO2_POW_REF&quot;</span>,</span>
+<span id="cb106-4"><a href="eddy-covariance.html#cb106-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;H2O_POW_REF&quot;</span>,<span class="st">&quot;co2&quot;</span>,<span class="st">&quot;h2o&quot;</span>,<span class="st">&quot;T_CELL&quot;</span>,<span class="st">&quot;PRESS_CELL&quot;</span>,</span>
+<span id="cb106-5"><a href="eddy-covariance.html#cb106-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;GA_DIAG_CODE&quot;</span>,<span class="st">&quot;T_DEW&quot;</span>,<span class="st">&quot;CO2_STR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="eddy-covariance.html#cb107-1" aria-hidden="true" tabindex="-1"></a>ec_test_path <span class="ot">&lt;-</span> </span>
+<span id="cb107-2"><a href="eddy-covariance.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/Reinshof_flux_HF_202105300001.dat&quot;</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb107-3"><a href="eddy-covariance.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>()</span>
+<span id="cb107-4"><a href="eddy-covariance.html#cb107-4" aria-hidden="true" tabindex="-1"></a>ec <span class="ot">&lt;-</span><span class="fu">read_csv</span>(ec_test_path, <span class="at">skip=</span><span class="dv">4</span>, <span class="at">col_names =</span> ec_col_names, <span class="at">na=</span><span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>))</span>
+<span id="cb107-5"><a href="eddy-covariance.html#cb107-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-6"><a href="eddy-covariance.html#cb107-6" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/&quot;</span>))</span>
+<span id="cb107-7"><a href="eddy-covariance.html#cb107-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-8"><a href="eddy-covariance.html#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="co"># taking 4 sample data for plots at 4 different moment of the day</span></span>
+<span id="cb107-9"><a href="eddy-covariance.html#cb107-9" aria-hidden="true" tabindex="-1"></a><span class="co"># need to convert integer and remove the last element</span></span>
+<span id="cb107-10"><a href="eddy-covariance.html#cb107-10" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">48</span>, <span class="at">length.out=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb107-11"><a href="eddy-covariance.html#cb107-11" aria-hidden="true" tabindex="-1"></a>ec_samples_paths <span class="ot">&lt;-</span> files[idx]</span>
+<span id="cb107-12"><a href="eddy-covariance.html#cb107-12" aria-hidden="true" tabindex="-1"></a>ec_samples <span class="ot">&lt;-</span> <span class="fu">map</span>(ec_samples_paths,</span>
+<span id="cb107-13"><a href="eddy-covariance.html#cb107-13" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span><span class="fu">read_csv</span>(.x, <span class="at">skip=</span><span class="dv">4</span>, <span class="at">col_names =</span> ec_col_names, <span class="at">na=</span><span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>)))</span></code></pre></div>
+<div id="raw-flux-calculation" class="section level3" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> Raw flux calculation</h3>
+<p>The fluxes are first calculated without applying any correction.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="eddy-covariance.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the emp</span></span>
+<span id="cb108-2"><a href="eddy-covariance.html#cb108-2" aria-hidden="true" tabindex="-1"></a>process_ec_file <span class="ot">&lt;-</span> <span class="cf">function</span>(file, <span class="at">p=</span><span class="cf">function</span>(){}) {</span>
+<span id="cb108-3"><a href="eddy-covariance.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  ec <span class="ot">&lt;-</span><span class="fu">read_csv</span>(file, <span class="at">skip=</span><span class="dv">4</span>, <span class="at">col_names =</span> ec_col_names, <span class="at">col_types =</span> <span class="fu">cols</span>(), <span class="at">na=</span><span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>))</span>
+<span id="cb108-4"><a href="eddy-covariance.html#cb108-4" aria-hidden="true" tabindex="-1"></a>  time <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(file, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+.dat$&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb108-5"><a href="eddy-covariance.html#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">parse_date_time</span>(<span class="st">&quot;YmdHM&quot;</span>)</span>
+<span id="cb108-6"><a href="eddy-covariance.html#cb108-6" aria-hidden="true" tabindex="-1"></a>  flux <span class="ot">&lt;-</span> <span class="fu">calc_fluxes</span>(ec) <span class="sc">%&gt;%</span> </span>
+<span id="cb108-7"><a href="eddy-covariance.html#cb108-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">time =</span> time)</span>
+<span id="cb108-8"><a href="eddy-covariance.html#cb108-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">p</span>() <span class="co"># step progress bar</span></span>
+<span id="cb108-9"><a href="eddy-covariance.html#cb108-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(flux)</span>
+<span id="cb108-10"><a href="eddy-covariance.html#cb108-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="eddy-covariance.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Molar Gas Constant</span></span>
+<span id="cb109-2"><a href="eddy-covariance.html#cb109-2" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fl">8.314</span> <span class="co"># J/mol K</span></span>
+<span id="cb109-3"><a href="eddy-covariance.html#cb109-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="eddy-covariance.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Calcuates all fluxes</span></span>
+<span id="cb109-5"><a href="eddy-covariance.html#cb109-5" aria-hidden="true" tabindex="-1"></a>calc_fluxes <span class="ot">&lt;-</span> <span class="cf">function</span>(ec){</span>
+<span id="cb109-6"><a href="eddy-covariance.html#cb109-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># celsius to kelvin</span></span>
+<span id="cb109-7"><a href="eddy-covariance.html#cb109-7" aria-hidden="true" tabindex="-1"></a>  T_a <span class="ot">&lt;-</span> ec<span class="sc">$</span>T_CELL <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb109-8"><a href="eddy-covariance.html#cb109-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need to convert pressure to Pa from kPa</span></span>
+<span id="cb109-9"><a href="eddy-covariance.html#cb109-9" aria-hidden="true" tabindex="-1"></a>  p_a <span class="ot">&lt;-</span> ec<span class="sc">$</span>PRESS_CELL <span class="sc">*</span> <span class="fl">1e3</span></span>
+<span id="cb109-10"><a href="eddy-covariance.html#cb109-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb109-11"><a href="eddy-covariance.html#cb109-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how to calc this?</span></span>
+<span id="cb109-12"><a href="eddy-covariance.html#cb109-12" aria-hidden="true" tabindex="-1"></a>  rho_a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb109-13"><a href="eddy-covariance.html#cb109-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># How to calc lambda </span></span>
+<span id="cb109-14"><a href="eddy-covariance.html#cb109-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># how to calc Cp</span></span>
+<span id="cb109-15"><a href="eddy-covariance.html#cb109-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-16"><a href="eddy-covariance.html#cb109-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb109-17"><a href="eddy-covariance.html#cb109-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">rho_m =</span> <span class="fu">calc_rho_m</span>(p_a, T_a),</span>
+<span id="cb109-18"><a href="eddy-covariance.html#cb109-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">co2 =</span> <span class="fu">calc_co2_flux</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>co2, rho_m),</span>
+<span id="cb109-19"><a href="eddy-covariance.html#cb109-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">h2o =</span> <span class="fu">calc_h2o_flux</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>h2o, rho_m),</span>
+<span id="cb109-20"><a href="eddy-covariance.html#cb109-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">sens_heat =</span> <span class="fu">calc_sens_heat_flux</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>T_sonic, rho_a),</span>
+<span id="cb109-21"><a href="eddy-covariance.html#cb109-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat_heat =</span> <span class="fu">calc_lat_heat_flux</span>(h2o),</span>
+<span id="cb109-22"><a href="eddy-covariance.html#cb109-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">mom =</span> <span class="fu">calc_mom_flux</span>(ec<span class="sc">$</span>u, ec<span class="sc">$</span>v, ec<span class="sc">$</span>w, rho_a)</span>
+<span id="cb109-23"><a href="eddy-covariance.html#cb109-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb109-24"><a href="eddy-covariance.html#cb109-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-25"><a href="eddy-covariance.html#cb109-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-26"><a href="eddy-covariance.html#cb109-26" aria-hidden="true" tabindex="-1"></a>calc_co2_flux <span class="ot">&lt;-</span> <span class="cf">function</span>(w, co2, rho_m){</span>
+<span id="cb109-27"><a href="eddy-covariance.html#cb109-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>(w, co2, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>) <span class="sc">*</span> rho_m</span>
+<span id="cb109-28"><a href="eddy-covariance.html#cb109-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-29"><a href="eddy-covariance.html#cb109-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-30"><a href="eddy-covariance.html#cb109-30" aria-hidden="true" tabindex="-1"></a>calc_h2o_flux <span class="ot">&lt;-</span> <span class="cf">function</span>(w, h2o, rho_m){</span>
+<span id="cb109-31"><a href="eddy-covariance.html#cb109-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>(w, h2o, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>) <span class="sc">*</span> rho_m</span>
+<span id="cb109-32"><a href="eddy-covariance.html#cb109-32" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-33"><a href="eddy-covariance.html#cb109-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-34"><a href="eddy-covariance.html#cb109-34" aria-hidden="true" tabindex="-1"></a>calc_mom_flux <span class="ot">&lt;-</span>  <span class="cf">function</span>(u, v, w, rho_a){</span>
+<span id="cb109-35"><a href="eddy-covariance.html#cb109-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(</span>
+<span id="cb109-36"><a href="eddy-covariance.html#cb109-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cov</span>(w, u, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">cov</span>(w, v, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb109-37"><a href="eddy-covariance.html#cb109-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">*</span> rho_a</span>
+<span id="cb109-38"><a href="eddy-covariance.html#cb109-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-39"><a href="eddy-covariance.html#cb109-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-40"><a href="eddy-covariance.html#cb109-40" aria-hidden="true" tabindex="-1"></a>calc_sens_heat_flux <span class="ot">&lt;-</span> <span class="cf">function</span>(w, T_sonic, rho_a, <span class="at">Cp=</span> <span class="dv">1000</span>){</span>
+<span id="cb109-41"><a href="eddy-covariance.html#cb109-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cov</span>(w, T_sonic, <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>) <span class="sc">*</span> rho_a <span class="sc">*</span> Cp</span>
+<span id="cb109-42"><a href="eddy-covariance.html#cb109-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-43"><a href="eddy-covariance.html#cb109-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-44"><a href="eddy-covariance.html#cb109-44" aria-hidden="true" tabindex="-1"></a>calc_lat_heat_flux <span class="ot">&lt;-</span> <span class="cf">function</span>(h2o_flux, <span class="at">lambda =</span> <span class="fl">2.256</span> ) {</span>
+<span id="cb109-45"><a href="eddy-covariance.html#cb109-45" aria-hidden="true" tabindex="-1"></a>  h2o_flux <span class="sc">*</span> lambda</span>
+<span id="cb109-46"><a href="eddy-covariance.html#cb109-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb109-47"><a href="eddy-covariance.html#cb109-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-48"><a href="eddy-covariance.html#cb109-48" aria-hidden="true" tabindex="-1"></a><span class="co"># air molar density</span></span>
+<span id="cb109-49"><a href="eddy-covariance.html#cb109-49" aria-hidden="true" tabindex="-1"></a>calc_rho_m <span class="ot">&lt;-</span> <span class="cf">function</span>(p, T_a){</span>
+<span id="cb109-50"><a href="eddy-covariance.html#cb109-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>( p <span class="sc">/</span> (R <span class="sc">*</span> T_a), <span class="at">na.rm=</span>T)</span>
+<span id="cb109-51"><a href="eddy-covariance.html#cb109-51" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="eddy-covariance.html#cb110-1" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/&quot;</span>))</span>
+<span id="cb110-2"><a href="eddy-covariance.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_progress</span>({</span>
+<span id="cb110-3"><a href="eddy-covariance.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this is to have a progress bar</span></span>
+<span id="cb110-4"><a href="eddy-covariance.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">progressor</span>(<span class="at">along=</span>files)</span>
+<span id="cb110-5"><a href="eddy-covariance.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  ec_flux <span class="ot">&lt;-</span> <span class="fu">cache_rds</span>(<span class="fu">map_dfr</span>(files, process_ec_file, p))</span>
+<span id="cb110-6"><a href="eddy-covariance.html#cb110-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="flux-corrections" class="section level3" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> Flux corrections</h3>
+<p>In order to properly measure the fluxes several corrections are necessary. In the subsequent section the main correction are analyzed individually and tested then the fluxes with the corrections are calculated.</p>
+<div id="remove-implausible-values" class="section level4" number="11.4.2.1">
+<h4><span class="header-section-number">11.4.2.1</span> Remove implausible values</h4>
+<p>The first step is not a proper correction, but a plausibility check. All the readings outside sensible ranges are discarded.
+To test this function some artificial data has been generated and as seen in Table <a href="eddy-covariance.html#tab:impl-values">11.1</a> the out of range values were correctly removed.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="eddy-covariance.html#cb111-1" aria-hidden="true" tabindex="-1"></a>remove_implausible <span class="ot">&lt;-</span> <span class="cf">function</span>(ec){</span>
+<span id="cb111-2"><a href="eddy-covariance.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  ec <span class="sc">%&gt;%</span> </span>
+<span id="cb111-3"><a href="eddy-covariance.html#cb111-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace_with_na_at</span>(<span class="fu">c</span>(<span class="st">&quot;u&quot;</span>, <span class="st">&quot;v&quot;</span>, <span class="st">&quot;w&quot;</span>), <span class="sc">~</span><span class="fu">abs</span>(.x) <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb111-4"><a href="eddy-covariance.html#cb111-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace_with_na_at</span>(<span class="st">&quot;co2&quot;</span>, <span class="sc">~!</span><span class="fu">between</span>(.x, <span class="dv">350</span>, <span class="dv">700</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb111-5"><a href="eddy-covariance.html#cb111-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace_with_na_at</span>(<span class="st">&quot;T_sonic&quot;</span>, <span class="sc">~!</span><span class="fu">between</span>(.x, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">50</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb111-6"><a href="eddy-covariance.html#cb111-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace_with_na_at</span>(<span class="st">&quot;h2o&quot;</span>, <span class="sc">~!</span><span class="fu">between</span>(.x, <span class="dv">2</span>, <span class="dv">30</span>))</span>
+<span id="cb111-7"><a href="eddy-covariance.html#cb111-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="eddy-covariance.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manually checking with some fake data that the function is working as intended</span></span>
+<span id="cb112-2"><a href="eddy-covariance.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb112-3"><a href="eddy-covariance.html#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">u =</span> <span class="fu">seq</span> (<span class="sc">-</span><span class="dv">15</span>, <span class="dv">15</span>, <span class="at">length.out=</span><span class="dv">20</span>),</span>
+<span id="cb112-4"><a href="eddy-covariance.html#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">v =</span> u,</span>
+<span id="cb112-5"><a href="eddy-covariance.html#cb112-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> u,</span>
+<span id="cb112-6"><a href="eddy-covariance.html#cb112-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">co2 =</span> <span class="fu">seq</span> (<span class="dv">30</span>, <span class="dv">800</span>, <span class="at">length.out=</span><span class="dv">20</span>),</span>
+<span id="cb112-7"><a href="eddy-covariance.html#cb112-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">T_sonic =</span> <span class="fu">seq</span> (<span class="sc">-</span><span class="dv">20</span>, <span class="dv">80</span>, <span class="at">length.out=</span><span class="dv">20</span>),</span>
+<span id="cb112-8"><a href="eddy-covariance.html#cb112-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">h2o =</span> <span class="fu">seq</span> (<span class="dv">0</span>, <span class="dv">40</span>, <span class="at">length.out=</span><span class="dv">20</span>),</span>
+<span id="cb112-9"><a href="eddy-covariance.html#cb112-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb112-10"><a href="eddy-covariance.html#cb112-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">remove_implausible</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb112-11"><a href="eddy-covariance.html#cb112-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">booktabs=</span>T, <span class="at">caption=</span><span class="st">&quot;Example dataset after removal of implausible values&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb112-12"><a href="eddy-covariance.html#cb112-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="st">&quot;hold_position&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:impl-values">Table 11.1: </span>Example dataset after removal of implausible values
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+u
+</th>
+<th style="text-align:right;">
+v
+</th>
+<th style="text-align:right;">
+w
+</th>
+<th style="text-align:right;">
+co2
+</th>
+<th style="text-align:right;">
+T_sonic
+</th>
+<th style="text-align:right;">
+h2o
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+-14.736842
+</td>
+<td style="text-align:right;">
+2.105263
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+-9.473684
+</td>
+<td style="text-align:right;">
+4.210526
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+-4.210526
+</td>
+<td style="text-align:right;">
+6.315790
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-8.6842105
+</td>
+<td style="text-align:right;">
+-8.6842105
+</td>
+<td style="text-align:right;">
+-8.6842105
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.052632
+</td>
+<td style="text-align:right;">
+8.421053
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-7.1052632
+</td>
+<td style="text-align:right;">
+-7.1052632
+</td>
+<td style="text-align:right;">
+-7.1052632
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+6.315790
+</td>
+<td style="text-align:right;">
+10.526316
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-5.5263158
+</td>
+<td style="text-align:right;">
+-5.5263158
+</td>
+<td style="text-align:right;">
+-5.5263158
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+11.578947
+</td>
+<td style="text-align:right;">
+12.631579
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-3.9473684
+</td>
+<td style="text-align:right;">
+-3.9473684
+</td>
+<td style="text-align:right;">
+-3.9473684
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+16.842105
+</td>
+<td style="text-align:right;">
+14.736842
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-2.3684211
+</td>
+<td style="text-align:right;">
+-2.3684211
+</td>
+<td style="text-align:right;">
+-2.3684211
+</td>
+<td style="text-align:right;">
+354.2105
+</td>
+<td style="text-align:right;">
+22.105263
+</td>
+<td style="text-align:right;">
+16.842105
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.7894737
+</td>
+<td style="text-align:right;">
+-0.7894737
+</td>
+<td style="text-align:right;">
+-0.7894737
+</td>
+<td style="text-align:right;">
+394.7368
+</td>
+<td style="text-align:right;">
+27.368421
+</td>
+<td style="text-align:right;">
+18.947368
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.7894737
+</td>
+<td style="text-align:right;">
+0.7894737
+</td>
+<td style="text-align:right;">
+0.7894737
+</td>
+<td style="text-align:right;">
+435.2632
+</td>
+<td style="text-align:right;">
+32.631579
+</td>
+<td style="text-align:right;">
+21.052632
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.3684211
+</td>
+<td style="text-align:right;">
+2.3684211
+</td>
+<td style="text-align:right;">
+2.3684211
+</td>
+<td style="text-align:right;">
+475.7895
+</td>
+<td style="text-align:right;">
+37.894737
+</td>
+<td style="text-align:right;">
+23.157895
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3.9473684
+</td>
+<td style="text-align:right;">
+3.9473684
+</td>
+<td style="text-align:right;">
+3.9473684
+</td>
+<td style="text-align:right;">
+516.3158
+</td>
+<td style="text-align:right;">
+43.157895
+</td>
+<td style="text-align:right;">
+25.263158
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.5263158
+</td>
+<td style="text-align:right;">
+5.5263158
+</td>
+<td style="text-align:right;">
+5.5263158
+</td>
+<td style="text-align:right;">
+556.8421
+</td>
+<td style="text-align:right;">
+48.421053
+</td>
+<td style="text-align:right;">
+27.368421
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.1052632
+</td>
+<td style="text-align:right;">
+7.1052632
+</td>
+<td style="text-align:right;">
+7.1052632
+</td>
+<td style="text-align:right;">
+597.3684
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+29.473684
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8.6842105
+</td>
+<td style="text-align:right;">
+8.6842105
+</td>
+<td style="text-align:right;">
+8.6842105
+</td>
+<td style="text-align:right;">
+637.8947
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+678.4211
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="despike" class="section level4" number="11.4.2.2">
+<h4><span class="header-section-number">11.4.2.2</span> Despike</h4>
+<p>Despiking consists in removing spikes in the data, which are moment where suddenly very different.
+Here the spikes are considered as the values where the different from the mean is bigger than a certain number of times (default 5) the standard deviation. This is a simple despiking method and the number should be properly tuned for each measured variable according to their characteristics and sensor behavior.</p>
+<p>Figure <a href="eddy-covariance.html#fig:despike">11.1</a> shows how this despiking filter works. The limit of 1.8 standard deviations is artificially low and used in the plot only as an example of the deskipe. All the values that are outside the range mean +/- 1.8 standard deviation are removed and replaced with NAs.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="eddy-covariance.html#cb113-1" aria-hidden="true" tabindex="-1"></a>despike <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">times_sd =</span> <span class="dv">5</span>) {</span>
+<span id="cb113-2"><a href="eddy-covariance.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  mean_data <span class="ot">&lt;-</span> <span class="fu">mean</span>(data, <span class="at">na.rm=</span>T)</span>
+<span id="cb113-3"><a href="eddy-covariance.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  sd_data <span class="ot">&lt;-</span> <span class="fu">sd</span>(data, <span class="at">na.rm=</span>T)</span>
+<span id="cb113-4"><a href="eddy-covariance.html#cb113-4" aria-hidden="true" tabindex="-1"></a>  spikes <span class="ot">&lt;-</span> <span class="fu">abs</span>(data <span class="sc">-</span> mean_data) <span class="sc">&gt;</span> (times_sd<span class="sc">*</span>sd_data)</span>
+<span id="cb113-5"><a href="eddy-covariance.html#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spikes will be NAs</span></span>
+<span id="cb113-6"><a href="eddy-covariance.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  data[spikes] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb113-7"><a href="eddy-covariance.html#cb113-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb113-8"><a href="eddy-covariance.html#cb113-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="eddy-covariance.html#cb114-1" aria-hidden="true" tabindex="-1"></a>plots_despike <span class="ot">&lt;-</span> <span class="fu">map</span>(ec_samples, <span class="cf">function</span>(ec){</span>
+<span id="cb114-2"><a href="eddy-covariance.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  co2_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(ec<span class="sc">$</span>co2, <span class="at">na.rm=</span>T)</span>
+<span id="cb114-3"><a href="eddy-covariance.html#cb114-3" aria-hidden="true" tabindex="-1"></a>  co2_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(ec<span class="sc">$</span>co2, <span class="at">na.rm=</span>T) <span class="sc">*</span> <span class="fl">1.8</span></span>
+<span id="cb114-4"><a href="eddy-covariance.html#cb114-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(ec, <span class="fu">aes</span>(TIMESTAMP, <span class="fu">despike</span>(co2, <span class="at">times_sd =</span> <span class="fl">1.8</span>))) <span class="sc">+</span></span>
+<span id="cb114-5"><a href="eddy-covariance.html#cb114-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> co2_mean) <span class="sc">+</span></span>
+<span id="cb114-6"><a href="eddy-covariance.html#cb114-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(co2_mean <span class="sc">+</span> co2_sd, co2_mean <span class="sc">-</span> co2_sd), <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb114-7"><a href="eddy-covariance.html#cb114-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> co2), <span class="at">color=</span><span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb114-8"><a href="eddy-covariance.html#cb114-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="fu">colorblind_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb114-9"><a href="eddy-covariance.html#cb114-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;CO2 [umol mol-1]&quot;</span>)</span>
+<span id="cb114-10"><a href="eddy-covariance.html#cb114-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb114-11"><a href="eddy-covariance.html#cb114-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-12"><a href="eddy-covariance.html#cb114-12" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(plot_grid, <span class="fu">c</span>(plots_despike[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>)], <span class="at">nrow=</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:despike"></span>
+<img src="Bioclimatology-reports_files/figure-html/despike-1.png" alt="Example of how despiking work with articially low factor of +/- 1.8 standard deviations. Grey sections is the data that was removed. Dashed lines are the mean +/- 1.8 standard deviation. Each subplot is a different time of the day. Data from Hainich national park 31st May 2021." width="672" />
+<p class="caption">
+Figure 11.1: Example of how despiking work with articially low factor of +/- 1.8 standard deviations. Grey sections is the data that was removed. Dashed lines are the mean +/- 1.8 standard deviation. Each subplot is a different time of the day. Data from Hainich national park 31st May 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="rotations" class="section level4" number="11.4.2.3">
+<h4><span class="header-section-number">11.4.2.3</span> Rotations</h4>
+<p>The reference system of the wind is rotated in order to have a zero mean in the vertical wind component and a zero mean wind direction.</p>
+<p>Table <a href="eddy-covariance.html#tab:wind-rot">11.2</a>, shows the values of the wind means before and after the double rotation, which works correctly.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="eddy-covariance.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wind should have 3 columns u, v, and w</span></span>
+<span id="cb115-2"><a href="eddy-covariance.html#cb115-2" aria-hidden="true" tabindex="-1"></a>double_rotation <span class="ot">&lt;-</span> <span class="cf">function</span>(wind){</span>
+<span id="cb115-3"><a href="eddy-covariance.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb115-4"><a href="eddy-covariance.html#cb115-4" aria-hidden="true" tabindex="-1"></a>  wind <span class="sc">%&gt;%</span> </span>
+<span id="cb115-5"><a href="eddy-covariance.html#cb115-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1st rotation around z into the mean wind direction</span></span>
+<span id="cb115-6"><a href="eddy-covariance.html#cb115-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb115-7"><a href="eddy-covariance.html#cb115-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># need to use atan2 otherwise the angle may have the wrong sign</span></span>
+<span id="cb115-8"><a href="eddy-covariance.html#cb115-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">theta =</span> <span class="fu">atan2</span>(<span class="fu">mean</span>(v,<span class="at">na.rm =</span> T), <span class="fu">mean</span>(u,<span class="at">na.rm =</span> T)),</span>
+<span id="cb115-9"><a href="eddy-covariance.html#cb115-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">u_1 =</span> u<span class="sc">*</span><span class="fu">cos</span>(theta) <span class="sc">+</span> v<span class="sc">*</span><span class="fu">sin</span>(theta),</span>
+<span id="cb115-10"><a href="eddy-covariance.html#cb115-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">v_1 =</span> <span class="sc">-</span>u<span class="sc">*</span><span class="fu">sin</span>(theta) <span class="sc">+</span> v<span class="sc">*</span><span class="fu">cos</span>(theta),</span>
+<span id="cb115-11"><a href="eddy-covariance.html#cb115-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">w_1 =</span> w</span>
+<span id="cb115-12"><a href="eddy-covariance.html#cb115-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb115-13"><a href="eddy-covariance.html#cb115-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2nd rotation around new y-axis to nullify the vertical wind speed</span></span>
+<span id="cb115-14"><a href="eddy-covariance.html#cb115-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># to be used for further analysis</span></span>
+<span id="cb115-15"><a href="eddy-covariance.html#cb115-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb115-16"><a href="eddy-covariance.html#cb115-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">phi =</span> <span class="fu">atan2</span>(<span class="fu">mean</span>(w_1,<span class="at">na.rm =</span> T), <span class="fu">mean</span>(u_1,<span class="at">na.rm =</span> T)),</span>
+<span id="cb115-17"><a href="eddy-covariance.html#cb115-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">u_2 =</span> u_1<span class="sc">*</span><span class="fu">cos</span>(phi) <span class="sc">+</span> w_1<span class="sc">*</span><span class="fu">sin</span>(phi),</span>
+<span id="cb115-18"><a href="eddy-covariance.html#cb115-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">v_2 =</span> v_1,</span>
+<span id="cb115-19"><a href="eddy-covariance.html#cb115-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">w_2 =</span> <span class="sc">-</span>u_1<span class="sc">*</span><span class="fu">sin</span>(phi) <span class="sc">+</span> w_1<span class="sc">*</span><span class="fu">cos</span>(phi)</span>
+<span id="cb115-20"><a href="eddy-covariance.html#cb115-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-21"><a href="eddy-covariance.html#cb115-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rename variables</span></span>
+<span id="cb115-22"><a href="eddy-covariance.html#cb115-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb115-23"><a href="eddy-covariance.html#cb115-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">u =</span> u_2,</span>
+<span id="cb115-24"><a href="eddy-covariance.html#cb115-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">v =</span> v_2,</span>
+<span id="cb115-25"><a href="eddy-covariance.html#cb115-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">w =</span> w_2) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-26"><a href="eddy-covariance.html#cb115-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove temp variables</span></span>
+<span id="cb115-27"><a href="eddy-covariance.html#cb115-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb115-28"><a href="eddy-covariance.html#cb115-28" aria-hidden="true" tabindex="-1"></a>      <span class="sc">-</span>u_1, <span class="sc">-</span>v_1, <span class="sc">-</span>w_1, <span class="sc">-</span>theta, <span class="sc">-</span>phi, </span>
+<span id="cb115-29"><a href="eddy-covariance.html#cb115-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb115-30"><a href="eddy-covariance.html#cb115-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="eddy-covariance.html#cb116-1" aria-hidden="true" tabindex="-1"></a>rot_wind <span class="ot">&lt;-</span> <span class="fu">double_rotation</span>(ec)</span>
+<span id="cb116-2"><a href="eddy-covariance.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="eddy-covariance.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tribble</span>(<span class="sc">~</span><span class="st">&quot;Variable&quot;</span>, <span class="sc">~</span><span class="st">&quot;Before correction&quot;</span>, <span class="sc">~</span><span class="st">&quot;After correction&quot;</span>,</span>
+<span id="cb116-4"><a href="eddy-covariance.html#cb116-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Mean vertical wind&quot;</span>, <span class="fu">mean</span>(ec<span class="sc">$</span>w), <span class="fu">mean</span>(rot_wind<span class="sc">$</span>w),</span>
+<span id="cb116-5"><a href="eddy-covariance.html#cb116-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Mean wind direction&quot;</span>, <span class="fu">mean</span>(<span class="fu">atan2</span>(ec<span class="sc">$</span>v, ec<span class="sc">$</span>u)), <span class="fu">mean</span>(<span class="fu">atan2</span>(rot_wind<span class="sc">$</span>v, rot_wind<span class="sc">$</span>u))) <span class="sc">%&gt;%</span> </span>
+<span id="cb116-6"><a href="eddy-covariance.html#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">booktabs =</span> T, <span class="at">caption=</span><span class="st">&quot;Mean wind speed and direction before and after double rotation&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb116-7"><a href="eddy-covariance.html#cb116-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="st">&quot;hold_position&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:wind-rot">Table 11.2: </span>Mean wind speed and direction before and after double rotation
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+Before correction
+</th>
+<th style="text-align:right;">
+After correction
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mean vertical wind
+</td>
+<td style="text-align:right;">
+-0.0136382
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean wind direction
+</td>
+<td style="text-align:right;">
+1.9793592
+</td>
+<td style="text-align:right;">
+0.0005655
+</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="time-lag-correction" class="section level3" number="11.4.3">
+<h3><span class="header-section-number">11.4.3</span> Time lag correction</h3>
+<p>Due to spatial separation between the gas analyzer and the anemometer each Eddy is measured at slightly different moments in time, this difference even if it often very small can lead to serious underestimation of fluxes. Therefore a time lag correction has been developed to compensate this.
+For each variable and half an hour a time lag is calculated in order to maximize the correlation between the vertical wind speed and the gas concentration. This is done by trying different time lags and then finding the one where the absolute correlation is maximized.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="eddy-covariance.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># maybe find a better name, lag that supports negative values</span></span>
+<span id="cb117-2"><a href="eddy-covariance.html#cb117-2" aria-hidden="true" tabindex="-1"></a>lag2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, n){</span>
+<span id="cb117-3"><a href="eddy-covariance.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">&gt;=</span> <span class="dv">0</span>){</span>
+<span id="cb117-4"><a href="eddy-covariance.html#cb117-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lag</span>(x, n)</span>
+<span id="cb117-5"><a href="eddy-covariance.html#cb117-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb117-6"><a href="eddy-covariance.html#cb117-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb117-7"><a href="eddy-covariance.html#cb117-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lead</span>(x, <span class="sc">-</span>n)</span>
+<span id="cb117-8"><a href="eddy-covariance.html#cb117-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb117-9"><a href="eddy-covariance.html#cb117-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb117-10"><a href="eddy-covariance.html#cb117-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-11"><a href="eddy-covariance.html#cb117-11" aria-hidden="true" tabindex="-1"></a><span class="co">#lags the second argument</span></span>
+<span id="cb117-12"><a href="eddy-covariance.html#cb117-12" aria-hidden="true" tabindex="-1"></a>lagged_cor <span class="ot">&lt;-</span>  <span class="cf">function</span>(x, y, n){</span>
+<span id="cb117-13"><a href="eddy-covariance.html#cb117-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>(x, <span class="fu">lag2</span>(y, n), <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb117-14"><a href="eddy-covariance.html#cb117-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb117-15"><a href="eddy-covariance.html#cb117-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-16"><a href="eddy-covariance.html#cb117-16" aria-hidden="true" tabindex="-1"></a>max_n_cor <span class="ot">&lt;-</span> <span class="cf">function</span>(w, gas){</span>
+<span id="cb117-17"><a href="eddy-covariance.html#cb117-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># maximise the absolute value of the covariance</span></span>
+<span id="cb117-18"><a href="eddy-covariance.html#cb117-18" aria-hidden="true" tabindex="-1"></a>  opt <span class="ot">&lt;-</span> <span class="fu">optimize</span>(<span class="cf">function</span>(n){</span>
+<span id="cb117-19"><a href="eddy-covariance.html#cb117-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the optimize function use doubles, leg uses ints</span></span>
+<span id="cb117-20"><a href="eddy-covariance.html#cb117-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">lagged_cor</span>(w, gas, <span class="fu">as.integer</span>(n)))</span>
+<span id="cb117-21"><a href="eddy-covariance.html#cb117-21" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">700</span>, <span class="dv">700</span>), <span class="at">maximum =</span> T, <span class="at">tol=</span><span class="dv">1</span>)</span>
+<span id="cb117-22"><a href="eddy-covariance.html#cb117-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(opt<span class="sc">$</span>maximum)</span>
+<span id="cb117-23"><a href="eddy-covariance.html#cb117-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb117-24"><a href="eddy-covariance.html#cb117-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-25"><a href="eddy-covariance.html#cb117-25" aria-hidden="true" tabindex="-1"></a>time_lag_correction <span class="ot">&lt;-</span> <span class="cf">function</span>(w, gas){</span>
+<span id="cb117-26"><a href="eddy-covariance.html#cb117-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lag2</span>(gas, <span class="fu">max_n_cor</span>(w, gas) <span class="sc">%&gt;%</span> as.integer )</span>
+<span id="cb117-27"><a href="eddy-covariance.html#cb117-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Figure <a href="eddy-covariance.html#fig:cor-co2">11.2</a> show the time log correction for the CO2 sensor. As it can been seen during the day (7h - 17h) there is a clear peak in the correlation plot and the time lag found by the optimization algorithm is in a sensible range.
+However during night the is no peak and the found time lag is outside a sensible range. This is probably due to the fact that at night the turbulent fluxes are not well developed and therefore it is difficult to correctly apply EC.
+In order to better test this hypothesis in figure <a href="eddy-covariance.html#fig:cor-tsonic">11.3</a> the time lag correction has been applied to the the sonic temperature, where it should be 0 as it is measured together with the wind speed. The time lag correction is correctly found to be 0 during the day, but not for the night. This confirms that the time lag correction is working properly and the problem is related to the fluxes themselves.</p>
+<p>In real life conditions more complex algorithm and quality assurance system are used to avoid this kind of errors.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="eddy-covariance.html#cb118-1" aria-hidden="true" tabindex="-1"></a>plots_lag <span class="ot">&lt;-</span> <span class="fu">map</span>(ec_samples, <span class="cf">function</span>(ec){</span>
+<span id="cb118-2"><a href="eddy-covariance.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  co2_lagged_cor <span class="ot">&lt;-</span> <span class="fu">tibble</span>( <span class="at">n =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">700</span>, <span class="dv">700</span>, <span class="dv">5</span>), </span>
+<span id="cb118-3"><a href="eddy-covariance.html#cb118-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">lagged_cor =</span> <span class="fu">map_dbl</span>(n,<span class="sc">~</span> <span class="fu">lagged_cor</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>co2, .x)))</span>
+<span id="cb118-4"><a href="eddy-covariance.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  max_cor <span class="ot">&lt;-</span> <span class="fu">max_n_cor</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>co2) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb118-5"><a href="eddy-covariance.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(co2_lagged_cor, <span class="fu">aes</span>( <span class="at">x=</span> n , <span class="at">y =</span> lagged_cor)) <span class="sc">+</span></span>
+<span id="cb118-6"><a href="eddy-covariance.html#cb118-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb118-7"><a href="eddy-covariance.html#cb118-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> max_cor, <span class="at">col=</span><span class="fu">colorblind_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb118-8"><a href="eddy-covariance.html#cb118-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span>ec<span class="sc">$</span>TIMESTAMP[<span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb118-9"><a href="eddy-covariance.html#cb118-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">format</span>(<span class="st">&quot;%Hh%M&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-10"><a href="eddy-covariance.html#cb118-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">paste</span>(<span class="st">&quot; lag:&quot;</span>, max_cor), <span class="at">y=</span><span class="st">&quot;correl&quot;</span>, <span class="at">x=</span><span class="st">&quot;time lag&quot;</span>)</span>
+<span id="cb118-11"><a href="eddy-covariance.html#cb118-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb118-12"><a href="eddy-covariance.html#cb118-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-13"><a href="eddy-covariance.html#cb118-13" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(plot_grid, <span class="fu">c</span>(plots_lag))</span></code></pre></div>
+<div class="figure"><span id="fig:cor-co2"></span>
+<img src="Bioclimatology-reports_files/figure-html/cor-co2-1.png" alt="Time lag correction for CO2. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.2: Time lag correction for CO2. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="eddy-covariance.html#cb119-1" aria-hidden="true" tabindex="-1"></a>plots_lag <span class="ot">&lt;-</span> <span class="fu">map</span>(ec_samples, <span class="cf">function</span>(ec){</span>
+<span id="cb119-2"><a href="eddy-covariance.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  co2_lagged_cor <span class="ot">&lt;-</span> <span class="fu">tibble</span>( <span class="at">n =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">700</span>, <span class="dv">700</span>, <span class="dv">5</span>), </span>
+<span id="cb119-3"><a href="eddy-covariance.html#cb119-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">lagged_cor =</span> <span class="fu">map_dbl</span>(n,<span class="sc">~</span> <span class="fu">lagged_cor</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>T_sonic, .x)))</span>
+<span id="cb119-4"><a href="eddy-covariance.html#cb119-4" aria-hidden="true" tabindex="-1"></a>  max_cor <span class="ot">&lt;-</span> <span class="fu">max_n_cor</span>(ec<span class="sc">$</span>w, ec<span class="sc">$</span>T_sonic) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb119-5"><a href="eddy-covariance.html#cb119-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(co2_lagged_cor, <span class="fu">aes</span>( <span class="at">x=</span> n , <span class="at">y =</span> lagged_cor)) <span class="sc">+</span></span>
+<span id="cb119-6"><a href="eddy-covariance.html#cb119-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb119-7"><a href="eddy-covariance.html#cb119-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> max_cor, <span class="at">col=</span><span class="fu">colorblind_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb119-8"><a href="eddy-covariance.html#cb119-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span>ec<span class="sc">$</span>TIMESTAMP[<span class="dv">1</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb119-9"><a href="eddy-covariance.html#cb119-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">format</span>(<span class="st">&quot;%Hh%M&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb119-10"><a href="eddy-covariance.html#cb119-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">paste</span>(<span class="st">&quot; lag:&quot;</span>, max_cor), <span class="at">y=</span><span class="st">&quot;correl&quot;</span>, <span class="at">x=</span><span class="st">&quot;time lag&quot;</span>)</span>
+<span id="cb119-11"><a href="eddy-covariance.html#cb119-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb119-12"><a href="eddy-covariance.html#cb119-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-13"><a href="eddy-covariance.html#cb119-13" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(plot_grid, <span class="fu">c</span>(plots_lag))</span></code></pre></div>
+<div class="figure"><span id="fig:cor-tsonic"></span>
+<img src="Bioclimatology-reports_files/figure-html/cor-tsonic-1.png" alt="Time lag optimization for sonic temperature. The expected time lag optimization is 0 as the sonic temperature is measured by the anemometer itself. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.3: Time lag optimization for sonic temperature. The expected time lag optimization is 0 as the sonic temperature is measured by the anemometer itself. The plots are the correlation coefficient with different time lags, the yellow line is at the max value found by the optimization algorithm. The subplot are for different time of the day. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="corrected-fluxes" class="section level3" number="11.4.4">
+<h3><span class="header-section-number">11.4.4</span> Corrected fluxes</h3>
+<p>All the correction are applied to the fluxes calculations and each variable is analyzed.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="eddy-covariance.html#cb120-1" aria-hidden="true" tabindex="-1"></a>apply_corr <span class="ot">&lt;-</span> <span class="cf">function</span>(ec){</span>
+<span id="cb120-2"><a href="eddy-covariance.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  ec <span class="sc">%&gt;%</span> </span>
+<span id="cb120-3"><a href="eddy-covariance.html#cb120-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#remove_implausible() %&gt;% # this step is very slow and not really needed.</span></span>
+<span id="cb120-4"><a href="eddy-covariance.html#cb120-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(u, v, w, co2, h2o, T_sonic), despike)) <span class="sc">%&gt;%</span> </span>
+<span id="cb120-5"><a href="eddy-covariance.html#cb120-5" aria-hidden="true" tabindex="-1"></a>    double_rotation <span class="sc">%&gt;%</span></span>
+<span id="cb120-6"><a href="eddy-covariance.html#cb120-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(co2, h2o), <span class="sc">~</span><span class="fu">time_lag_correction</span>(w, .x)))</span>
+<span id="cb120-7"><a href="eddy-covariance.html#cb120-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb120-8"><a href="eddy-covariance.html#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-9"><a href="eddy-covariance.html#cb120-9" aria-hidden="true" tabindex="-1"></a>process_ec_file_corr <span class="ot">&lt;-</span> <span class="cf">function</span>(file, <span class="at">p=</span><span class="cf">function</span>(){}) {</span>
+<span id="cb120-10"><a href="eddy-covariance.html#cb120-10" aria-hidden="true" tabindex="-1"></a>  ec <span class="ot">&lt;-</span><span class="fu">read_csv</span>(file, <span class="at">skip=</span><span class="dv">4</span>, <span class="at">col_names =</span> ec_col_names, <span class="at">col_types =</span> <span class="fu">cols</span>(), <span class="at">na=</span><span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;NaN&quot;</span>))</span>
+<span id="cb120-11"><a href="eddy-covariance.html#cb120-11" aria-hidden="true" tabindex="-1"></a>  time <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(file, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+.dat$&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb120-12"><a href="eddy-covariance.html#cb120-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">parse_date_time</span>(<span class="st">&quot;YmdHM&quot;</span>)</span>
+<span id="cb120-13"><a href="eddy-covariance.html#cb120-13" aria-hidden="true" tabindex="-1"></a>  flux <span class="ot">&lt;-</span> ec <span class="sc">%&gt;%</span> </span>
+<span id="cb120-14"><a href="eddy-covariance.html#cb120-14" aria-hidden="true" tabindex="-1"></a>    apply_corr <span class="sc">%&gt;%</span> </span>
+<span id="cb120-15"><a href="eddy-covariance.html#cb120-15" aria-hidden="true" tabindex="-1"></a>    calc_fluxes <span class="sc">%&gt;%</span> </span>
+<span id="cb120-16"><a href="eddy-covariance.html#cb120-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">time =</span> time)</span>
+<span id="cb120-17"><a href="eddy-covariance.html#cb120-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">p</span>() <span class="co"># step progress bar</span></span>
+<span id="cb120-18"><a href="eddy-covariance.html#cb120-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(flux)</span>
+<span id="cb120-19"><a href="eddy-covariance.html#cb120-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="eddy-covariance.html#cb121-1" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir_ls</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/10_Turbulent_fluxes_II/10_Turb_fluxes_CO2/&quot;</span>))</span>
+<span id="cb121-2"><a href="eddy-covariance.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="eddy-covariance.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">with_progress</span>({</span>
+<span id="cb121-4"><a href="eddy-covariance.html#cb121-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this is to have a progress bar</span></span>
+<span id="cb121-5"><a href="eddy-covariance.html#cb121-5" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">progressor</span>(<span class="at">along=</span>files)</span>
+<span id="cb121-6"><a href="eddy-covariance.html#cb121-6" aria-hidden="true" tabindex="-1"></a>  ec_flux_corr <span class="ot">&lt;-</span> <span class="fu">cache_rds</span>(<span class="fu">map_dfr</span>(files, process_ec_file_corr, p))</span>
+<span id="cb121-7"><a href="eddy-covariance.html#cb121-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+<div id="co2-fluxes" class="section level4" number="11.4.4.1">
+<h4><span class="header-section-number">11.4.4.1</span> CO2 fluxes</h4>
+<p>The CO2 flux (Figure <a href="eddy-covariance.html#fig:co2-flux">11.4</a>) has a clear daily pattern, negative during the day and positive during the night. This is expected as during the day there is photosynthesis and CO2 is abosrbed by plants resulting in an overall negative flux, while during the night there is only respiration that produces positive CO2 fluxes.</p>
+<p>The importance of correction can also be seen with the raw fluxes underestimating the CO2 flux. This is striking on the 30 of May and is mainly due to the missing time lag correction.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="eddy-covariance.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb122-2"><a href="eddy-covariance.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb122-3"><a href="eddy-covariance.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, co2, <span class="at">col=</span><span class="st">&quot;raw&quot;</span>), <span class="at">data =</span> ec_flux) <span class="sc">+</span></span>
+<span id="cb122-4"><a href="eddy-covariance.html#cb122-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, co2, <span class="at">col=</span><span class="st">&quot;corrected&quot;</span>), <span class="at">data=</span> ec_flux_corr) <span class="sc">+</span></span>
+<span id="cb122-5"><a href="eddy-covariance.html#cb122-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb122-6"><a href="eddy-covariance.html#cb122-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;CO2 flux [umol m-2 s-1]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:co2-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/co2-flux-1.png" alt="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.4: CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="h2o-fluxes" class="section level4" number="11.4.4.2">
+<h4><span class="header-section-number">11.4.4.2</span> H2O fluxes</h4>
+<p>The water fluxes have also a a daily pattern (Figure <a href="eddy-covariance.html#fig:h2o-flux">11.5</a>), with the majority of the water exchanged during the day from the ecosystem to the atmosphere. The evapotraspiration of water during the day is the process that drives the fluxes.</p>
+<p>In this figure <a href="eddy-covariance.html#fig:h2o-flux">11.5</a> the importance of water flux correction is evident.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="eddy-covariance.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb123-2"><a href="eddy-covariance.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb123-3"><a href="eddy-covariance.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, h2o, <span class="at">col=</span><span class="st">&quot;raw&quot;</span>), <span class="at">data =</span> ec_flux) <span class="sc">+</span></span>
+<span id="cb123-4"><a href="eddy-covariance.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, h2o, <span class="at">col=</span><span class="st">&quot;corrected&quot;</span>), <span class="at">data=</span> ec_flux_corr) <span class="sc">+</span></span>
+<span id="cb123-5"><a href="eddy-covariance.html#cb123-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb123-6"><a href="eddy-covariance.html#cb123-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;H2O flux [mmol m-2 s-1]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:h2o-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/h2o-flux-1.png" alt="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.5: CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="latent-heat-fluxes" class="section level4" number="11.4.4.3">
+<h4><span class="header-section-number">11.4.4.3</span> Latent heat fluxes</h4>
+<p>The latent heat flux (Figure <a href="eddy-covariance.html#fig:lat-heat-flux">11.6</a>) is by definition has the same pattern of water vapour fluxes.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="eddy-covariance.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb124-2"><a href="eddy-covariance.html#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb124-3"><a href="eddy-covariance.html#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, lat_heat, <span class="at">col=</span><span class="st">&quot;raw&quot;</span>), <span class="at">data =</span> ec_flux) <span class="sc">+</span></span>
+<span id="cb124-4"><a href="eddy-covariance.html#cb124-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, lat_heat, <span class="at">col=</span><span class="st">&quot;corrected&quot;</span>), <span class="at">data=</span> ec_flux_corr) <span class="sc">+</span></span>
+<span id="cb124-5"><a href="eddy-covariance.html#cb124-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb124-6"><a href="eddy-covariance.html#cb124-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;Latent heat flux [W m-2]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:lat-heat-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/lat-heat-flux-1.png" alt="Latent heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.6: Latent heat fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="sensible-heat-fluxes" class="section level4" number="11.4.4.4">
+<h4><span class="header-section-number">11.4.4.4</span> Sensible heat fluxes</h4>
+<p>The sensible heat flux (Figure <a href="eddy-covariance.html#fig:sens-heat-flux">11.7</a>) is driven the the different temperature between the surface and the atmosphere. During the day the surface heats up due to the incoming solar radiation and transfers the energy to the atmosphere.
+During the night the situation is often the inverse, but the amount of the flux is dependend on the weather conditions of each day.</p>
+<p>The calculation of the sensible heat flux doesn’t require a gas a analyzer as the air temperature is measured by the sonic anemometer, hence there is no time lag and the entity of the flux correction is limited.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="eddy-covariance.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb125-2"><a href="eddy-covariance.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb125-3"><a href="eddy-covariance.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, sens_heat, <span class="at">col=</span><span class="st">&quot;raw&quot;</span>), <span class="at">data =</span> ec_flux) <span class="sc">+</span></span>
+<span id="cb125-4"><a href="eddy-covariance.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, sens_heat, <span class="at">col=</span><span class="st">&quot;corrected&quot;</span>), <span class="at">data=</span> ec_flux_corr) <span class="sc">+</span></span>
+<span id="cb125-5"><a href="eddy-covariance.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb125-6"><a href="eddy-covariance.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;Sensible heat flux [W m-2]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:sens-heat-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/sens-heat-flux-1.png" alt="CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.7: CO2 fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="momentum-fluxes" class="section level4" number="11.4.4.5">
+<h4><span class="header-section-number">11.4.4.5</span> Momentum fluxes</h4>
+<p>The momentum flux (Figure <a href="eddy-covariance.html#fig:mom-flux">11.8</a>) is dependent on the wind speed, that is often higher during the afternoons and very low during the night. Moreover the flux is always positive, as expected.</p>
+<p>The main flux correction relevant to the momentum is the coordinate rotation, as there is not time lag. The raw fluxes are often significantly different from the corrected ones.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="eddy-covariance.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb126-2"><a href="eddy-covariance.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, mom, <span class="at">col=</span><span class="st">&quot;raw&quot;</span>), <span class="at">data =</span> ec_flux) <span class="sc">+</span></span>
+<span id="cb126-3"><a href="eddy-covariance.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(time, mom, <span class="at">col=</span><span class="st">&quot;corrected&quot;</span>), <span class="at">data=</span> ec_flux_corr) <span class="sc">+</span></span>
+<span id="cb126-4"><a href="eddy-covariance.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb126-5"><a href="eddy-covariance.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time&quot;</span>, <span class="at">y=</span><span class="st">&quot;Momentum flux [kg m-1 s-2]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:mom-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/mom-flux-1.png" alt="Momentum fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021." width="672" />
+<p class="caption">
+Figure 11.8: Momentum fluxes. Comparison between corrected and raw fluxes calculations. Fluxes calculated for every hald an hour. Data from Hainich national park first week June 2021.
+</p>
+</div>
+
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="turbulent-fluxes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Bioclimatology-reports.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

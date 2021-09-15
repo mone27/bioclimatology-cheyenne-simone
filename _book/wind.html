@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Wind | Experimental bioclimatology Term Paper</title>
+  <meta name="description" content="7 Wind | Experimental bioclimatology Term Paper" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Wind | Experimental bioclimatology Term Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Wind | Experimental bioclimatology Term Paper" />
+  
+  
+  
+
+<meta name="author" content="Simone Massaro and Cheyenne Rueda" />
+
+
+<meta name="date" content="2021-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="air-pressure.html"/>
+<link rel="next" href="soil-physics.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html"><i class="fa fa-check"></i><b>1</b> Shortwave radiation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#sensors-and-measuring-principle"><i class="fa fa-check"></i><b>1.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="1.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#analysis"><i class="fa fa-check"></i><b>1.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#albedo"><i class="fa fa-check"></i><b>1.4.1</b> Albedo</a></li>
+<li class="chapter" data-level="1.4.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#absorption-coefficient"><i class="fa fa-check"></i><b>1.4.2</b> Absorption coefficient</a></li>
+<li class="chapter" data-level="1.4.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#transmission-coefficient"><i class="fa fa-check"></i><b>1.4.3</b> Transmission coefficient</a></li>
+<li class="chapter" data-level="1.4.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#radiation-below-canopy"><i class="fa fa-check"></i><b>1.4.4</b> Radiation below canopy</a></li>
+<li class="chapter" data-level="1.4.5" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#diffuse-and-direct-radiation"><i class="fa fa-check"></i><b>1.4.5</b> Diffuse and direct radiation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="longwave-radiation.html"><a href="longwave-radiation.html"><i class="fa fa-check"></i><b>2</b> Longwave radiation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#motivation-1"><i class="fa fa-check"></i><b>2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#background-1"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#sensors-and-measuring-principle-1"><i class="fa fa-check"></i><b>2.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="2.4" data-path="longwave-radiation.html"><a href="longwave-radiation.html#analysis-1"><i class="fa fa-check"></i><b>2.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#surface-and-sky-temperature"><i class="fa fa-check"></i><b>2.4.1</b> Surface and Sky temperature</a></li>
+<li class="chapter" data-level="2.4.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#net-radiation"><i class="fa fa-check"></i><b>2.4.2</b> Net radiation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#change-emissity-in-the-sensor"><i class="fa fa-check"></i><b>2.4.3</b> Change emissity in the sensor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="air-temperature.html"><a href="air-temperature.html"><i class="fa fa-check"></i><b>3</b> Air temperature</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="air-temperature.html"><a href="air-temperature.html#motivation-2"><i class="fa fa-check"></i><b>3.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2" data-path="air-temperature.html"><a href="air-temperature.html#background-2"><i class="fa fa-check"></i><b>3.2</b> Background</a></li>
+<li class="chapter" data-level="3.3" data-path="air-temperature.html"><a href="air-temperature.html#sensors-and-measuring-principle-2"><i class="fa fa-check"></i><b>3.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="3.4" data-path="air-temperature.html"><a href="air-temperature.html#analysis-2"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="air-temperature.html"><a href="air-temperature.html#hainich-time-series"><i class="fa fa-check"></i><b>3.4.1</b> Hainich time series</a></li>
+<li class="chapter" data-level="3.4.2" data-path="air-temperature.html"><a href="air-temperature.html#temperature-sensors-response-time"><i class="fa fa-check"></i><b>3.4.2</b> Temperature sensors response time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="air-humidity.html"><a href="air-humidity.html"><i class="fa fa-check"></i><b>4</b> Air humidity</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="air-humidity.html"><a href="air-humidity.html#motivation-3"><i class="fa fa-check"></i><b>4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2" data-path="air-humidity.html"><a href="air-humidity.html#background-3"><i class="fa fa-check"></i><b>4.2</b> Background</a></li>
+<li class="chapter" data-level="4.3" data-path="air-humidity.html"><a href="air-humidity.html#sensors-and-measuring-principle-3"><i class="fa fa-check"></i><b>4.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="4.4" data-path="air-humidity.html"><a href="air-humidity.html#analysis-3"><i class="fa fa-check"></i><b>4.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="air-humidity.html"><a href="air-humidity.html#actual-and-saturation-vapour-pressure"><i class="fa fa-check"></i><b>4.4.1</b> Actual and saturation vapour pressure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="air-humidity.html"><a href="air-humidity.html#air-and-dew-point-temperature"><i class="fa fa-check"></i><b>4.4.2</b> Air and dew point temperature</a></li>
+<li class="chapter" data-level="4.4.3" data-path="air-humidity.html"><a href="air-humidity.html#absolute-humidity"><i class="fa fa-check"></i><b>4.4.3</b> Absolute humidity</a></li>
+<li class="chapter" data-level="4.4.4" data-path="air-humidity.html"><a href="air-humidity.html#mixing-ratio-and-specific-humidity"><i class="fa fa-check"></i><b>4.4.4</b> Mixing ratio and specific humidity</a></li>
+<li class="chapter" data-level="4.4.5" data-path="air-humidity.html"><a href="air-humidity.html#vapour-pressure-deficit"><i class="fa fa-check"></i><b>4.4.5</b> Vapour pressure deficit</a></li>
+<li class="chapter" data-level="4.4.6" data-path="air-humidity.html"><a href="air-humidity.html#equivalent-temperature"><i class="fa fa-check"></i><b>4.4.6</b> Equivalent temperature</a></li>
+<li class="chapter" data-level="4.4.7" data-path="air-humidity.html"><a href="air-humidity.html#field-humidity-measurements"><i class="fa fa-check"></i><b>4.4.7</b> Field humidity measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="precipitation.html"><a href="precipitation.html"><i class="fa fa-check"></i><b>5</b> Precipitation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="precipitation.html"><a href="precipitation.html#motivation-4"><i class="fa fa-check"></i><b>5.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="precipitation.html"><a href="precipitation.html#background-4"><i class="fa fa-check"></i><b>5.2</b> Background</a></li>
+<li class="chapter" data-level="5.3" data-path="precipitation.html"><a href="precipitation.html#sensors-and-measuring-principle-4"><i class="fa fa-check"></i><b>5.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="5.4" data-path="precipitation.html"><a href="precipitation.html#analysis-4"><i class="fa fa-check"></i><b>5.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="precipitation.html"><a href="precipitation.html#et-and-precipitation-at-different-latitudes"><i class="fa fa-check"></i><b>5.4.1</b> ET and precipitation at different latitudes</a></li>
+<li class="chapter" data-level="5.4.2" data-path="precipitation.html"><a href="precipitation.html#evapotranspiration-index"><i class="fa fa-check"></i><b>5.4.2</b> Evapotranspiration index</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="air-pressure.html"><a href="air-pressure.html"><i class="fa fa-check"></i><b>6</b> Air Pressure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="air-pressure.html"><a href="air-pressure.html#motivation-5"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
+<li class="chapter" data-level="6.2" data-path="air-pressure.html"><a href="air-pressure.html#background-5"><i class="fa fa-check"></i><b>6.2</b> Background</a></li>
+<li class="chapter" data-level="6.3" data-path="air-pressure.html"><a href="air-pressure.html#sensors-and-measuring-principle-5"><i class="fa fa-check"></i><b>6.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="6.4" data-path="air-pressure.html"><a href="air-pressure.html#analysis-5"><i class="fa fa-check"></i><b>6.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-sea-level"><i class="fa fa-check"></i><b>6.4.1</b> Air pressure sea level</a></li>
+<li class="chapter" data-level="6.4.2" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-brocken-and-water-boling-temperature"><i class="fa fa-check"></i><b>6.4.2</b> Air pressure Brocken and water boling temperature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>7</b> Wind</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wind.html"><a href="wind.html#motivation-6"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
+<li class="chapter" data-level="7.2" data-path="wind.html"><a href="wind.html#background-6"><i class="fa fa-check"></i><b>7.2</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="wind.html"><a href="wind.html#sensors-and-measuring-principle-6"><i class="fa fa-check"></i><b>7.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="7.4" data-path="wind.html"><a href="wind.html#analysis-6"><i class="fa fa-check"></i><b>7.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="wind.html"><a href="wind.html#wind-averages"><i class="fa fa-check"></i><b>7.4.1</b> Wind averages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="wind.html"><a href="wind.html#wind-speed-and-height"><i class="fa fa-check"></i><b>7.4.2</b> Wind speed and height</a></li>
+<li class="chapter" data-level="7.4.3" data-path="wind.html"><a href="wind.html#windspeed-over-year"><i class="fa fa-check"></i><b>7.4.3</b> Windspeed over year</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="soil-physics.html"><a href="soil-physics.html"><i class="fa fa-check"></i><b>8</b> Soil physics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="soil-physics.html"><a href="soil-physics.html#motivation-7"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="soil-physics.html"><a href="soil-physics.html#background-7"><i class="fa fa-check"></i><b>8.2</b> Background</a></li>
+<li class="chapter" data-level="8.3" data-path="soil-physics.html"><a href="soil-physics.html#sensors-and-measuring-principle-7"><i class="fa fa-check"></i><b>8.3</b> Sensors and measuring principle</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-hydrology"><i class="fa fa-check"></i><b>8.3.1</b> Soil hydrology</a></li>
+<li class="chapter" data-level="8.3.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature"><i class="fa fa-check"></i><b>8.3.2</b> Soil temperature</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="soil-physics.html"><a href="soil-physics.html#analysis-7"><i class="fa fa-check"></i><b>8.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-heat-flux"><i class="fa fa-check"></i><b>8.4.1</b> Soil Heat flux</a></li>
+<li class="chapter" data-level="8.4.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature-profile"><i class="fa fa-check"></i><b>8.4.2</b> Soil temperature profile</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="evapotranspiration.html"><a href="evapotranspiration.html"><i class="fa fa-check"></i><b>9</b> Evapotranspiration</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#motivation-8"><i class="fa fa-check"></i><b>9.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#background-8"><i class="fa fa-check"></i><b>9.2</b> Background</a></li>
+<li class="chapter" data-level="9.3" data-path="evapotranspiration.html"><a href="evapotranspiration.html#sensors-and-measuring-principle-8"><i class="fa fa-check"></i><b>9.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="9.4" data-path="evapotranspiration.html"><a href="evapotranspiration.html#analysis-8"><i class="fa fa-check"></i><b>9.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#potential-evapotranspiration"><i class="fa fa-check"></i><b>9.4.1</b> Potential evapotranspiration</a></li>
+<li class="chapter" data-level="9.4.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#field-measurements"><i class="fa fa-check"></i><b>9.4.2</b> Field Measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html"><i class="fa fa-check"></i><b>10</b> Turbulent fluxes <span class="math inline">\(\pmb{CO_2}\)</span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#motivation-9"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.2" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#background-9"><i class="fa fa-check"></i><b>10.2</b> Background</a></li>
+<li class="chapter" data-level="10.3" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#sensors-and-measuring-principle-9"><i class="fa fa-check"></i><b>10.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="10.4" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#analysis-9"><i class="fa fa-check"></i><b>10.4</b> Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#respiration-chambers"><i class="fa fa-check"></i><b>10.5</b> Respiration chambers</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html"><i class="fa fa-check"></i><b>11</b> Turbulent Fluxes Eddy Covariance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#motivation-10"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#background-10"><i class="fa fa-check"></i><b>11.2</b> Background</a></li>
+<li class="chapter" data-level="11.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#sensors-and-measuring-principles"><i class="fa fa-check"></i><b>11.3</b> Sensors and Measuring principles</a></li>
+<li class="chapter" data-level="11.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#analisys"><i class="fa fa-check"></i><b>11.4</b> Analisys</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#raw-flux-calculation"><i class="fa fa-check"></i><b>11.4.1</b> Raw flux calculation</a></li>
+<li class="chapter" data-level="11.4.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#flux-corrections"><i class="fa fa-check"></i><b>11.4.2</b> Flux corrections</a></li>
+<li class="chapter" data-level="11.4.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#time-lag-correction"><i class="fa fa-check"></i><b>11.4.3</b> Time lag correction</a></li>
+<li class="chapter" data-level="11.4.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#corrected-fluxes"><i class="fa fa-check"></i><b>11.4.4</b> Corrected fluxes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experimental bioclimatology Term Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wind" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Wind</h1>
+<div id="motivation-6" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Motivation</h2>
+<p>Wind is a very important factor of Earth climate. It is the main phenomenon that transport matter and energy between different location on the globe and layers of the atmosphere.
+Wind properties, like speed and direction, can vary a lot. For example, it can be ranged from a smooth breeze to a storm or a hurricane. In case of hurricanes, it is normally a devastating disturbance that can reach a very destructive power on earth ecosystems.
+Moreover wind is also the main way many plant disperse seeds and pollen. Animals as well use wind for movement.
+Finally winds also shapes the earth surface trough erosion of rocks and sediments movement.</p>
+</div>
+<div id="background-6" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Background</h2>
+<p>Wind can be represented as a vector in 3 dimensions, two on the horizontal plan (<span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>) and one vertical (<span class="math inline">\(w\)</span>).
+However, the vertical wind component is small and its means is by definition 0 so it is often not included in wind measurements.
+In this scenario the wind is commonly expressed in angular format, with the total intensity on the horizontal plan and the direction.</p>
+<p>The fact that the wind is a 3d vector and has this two formats leads to complexities in handling wind data.
+In particular the direction cannot be averaged directly, as it’s a circular variable, but can needs to be transformed to the vector components, averaged and then transformed back to an angle.</p>
+<p>The average of the wind speed can lead to problems as there two different, but both correct ways to do it <span class="citation">(Grange 2014)</span>.
+The first one is doing the averages of the vector components, the second one is doing the average of the absolute values of the wind speed.
+The first method will always result in smaller values, as wind from opposite direction can be averaged to zero.
+In the following protocol the average of the absolute values will be used.</p>
+<p>Lastly, the are several conflicting ways to define the wind direction, when using vectors the direction is the where the wind is going, but in weather forecast the wind direction is where the wind is coming from. Finally also the definition of the orientation of the u and v components can change between different instruments and software.</p>
+<p>If there is a neutrally stratified atmosphere, which means there are no important turbulent fluxes, the wind speed above the canopy can be modeled.
+Due to the friction with the surface the closest the wind is to the canopy the lower the speed, reaching zero at the boundary.
+The wind profile can be estimated with the following formula:</p>
+<p><span class="math display">\[u(z) = \frac{u_*}{k} ln(\frac{z-d}{z_0})\]</span>
+where:</p>
+<ul>
+<li><p><span class="math inline">\(z\)</span> in <span class="math inline">\((m)\)</span> is the height</p></li>
+<li><p><span class="math inline">\(u(z)\)</span> in <span class="math inline">\((m/s)\)</span> is the speed of the wind at height z</p></li>
+<li><p><span class="math inline">\(u_*\)</span> in <span class="math inline">\((m/s)\)</span> is the friction velocity. This is independent from the height and indicates the mechanical turbulence. It can be calculated using this equation <span class="math inline">\(\sqrt{\frac{1}{\rho} u^\prime w^\prime}\)</span></p></li>
+<li><p><span class="math inline">\(k\)</span> is the Von Karman constant (0.4)</p></li>
+<li><p><span class="math inline">\(z_0\)</span> in <span class="math inline">\((m)\)</span> is the height where the wind speed is theoretically zero. It can be estimated as 0.1 the canopy height.</p></li>
+<li><p><span class="math inline">\(d\)</span> in <span class="math inline">\((m)\)</span> is the displacement height, which accounts for the shift of the wind profile to the presence of a canopy. It can be estimated as <span class="math inline">\(2/3\)</span> of the canopy height.</p></li>
+</ul>
+</div>
+<div id="sensors-and-measuring-principle-6" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Sensors and measuring principle</h2>
+<p>There are many types of instruments used for measuring wind speed. Here some of them will be described.</p>
+<p><strong>Cup Anemometer</strong> : it consists of a set of three cups, crossing a vertical basement stick. This cross shape allows to measure the horizontal wind velocity at a specific height. The wind speed is derived from number of cycles/time or turning velocity. For measuring the wind direction, a wind vane is used. It points to the direction where the wind is coming. This is through a potentiometer to detect the right direction.</p>
+<p><strong>Propeller anemometer</strong> : the way this this instrument works is very similar to the cup anemometer. It points to the mean wind direction at that moment. With the use of three propeller anemometer pointing different direction, three dimensional wind can be measured.</p>
+<p><strong>Ultrasonic anemometer thermometer</strong> : This uses the speed of sound to measure the wind. Normally, it will be displayed in three directions to measured all directions and get a more accurate measurement value. One of the advantages of using the ultrasonic anemometer is the small fluctuations detected on the measures. The speed of sounds depends on temperature and air humidity. Thus, the following equations allow the calculation of speed of sound and the temperature at high frequencies;</p>
+<p><span class="math display">\[C_l=\frac{D}{2}(\frac{1}{time_A-A}+\frac{1}{time_B-A})\]</span>
+<span class="math display">\[C_l=\sqrt{K_a*R_a*T_{av}}\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(K_a = 1.4\)</span></li>
+<li><span class="math inline">\(R_a = 287.05 J/Kg*K\)</span></li>
+<li><span class="math inline">\(T_{av} = T(1+0.513*q)\)</span></li>
+</ul>
+<p><strong>Hot wire anemometer</strong> : When a current flow is introduce within a wire, there is a release of heat. Then, the air flow goes throguh the wire and cools down removing the released energy. It can be apply in two different ways;</p>
+<p>At a constant current, the change of temperature is measure with a thin thermocouple. This can be hard at a high speed wind.</p>
+<p>At a constant temperature, with a temperature change the current is regulated, such that the temperature is held constant and thus, with a high wind there will be a high current as well.</p>
+<p>Each type of anemometer has its more limitations. For example the starting speed of cup and propeller anemometer is that it starts to rotate when speed is 0.5 m/s. When wind flow stops, but the cup anemometer keeps rotating a bit longer until it fully stops. In case of low wind speed, sonic anemometer are the best instruments to use but in case or rain, it cannot do measurements instead.</p>
+<p>During installation the anemometers there are some tips to take into account. Better to set them far above ground, this way the roughness of the lower layer above soil’s surface will not be affecting the measures. The same with any other object around in the area. In case of sonic anemometer, is important to protect it against birds or any type of insect that make small variation when measuring.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="analysis-6" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Analysis</h2>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="wind.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb65-2"><a href="wind.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb65-3"><a href="wind.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clifro) <span class="co"># for windrose</span></span>
+<span id="cb65-4"><a href="wind.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb65-5"><a href="wind.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb65-6"><a href="wind.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>()) <span class="co"># ggplot theme</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="wind.html#cb66-1" aria-hidden="true" tabindex="-1"></a>wind <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/7_Wind/Winddata_Botanical_garden.csv&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-2"><a href="wind.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb66-3"><a href="wind.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">WS_0.5m =</span> WS_05m, <span class="at">wd=</span>WD_deg)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="wind.html#cb67-1" aria-hidden="true" tabindex="-1"></a>deg2rad <span class="ot">&lt;-</span> <span class="cf">function</span>(deg) deg <span class="sc">*</span> pi <span class="sc">/</span> <span class="dv">180</span></span>
+<span id="cb67-2"><a href="wind.html#cb67-2" aria-hidden="true" tabindex="-1"></a>rad2deg <span class="ot">&lt;-</span> <span class="cf">function</span>(rad) rad <span class="sc">*</span> <span class="dv">180</span> <span class="sc">/</span> pi</span>
+<span id="cb67-3"><a href="wind.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="wind.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the wind angular average over the provide input.</span></span>
+<span id="cb67-5"><a href="wind.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># intend to be used together with group_by and summarize</span></span>
+<span id="cb67-6"><a href="wind.html#cb67-6" aria-hidden="true" tabindex="-1"></a>wind_dir_average <span class="ot">&lt;-</span> <span class="cf">function</span>(wd){</span>
+<span id="cb67-7"><a href="wind.html#cb67-7" aria-hidden="true" tabindex="-1"></a>  dir <span class="ot">&lt;-</span> <span class="fu">deg2rad</span>(wd)</span>
+<span id="cb67-8"><a href="wind.html#cb67-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calc the vector components and then make the mean</span></span>
+<span id="cb67-9"><a href="wind.html#cb67-9" aria-hidden="true" tabindex="-1"></a>  u <span class="ot">&lt;-</span> <span class="fu">cos</span>(dir) <span class="sc">%&gt;%</span> mean</span>
+<span id="cb67-10"><a href="wind.html#cb67-10" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fu">sin</span>(dir) <span class="sc">%&gt;%</span> mean</span>
+<span id="cb67-11"><a href="wind.html#cb67-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert back to a direction. Note atan2 uses y,x</span></span>
+<span id="cb67-12"><a href="wind.html#cb67-12" aria-hidden="true" tabindex="-1"></a>  avg_dir <span class="ot">&lt;-</span> <span class="fu">atan2</span>(v, u)</span>
+<span id="cb67-13"><a href="wind.html#cb67-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need to convert in 0 - 360 range</span></span>
+<span id="cb67-14"><a href="wind.html#cb67-14" aria-hidden="true" tabindex="-1"></a>  avg_dir <span class="ot">&lt;-</span> avg_dir <span class="sc">%%</span> (<span class="dv">2</span><span class="sc">*</span>pi)</span>
+<span id="cb67-15"><a href="wind.html#cb67-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">rad2deg</span>(avg_dir))</span>
+<span id="cb67-16"><a href="wind.html#cb67-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="wind.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># wind gathered</span></span>
+<span id="cb68-2"><a href="wind.html#cb68-2" aria-hidden="true" tabindex="-1"></a>wind_g <span class="ot">&lt;-</span> wind <span class="sc">%&gt;%</span> </span>
+<span id="cb68-3"><a href="wind.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, WS_0<span class="fl">.5</span>m, WS_1m, WS_2m, WS_5m, WS_10m) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-4"><a href="wind.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># converts the height into a numeric value</span></span>
+<span id="cb68-5"><a href="wind.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;.*?([0-9]+).*&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, height))) </span>
+<span id="cb68-6"><a href="wind.html#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="wind.html#cb68-7" aria-hidden="true" tabindex="-1"></a>wind_1d<span class="ot">&lt;-</span> wind <span class="sc">%&gt;%</span></span>
+<span id="cb68-8"><a href="wind.html#cb68-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">floor_date</span>(Date, <span class="at">unit =</span> <span class="st">&quot;1 day&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-9"><a href="wind.html#cb68-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Date) <span class="sc">%&gt;%</span></span>
+<span id="cb68-10"><a href="wind.html#cb68-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="sc">-</span>wd), mean), <span class="at">wd =</span> <span class="fu">wind_dir_average</span>(wd))</span>
+<span id="cb68-11"><a href="wind.html#cb68-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="wind.html#cb68-12" aria-hidden="true" tabindex="-1"></a>wind_g_1d <span class="ot">&lt;-</span> wind_1d <span class="sc">%&gt;%</span> </span>
+<span id="cb68-13"><a href="wind.html#cb68-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;windspeed&quot;</span>, WS_0<span class="fl">.5</span>m, WS_1m, WS_2m, WS_5m, WS_10m) <span class="sc">%&gt;%</span> </span>
+<span id="cb68-14"><a href="wind.html#cb68-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># converts the height into a numeric value</span></span>
+<span id="cb68-15"><a href="wind.html#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;.*?([0-9</span><span class="sc">\\</span><span class="st">.]+).*&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span>, height))) </span></code></pre></div>
+<div id="wind-averages" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Wind averages</h3>
+<p>The wind speed and direction have been averaged at 1 hour. Vectorial average has been used for wind direction.
+In figure <a href="wind.html#fig:wd-avg">7.1</a> the average direction is compared with the original data.
+Between the 15th and the 16th of January there are some data points with a wind direction close to 0 °N, but the average is around 350 °N.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="wind.html#cb69-1" aria-hidden="true" tabindex="-1"></a>wind_1h <span class="ot">&lt;-</span> wind <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="wind.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">round_date</span>(Date, <span class="at">unit =</span> <span class="st">&quot;1 hour&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="wind.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="sc">-</span>wd, mean), <span class="at">wd =</span> <span class="fu">wind_dir_average</span>(wd))</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="wind.html#cb70-1" aria-hidden="true" tabindex="-1"></a>wind <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="wind.html#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(Date, <span class="fu">as_datetime</span>(<span class="st">&quot;2021-01-15&quot;</span>) , <span class="fu">as_datetime</span>(<span class="st">&quot;2021-01-17&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb70-3"><a href="wind.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb70-4"><a href="wind.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Date, wd, <span class="at">colour=</span><span class="st">&quot;10 mins&quot;</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb70-5"><a href="wind.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(Date, wd, <span class="at">colour=</span><span class="st">&quot;1 hour&quot;</span>),</span>
+<span id="cb70-6"><a href="wind.html#cb70-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span><span class="fu">filter</span>(wind_1h, <span class="fu">between</span>(Date, <span class="fu">as_datetime</span>(<span class="st">&quot;2021-01-15&quot;</span>),</span>
+<span id="cb70-7"><a href="wind.html#cb70-7" aria-hidden="true" tabindex="-1"></a>                                               <span class="fu">as_datetime</span>(<span class="st">&quot;2021-01-17&quot;</span>)))) <span class="sc">+</span></span>
+<span id="cb70-8"><a href="wind.html#cb70-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Wind direction [°N]&quot;</span>, <span class="at">colour=</span><span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-9"><a href="wind.html#cb70-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">270</span>, <span class="dv">360</span>),</span>
+<span id="cb70-10"><a href="wind.html#cb70-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;N (0°)&#39;</span>, <span class="st">&#39;E (90°)&#39;</span>, <span class="st">&#39;S(180°)&#39;</span>,</span>
+<span id="cb70-11"><a href="wind.html#cb70-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&#39;W(270°)&#39;</span>, <span class="st">&#39;N (360°)&#39;</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">370</span>)) <span class="sc">+</span></span>
+<span id="cb70-12"><a href="wind.html#cb70-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
+<div class="figure"><span id="fig:wd-avg"></span>
+<img src="Bioclimatology-reports_files/figure-html/wd-avg-1.png" alt="Comparison of wind direction original data (10 mins) and hourly average. Data from botanical garden 15th-17th January 2021." width="672" />
+<p class="caption">
+Figure 7.1: Comparison of wind direction original data (10 mins) and hourly average. Data from botanical garden 15th-17th January 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="wind-speed-and-height" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Wind speed and height</h3>
+<p>As it is possible to appreciate in Figure <a href="wind.html#fig:ws-diff-height">7.2</a> , wind speed gets faster at 10m height. This makes sense when having in mind the vertical wind profile graph that increases with height.
+The pattern is also consistent across different seasons.</p>
+<p>Wind speed depends on height, increasing with height following a logarithmic profile (Figure <a href="wind.html#fig:ws-boxplot">7.3</a>).
+The plot was made using daily averages instead of high frequency data, to reduce the variation in the dataset.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="wind.html#cb71-1" aria-hidden="true" tabindex="-1"></a>(wind_g_1d <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="wind.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#just one month otherwise the plot is too compressed</span></span>
+<span id="cb71-3"><a href="wind.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(Date, <span class="fu">as_datetime</span>(<span class="st">&quot;2020-01-15&quot;</span>) , <span class="fu">as_datetime</span>(<span class="st">&quot;2020-02-15&quot;</span>) )) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-4"><a href="wind.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> <span class="fu">fct_reorder</span>(<span class="fu">as_factor</span>(height), <span class="fu">sort</span>(height, <span class="at">decreasing =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-5"><a href="wind.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, windspeed, <span class="at">col=</span>height))<span class="sc">+</span></span>
+<span id="cb71-6"><a href="wind.html#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb71-7"><a href="wind.html#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb71-8"><a href="wind.html#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Windspeed [m/s]&quot;</span>, <span class="at">colour=</span><span class="st">&quot;Height [m]&quot;</span>, <span class="at">title=</span><span class="st">&quot;(a) Winter month&quot;</span>)) <span class="sc">/</span></span>
+<span id="cb71-9"><a href="wind.html#cb71-9" aria-hidden="true" tabindex="-1"></a>(wind_g_1d <span class="sc">%&gt;%</span></span>
+<span id="cb71-10"><a href="wind.html#cb71-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#just one month otherwise the plot is too compressed</span></span>
+<span id="cb71-11"><a href="wind.html#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(Date, <span class="fu">as_datetime</span>(<span class="st">&quot;2020-06-15&quot;</span>) , <span class="fu">as_datetime</span>(<span class="st">&quot;2020-07-15&quot;</span>) )) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-12"><a href="wind.html#cb71-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">height =</span> <span class="fu">fct_reorder</span>(<span class="fu">as_factor</span>(height), <span class="fu">sort</span>(height, <span class="at">decreasing =</span> T))) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-13"><a href="wind.html#cb71-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, windspeed, <span class="at">col=</span>height))<span class="sc">+</span></span>
+<span id="cb71-14"><a href="wind.html#cb71-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb71-15"><a href="wind.html#cb71-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb71-16"><a href="wind.html#cb71-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Windspeed [m/s]&quot;</span>, <span class="at">colour=</span><span class="st">&quot;Height [m]&quot;</span>, <span class="at">title=</span><span class="st">&quot;(b) Summer month&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb71-17"><a href="wind.html#cb71-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_layout</span>(<span class="at">guide=</span><span class="st">&quot;collect&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:ws-diff-height"></span>
+<img src="Bioclimatology-reports_files/figure-html/ws-diff-height-1.png" alt="Time series of wind speed at different heigth. (a) is a summer month (15th Jan 2020 - 15th Feb 2020). (b) is a winter month(15th Jun 2020 - 15th Jul 2020). Data from botanical garden." width="672" />
+<p class="caption">
+Figure 7.2: Time series of wind speed at different heigth. (a) is a summer month (15th Jan 2020 - 15th Feb 2020). (b) is a winter month(15th Jun 2020 - 15th Jul 2020). Data from botanical garden.
+</p>
+</div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="wind.html#cb72-1" aria-hidden="true" tabindex="-1"></a>wind_prof <span class="ot">&lt;-</span> wind_g_1d <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href="wind.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(height) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-3"><a href="wind.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">windspeed=</span><span class="fu">mean</span>(windspeed))</span>
+<span id="cb72-4"><a href="wind.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="do">#### fit logarithmic wind profile to data and estimate the parameters u*, z0 and d</span></span>
+<span id="cb72-5"><a href="wind.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># initial values</span></span>
+<span id="cb72-6"><a href="wind.html#cb72-6" aria-hidden="true" tabindex="-1"></a>u_star_start <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb72-7"><a href="wind.html#cb72-7" aria-hidden="true" tabindex="-1"></a>d_start <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb72-8"><a href="wind.html#cb72-8" aria-hidden="true" tabindex="-1"></a>z0_start <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb72-9"><a href="wind.html#cb72-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-10"><a href="wind.html#cb72-10" aria-hidden="true" tabindex="-1"></a>log_prof_model <span class="ot">&lt;-</span> <span class="fu">nls</span>(windspeed <span class="sc">~</span>u_star<span class="sc">/</span><span class="fl">0.4</span><span class="sc">*</span>(<span class="fu">log</span>((height <span class="sc">-</span> d)) <span class="sc">-</span> <span class="fu">log</span>(z0)), </span>
+<span id="cb72-11"><a href="wind.html#cb72-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">start =</span> <span class="fu">list</span>(<span class="at">u_star=</span>u_star_start,              </span>
+<span id="cb72-12"><a href="wind.html#cb72-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">d=</span>d_start,              </span>
+<span id="cb72-13"><a href="wind.html#cb72-13" aria-hidden="true" tabindex="-1"></a>                              <span class="at">z0=</span>z0_start),                     </span>
+<span id="cb72-14"><a href="wind.html#cb72-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">na.action =</span> na.exclude, <span class="at">data=</span>wind_prof)</span>
+<span id="cb72-15"><a href="wind.html#cb72-15" aria-hidden="true" tabindex="-1"></a>wind_prof <span class="ot">&lt;-</span> <span class="fu">mutate</span>( wind_prof,</span>
+<span id="cb72-16"><a href="wind.html#cb72-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">pred_ws =</span> <span class="fu">predict</span>(log_prof_model))</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="wind.html#cb73-1" aria-hidden="true" tabindex="-1"></a>wind_g_1d <span class="sc">%&gt;%</span></span>
+<span id="cb73-2"><a href="wind.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb73-3"><a href="wind.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(windspeed, height, <span class="at">group=</span>height)) <span class="sc">+</span></span>
+<span id="cb73-4"><a href="wind.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pred_ws, <span class="at">y=</span>height, <span class="at">colour=</span><span class="st">&quot;Estimated</span><span class="sc">\n</span><span class="st">log profile&quot;</span>),</span>
+<span id="cb73-5"><a href="wind.html#cb73-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> wind_prof, <span class="at">col=</span><span class="fu">colorblind_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>] ) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="wind.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>pred_ws, <span class="at">y=</span>height, <span class="at">colour=</span><span class="st">&quot;Estimated</span><span class="sc">\n</span><span class="st">log profile&quot;</span>),</span>
+<span id="cb73-7"><a href="wind.html#cb73-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> wind_prof, <span class="at">col=</span><span class="fu">colorblind_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>] ) <span class="sc">+</span></span>
+<span id="cb73-8"><a href="wind.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Windspeed [m/s]&quot;</span>, <span class="at">y=</span><span class="st">&quot;Height [m]&quot;</span>, <span class="at">colour=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:ws-boxplot"></span>
+<img src="Bioclimatology-reports_files/figure-html/ws-boxplot-1.png" alt="Distribution of daily means of wind speed at the different heights. The yellow line was obtaining by fitting a wind log profile to the mean of daily means. Data from botanical garden Jan 2020 - Feb 2021." width="672" />
+<p class="caption">
+Figure 7.3: Distribution of daily means of wind speed at the different heights. The yellow line was obtaining by fitting a wind log profile to the mean of daily means. Data from botanical garden Jan 2020 - Feb 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="windspeed-over-year" class="section level3" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Windspeed over year</h3>
+<p>The wind rose for different quarters of the year are plotted (Figure <a href="wind.html#fig:windrose">7.4</a>) and then yearly pattern of wind speed and wind direction analyzed separately.</p>
+<p>During the spring and winter the wind is stronger. In summer daily average oscillates around 1.5 m/s (Figure <a href="wind.html#fig:ws-year">7.5</a>).</p>
+<p>The graphs displays the variation of the wind speed along year. It is faster from end of December to beginning of April. During summer the mean wind speed is lower but some days it gets faster than others. This variability is originated depending on when the wind is coming from.</p>
+<p>The wind direction is usually coming from overall the south (Figure <a href="wind.html#fig:wd-year">7.6</a>) for the majority of th year, with the exception of the early summer where the north direction is also common. The reason why the prevalent winds are from the south is probably connected with the direction of the slope of the hill where the station is located, which is in the south direction.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="wind.html#cb74-1" aria-hidden="true" tabindex="-1"></a>wind_q <span class="ot">&lt;-</span> wind <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="wind.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quarter =</span> <span class="fu">quarter</span>(Date),</span>
+<span id="cb74-3"><a href="wind.html#cb74-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">quarter =</span> <span class="fu">case_when</span>(</span>
+<span id="cb74-4"><a href="wind.html#cb74-4" aria-hidden="true" tabindex="-1"></a>           quarter <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;Jan-Mar&quot;</span>,</span>
+<span id="cb74-5"><a href="wind.html#cb74-5" aria-hidden="true" tabindex="-1"></a>           quarter <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;Apr-Jun&quot;</span>,</span>
+<span id="cb74-6"><a href="wind.html#cb74-6" aria-hidden="true" tabindex="-1"></a>           quarter <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;Jul-Sep&quot;</span>,</span>
+<span id="cb74-7"><a href="wind.html#cb74-7" aria-hidden="true" tabindex="-1"></a>           quarter <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&quot;Oct-Dec&quot;</span>,</span>
+<span id="cb74-8"><a href="wind.html#cb74-8" aria-hidden="true" tabindex="-1"></a>         ))</span>
+<span id="cb74-9"><a href="wind.html#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="fu">windrose</span>(wind_q<span class="sc">$</span>WS_10m, wind_q<span class="sc">$</span>wd, wind_q<span class="sc">$</span>quarter, <span class="at">n_col=</span> <span class="dv">2</span>, <span class="at">col_pal=</span><span class="st">&quot;YlGnBu&quot;</span>,</span>
+<span id="cb74-10"><a href="wind.html#cb74-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">ggtheme =</span> <span class="st">&quot;bw&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:windrose"></span>
+<img src="Bioclimatology-reports_files/figure-html/windrose-1.png" alt="Wind rose for different quarters of the year. Data from botanical garden Jan 2020 - Feb 2021." width="672" />
+<p class="caption">
+Figure 7.4: Wind rose for different quarters of the year. Data from botanical garden Jan 2020 - Feb 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="wind.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wind_1d, <span class="fu">aes</span>(Date, WS_10m)) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="wind.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb75-3"><a href="wind.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Wind speed (m/s)&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:ws-year"></span>
+<img src="Bioclimatology-reports_files/figure-html/ws-year-1.png" alt="Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021." width="672" />
+<p class="caption">
+Figure 7.5: Daily averages of wind speed at 10 meters. Data from forest botanical garden January 2020 - February 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="wind.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame with months start and end to draw background</span></span>
+<span id="cb76-2"><a href="wind.html#cb76-2" aria-hidden="true" tabindex="-1"></a>months <span class="ot">&lt;-</span> <span class="fu">map_df</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="cf">function</span>(n_mon){</span>
+<span id="cb76-3"><a href="wind.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  start <span class="ot">&lt;-</span> <span class="fu">as_datetime</span>(<span class="st">&quot;2020-01-01&quot;</span>)</span>
+<span id="cb76-4"><a href="wind.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># offset to the correct month start</span></span>
+<span id="cb76-5"><a href="wind.html#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">month</span>(start) <span class="ot">&lt;-</span> <span class="fu">month</span>(start) <span class="sc">+</span> n_mon <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb76-6"><a href="wind.html#cb76-6" aria-hidden="true" tabindex="-1"></a>  end <span class="ot">&lt;-</span> start</span>
+<span id="cb76-7"><a href="wind.html#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding one month to get to the end and removing one day</span></span>
+<span id="cb76-8"><a href="wind.html#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">month</span>(end) <span class="ot">&lt;-</span> <span class="fu">month</span>(end) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb76-9"><a href="wind.html#cb76-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">day</span>(end) <span class="ot">&lt;-</span> <span class="fu">day</span>(end) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb76-10"><a href="wind.html#cb76-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">start =</span> start, <span class="at">end =</span> end,</span>
+<span id="cb76-11"><a href="wind.html#cb76-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">month=</span> <span class="fu">month</span>(start, <span class="at">label =</span> T), <span class="at">quarter=</span> <span class="fu">quarter</span>(start))</span>
+<span id="cb76-12"><a href="wind.html#cb76-12" aria-hidden="true" tabindex="-1"></a>} )</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="wind.html#cb77-1" aria-hidden="true" tabindex="-1"></a>wind <span class="sc">%&gt;%</span></span>
+<span id="cb77-2"><a href="wind.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">round_date</span>(Date, <span class="at">unit =</span> <span class="st">&quot;1 weeks&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb77-3"><a href="wind.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="fu">matches</span>(<span class="st">&quot;WS&quot;</span>), Date), mean), <span class="at">wd =</span> <span class="fu">wind_dir_average</span>(wd)) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-4"><a href="wind.html#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb77-5"><a href="wind.html#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rect</span>( <span class="co">#add months in the background to be able to read the figure</span></span>
+<span id="cb77-6"><a href="wind.html#cb77-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> start, <span class="at">xmax =</span> end, <span class="at">fill =</span> month), </span>
+<span id="cb77-7"><a href="wind.html#cb77-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, </span>
+<span id="cb77-8"><a href="wind.html#cb77-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> months</span>
+<span id="cb77-9"><a href="wind.html#cb77-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb77-10"><a href="wind.html#cb77-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-11"><a href="wind.html#cb77-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(Date, wd)) <span class="sc">+</span></span>
+<span id="cb77-12"><a href="wind.html#cb77-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta=</span><span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-13"><a href="wind.html#cb77-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Wind direction&quot;</span>, <span class="at">fill=</span><span class="st">&quot;Month&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-14"><a href="wind.html#cb77-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">270</span>, <span class="dv">360</span>),</span>
+<span id="cb77-15"><a href="wind.html#cb77-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;E&#39;</span>, <span class="st">&#39;S&#39;</span>, <span class="st">&#39;W&#39;</span>, <span class="st">&#39;N&#39;</span> ), <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">360</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:wd-year"></span>
+<img src="Bioclimatology-reports_files/figure-html/wd-year-1.png" alt="Weekly average of wind directions for the year (black dots). The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021." width="672" />
+<p class="caption">
+Figure 7.6: Weekly average of wind directions for the year (black dots). The distance from the center and the different background indicates the date, while the position in the circle the wind direction. Data from forest botanical garden January 2020 - February 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="air-pressure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="soil-physics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Bioclimatology-reports.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Soil physics | Experimental bioclimatology Term Paper</title>
+  <meta name="description" content="8 Soil physics | Experimental bioclimatology Term Paper" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Soil physics | Experimental bioclimatology Term Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Soil physics | Experimental bioclimatology Term Paper" />
+  
+  
+  
+
+<meta name="author" content="Simone Massaro and Cheyenne Rueda" />
+
+
+<meta name="date" content="2021-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wind.html"/>
+<link rel="next" href="evapotranspiration.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html"><i class="fa fa-check"></i><b>1</b> Shortwave radiation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#sensors-and-measuring-principle"><i class="fa fa-check"></i><b>1.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="1.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#analysis"><i class="fa fa-check"></i><b>1.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#albedo"><i class="fa fa-check"></i><b>1.4.1</b> Albedo</a></li>
+<li class="chapter" data-level="1.4.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#absorption-coefficient"><i class="fa fa-check"></i><b>1.4.2</b> Absorption coefficient</a></li>
+<li class="chapter" data-level="1.4.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#transmission-coefficient"><i class="fa fa-check"></i><b>1.4.3</b> Transmission coefficient</a></li>
+<li class="chapter" data-level="1.4.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#radiation-below-canopy"><i class="fa fa-check"></i><b>1.4.4</b> Radiation below canopy</a></li>
+<li class="chapter" data-level="1.4.5" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#diffuse-and-direct-radiation"><i class="fa fa-check"></i><b>1.4.5</b> Diffuse and direct radiation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="longwave-radiation.html"><a href="longwave-radiation.html"><i class="fa fa-check"></i><b>2</b> Longwave radiation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#motivation-1"><i class="fa fa-check"></i><b>2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#background-1"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#sensors-and-measuring-principle-1"><i class="fa fa-check"></i><b>2.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="2.4" data-path="longwave-radiation.html"><a href="longwave-radiation.html#analysis-1"><i class="fa fa-check"></i><b>2.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#surface-and-sky-temperature"><i class="fa fa-check"></i><b>2.4.1</b> Surface and Sky temperature</a></li>
+<li class="chapter" data-level="2.4.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#net-radiation"><i class="fa fa-check"></i><b>2.4.2</b> Net radiation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#change-emissity-in-the-sensor"><i class="fa fa-check"></i><b>2.4.3</b> Change emissity in the sensor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="air-temperature.html"><a href="air-temperature.html"><i class="fa fa-check"></i><b>3</b> Air temperature</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="air-temperature.html"><a href="air-temperature.html#motivation-2"><i class="fa fa-check"></i><b>3.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2" data-path="air-temperature.html"><a href="air-temperature.html#background-2"><i class="fa fa-check"></i><b>3.2</b> Background</a></li>
+<li class="chapter" data-level="3.3" data-path="air-temperature.html"><a href="air-temperature.html#sensors-and-measuring-principle-2"><i class="fa fa-check"></i><b>3.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="3.4" data-path="air-temperature.html"><a href="air-temperature.html#analysis-2"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="air-temperature.html"><a href="air-temperature.html#hainich-time-series"><i class="fa fa-check"></i><b>3.4.1</b> Hainich time series</a></li>
+<li class="chapter" data-level="3.4.2" data-path="air-temperature.html"><a href="air-temperature.html#temperature-sensors-response-time"><i class="fa fa-check"></i><b>3.4.2</b> Temperature sensors response time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="air-humidity.html"><a href="air-humidity.html"><i class="fa fa-check"></i><b>4</b> Air humidity</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="air-humidity.html"><a href="air-humidity.html#motivation-3"><i class="fa fa-check"></i><b>4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2" data-path="air-humidity.html"><a href="air-humidity.html#background-3"><i class="fa fa-check"></i><b>4.2</b> Background</a></li>
+<li class="chapter" data-level="4.3" data-path="air-humidity.html"><a href="air-humidity.html#sensors-and-measuring-principle-3"><i class="fa fa-check"></i><b>4.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="4.4" data-path="air-humidity.html"><a href="air-humidity.html#analysis-3"><i class="fa fa-check"></i><b>4.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="air-humidity.html"><a href="air-humidity.html#actual-and-saturation-vapour-pressure"><i class="fa fa-check"></i><b>4.4.1</b> Actual and saturation vapour pressure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="air-humidity.html"><a href="air-humidity.html#air-and-dew-point-temperature"><i class="fa fa-check"></i><b>4.4.2</b> Air and dew point temperature</a></li>
+<li class="chapter" data-level="4.4.3" data-path="air-humidity.html"><a href="air-humidity.html#absolute-humidity"><i class="fa fa-check"></i><b>4.4.3</b> Absolute humidity</a></li>
+<li class="chapter" data-level="4.4.4" data-path="air-humidity.html"><a href="air-humidity.html#mixing-ratio-and-specific-humidity"><i class="fa fa-check"></i><b>4.4.4</b> Mixing ratio and specific humidity</a></li>
+<li class="chapter" data-level="4.4.5" data-path="air-humidity.html"><a href="air-humidity.html#vapour-pressure-deficit"><i class="fa fa-check"></i><b>4.4.5</b> Vapour pressure deficit</a></li>
+<li class="chapter" data-level="4.4.6" data-path="air-humidity.html"><a href="air-humidity.html#equivalent-temperature"><i class="fa fa-check"></i><b>4.4.6</b> Equivalent temperature</a></li>
+<li class="chapter" data-level="4.4.7" data-path="air-humidity.html"><a href="air-humidity.html#field-humidity-measurements"><i class="fa fa-check"></i><b>4.4.7</b> Field humidity measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="precipitation.html"><a href="precipitation.html"><i class="fa fa-check"></i><b>5</b> Precipitation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="precipitation.html"><a href="precipitation.html#motivation-4"><i class="fa fa-check"></i><b>5.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="precipitation.html"><a href="precipitation.html#background-4"><i class="fa fa-check"></i><b>5.2</b> Background</a></li>
+<li class="chapter" data-level="5.3" data-path="precipitation.html"><a href="precipitation.html#sensors-and-measuring-principle-4"><i class="fa fa-check"></i><b>5.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="5.4" data-path="precipitation.html"><a href="precipitation.html#analysis-4"><i class="fa fa-check"></i><b>5.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="precipitation.html"><a href="precipitation.html#et-and-precipitation-at-different-latitudes"><i class="fa fa-check"></i><b>5.4.1</b> ET and precipitation at different latitudes</a></li>
+<li class="chapter" data-level="5.4.2" data-path="precipitation.html"><a href="precipitation.html#evapotranspiration-index"><i class="fa fa-check"></i><b>5.4.2</b> Evapotranspiration index</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="air-pressure.html"><a href="air-pressure.html"><i class="fa fa-check"></i><b>6</b> Air Pressure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="air-pressure.html"><a href="air-pressure.html#motivation-5"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
+<li class="chapter" data-level="6.2" data-path="air-pressure.html"><a href="air-pressure.html#background-5"><i class="fa fa-check"></i><b>6.2</b> Background</a></li>
+<li class="chapter" data-level="6.3" data-path="air-pressure.html"><a href="air-pressure.html#sensors-and-measuring-principle-5"><i class="fa fa-check"></i><b>6.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="6.4" data-path="air-pressure.html"><a href="air-pressure.html#analysis-5"><i class="fa fa-check"></i><b>6.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-sea-level"><i class="fa fa-check"></i><b>6.4.1</b> Air pressure sea level</a></li>
+<li class="chapter" data-level="6.4.2" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-brocken-and-water-boling-temperature"><i class="fa fa-check"></i><b>6.4.2</b> Air pressure Brocken and water boling temperature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>7</b> Wind</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wind.html"><a href="wind.html#motivation-6"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
+<li class="chapter" data-level="7.2" data-path="wind.html"><a href="wind.html#background-6"><i class="fa fa-check"></i><b>7.2</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="wind.html"><a href="wind.html#sensors-and-measuring-principle-6"><i class="fa fa-check"></i><b>7.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="7.4" data-path="wind.html"><a href="wind.html#analysis-6"><i class="fa fa-check"></i><b>7.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="wind.html"><a href="wind.html#wind-averages"><i class="fa fa-check"></i><b>7.4.1</b> Wind averages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="wind.html"><a href="wind.html#wind-speed-and-height"><i class="fa fa-check"></i><b>7.4.2</b> Wind speed and height</a></li>
+<li class="chapter" data-level="7.4.3" data-path="wind.html"><a href="wind.html#windspeed-over-year"><i class="fa fa-check"></i><b>7.4.3</b> Windspeed over year</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="soil-physics.html"><a href="soil-physics.html"><i class="fa fa-check"></i><b>8</b> Soil physics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="soil-physics.html"><a href="soil-physics.html#motivation-7"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="soil-physics.html"><a href="soil-physics.html#background-7"><i class="fa fa-check"></i><b>8.2</b> Background</a></li>
+<li class="chapter" data-level="8.3" data-path="soil-physics.html"><a href="soil-physics.html#sensors-and-measuring-principle-7"><i class="fa fa-check"></i><b>8.3</b> Sensors and measuring principle</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-hydrology"><i class="fa fa-check"></i><b>8.3.1</b> Soil hydrology</a></li>
+<li class="chapter" data-level="8.3.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature"><i class="fa fa-check"></i><b>8.3.2</b> Soil temperature</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="soil-physics.html"><a href="soil-physics.html#analysis-7"><i class="fa fa-check"></i><b>8.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-heat-flux"><i class="fa fa-check"></i><b>8.4.1</b> Soil Heat flux</a></li>
+<li class="chapter" data-level="8.4.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature-profile"><i class="fa fa-check"></i><b>8.4.2</b> Soil temperature profile</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="evapotranspiration.html"><a href="evapotranspiration.html"><i class="fa fa-check"></i><b>9</b> Evapotranspiration</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#motivation-8"><i class="fa fa-check"></i><b>9.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#background-8"><i class="fa fa-check"></i><b>9.2</b> Background</a></li>
+<li class="chapter" data-level="9.3" data-path="evapotranspiration.html"><a href="evapotranspiration.html#sensors-and-measuring-principle-8"><i class="fa fa-check"></i><b>9.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="9.4" data-path="evapotranspiration.html"><a href="evapotranspiration.html#analysis-8"><i class="fa fa-check"></i><b>9.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#potential-evapotranspiration"><i class="fa fa-check"></i><b>9.4.1</b> Potential evapotranspiration</a></li>
+<li class="chapter" data-level="9.4.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#field-measurements"><i class="fa fa-check"></i><b>9.4.2</b> Field Measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html"><i class="fa fa-check"></i><b>10</b> Turbulent fluxes <span class="math inline">\(\pmb{CO_2}\)</span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#motivation-9"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.2" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#background-9"><i class="fa fa-check"></i><b>10.2</b> Background</a></li>
+<li class="chapter" data-level="10.3" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#sensors-and-measuring-principle-9"><i class="fa fa-check"></i><b>10.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="10.4" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#analysis-9"><i class="fa fa-check"></i><b>10.4</b> Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#respiration-chambers"><i class="fa fa-check"></i><b>10.5</b> Respiration chambers</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html"><i class="fa fa-check"></i><b>11</b> Turbulent Fluxes Eddy Covariance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#motivation-10"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#background-10"><i class="fa fa-check"></i><b>11.2</b> Background</a></li>
+<li class="chapter" data-level="11.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#sensors-and-measuring-principles"><i class="fa fa-check"></i><b>11.3</b> Sensors and Measuring principles</a></li>
+<li class="chapter" data-level="11.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#analisys"><i class="fa fa-check"></i><b>11.4</b> Analisys</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#raw-flux-calculation"><i class="fa fa-check"></i><b>11.4.1</b> Raw flux calculation</a></li>
+<li class="chapter" data-level="11.4.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#flux-corrections"><i class="fa fa-check"></i><b>11.4.2</b> Flux corrections</a></li>
+<li class="chapter" data-level="11.4.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#time-lag-correction"><i class="fa fa-check"></i><b>11.4.3</b> Time lag correction</a></li>
+<li class="chapter" data-level="11.4.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#corrected-fluxes"><i class="fa fa-check"></i><b>11.4.4</b> Corrected fluxes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experimental bioclimatology Term Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="soil-physics" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Soil physics</h1>
+<div id="motivation-7" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Motivation</h2>
+<p>Soil is the physical foundation of terrestrial ecosystems <span class="citation">(Lal and Shukla 2004)</span>. The soil is composed by different layers and is the interface between the lithosphere and the biosphere. Several processes fundamental like decomposition and nutrient transport take place into the soil, hence studying soil physical, chemical and biological properties is crucial to understand ecosystems.</p>
+<p>Soil temperature and water content have a direct impact on two key process in the ecosystem: photosynthesis and respiration, which are basis of carbon dynamics. The former takes place in the canopy, but it requires the transpiration of water that comes from the soil. Moreover the soil temperature influences the leaves energy balance.
+The majority of ecosystem respiration takes places in the soil <span class="citation">(Yuste et al. 2005)</span> and the soil temperature and humidity are the main variables that control the soil respiration.
+The respiration increases exponentially with temperature <span class="citation">(Lloyd and Taylor 1994)</span>,
+however at high temperature it is often limited by water availability <span class="citation">(Orchard and Cook 1983)</span>.</p>
+</div>
+<div id="background-7" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Background</h2>
+<p>Soil temperature and soil water content are both factors that alters soil respiration rate. Soil respiration is a process measured in <span class="math inline">\(\frac{\mu mol} {m^2 s}\)</span> of <span class="math inline">\(CO_2\)</span> <span class="citation">(Courtois et al. 2018)</span>.
+Soil is an important environmental variable partly in charge of an efficient ecosystem activity.
+Soil moisture drives changes in stomata conductance, photosynthesis rate and energy partitioning. Water potential is the main reason of the movement of water through osmosis, gravity and air pressure.</p>
+<p>Soil water potential is constitute by its matrix potential (adhesive force water-soil particles), osmotic potential (gradient of solute’s [C]), pressure potential(pressure of air) and gravitational potential (mass of water).</p>
+<p>The matric potential is mainly influenced by the physical proprieties of the soil water potential, other factors from the soil are very important: particles size, pore volume or pore size. This varies depending on the type of soil, being sandy the soil with the thickest particles size with bigger pores and thus, less water retention capacity.</p>
+<p>The soil can store energy as heat, which results in different temperature in the different layers of the soil.
+The heat flux in the soil depends both on the time and and temperature gradient.</p>
+<p>This dependece on the temperature gradient is described by the Fourier’s law which illustrates how the heat transfer in soil with the conduction of its components, from higher to lower temperatures.</p>
+<p><span class="math display">\[G = -k \frac{\partial T}{\partial z}\]</span>
+where:</p>
+<ul>
+<li><span class="math inline">\(k\)</span>: Thermal conductivity in <span class="math inline">\((W/mK)\)</span></li>
+<li><span class="math inline">\(T\)</span>: Temperature in <span class="math inline">\(K\)</span></li>
+<li><span class="math inline">\(z\)</span>: depth in <span class="math inline">\(m\)</span></li>
+</ul>
+<p>If the time component is also included in the equation the following relation is true:</p>
+<p><span class="math display">\[ \frac{\partial T}{\partial t} = \frac{1}{C_v} [\frac{\partial}{\partial z}(k\frac{\partial T}{\partial z})]\]</span>
+where <span class="math inline">\(C_v\)</span> is heat capacity in <span class="math inline">\(J\ m^{-3}K{-1}\)</span></p>
+<p>The temperature along soil profile varies between day and night. During the day, the temperature of soil is higher than the temperature of air and thus starts to get more equally until night is set. After this occurs, the temperature of air is higher than the soil temperature, with this peak being more distinguish during midnight.</p>
+</div>
+<div id="sensors-and-measuring-principle-7" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Sensors and measuring principle</h2>
+<div id="soil-hydrology" class="section level3" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Soil hydrology</h3>
+<p>For soil hydrology the main variable that are measured are the water content and the water potential.</p>
+<p>To measure water content <strong>time domain reflectrometry</strong> it is used.
+The principle behind this sensor is that the dielectric constant of the soil depends on the amount of water present.
+The dielectric constant is estimated by measuring the travel time of a electromagnetic impulse between two rods inserted into the soil.</p>
+<p>Water potential is measured using <strong>tensionmeters</strong>, that consists in a porous ceramic cap connect with a water reservoir under vacuum.
+The has a low water potential therefore attracts the water from the tensiometer, until an equilibrium point is reached. By measuring the, negative, pressure in the water filled tube the water potential of the soil can be estimated.</p>
+</div>
+<div id="soil-temperature" class="section level3" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Soil temperature</h3>
+<p>Soil temperature is measured by <strong>temperature sensors</strong> placed at different depth.
+Usually a resistance sensor, like the <em>Pt100</em>, is used as long term stability is more important than high frequency response rate.
+The presence of multiple temperature sensor along the soil profile allows also to estimate the soil heat fluxes.</p>
+<p>Soil heat flux can also be directly measured using <strong>heat flux plates</strong>, which using a series of thermocouple estimated the amount of heat transferred between the hot and the cold side.</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="analysis-7" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Analysis</h2>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="soil-physics.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb78-2"><a href="soil-physics.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb78-3"><a href="soil-physics.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FME)</span>
+<span id="cb78-4"><a href="soil-physics.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="soil-physics.html#cb79-1" aria-hidden="true" tabindex="-1"></a>soil <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/8_Soil_physics/Soil_temperature_bot_garden.csv&quot;</span>))</span></code></pre></div>
+<div id="soil-heat-flux" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Soil Heat flux</h3>
+<p><em>Calculate the soil heat flux in 5cm depth and the soil storage flux for the soil layer above from the soil temperature profile. Assume a thermal conductivity <span class="math inline">\(k=3.5 W/m K\)</span> and a heat capacity <span class="math inline">\(c_p=3.5\times10^6 J/m^3K\)</span>. Compare your calculations with direct measurements of the soil heat flux. How do thermal conductivity and heat capacity affect your results?</em></p>
+<p>We proceed with the calculation of soil heat flux at 5cm depth, suing the temperature difference between 5 and 10 cm in soil. Also, soil heat storage will be calculated.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="soil-physics.html#cb80-1" aria-hidden="true" tabindex="-1"></a>c2k <span class="ot">&lt;-</span> <span class="cf">function</span>(c) c <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb80-2"><a href="soil-physics.html#cb80-2" aria-hidden="true" tabindex="-1"></a>k2c <span class="ot">&lt;-</span> <span class="cf">function</span>(k) k <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb80-3"><a href="soil-physics.html#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="soil-physics.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co">#using as a reference the soil at 5 cm</span></span>
+<span id="cb80-5"><a href="soil-physics.html#cb80-5" aria-hidden="true" tabindex="-1"></a>d_T_space <span class="ot">&lt;-</span> soil<span class="sc">$</span>Tsoil_5cm_degC <span class="sc">-</span> soil<span class="sc">$</span>Tsoil_10cm_degC</span>
+<span id="cb80-6"><a href="soil-physics.html#cb80-6" aria-hidden="true" tabindex="-1"></a>d_z_space <span class="ot">&lt;-</span> <span class="sc">-</span> <span class="fl">0.05</span> <span class="co"># m</span></span>
+<span id="cb80-7"><a href="soil-physics.html#cb80-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-8"><a href="soil-physics.html#cb80-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-9"><a href="soil-physics.html#cb80-9" aria-hidden="true" tabindex="-1"></a>d_z_time <span class="ot">&lt;-</span> <span class="sc">-</span> <span class="fl">0.03</span> <span class="co"># m </span></span>
+<span id="cb80-10"><a href="soil-physics.html#cb80-10" aria-hidden="true" tabindex="-1"></a>d_T_time <span class="ot">&lt;-</span> <span class="fu">c2k</span>(<span class="fu">lag</span>(soil<span class="sc">$</span>Tsoil_5cm_degC)) <span class="sc">-</span> <span class="fu">c2k</span>(soil<span class="sc">$</span>Tsoil_5cm_degC)</span>
+<span id="cb80-11"><a href="soil-physics.html#cb80-11" aria-hidden="true" tabindex="-1"></a>d_t <span class="ot">&lt;-</span> <span class="dv">600</span> <span class="co"># seconds manually calculated from the dataset (10 min) </span></span>
+<span id="cb80-12"><a href="soil-physics.html#cb80-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-13"><a href="soil-physics.html#cb80-13" aria-hidden="true" tabindex="-1"></a>Cv <span class="ot">&lt;-</span> <span class="fl">3.5e6</span> <span class="co"># J m-3 K-1</span></span>
+<span id="cb80-14"><a href="soil-physics.html#cb80-14" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fl">3.5</span> <span class="co"># W m-1 K-1</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="soil-physics.html#cb81-1" aria-hidden="true" tabindex="-1"></a>soil <span class="ot">&lt;-</span> soil <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="soil-physics.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb81-3"><a href="soil-physics.html#cb81-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">flux_time =</span> d_z_time <span class="sc">*</span> d_T_time <span class="sc">*</span> Cv <span class="sc">/</span> d_t, <span class="co"># W m-2 </span></span>
+<span id="cb81-4"><a href="soil-physics.html#cb81-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">flux_space =</span> <span class="sc">-</span> k <span class="sc">*</span> (d_T_space <span class="sc">/</span> d_z_space), <span class="co"># W m-2 </span></span>
+<span id="cb81-5"><a href="soil-physics.html#cb81-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">soil_flux =</span> flux_time <span class="sc">+</span> flux_space)</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="soil-physics.html#cb82-1" aria-hidden="true" tabindex="-1"></a>soil <span class="sc">%&gt;%</span> </span>
+<span id="cb82-2"><a href="soil-physics.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">week</span>(Date)<span class="sc">==</span><span class="dv">15</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb82-3"><a href="soil-physics.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, soil_flux)) <span class="sc">+</span></span>
+<span id="cb82-4"><a href="soil-physics.html#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">col=</span><span class="st">&quot;Calculated&quot;</span>))<span class="sc">+</span></span>
+<span id="cb82-5"><a href="soil-physics.html#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>SoilHeatFlux_Wm2, <span class="at">col=</span><span class="st">&quot;Measured&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb82-6"><a href="soil-physics.html#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb82-7"><a href="soil-physics.html#cb82-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Soil heat flux (W/m2)&quot;</span>, <span class="at">col=</span><span class="st">&quot;Type heat flux&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:soil-flux"></span>
+<img src="Bioclimatology-reports_files/figure-html/soil-flux-1.png" alt="Comparison between heat flux measured (red) and calculated (black) over 1 week. Data collected at the botanical garden on the 8th-15th April 2021 at frequency of 10 minutes." width="672" />
+<p class="caption">
+Figure 8.1: Comparison between heat flux measured (red) and calculated (black) over 1 week. Data collected at the botanical garden on the 8th-15th April 2021 at frequency of 10 minutes.
+</p>
+</div>
+<p>The heat flux measured at 5cm depth is compared with the one calculated in Figure <a href="soil-physics.html#fig:soil-flux">8.1</a>.
+The two fluxes are overall comparable, with the exception of the early morning, when the measured flux stays constant at around -25 <span class="math inline">\(W/m^2\)</span> while the calculated fluxes drops further.</p>
+<div style="page-break-after: always;"></div>
+<div id="influence-of-cv-and-k" class="section level4" number="8.4.1.1">
+<h4><span class="header-section-number">8.4.1.1</span> Influence of Cv and K</h4>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="soil-physics.html#cb83-1" aria-hidden="true" tabindex="-1"></a>calc_soil_flux <span class="ot">&lt;-</span> <span class="cf">function</span>(pars){</span>
+<span id="cb83-2"><a href="soil-physics.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  d_T_space <span class="ot">&lt;-</span> soil<span class="sc">$</span>Tsoil_5cm_degC <span class="sc">-</span> soil<span class="sc">$</span>Tsoil_10cm_degC</span>
+<span id="cb83-3"><a href="soil-physics.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  d_z_space <span class="ot">&lt;-</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="co">#m </span></span>
+<span id="cb83-4"><a href="soil-physics.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  d_z_time <span class="ot">&lt;-</span> <span class="sc">-</span> <span class="fl">0.03</span> <span class="co"># m </span></span>
+<span id="cb83-5"><a href="soil-physics.html#cb83-5" aria-hidden="true" tabindex="-1"></a>  d_T_time <span class="ot">&lt;-</span> <span class="fu">c2k</span>(<span class="fu">lag</span>(soil<span class="sc">$</span>Tsoil_5cm_degC)) <span class="sc">-</span> <span class="fu">c2k</span>(soil<span class="sc">$</span>Tsoil_5cm_degC)</span>
+<span id="cb83-6"><a href="soil-physics.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  flux_time <span class="ot">=</span> d_z_time <span class="sc">*</span> d_T_time <span class="sc">*</span> pars<span class="sc">$</span>Cv <span class="sc">/</span> d_t <span class="co"># W m-2</span></span>
+<span id="cb83-7"><a href="soil-physics.html#cb83-7" aria-hidden="true" tabindex="-1"></a>  flux_space <span class="ot">=</span> <span class="sc">-</span> pars<span class="sc">$</span>k <span class="sc">*</span> (d_T_space <span class="sc">/</span> d_z_space) <span class="co"># W m-2</span></span>
+<span id="cb83-8"><a href="soil-physics.html#cb83-8" aria-hidden="true" tabindex="-1"></a>  soil_flux <span class="ot">&lt;-</span>  flux_time <span class="sc">+</span> flux_space</span>
+<span id="cb83-9"><a href="soil-physics.html#cb83-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">soil_flux=</span>soil_flux[<span class="sc">-</span><span class="dv">1</span>]) <span class="co">#remove first row that is NA</span></span>
+<span id="cb83-10"><a href="soil-physics.html#cb83-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb83-11"><a href="soil-physics.html#cb83-11" aria-hidden="true" tabindex="-1"></a>pars <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Cv =</span> <span class="fl">3.6e6</span>, <span class="at">k=</span><span class="fl">3.5</span>)</span>
+<span id="cb83-12"><a href="soil-physics.html#cb83-12" aria-hidden="true" tabindex="-1"></a>sens <span class="ot">&lt;-</span> <span class="fu">sensFun</span>(calc_soil_flux, pars, <span class="at">map=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="soil-physics.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sens) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="soil-physics.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb84-3"><a href="soil-physics.html#cb84-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb84-4"><a href="soil-physics.html#cb84-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb84-5"><a href="soil-physics.html#cb84-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&#39;Flux sensitivity&#39;</span></span>
+<span id="cb84-6"><a href="soil-physics.html#cb84-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-7"><a href="soil-physics.html#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="st">&quot;HOLD_position&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:sens">Table 8.1: </span>Flux sensitivity
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+value
+</th>
+<th style="text-align:right;">
+scale
+</th>
+<th style="text-align:right;">
+L1
+</th>
+<th style="text-align:right;">
+L2
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+Min
+</th>
+<th style="text-align:right;">
+Max
+</th>
+<th style="text-align:right;">
+N
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Cv
+</td>
+<td style="text-align:right;">
+3.6e+06
+</td>
+<td style="text-align:right;">
+3.6e+06
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+4.44
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+-216.0
+</td>
+<td style="text-align:right;">
+86.4
+</td>
+<td style="text-align:right;">
+5500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+k
+</td>
+<td style="text-align:right;">
+3.5e+00
+</td>
+<td style="text-align:right;">
+3.5e+00
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+<td style="text-align:right;">
+4.51
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+-85.4
+</td>
+<td style="text-align:right;">
+217.0
+</td>
+<td style="text-align:right;">
+5500
+</td>
+</tr>
+</tbody>
+</table>
+<p>A local sensitivity analysis <span class="citation">(Soetaert and Petzoldt 2010)</span> was made for the two parameters used in the flux calculation: thermal conductivity (<span class="math inline">\(k\)</span>) and heat capacity (<span class="math inline">\(C_v\)</span>). The thermal conductivity has the biggest influence on the the overall flux (Table <a href="soil-physics.html#tab:sens">8.1</a>).</p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="soil-temperature-profile" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Soil temperature profile</h3>
+<p>The Figure <a href="soil-physics.html#fig:profile">8.2</a> shows the soil temperature for one day of may. It is possible to clearly see the difference of how at 0.5m depth the temperature of soil remains more stable regarding the other depths. During the changes of one day between day and night, at this depth the soil does not have enough time to change the temperature so fast.
+The opposite is happening at a depth of 2cm or 5cm in soil, where the variations of temperature are stronger.
+Just before the dawn in the morning, the soil reaches the lowest temperature values, between 8-9 °C at this depths.
+Then during the day, the highest temperature is reached (12-13 °C) around 6pm where the sun starts going down starting the sunset.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="soil-physics.html#cb85-1" aria-hidden="true" tabindex="-1"></a>soil_g <span class="ot">&lt;-</span> soil <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="soil-physics.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;depth&quot;</span>, <span class="st">&quot;T_soil&quot;</span>, <span class="fu">starts_with</span>(<span class="st">&quot;Tsoil&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="soil-physics.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">depth =</span> <span class="fu">str_extract</span>(depth, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d+&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="soil-physics.html#cb86-1" aria-hidden="true" tabindex="-1"></a>soil_g <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="soil-physics.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># last day available to bet as close as possible to summer.</span></span>
+<span id="cb86-3"><a href="soil-physics.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number 126 was got as `max(yday(soil$Date))`</span></span>
+<span id="cb86-4"><a href="soil-physics.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">yday</span>(Date)<span class="sc">==</span><span class="dv">126</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-5"><a href="soil-physics.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, T_soil, <span class="at">col=</span><span class="fu">as_factor</span>(depth))) <span class="sc">+</span></span>
+<span id="cb86-6"><a href="soil-physics.html#cb86-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb86-7"><a href="soil-physics.html#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Temperature soil (°C)&quot;</span>, <span class="at">colour=</span><span class="st">&quot;Depth (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb86-8"><a href="soil-physics.html#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
+<div class="figure"><span id="fig:profile"></span>
+<img src="Bioclimatology-reports_files/figure-html/profile-1.png" alt="Soil temperature at different depths for one day. Data from 5th of May 2020, forest botanical garden." width="672" />
+<p class="caption">
+Figure 8.2: Soil temperature at different depths for one day. Data from 5th of May 2020, forest botanical garden.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wind.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="evapotranspiration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Bioclimatology-reports.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

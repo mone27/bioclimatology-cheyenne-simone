@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Turbulent fluxes \(\pmb{CO_2}\) | Experimental bioclimatology Term Paper</title>
+  <meta name="description" content="10 Turbulent fluxes \(\pmb{CO_2}\) | Experimental bioclimatology Term Paper" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Turbulent fluxes \(\pmb{CO_2}\) | Experimental bioclimatology Term Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Turbulent fluxes \(\pmb{CO_2}\) | Experimental bioclimatology Term Paper" />
+  
+  
+  
+
+<meta name="author" content="Simone Massaro and Cheyenne Rueda" />
+
+
+<meta name="date" content="2021-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="evapotranspiration.html"/>
+<link rel="next" href="turbulent-fluxes-eddy-covariance.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html"><i class="fa fa-check"></i><b>1</b> Shortwave radiation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#sensors-and-measuring-principle"><i class="fa fa-check"></i><b>1.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="1.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#analysis"><i class="fa fa-check"></i><b>1.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#albedo"><i class="fa fa-check"></i><b>1.4.1</b> Albedo</a></li>
+<li class="chapter" data-level="1.4.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#absorption-coefficient"><i class="fa fa-check"></i><b>1.4.2</b> Absorption coefficient</a></li>
+<li class="chapter" data-level="1.4.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#transmission-coefficient"><i class="fa fa-check"></i><b>1.4.3</b> Transmission coefficient</a></li>
+<li class="chapter" data-level="1.4.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#radiation-below-canopy"><i class="fa fa-check"></i><b>1.4.4</b> Radiation below canopy</a></li>
+<li class="chapter" data-level="1.4.5" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#diffuse-and-direct-radiation"><i class="fa fa-check"></i><b>1.4.5</b> Diffuse and direct radiation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="longwave-radiation.html"><a href="longwave-radiation.html"><i class="fa fa-check"></i><b>2</b> Longwave radiation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#motivation-1"><i class="fa fa-check"></i><b>2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#background-1"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#sensors-and-measuring-principle-1"><i class="fa fa-check"></i><b>2.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="2.4" data-path="longwave-radiation.html"><a href="longwave-radiation.html#analysis-1"><i class="fa fa-check"></i><b>2.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#surface-and-sky-temperature"><i class="fa fa-check"></i><b>2.4.1</b> Surface and Sky temperature</a></li>
+<li class="chapter" data-level="2.4.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#net-radiation"><i class="fa fa-check"></i><b>2.4.2</b> Net radiation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#change-emissity-in-the-sensor"><i class="fa fa-check"></i><b>2.4.3</b> Change emissity in the sensor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="air-temperature.html"><a href="air-temperature.html"><i class="fa fa-check"></i><b>3</b> Air temperature</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="air-temperature.html"><a href="air-temperature.html#motivation-2"><i class="fa fa-check"></i><b>3.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2" data-path="air-temperature.html"><a href="air-temperature.html#background-2"><i class="fa fa-check"></i><b>3.2</b> Background</a></li>
+<li class="chapter" data-level="3.3" data-path="air-temperature.html"><a href="air-temperature.html#sensors-and-measuring-principle-2"><i class="fa fa-check"></i><b>3.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="3.4" data-path="air-temperature.html"><a href="air-temperature.html#analysis-2"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="air-temperature.html"><a href="air-temperature.html#hainich-time-series"><i class="fa fa-check"></i><b>3.4.1</b> Hainich time series</a></li>
+<li class="chapter" data-level="3.4.2" data-path="air-temperature.html"><a href="air-temperature.html#temperature-sensors-response-time"><i class="fa fa-check"></i><b>3.4.2</b> Temperature sensors response time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="air-humidity.html"><a href="air-humidity.html"><i class="fa fa-check"></i><b>4</b> Air humidity</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="air-humidity.html"><a href="air-humidity.html#motivation-3"><i class="fa fa-check"></i><b>4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2" data-path="air-humidity.html"><a href="air-humidity.html#background-3"><i class="fa fa-check"></i><b>4.2</b> Background</a></li>
+<li class="chapter" data-level="4.3" data-path="air-humidity.html"><a href="air-humidity.html#sensors-and-measuring-principle-3"><i class="fa fa-check"></i><b>4.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="4.4" data-path="air-humidity.html"><a href="air-humidity.html#analysis-3"><i class="fa fa-check"></i><b>4.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="air-humidity.html"><a href="air-humidity.html#actual-and-saturation-vapour-pressure"><i class="fa fa-check"></i><b>4.4.1</b> Actual and saturation vapour pressure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="air-humidity.html"><a href="air-humidity.html#air-and-dew-point-temperature"><i class="fa fa-check"></i><b>4.4.2</b> Air and dew point temperature</a></li>
+<li class="chapter" data-level="4.4.3" data-path="air-humidity.html"><a href="air-humidity.html#absolute-humidity"><i class="fa fa-check"></i><b>4.4.3</b> Absolute humidity</a></li>
+<li class="chapter" data-level="4.4.4" data-path="air-humidity.html"><a href="air-humidity.html#mixing-ratio-and-specific-humidity"><i class="fa fa-check"></i><b>4.4.4</b> Mixing ratio and specific humidity</a></li>
+<li class="chapter" data-level="4.4.5" data-path="air-humidity.html"><a href="air-humidity.html#vapour-pressure-deficit"><i class="fa fa-check"></i><b>4.4.5</b> Vapour pressure deficit</a></li>
+<li class="chapter" data-level="4.4.6" data-path="air-humidity.html"><a href="air-humidity.html#equivalent-temperature"><i class="fa fa-check"></i><b>4.4.6</b> Equivalent temperature</a></li>
+<li class="chapter" data-level="4.4.7" data-path="air-humidity.html"><a href="air-humidity.html#field-humidity-measurements"><i class="fa fa-check"></i><b>4.4.7</b> Field humidity measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="precipitation.html"><a href="precipitation.html"><i class="fa fa-check"></i><b>5</b> Precipitation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="precipitation.html"><a href="precipitation.html#motivation-4"><i class="fa fa-check"></i><b>5.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="precipitation.html"><a href="precipitation.html#background-4"><i class="fa fa-check"></i><b>5.2</b> Background</a></li>
+<li class="chapter" data-level="5.3" data-path="precipitation.html"><a href="precipitation.html#sensors-and-measuring-principle-4"><i class="fa fa-check"></i><b>5.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="5.4" data-path="precipitation.html"><a href="precipitation.html#analysis-4"><i class="fa fa-check"></i><b>5.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="precipitation.html"><a href="precipitation.html#et-and-precipitation-at-different-latitudes"><i class="fa fa-check"></i><b>5.4.1</b> ET and precipitation at different latitudes</a></li>
+<li class="chapter" data-level="5.4.2" data-path="precipitation.html"><a href="precipitation.html#evapotranspiration-index"><i class="fa fa-check"></i><b>5.4.2</b> Evapotranspiration index</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="air-pressure.html"><a href="air-pressure.html"><i class="fa fa-check"></i><b>6</b> Air Pressure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="air-pressure.html"><a href="air-pressure.html#motivation-5"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
+<li class="chapter" data-level="6.2" data-path="air-pressure.html"><a href="air-pressure.html#background-5"><i class="fa fa-check"></i><b>6.2</b> Background</a></li>
+<li class="chapter" data-level="6.3" data-path="air-pressure.html"><a href="air-pressure.html#sensors-and-measuring-principle-5"><i class="fa fa-check"></i><b>6.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="6.4" data-path="air-pressure.html"><a href="air-pressure.html#analysis-5"><i class="fa fa-check"></i><b>6.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-sea-level"><i class="fa fa-check"></i><b>6.4.1</b> Air pressure sea level</a></li>
+<li class="chapter" data-level="6.4.2" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-brocken-and-water-boling-temperature"><i class="fa fa-check"></i><b>6.4.2</b> Air pressure Brocken and water boling temperature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>7</b> Wind</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wind.html"><a href="wind.html#motivation-6"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
+<li class="chapter" data-level="7.2" data-path="wind.html"><a href="wind.html#background-6"><i class="fa fa-check"></i><b>7.2</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="wind.html"><a href="wind.html#sensors-and-measuring-principle-6"><i class="fa fa-check"></i><b>7.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="7.4" data-path="wind.html"><a href="wind.html#analysis-6"><i class="fa fa-check"></i><b>7.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="wind.html"><a href="wind.html#wind-averages"><i class="fa fa-check"></i><b>7.4.1</b> Wind averages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="wind.html"><a href="wind.html#wind-speed-and-height"><i class="fa fa-check"></i><b>7.4.2</b> Wind speed and height</a></li>
+<li class="chapter" data-level="7.4.3" data-path="wind.html"><a href="wind.html#windspeed-over-year"><i class="fa fa-check"></i><b>7.4.3</b> Windspeed over year</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="soil-physics.html"><a href="soil-physics.html"><i class="fa fa-check"></i><b>8</b> Soil physics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="soil-physics.html"><a href="soil-physics.html#motivation-7"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="soil-physics.html"><a href="soil-physics.html#background-7"><i class="fa fa-check"></i><b>8.2</b> Background</a></li>
+<li class="chapter" data-level="8.3" data-path="soil-physics.html"><a href="soil-physics.html#sensors-and-measuring-principle-7"><i class="fa fa-check"></i><b>8.3</b> Sensors and measuring principle</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-hydrology"><i class="fa fa-check"></i><b>8.3.1</b> Soil hydrology</a></li>
+<li class="chapter" data-level="8.3.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature"><i class="fa fa-check"></i><b>8.3.2</b> Soil temperature</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="soil-physics.html"><a href="soil-physics.html#analysis-7"><i class="fa fa-check"></i><b>8.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-heat-flux"><i class="fa fa-check"></i><b>8.4.1</b> Soil Heat flux</a></li>
+<li class="chapter" data-level="8.4.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature-profile"><i class="fa fa-check"></i><b>8.4.2</b> Soil temperature profile</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="evapotranspiration.html"><a href="evapotranspiration.html"><i class="fa fa-check"></i><b>9</b> Evapotranspiration</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#motivation-8"><i class="fa fa-check"></i><b>9.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#background-8"><i class="fa fa-check"></i><b>9.2</b> Background</a></li>
+<li class="chapter" data-level="9.3" data-path="evapotranspiration.html"><a href="evapotranspiration.html#sensors-and-measuring-principle-8"><i class="fa fa-check"></i><b>9.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="9.4" data-path="evapotranspiration.html"><a href="evapotranspiration.html#analysis-8"><i class="fa fa-check"></i><b>9.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#potential-evapotranspiration"><i class="fa fa-check"></i><b>9.4.1</b> Potential evapotranspiration</a></li>
+<li class="chapter" data-level="9.4.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#field-measurements"><i class="fa fa-check"></i><b>9.4.2</b> Field Measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html"><i class="fa fa-check"></i><b>10</b> Turbulent fluxes <span class="math inline">\(\pmb{CO_2}\)</span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#motivation-9"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.2" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#background-9"><i class="fa fa-check"></i><b>10.2</b> Background</a></li>
+<li class="chapter" data-level="10.3" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#sensors-and-measuring-principle-9"><i class="fa fa-check"></i><b>10.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="10.4" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#analysis-9"><i class="fa fa-check"></i><b>10.4</b> Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#respiration-chambers"><i class="fa fa-check"></i><b>10.5</b> Respiration chambers</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html"><i class="fa fa-check"></i><b>11</b> Turbulent Fluxes Eddy Covariance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#motivation-10"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#background-10"><i class="fa fa-check"></i><b>11.2</b> Background</a></li>
+<li class="chapter" data-level="11.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#sensors-and-measuring-principles"><i class="fa fa-check"></i><b>11.3</b> Sensors and Measuring principles</a></li>
+<li class="chapter" data-level="11.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#analisys"><i class="fa fa-check"></i><b>11.4</b> Analisys</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#raw-flux-calculation"><i class="fa fa-check"></i><b>11.4.1</b> Raw flux calculation</a></li>
+<li class="chapter" data-level="11.4.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#flux-corrections"><i class="fa fa-check"></i><b>11.4.2</b> Flux corrections</a></li>
+<li class="chapter" data-level="11.4.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#time-lag-correction"><i class="fa fa-check"></i><b>11.4.3</b> Time lag correction</a></li>
+<li class="chapter" data-level="11.4.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#corrected-fluxes"><i class="fa fa-check"></i><b>11.4.4</b> Corrected fluxes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experimental bioclimatology Term Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="turbulent-fluxes-pmbco_2" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> Turbulent fluxes <span class="math inline">\(\pmb{CO_2}\)</span></h1>
+<div id="motivation-9" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Motivation</h2>
+<p>Part of the turbulent fluxes regulating the natural systems on earth is
+<span class="math inline">\(CO_2\)</span> flux. In this chapter, we learned some ways to trace the flux of
+this important gas, also well known as green house gas. First, a small
+introduction about the carbon cycle in land ecosystems. Carbon
+approaches vegetation through the photosynthesis. Afterwards, carbon is
+allocated in different parts of plants; leafs, stem and root, while part
+of it is also lost by the leaching of soil and erosion. During the
+process of plant respiration, Carbon dioxide is also released in small
+amounts, together with the respiration of roots and other microorganisms
+present in soil. Although seems as a process easy to quantify, it also
+has its adversities, such as the turbulent movement of gas fluxes in
+forests.</p>
+</div>
+<div id="background-9" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Background</h2>
+<p>The measurement of the net <span class="math inline">\(CO_2\)</span> exchange can be achieved by direct or
+continuous way, this way ecosystem is not disturbed. Also it can be
+measured by the integration over the entire ecosystem. Some researches
+have been going on measuring the carbon cycle at a global scale. This is
+known as the integrated carbon observation system (ICOS). The ICOS
+consists on the long term assessment of European carbon balance, with
+sample plots at different levels: atmosphere, terrestrial ecosystem and
+ocean. This programme is not the only one, also Fluxnet; measuring <span class="math inline">\(CO_2\)</span>,
+water vapor and energy flux all along the world. Thanks to these type of
+initiatives, other natural factors can be analyzed such as
+temperature, precipitation, temperature and soil moisture. As an
+example, the drought experienced in Europe in 2018, where a big
+decreasing in the <span class="math inline">\(CO_2\)</span> uptake in central Europe was experienced, while
+and increase was observed in southern and northern countries of Europe.
+Besides the consequences of this drought period, the European average
+had a smaller effect than in 2003.</p>
+<p>A simple definition of flux is the exchange of any quantity per area and
+time. The flux of <span class="math inline">\(CO_2\)</span> and <span class="math inline">\(H_2O\)</span> is measured with <span class="math inline">\(\mu mol\ m^{-2} s{-1}\)</span> and <span class="math inline">\(mmol\ m^{-2} s{-1}\)</span> respectively. Leaf evapotranspiration and Heat is measured by <span class="math inline">\(W m^{-2}\)</span>.</p>
+</div>
+<div id="sensors-and-measuring-principle-9" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Sensors and measuring principle</h2>
+<p>The data measurement of gas fluxes can be done with the use of different
+ways, by data driven or with the use of instruments. Later, this data is
+required in ecosystem modelling. According to what flux is going to be
+measured, some instruments can be required as an additional equipment.
+The instruments can be: chambers, lysimeter and sap flow. The following
+formula describes the principle on which <strong>gas chambers</strong> are based on to
+measured <span class="math inline">\(CO_2\)</span> flux in soil.</p>
+<p>The <span class="math inline">\(CO_2\)</span> flux assumption is based on its linear increase, using the
+following formula;</p>
+<p><span class="math display">\[F_c = \frac{dc}{dt} \frac{MV}{A}\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(dc\)</span>: change of <span class="math inline">\(CO_2\)</span> concentration (<span class="math inline">\(\mu mol\ mol^{-1}\)</span>)</p></li>
+<li><p><span class="math inline">\(dt\)</span>: change in time (<span class="math inline">\(s\)</span>)</p></li>
+<li><p>M = <span class="math inline">\(p / R\ T\)</span> molar volume (<span class="math inline">\(mol\ m^{-3}\)</span>)</p></li>
+<li><p>R = 8.314 <span class="math inline">\(J\ mol^{-1} K^{-1}\)</span></p></li>
+<li><p>V: chamber volume (<span class="math inline">\(m^3\)</span>)</p></li>
+<li><p>A: chamber surface area (<span class="math inline">\(m^2\)</span>)</p></li>
+</ul>
+</div>
+<div id="analysis-9" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Analysis</h2>
+<ol style="list-style-type: decimal">
+<li>Calculate the half hourly latent heat flux, the net ecosystem
+exchange of <span class="math inline">\(CO_2\)</span> and the sensible heat flux from the high frequency
+turbulence data.</li>
+</ol>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="turbulent-fluxes-pmbco-2.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb98-2"><a href="turbulent-fluxes-pmbco-2.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co">#multiple plots</span></span>
+<span id="cb98-3"><a href="turbulent-fluxes-pmbco-2.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar) <span class="co"># to replace missing values </span></span>
+<span id="cb98-4"><a href="turbulent-fluxes-pmbco-2.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb98-5"><a href="turbulent-fluxes-pmbco-2.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+</div>
+<div id="respiration-chambers" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Respiration chambers</h2>
+<p>Field data were collected with respiration chambers.
+Four chambers were installed and for each of them the <span class="math inline">\(CO_2\)</span> concentration measured roughly every 10 minutes.</p>
+<p>The <span class="math inline">\(CO_2\)</span> concentration increase linearly over time (Figure <a href="turbulent-fluxes-pmbco-2.html#fig:co2">10.1</a>) in all chamber, the slope of this increase is a bit different for each chamber and varies slightly with time, but is overall constant (Figure <a href="turbulent-fluxes-pmbco-2.html#fig:co2-slope">10.2</a>).</p>
+<p>The <span class="math inline">\(Co_2\)</span> flux is the computed (Figure <a href="turbulent-fluxes-pmbco-2.html#fig:co2-flux-chamber-box">10.3</a>). The Different chambers have different respiration rates, higher in 1 and 2, lower in 3 and 4 and intermediate in 5. The respiration between different chambers is overall comparable.</p>
+<p>In Figure <a href="turbulent-fluxes-pmbco-2.html#fig:co2-flux-chamber">10.4</a> the time flux over time is plotted. This is expected to be constant, but this is only the case for the chamber 4, that is very stable. For the other chambers there is a much higher variation and in particular in the first two chambers the flux increases over time. This is probably due to measurement errors as the field it was hard to estimate when the <span class="math inline">\(CO_2\)</span> concentration in the chamber was stabilizing.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="turbulent-fluxes-pmbco-2.html#cb99-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data_lectures/soilCO2flux.csv&quot;</span>),</span>
+<span id="cb99-2"><a href="turbulent-fluxes-pmbco-2.html#cb99-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;co2&quot;</span>, <span class="st">&quot;chamber&quot;</span>), <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb99-3"><a href="turbulent-fluxes-pmbco-2.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co"># loading some data directly from in the R code for simplicity</span></span>
+<span id="cb99-4"><a href="turbulent-fluxes-pmbco-2.html#cb99-4" aria-hidden="true" tabindex="-1"></a>p_a <span class="ot">&lt;-</span> <span class="fl">989.5</span> <span class="co">#hPa - air pressure</span></span>
+<span id="cb99-5"><a href="turbulent-fluxes-pmbco-2.html#cb99-5" aria-hidden="true" tabindex="-1"></a>T_a <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">+</span> <span class="fl">273.15</span> <span class="co"># °C - air temperature</span></span>
+<span id="cb99-6"><a href="turbulent-fluxes-pmbco-2.html#cb99-6" aria-hidden="true" tabindex="-1"></a>diam <span class="ot">&lt;-</span> <span class="fl">0.152</span> <span class="co"># m - radius of chamber</span></span>
+<span id="cb99-7"><a href="turbulent-fluxes-pmbco-2.html#cb99-7" aria-hidden="true" tabindex="-1"></a>top_height <span class="ot">&lt;-</span> <span class="fl">0.138</span> <span class="co"># m - height of top part of the chamber (same for everything)</span></span>
+<span id="cb99-8"><a href="turbulent-fluxes-pmbco-2.html#cb99-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-9"><a href="turbulent-fluxes-pmbco-2.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="co"># area </span></span>
+<span id="cb99-10"><a href="turbulent-fluxes-pmbco-2.html#cb99-10" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> pi <span class="sc">/</span> <span class="dv">4</span> <span class="sc">*</span>diam<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb99-11"><a href="turbulent-fluxes-pmbco-2.html#cb99-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-12"><a href="turbulent-fluxes-pmbco-2.html#cb99-12" aria-hidden="true" tabindex="-1"></a><span class="co"># chamber specific data</span></span>
+<span id="cb99-13"><a href="turbulent-fluxes-pmbco-2.html#cb99-13" aria-hidden="true" tabindex="-1"></a>chambers <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb99-14"><a href="turbulent-fluxes-pmbco-2.html#cb99-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span><span class="st">&quot;Tsoil&quot;</span>,<span class="sc">~</span><span class="st">&quot;chamber&quot;</span>,<span class="sc">~</span><span class="st">&quot;height&quot;</span>,</span>
+<span id="cb99-15"><a href="turbulent-fluxes-pmbco-2.html#cb99-15" aria-hidden="true" tabindex="-1"></a>  <span class="dv">17</span>,     <span class="dv">1</span>, <span class="fl">0.16225</span>,       </span>
+<span id="cb99-16"><a href="turbulent-fluxes-pmbco-2.html#cb99-16" aria-hidden="true" tabindex="-1"></a>  <span class="dv">17</span>,     <span class="dv">2</span>, <span class="fl">0.17</span>,</span>
+<span id="cb99-17"><a href="turbulent-fluxes-pmbco-2.html#cb99-17" aria-hidden="true" tabindex="-1"></a>  <span class="fl">16.8</span>, <span class="dv">3</span>, <span class="fl">0.1495</span>,</span>
+<span id="cb99-18"><a href="turbulent-fluxes-pmbco-2.html#cb99-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">16.7</span>, <span class="dv">4</span>, <span class="fl">0.154</span>,</span>
+<span id="cb99-19"><a href="turbulent-fluxes-pmbco-2.html#cb99-19" aria-hidden="true" tabindex="-1"></a>  <span class="fl">17.2</span>, <span class="dv">5</span>, <span class="fl">0.159</span></span>
+<span id="cb99-20"><a href="turbulent-fluxes-pmbco-2.html#cb99-20" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb99-21"><a href="turbulent-fluxes-pmbco-2.html#cb99-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb99-22"><a href="turbulent-fluxes-pmbco-2.html#cb99-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Volume=</span> pi <span class="sc">/</span> <span class="dv">4</span> <span class="sc">*</span> diam<span class="sc">^</span> <span class="dv">2</span> <span class="sc">*</span> (height<span class="sc">+</span>top_height))</span>
+<span id="cb99-23"><a href="turbulent-fluxes-pmbco-2.html#cb99-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Molar Gas Constant</span></span>
+<span id="cb99-24"><a href="turbulent-fluxes-pmbco-2.html#cb99-24" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fl">8.314</span> <span class="co"># J/mol K</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="turbulent-fluxes-pmbco-2.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Molar volume </span></span>
+<span id="cb100-2"><a href="turbulent-fluxes-pmbco-2.html#cb100-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> p_a <span class="sc">/</span> (R<span class="sc">*</span>T_a)</span>
+<span id="cb100-3"><a href="turbulent-fluxes-pmbco-2.html#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="turbulent-fluxes-pmbco-2.html#cb100-4" aria-hidden="true" tabindex="-1"></a>co2flux <span class="ot">&lt;-</span> co2 <span class="sc">%&gt;%</span></span>
+<span id="cb100-5"><a href="turbulent-fluxes-pmbco-2.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding chamber information</span></span>
+<span id="cb100-6"><a href="turbulent-fluxes-pmbco-2.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(chambers) <span class="sc">%&gt;%</span> </span>
+<span id="cb100-7"><a href="turbulent-fluxes-pmbco-2.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chamber) <span class="sc">%&gt;%</span> </span>
+<span id="cb100-8"><a href="turbulent-fluxes-pmbco-2.html#cb100-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb100-9"><a href="turbulent-fluxes-pmbco-2.html#cb100-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dt =</span> time <span class="sc">-</span> <span class="fu">lag</span>(time),</span>
+<span id="cb100-10"><a href="turbulent-fluxes-pmbco-2.html#cb100-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">dc =</span> co2 <span class="sc">-</span> <span class="fu">lag</span>(co2),</span>
+<span id="cb100-11"><a href="turbulent-fluxes-pmbco-2.html#cb100-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fc =</span> (dc<span class="sc">/</span>dt)<span class="sc">*</span>(M<span class="sc">*</span>Volume<span class="sc">/</span>area),</span>
+<span id="cb100-12"><a href="turbulent-fluxes-pmbco-2.html#cb100-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for plotting</span></span>
+<span id="cb100-13"><a href="turbulent-fluxes-pmbco-2.html#cb100-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">chamber =</span> <span class="fu">as.factor</span>(chamber)</span>
+<span id="cb100-14"><a href="turbulent-fluxes-pmbco-2.html#cb100-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="turbulent-fluxes-pmbco-2.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(co2flux, <span class="fu">aes</span>(time, co2, <span class="at">col=</span>chamber)) <span class="sc">+</span></span>
+<span id="cb101-2"><a href="turbulent-fluxes-pmbco-2.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb101-3"><a href="turbulent-fluxes-pmbco-2.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb101-4"><a href="turbulent-fluxes-pmbco-2.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time [s]&quot;</span>, <span class="at">y=</span><span class="st">&quot;CO2 [umol mol-1]&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:co2"></span>
+<img src="Bioclimatology-reports_files/figure-html/co2-1.png" alt="Increase of $CO_2$ concetration over time in each of the chamber. Data from field measurements." width="672" />
+<p class="caption">
+Figure 10.1: Increase of <span class="math inline">\(CO_2\)</span> concetration over time in each of the chamber. Data from field measurements.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="turbulent-fluxes-pmbco-2.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(co2flux, <span class="fu">aes</span>(time, dc<span class="sc">/</span>dt, <span class="at">col=</span>chamber)) <span class="sc">+</span></span>
+<span id="cb102-2"><a href="turbulent-fluxes-pmbco-2.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb102-3"><a href="turbulent-fluxes-pmbco-2.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb102-4"><a href="turbulent-fluxes-pmbco-2.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time [s]&quot;</span>, <span class="at">y=</span><span class="st">&quot;Slope CO2 increase [umol mol-1 s-1]&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:co2-slope"></span>
+<img src="Bioclimatology-reports_files/figure-html/co2-slope-1.png" alt="Slope of the increase in $CO_2$ concetration over time in each of the chamber. Data from field measurements." width="672" />
+<p class="caption">
+Figure 10.2: Slope of the increase in <span class="math inline">\(CO_2\)</span> concetration over time in each of the chamber. Data from field measurements.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="turbulent-fluxes-pmbco-2.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(co2flux, <span class="fu">aes</span>(chamber, Fc, <span class="at">col=</span>chamber)) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="turbulent-fluxes-pmbco-2.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb103-3"><a href="turbulent-fluxes-pmbco-2.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb103-4"><a href="turbulent-fluxes-pmbco-2.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Chamber&quot;</span>, <span class="at">y=</span><span class="st">&quot;CO2 flux [umol s-1 m-2]&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:co2-flux-chamber-box"></span>
+<img src="Bioclimatology-reports_files/figure-html/co2-flux-chamber-box-1.png" alt="$CO_2$ flux measured in the different chambers. Data from field measurements." width="672" />
+<p class="caption">
+Figure 10.3: <span class="math inline">\(CO_2\)</span> flux measured in the different chambers. Data from field measurements.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="turbulent-fluxes-pmbco-2.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(co2flux, <span class="fu">aes</span>(time, Fc, <span class="at">col=</span>chamber)) <span class="sc">+</span></span>
+<span id="cb104-2"><a href="turbulent-fluxes-pmbco-2.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb104-3"><a href="turbulent-fluxes-pmbco-2.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb104-4"><a href="turbulent-fluxes-pmbco-2.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Time [s]&quot;</span>, <span class="at">y=</span><span class="st">&quot;CO2 flux [umol s-1 m-2]&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:co2-flux-chamber"></span>
+<img src="Bioclimatology-reports_files/figure-html/co2-flux-chamber-1.png" alt="$CO_2$ flux measured in the different chambers over time. Data from field measurements." width="672" />
+<p class="caption">
+Figure 10.4: <span class="math inline">\(CO_2\)</span> flux measured in the different chambers over time. Data from field measurements.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="evapotranspiration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="turbulent-fluxes-eddy-covariance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Bioclimatology-reports.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

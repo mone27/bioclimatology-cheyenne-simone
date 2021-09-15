@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Evapotranspiration | Experimental bioclimatology Term Paper</title>
+  <meta name="description" content="9 Evapotranspiration | Experimental bioclimatology Term Paper" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Evapotranspiration | Experimental bioclimatology Term Paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Evapotranspiration | Experimental bioclimatology Term Paper" />
+  
+  
+  
+
+<meta name="author" content="Simone Massaro and Cheyenne Rueda" />
+
+
+<meta name="date" content="2021-09-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="soil-physics.html"/>
+<link rel="next" href="turbulent-fluxes-pmbco-2.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Experimental Bioclimatology - Term paper</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html"><i class="fa fa-check"></i><b>1</b> Shortwave radiation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
+<li class="chapter" data-level="1.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#background"><i class="fa fa-check"></i><b>1.2</b> Background</a></li>
+<li class="chapter" data-level="1.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#sensors-and-measuring-principle"><i class="fa fa-check"></i><b>1.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="1.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#analysis"><i class="fa fa-check"></i><b>1.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#albedo"><i class="fa fa-check"></i><b>1.4.1</b> Albedo</a></li>
+<li class="chapter" data-level="1.4.2" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#absorption-coefficient"><i class="fa fa-check"></i><b>1.4.2</b> Absorption coefficient</a></li>
+<li class="chapter" data-level="1.4.3" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#transmission-coefficient"><i class="fa fa-check"></i><b>1.4.3</b> Transmission coefficient</a></li>
+<li class="chapter" data-level="1.4.4" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#radiation-below-canopy"><i class="fa fa-check"></i><b>1.4.4</b> Radiation below canopy</a></li>
+<li class="chapter" data-level="1.4.5" data-path="shortwave-radiation.html"><a href="shortwave-radiation.html#diffuse-and-direct-radiation"><i class="fa fa-check"></i><b>1.4.5</b> Diffuse and direct radiation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="longwave-radiation.html"><a href="longwave-radiation.html"><i class="fa fa-check"></i><b>2</b> Longwave radiation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#motivation-1"><i class="fa fa-check"></i><b>2.1</b> Motivation</a></li>
+<li class="chapter" data-level="2.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#background-1"><i class="fa fa-check"></i><b>2.2</b> Background</a></li>
+<li class="chapter" data-level="2.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#sensors-and-measuring-principle-1"><i class="fa fa-check"></i><b>2.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="2.4" data-path="longwave-radiation.html"><a href="longwave-radiation.html#analysis-1"><i class="fa fa-check"></i><b>2.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="longwave-radiation.html"><a href="longwave-radiation.html#surface-and-sky-temperature"><i class="fa fa-check"></i><b>2.4.1</b> Surface and Sky temperature</a></li>
+<li class="chapter" data-level="2.4.2" data-path="longwave-radiation.html"><a href="longwave-radiation.html#net-radiation"><i class="fa fa-check"></i><b>2.4.2</b> Net radiation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="longwave-radiation.html"><a href="longwave-radiation.html#change-emissity-in-the-sensor"><i class="fa fa-check"></i><b>2.4.3</b> Change emissity in the sensor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="air-temperature.html"><a href="air-temperature.html"><i class="fa fa-check"></i><b>3</b> Air temperature</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="air-temperature.html"><a href="air-temperature.html#motivation-2"><i class="fa fa-check"></i><b>3.1</b> Motivation</a></li>
+<li class="chapter" data-level="3.2" data-path="air-temperature.html"><a href="air-temperature.html#background-2"><i class="fa fa-check"></i><b>3.2</b> Background</a></li>
+<li class="chapter" data-level="3.3" data-path="air-temperature.html"><a href="air-temperature.html#sensors-and-measuring-principle-2"><i class="fa fa-check"></i><b>3.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="3.4" data-path="air-temperature.html"><a href="air-temperature.html#analysis-2"><i class="fa fa-check"></i><b>3.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="air-temperature.html"><a href="air-temperature.html#hainich-time-series"><i class="fa fa-check"></i><b>3.4.1</b> Hainich time series</a></li>
+<li class="chapter" data-level="3.4.2" data-path="air-temperature.html"><a href="air-temperature.html#temperature-sensors-response-time"><i class="fa fa-check"></i><b>3.4.2</b> Temperature sensors response time</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="air-humidity.html"><a href="air-humidity.html"><i class="fa fa-check"></i><b>4</b> Air humidity</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="air-humidity.html"><a href="air-humidity.html#motivation-3"><i class="fa fa-check"></i><b>4.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.2" data-path="air-humidity.html"><a href="air-humidity.html#background-3"><i class="fa fa-check"></i><b>4.2</b> Background</a></li>
+<li class="chapter" data-level="4.3" data-path="air-humidity.html"><a href="air-humidity.html#sensors-and-measuring-principle-3"><i class="fa fa-check"></i><b>4.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="4.4" data-path="air-humidity.html"><a href="air-humidity.html#analysis-3"><i class="fa fa-check"></i><b>4.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="air-humidity.html"><a href="air-humidity.html#actual-and-saturation-vapour-pressure"><i class="fa fa-check"></i><b>4.4.1</b> Actual and saturation vapour pressure</a></li>
+<li class="chapter" data-level="4.4.2" data-path="air-humidity.html"><a href="air-humidity.html#air-and-dew-point-temperature"><i class="fa fa-check"></i><b>4.4.2</b> Air and dew point temperature</a></li>
+<li class="chapter" data-level="4.4.3" data-path="air-humidity.html"><a href="air-humidity.html#absolute-humidity"><i class="fa fa-check"></i><b>4.4.3</b> Absolute humidity</a></li>
+<li class="chapter" data-level="4.4.4" data-path="air-humidity.html"><a href="air-humidity.html#mixing-ratio-and-specific-humidity"><i class="fa fa-check"></i><b>4.4.4</b> Mixing ratio and specific humidity</a></li>
+<li class="chapter" data-level="4.4.5" data-path="air-humidity.html"><a href="air-humidity.html#vapour-pressure-deficit"><i class="fa fa-check"></i><b>4.4.5</b> Vapour pressure deficit</a></li>
+<li class="chapter" data-level="4.4.6" data-path="air-humidity.html"><a href="air-humidity.html#equivalent-temperature"><i class="fa fa-check"></i><b>4.4.6</b> Equivalent temperature</a></li>
+<li class="chapter" data-level="4.4.7" data-path="air-humidity.html"><a href="air-humidity.html#field-humidity-measurements"><i class="fa fa-check"></i><b>4.4.7</b> Field humidity measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="precipitation.html"><a href="precipitation.html"><i class="fa fa-check"></i><b>5</b> Precipitation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="precipitation.html"><a href="precipitation.html#motivation-4"><i class="fa fa-check"></i><b>5.1</b> Motivation</a></li>
+<li class="chapter" data-level="5.2" data-path="precipitation.html"><a href="precipitation.html#background-4"><i class="fa fa-check"></i><b>5.2</b> Background</a></li>
+<li class="chapter" data-level="5.3" data-path="precipitation.html"><a href="precipitation.html#sensors-and-measuring-principle-4"><i class="fa fa-check"></i><b>5.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="5.4" data-path="precipitation.html"><a href="precipitation.html#analysis-4"><i class="fa fa-check"></i><b>5.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="precipitation.html"><a href="precipitation.html#et-and-precipitation-at-different-latitudes"><i class="fa fa-check"></i><b>5.4.1</b> ET and precipitation at different latitudes</a></li>
+<li class="chapter" data-level="5.4.2" data-path="precipitation.html"><a href="precipitation.html#evapotranspiration-index"><i class="fa fa-check"></i><b>5.4.2</b> Evapotranspiration index</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="air-pressure.html"><a href="air-pressure.html"><i class="fa fa-check"></i><b>6</b> Air Pressure</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="air-pressure.html"><a href="air-pressure.html#motivation-5"><i class="fa fa-check"></i><b>6.1</b> Motivation</a></li>
+<li class="chapter" data-level="6.2" data-path="air-pressure.html"><a href="air-pressure.html#background-5"><i class="fa fa-check"></i><b>6.2</b> Background</a></li>
+<li class="chapter" data-level="6.3" data-path="air-pressure.html"><a href="air-pressure.html#sensors-and-measuring-principle-5"><i class="fa fa-check"></i><b>6.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="6.4" data-path="air-pressure.html"><a href="air-pressure.html#analysis-5"><i class="fa fa-check"></i><b>6.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-sea-level"><i class="fa fa-check"></i><b>6.4.1</b> Air pressure sea level</a></li>
+<li class="chapter" data-level="6.4.2" data-path="air-pressure.html"><a href="air-pressure.html#air-pressure-brocken-and-water-boling-temperature"><i class="fa fa-check"></i><b>6.4.2</b> Air pressure Brocken and water boling temperature</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wind.html"><a href="wind.html"><i class="fa fa-check"></i><b>7</b> Wind</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wind.html"><a href="wind.html#motivation-6"><i class="fa fa-check"></i><b>7.1</b> Motivation</a></li>
+<li class="chapter" data-level="7.2" data-path="wind.html"><a href="wind.html#background-6"><i class="fa fa-check"></i><b>7.2</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="wind.html"><a href="wind.html#sensors-and-measuring-principle-6"><i class="fa fa-check"></i><b>7.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="7.4" data-path="wind.html"><a href="wind.html#analysis-6"><i class="fa fa-check"></i><b>7.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="wind.html"><a href="wind.html#wind-averages"><i class="fa fa-check"></i><b>7.4.1</b> Wind averages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="wind.html"><a href="wind.html#wind-speed-and-height"><i class="fa fa-check"></i><b>7.4.2</b> Wind speed and height</a></li>
+<li class="chapter" data-level="7.4.3" data-path="wind.html"><a href="wind.html#windspeed-over-year"><i class="fa fa-check"></i><b>7.4.3</b> Windspeed over year</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="soil-physics.html"><a href="soil-physics.html"><i class="fa fa-check"></i><b>8</b> Soil physics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="soil-physics.html"><a href="soil-physics.html#motivation-7"><i class="fa fa-check"></i><b>8.1</b> Motivation</a></li>
+<li class="chapter" data-level="8.2" data-path="soil-physics.html"><a href="soil-physics.html#background-7"><i class="fa fa-check"></i><b>8.2</b> Background</a></li>
+<li class="chapter" data-level="8.3" data-path="soil-physics.html"><a href="soil-physics.html#sensors-and-measuring-principle-7"><i class="fa fa-check"></i><b>8.3</b> Sensors and measuring principle</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-hydrology"><i class="fa fa-check"></i><b>8.3.1</b> Soil hydrology</a></li>
+<li class="chapter" data-level="8.3.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature"><i class="fa fa-check"></i><b>8.3.2</b> Soil temperature</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="soil-physics.html"><a href="soil-physics.html#analysis-7"><i class="fa fa-check"></i><b>8.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="soil-physics.html"><a href="soil-physics.html#soil-heat-flux"><i class="fa fa-check"></i><b>8.4.1</b> Soil Heat flux</a></li>
+<li class="chapter" data-level="8.4.2" data-path="soil-physics.html"><a href="soil-physics.html#soil-temperature-profile"><i class="fa fa-check"></i><b>8.4.2</b> Soil temperature profile</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="evapotranspiration.html"><a href="evapotranspiration.html"><i class="fa fa-check"></i><b>9</b> Evapotranspiration</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#motivation-8"><i class="fa fa-check"></i><b>9.1</b> Motivation</a></li>
+<li class="chapter" data-level="9.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#background-8"><i class="fa fa-check"></i><b>9.2</b> Background</a></li>
+<li class="chapter" data-level="9.3" data-path="evapotranspiration.html"><a href="evapotranspiration.html#sensors-and-measuring-principle-8"><i class="fa fa-check"></i><b>9.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="9.4" data-path="evapotranspiration.html"><a href="evapotranspiration.html#analysis-8"><i class="fa fa-check"></i><b>9.4</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="evapotranspiration.html"><a href="evapotranspiration.html#potential-evapotranspiration"><i class="fa fa-check"></i><b>9.4.1</b> Potential evapotranspiration</a></li>
+<li class="chapter" data-level="9.4.2" data-path="evapotranspiration.html"><a href="evapotranspiration.html#field-measurements"><i class="fa fa-check"></i><b>9.4.2</b> Field Measurements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html"><i class="fa fa-check"></i><b>10</b> Turbulent fluxes <span class="math inline">\(\pmb{CO_2}\)</span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#motivation-9"><i class="fa fa-check"></i><b>10.1</b> Motivation</a></li>
+<li class="chapter" data-level="10.2" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#background-9"><i class="fa fa-check"></i><b>10.2</b> Background</a></li>
+<li class="chapter" data-level="10.3" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#sensors-and-measuring-principle-9"><i class="fa fa-check"></i><b>10.3</b> Sensors and measuring principle</a></li>
+<li class="chapter" data-level="10.4" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#analysis-9"><i class="fa fa-check"></i><b>10.4</b> Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="turbulent-fluxes-pmbco-2.html"><a href="turbulent-fluxes-pmbco-2.html#respiration-chambers"><i class="fa fa-check"></i><b>10.5</b> Respiration chambers</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html"><i class="fa fa-check"></i><b>11</b> Turbulent Fluxes Eddy Covariance</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#motivation-10"><i class="fa fa-check"></i><b>11.1</b> Motivation</a></li>
+<li class="chapter" data-level="11.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#background-10"><i class="fa fa-check"></i><b>11.2</b> Background</a></li>
+<li class="chapter" data-level="11.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#sensors-and-measuring-principles"><i class="fa fa-check"></i><b>11.3</b> Sensors and Measuring principles</a></li>
+<li class="chapter" data-level="11.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#analisys"><i class="fa fa-check"></i><b>11.4</b> Analisys</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#raw-flux-calculation"><i class="fa fa-check"></i><b>11.4.1</b> Raw flux calculation</a></li>
+<li class="chapter" data-level="11.4.2" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#flux-corrections"><i class="fa fa-check"></i><b>11.4.2</b> Flux corrections</a></li>
+<li class="chapter" data-level="11.4.3" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#time-lag-correction"><i class="fa fa-check"></i><b>11.4.3</b> Time lag correction</a></li>
+<li class="chapter" data-level="11.4.4" data-path="turbulent-fluxes-eddy-covariance.html"><a href="turbulent-fluxes-eddy-covariance.html#corrected-fluxes"><i class="fa fa-check"></i><b>11.4.4</b> Corrected fluxes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Experimental bioclimatology Term Paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evapotranspiration" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Evapotranspiration</h1>
+<div id="motivation-8" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Motivation</h2>
+<p>The evapotranspiration (ET) is an important variable for ecosystems, as it represents the amount of water that is evaporating. This is a good indication of the amount of photosyntetic activity and by comparing it the potential ET water stress of ecosystems can be estimated.</p>
+<p>Evaporanspiration is important to hold the global and continental scale hydrologic cycle. Evapotranspiration is influenced by a combination of factors; the increase of temperature, decrease of bulk canopy due to higher CO2 emissions and large scale land use change. <span class="citation">(Likens and 1935- 2009)</span></p>
+</div>
+<div id="background-8" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Background</h2>
+<p>The ET is the actual amount of water that evaporates. In contrast the potential ET is the amount of water that would evaporate if there would be unlimited water available in the soil <span class="citation">(Labedzki 2011)</span>.</p>
+<p>The difference between the ET and the potential ET indicates the water stress of an ecosystem.</p>
+<p>The measurement unit for ET is mm. The ET is often the ET on a daily basis.</p>
+<p>The ET is measured in the field using different instruments, while the potential ET can be either measured or estimated using other enviromental variables.</p>
+<p>In particular the Penman-Monteith is the most precise way to estimate the ET. It takes into account the energy available from the sun and the speed at which the water can evaporate, that depends on temperature, air humidity and wind.</p>
+<p><span class="math display">\[{LE=\frac{s (R_n-G) + \rho_a c_p \left( e_s - e_a \right) / r_a }
+{s + \gamma \left ( 1 + r_a / r_s \right)}}\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(S\)</span> Slope of saturation vapor pressure (kPa / K)</li>
+<li><span class="math inline">\(R\)</span> N Net radiation (W m -2 )</li>
+<li><span class="math inline">\(G\)</span> Ground heat flux (W m -2 )</li>
+<li><span class="math inline">\(\rho\)</span> Air density (kg m -3 )</li>
+<li><span class="math inline">\(C_p\)</span> Specific heat capacity at constant pressure (J kg -1 K -1 )</li>
+<li><span class="math inline">\(e_s\)</span> Saturation vapor pressure (kPa)</li>
+<li><span class="math inline">\(e_a\)</span> Actual vapor pressure (kPa)</li>
+<li><span class="math inline">\(\gamma\)</span> Psychrometric constant (kPa K -1 )</li>
+<li><span class="math inline">\(r_s\)</span> Stomata resistance (s m -1 )</li>
+<li><span class="math inline">\(r_a\)</span> Aerodynamic resistance (s m -1 )</li>
+</ul>
+<p>A useful aproximation of the Penman-Monteith equation is the Priestley-Taylor formula which requires less meteorolical data</p>
+<p><span class="math display">\[ PET \approx  1.26 \frac{s}{s+\gamma} \left(R_N - G \right) \]</span>
+where:</p>
+<ul>
+<li>PET is the daily evapotranspiration</li>
+<li>s is the saturation vapour pressure (<span class="math inline">\(kPa/K\)</span>)</li>
+<li><span class="math inline">\(R_N\)</span> is the net radiation in <span class="math inline">\(MJ / m^2 d\)</span></li>
+<li><span class="math inline">\(G\)</span> is the soil heat flux in <span class="math inline">\(MJ / m^2 d\)</span></li>
+</ul>
+</div>
+<div id="sensors-and-measuring-principle-8" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Sensors and measuring principle</h2>
+<p>There are many different ways to measure evapotranspiration,some are
+more accessible than others and depending the scenario some of them
+might be more suitable than others. The measurement of
+evapotranspiration claims quantitative data, and this data can be
+measure by water evaporation and the energy flux between soil and
+atmosphere. Rana and Kater (2000), describes the different ways to
+measure evapotranspiration based on hydrological, micrometeorological,
+plant physiology and analytic approaches. The first one includes: soil
+water balance and weighing lysimeters, the second one, energy balance
+and Bowen ration, aerodynamic method and eddy covariance. Plant
+physiology approach is based on sap flow method or chambers system. Last
+one, analytical approach are based on Penman-Montheith model. After this
+one, empirical approach can also be taken into account, such as process
+based on crop coefficient approach and soil water balance modeling
+<span class="citation">(Rana and Katerji 2000)</span>.</p>
+<p>Some of the most frequently measurements applied to evapotranspiration
+and that we have seeing in class are:</p>
+<ul>
+<li><p><strong>Evaporation pan</strong>: a circle panel where precipitation is accumulated and
+then, with the help of a measuring bucket and based on a scale, water
+loss can be measured by the difference between the potential
+evapotranspiration of 2 days. Some of the errors are related to the
+expansion of water, wrong reading, limited recording for a volume of
+water and the possibility of the oasis effect to occur.</p></li>
+<li><p><strong>Piché evaporimeter</strong>: is a type of atometer applied in the measurement
+rate of evaporation from a wet disc with absorbent paper. Results are
+dependent on wind speed that goes through the disc, as well as the wet
+bulb saturation deficit. The rate of evaporation is usually expressed as
+the volume of water evaporated per unit area in unit time.</p></li>
+<li><p><strong>Weighing lysimeter</strong>: they allow the mass or volumetric soil water content
+variation to be measured by weighing the lysimeter and determining its
+change of mass over time. They can measure the net infiltration from
+precipitation or irrigation systems and the quantity of net evaporation
+between different wetting events <span class="citation">(Meissner, Rupp, and Haselow 2020)</span>.</p></li>
+</ul>
+<p>Bowen ratio energy balance method: also known as BREB method has been
+widely used to quantify water balance. It estimates the latent heat flux
+from a surface using measurements of air temperature and humidity
+gradients, net radiation and soil heat flux. In comparison with other
+methods such as eddy covariance or weighting lysimeters, is an indirect
+method <span class="citation">(Todd, Evett, and Howell 2000)</span>. Some advantages are that it does not require
+information about aerodynamic characteristics of zone of interest, it
+integrates latent hear fluxes over a wide areas and gives an estimation
+of these flux in short time period intervals (e.g. less than half hour).</p>
+</div>
+<div id="analysis-8" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Analysis</h2>
+<div id="potential-evapotranspiration" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Potential evapotranspiration</h3>
+<p>During the four days of measurement the potential ET has been estimated
+using the Priestley-Taylor (Figure <a href="evapotranspiration.html#fig:pet">9.1</a>). The daily potential
+ET varies a significantly during the 4 days, ranging from 6mm to almost
+12 mm. This reflects the change in the weather conditions, as the day 1
+and 4 were cloudy and colder.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="evapotranspiration.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb87-2"><a href="evapotranspiration.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb87-3"><a href="evapotranspiration.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb87-4"><a href="evapotranspiration.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb87-5"><a href="evapotranspiration.html#cb87-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="evapotranspiration.html#cb87-6" aria-hidden="true" tabindex="-1"></a>et <span class="ot">&lt;-</span> <span class="st">&quot;Data_lectures/09_Turbulent_fluxes_I_ET/ET_data_forst_botanical_garden.csv&quot;</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb87-7"><a href="evapotranspiration.html#cb87-7" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb87-8"><a href="evapotranspiration.html#cb87-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-9"><a href="evapotranspiration.html#cb87-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">loc_id =</span> replicates)</span>
+<span id="cb87-10"><a href="evapotranspiration.html#cb87-10" aria-hidden="true" tabindex="-1"></a>meteo <span class="ot">&lt;-</span> </span>
+<span id="cb87-11"><a href="evapotranspiration.html#cb87-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Data_lectures/09_Turbulent_fluxes_I_ET/MeteoData_BotanicalGarden.csv&quot;</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb87-12"><a href="evapotranspiration.html#cb87-12" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb87-13"><a href="evapotranspiration.html#cb87-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="evapotranspiration.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Potential evapotranspiration using Priestley-Taylor equation</span></span>
+<span id="cb88-2"><a href="evapotranspiration.html#cb88-2" aria-hidden="true" tabindex="-1"></a>calc_pet <span class="ot">&lt;-</span> <span class="cf">function</span>(T_air, Rn, G){</span>
+<span id="cb88-3"><a href="evapotranspiration.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="fl">0.067</span> <span class="co"># kPa K -1</span></span>
+<span id="cb88-4"><a href="evapotranspiration.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> ( <span class="dv">4098</span> <span class="sc">*</span> (<span class="fl">0.6108</span> <span class="sc">*</span> <span class="fu">exp</span>((<span class="fl">17.27</span> <span class="sc">*</span> T_air ) <span class="sc">/</span> (T_air <span class="sc">+</span><span class="fl">237.3</span>) ) ) ) <span class="sc">/</span> ( T_air <span class="sc">+</span> <span class="fl">237.3</span> )<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb88-5"><a href="evapotranspiration.html#cb88-5" aria-hidden="true" tabindex="-1"></a>  pet <span class="ot">&lt;-</span> <span class="fl">1.26</span> <span class="sc">*</span> s <span class="sc">*</span> (Rn <span class="sc">-</span> G)<span class="sc">/</span> (s <span class="sc">+</span> g)</span>
+<span id="cb88-6"><a href="evapotranspiration.html#cb88-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="evapotranspiration.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adding R_n and G to the </span></span>
+<span id="cb89-2"><a href="evapotranspiration.html#cb89-2" aria-hidden="true" tabindex="-1"></a>meteo_d <span class="ot">&lt;-</span> meteo <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a href="evapotranspiration.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Need to convert from W (J/s) to MJ/d, using a factor 0.0864</span></span>
+<span id="cb89-4"><a href="evapotranspiration.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculating with high frequency data and then averaging over the day</span></span>
+<span id="cb89-5"><a href="evapotranspiration.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PET =</span> <span class="fu">calc_pet</span>(TA_degC, <span class="st">`</span><span class="at">NetRadiation_Wm-2</span><span class="st">`</span>, <span class="st">`</span><span class="at">GroundHeatflux_Wm-2</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-6"><a href="evapotranspiration.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Date =</span> <span class="fu">floor_date</span>(Date, <span class="st">&quot;day&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-7"><a href="evapotranspiration.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">PET =</span> <span class="fu">mean</span>(PET))</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="evapotranspiration.html#cb90-1" aria-hidden="true" tabindex="-1"></a>meteo_d <span class="ot">&lt;-</span> meteo <span class="sc">%&gt;%</span> </span>
+<span id="cb90-2"><a href="evapotranspiration.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Date =</span> <span class="fu">floor_date</span>(Date, <span class="st">&quot;day&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-3"><a href="evapotranspiration.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Need to convert from W (J/s) to MJ/d, using a factor 0.0864</span></span>
+<span id="cb90-4"><a href="evapotranspiration.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">R_n_d =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">NetRadiation_Wm-2</span><span class="st">`</span>) <span class="sc">*</span> <span class="fl">0.0864</span>,</span>
+<span id="cb90-5"><a href="evapotranspiration.html#cb90-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">G_d =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">GroundHeatflux_Wm-2</span><span class="st">`</span>) <span class="sc">*</span> <span class="fl">0.0864</span>,</span>
+<span id="cb90-6"><a href="evapotranspiration.html#cb90-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">T_air =</span> <span class="fu">mean</span>(TA_degC)) <span class="sc">%&gt;%</span> </span>
+<span id="cb90-7"><a href="evapotranspiration.html#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb90-8"><a href="evapotranspiration.html#cb90-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">PET =</span> <span class="fu">calc_pet</span>(T_air, R_n_d, G_d)</span>
+<span id="cb90-9"><a href="evapotranspiration.html#cb90-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="evapotranspiration.html#cb91-1" aria-hidden="true" tabindex="-1"></a>et <span class="ot">&lt;-</span> et <span class="sc">%&gt;%</span> </span>
+<span id="cb91-2"><a href="evapotranspiration.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(loc_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb91-3"><a href="evapotranspiration.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb91-4"><a href="evapotranspiration.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">et_pan =</span> <span class="fu">lag</span>(pan_height_mm) <span class="sc">-</span> pan_height_mm,</span>
+<span id="cb91-5"><a href="evapotranspiration.html#cb91-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="evapotranspiration.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(meteo_d, <span class="fu">aes</span>(Date, PET)) <span class="sc">+</span></span>
+<span id="cb92-2"><a href="evapotranspiration.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb92-3"><a href="evapotranspiration.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;PET [mm]&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:pet"></span>
+<img src="Bioclimatology-reports_files/figure-html/pet-1.png" alt="Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021." width="672" />
+<p class="caption">
+Figure 9.1: Potential evapotranspiration estimated using the Priestley-Taylor equation. Data from the botanical garden for the 25-29th of June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="field-measurements" class="section level3" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Field Measurements</h3>
+<p>The potential ET (PET) has been measured using 8 Piché evaporimeters in
+4 different locations around the botanical garden. Moreover a evaporation pan has aslo been used to measure the PET.</p>
+<p>The piché evaporimeters were put in different location, some in the shade, some under the sunlight.
+Therefore a variation in the measured PET is expected (Figure <a href="evapotranspiration.html#fig:pan-pich">9.2</a>), but overall the measures are comparable and is cleat that the ET on the 27th of June was higher.<br />
+The piché evaporimeters between each other (Figure <a href="evapotranspiration.html#fig:pich-box">9.3</a>), it possible to see a reasonable pattern, for example the PET in the tower (exposed to the sun) is much higher than in the canopy of the fir.
+Finally the two evaporimeters in the same location report similar values for all location, but the fir. This is a confirmation that the field measurements are correct. The different measures may be related to problem in the piché evaporimeters sealing.</p>
+<p>Finally the PET of the pan is compared with the PET estimated with the Priestley-Taylor equation (Figure <a href="evapotranspiration.html#fig:pan-pet">9.4</a>). However, the values are very different with the PET from Priestley-Taylor being more than the double of the PET from the Pan. All the deta processing steps have been double checked but no explanation has been found for this difference.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="evapotranspiration.html#cb93-1" aria-hidden="true" tabindex="-1"></a>pich_d <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="co">#cm</span></span>
+<span id="cb93-2"><a href="evapotranspiration.html#cb93-2" aria-hidden="true" tabindex="-1"></a>pich_inn_d <span class="ot">&lt;-</span> <span class="fl">0.9</span> <span class="co"># cm</span></span>
+<span id="cb93-3"><a href="evapotranspiration.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calc area exposed to air:</span></span>
+<span id="cb93-4"><a href="evapotranspiration.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 times the area of the pare dish (two sides) - the area of glass</span></span>
+<span id="cb93-5"><a href="evapotranspiration.html#cb93-5" aria-hidden="true" tabindex="-1"></a>pich_dish_area <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (pi <span class="sc">/</span> <span class="dv">4</span> <span class="sc">*</span> pich_d <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">-</span> (pi <span class="sc">/</span> <span class="dv">4</span> <span class="sc">*</span> pich_inn_d <span class="sc">^</span> <span class="dv">2</span>) <span class="co"># cm^2</span></span>
+<span id="cb93-6"><a href="evapotranspiration.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="co"># area inside the tube</span></span>
+<span id="cb93-7"><a href="evapotranspiration.html#cb93-7" aria-hidden="true" tabindex="-1"></a>pich_int_area <span class="ot">&lt;-</span> (pi<span class="sc">/</span><span class="dv">4</span> <span class="sc">*</span> pich_inn_d <span class="sc">^</span><span class="dv">2</span> ) <span class="co"># cm^2</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="evapotranspiration.html#cb94-1" aria-hidden="true" tabindex="-1"></a>et <span class="ot">&lt;-</span> et <span class="sc">%&gt;%</span> </span>
+<span id="cb94-2"><a href="evapotranspiration.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(loc_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb94-3"><a href="evapotranspiration.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb94-4"><a href="evapotranspiration.html#cb94-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here the scale is the opposite, the lower the number the more the water</span></span>
+<span id="cb94-5"><a href="evapotranspiration.html#cb94-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_pich =</span> pich_height_cm <span class="sc">-</span> <span class="fu">lag</span>(pich_height_cm),</span>
+<span id="cb94-6"><a href="evapotranspiration.html#cb94-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># need to convert to mm of ET</span></span>
+<span id="cb94-7"><a href="evapotranspiration.html#cb94-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">et_pich =</span> diff_pich <span class="sc">*</span> pich_dish_area <span class="sc">*</span> pich_int_area <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb94-8"><a href="evapotranspiration.html#cb94-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="evapotranspiration.html#cb95-1" aria-hidden="true" tabindex="-1"></a>spot_cols <span class="ot">&lt;-</span> <span class="fu">hue_pal</span>()(<span class="dv">4</span>)</span>
+<span id="cb95-2"><a href="evapotranspiration.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(spot_cols) <span class="ot">&lt;-</span> <span class="fu">unique</span>(et<span class="sc">$</span>spot)</span>
+<span id="cb95-3"><a href="evapotranspiration.html#cb95-3" aria-hidden="true" tabindex="-1"></a>et <span class="sc">%&gt;%</span> </span>
+<span id="cb95-4"><a href="evapotranspiration.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> <span class="co">#removing first empty day</span></span>
+<span id="cb95-5"><a href="evapotranspiration.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(date)) <span class="sc">+</span></span>
+<span id="cb95-6"><a href="evapotranspiration.html#cb95-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>et_pan, <span class="at">col=</span><span class="st">&quot;Pan&quot;</span>), <span class="at">size=</span>.<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb95-7"><a href="evapotranspiration.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> et_pich, <span class="at">col=</span>spot), <span class="at">width =</span> .<span class="dv">06</span>, <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb95-8"><a href="evapotranspiration.html#cb95-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(spot_cols, <span class="st">&quot;Pan&quot;</span> <span class="ot">=</span> <span class="st">&quot;black&quot;</span> )) <span class="sc">+</span></span>
+<span id="cb95-9"><a href="evapotranspiration.html#cb95-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">&quot;Potential Evapotranspiration [mm]&quot;</span>, <span class="at">colour=</span><span class="st">&quot;Location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb95-10"><a href="evapotranspiration.html#cb95-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
+<div class="figure"><span id="fig:pan-pich"></span>
+<img src="Bioclimatology-reports_files/figure-html/pan-pich-1.png" alt="Comparison of Potential Evapotranspiration between the evaporatin pan and 8 Piché evaporimeters in 4 different locations (fir, pole, tower, acer). Data from field measurement 26-28 June 2021." width="672" />
+<p class="caption">
+Figure 9.2: Comparison of Potential Evapotranspiration between the evaporatin pan and 8 Piché evaporimeters in 4 different locations (fir, pole, tower, acer). Data from field measurement 26-28 June 2021.
+</p>
+</div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="evapotranspiration.html#cb96-1" aria-hidden="true" tabindex="-1"></a>et <span class="sc">%&gt;%</span> </span>
+<span id="cb96-2"><a href="evapotranspiration.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb96-3"><a href="evapotranspiration.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(spot, et_pich, <span class="at">col=</span>spot)) <span class="sc">+</span></span>
+<span id="cb96-4"><a href="evapotranspiration.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb96-5"><a href="evapotranspiration.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb96-6"><a href="evapotranspiration.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&#39;Location&#39;</span>, <span class="at">y =</span> <span class="st">&quot;PET [mm]&quot;</span>, <span class="at">col=</span><span class="st">&quot;Location&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:pich-box"></span>
+<img src="Bioclimatology-reports_files/figure-html/pich-box-1.png" alt="PET at the different location. Data from field measurements 26-28 June 2021." width="672" />
+<p class="caption">
+Figure 9.3: PET at the different location. Data from field measurements 26-28 June 2021.
+</p>
+</div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="evapotranspiration.html#cb97-1" aria-hidden="true" tabindex="-1"></a>et <span class="sc">%&gt;%</span> </span>
+<span id="cb97-2"><a href="evapotranspiration.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(meteo_d, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;date&quot;</span><span class="ot">=</span> <span class="st">&quot;Date&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-3"><a href="evapotranspiration.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;et&quot;</span>, PET, et_pan, <span class="at">factor_key =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-4"><a href="evapotranspiration.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(date, et, <span class="at">col=</span>type)) <span class="sc">+</span></span>
+<span id="cb97-5"><a href="evapotranspiration.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb97-6"><a href="evapotranspiration.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">&quot;Potential Evapotranspiration [mm]&quot;</span>, <span class="at">x=</span><span class="st">&quot;Date&quot;</span>, <span class="at">col=</span><span class="st">&quot;PET&quot;</span>) <span class="sc">+</span></span>
+<span id="cb97-7"><a href="evapotranspiration.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Priestley-Taylor&quot;</span>, <span class="st">&quot;Evap. pan&quot;</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:pan-pet"></span>
+<img src="Bioclimatology-reports_files/figure-html/pan-pet-1.png" alt="Comparison of the PET between the field measure with the evaporation pan and the estimation using the Priestley-Taylor equation. Data from field measurements and botanical garden 25-28 June 2021." width="672" />
+<p class="caption">
+Figure 9.4: Comparison of the PET between the field measure with the evaporation pan and the estimation using the Priestley-Taylor equation. Data from field measurements and botanical garden 25-28 June 2021.
+</p>
+</div>
+<div style="page-break-after: always;"></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="soil-physics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="turbulent-fluxes-pmbco-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Bioclimatology-reports.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
